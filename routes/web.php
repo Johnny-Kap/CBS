@@ -27,6 +27,7 @@ Route::get('/location-list', [App\Http\Controllers\LocationVehiculeController::c
 Route::get('/location-detail/{id}/{name}', [App\Http\Controllers\LocationVehiculeController::class, 'show'])->name('location.details');
 Route::get('/paiement-location', [App\Http\Controllers\LocationVehiculeController::class, 'verifierDispo'])->name('verifier.location')->middleware('auth');
 Route::get('/comande/location/{location_id}/{compte_id}/{date_heure_depart}/{date_heure_arrivee}/{mode_paiement}/{total_tarif}/{diff}', [App\Http\Controllers\CommandeLocationController::class, 'create'])->middleware('auth')->name('location.paiement');
+Route::get('/successfully-commande', [App\Http\Controllers\CommandeLocationController::class, 'success'])->name('sucess');
 
 
 /* ------------- Routes de l'Admin --------------*/

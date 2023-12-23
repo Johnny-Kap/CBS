@@ -17,6 +17,10 @@ class CommandeLocationController extends Controller
         //
     }
 
+    public function success(){
+        return view('location.success_commande');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

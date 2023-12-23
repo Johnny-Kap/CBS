@@ -9,10 +9,10 @@
                         <span></span>
                     </span>
                 </a>
-                <a href="index.html" class="navbar-brand logo">
-                    <img src="/../assets/img/logo.svg" class="img-fluid" alt="Logo">
+                <a href="{{url('/')}}" class="navbar-brand logo">
+                    <img src="/../assets/img/logo_final.PNG" class="img-fluid" alt="Logo">
                 </a>
-                <a href="index.html" class="navbar-brand logo-small">
+                <a href="{{url('/')}}" class="navbar-brand logo-small">
                     <img src="/../assets/img/logo-small.png" class="img-fluid" alt="Logo">
                 </a>
             </div>
