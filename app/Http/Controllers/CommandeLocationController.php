@@ -6,6 +6,7 @@ use App\Models\CommandeLocation;
 use App\Models\Compte;
 use App\Models\LocationVehicule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommandeLocationController extends Controller
 {
@@ -68,9 +69,11 @@ class CommandeLocationController extends Controller
 
                 $commande->location_vehicule_id = $location_id;
 
+                $commande->user_id = Auth::user()->id;
+
                 $commande->save();
 
-                return view('');
+                return redirect()->route('sucess');
             }
         }
     }

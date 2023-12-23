@@ -102,25 +102,22 @@
                         <h5 class="footer-title">Contact Info</h5>
                         <div class="footer-contact-info">
                             <div class="footer-address">
-                                <span><i class="fas fa-phone-call"></i></span>
+                                <span><i class="fas fa-phone"></i></span>
                                 <div class="addr-info">
                                     <a href="tel:+1(888)7601940">+ 1 (888) 760 1940</a>
                                 </div>
                             </div>
                             <div class="footer-address">
-                                <span><i class="feather-mail"></i></span>
+                                <span><i class="fas fa-envelope"></i></span>
                                 <div class="addr-info">
-                                    <a href="/cdn-cgi/l/email-protection#4f3c3a3f3f203d3b0f2a372e223f232a612c2022"><span
-                                            class="__cf_email__"
-                                            data-cfemail="a1d2d4d1d1ced3d5e1c4d9c0ccd1cdc48fc2cecc">[email&#160;protected]</span></a>
+                                    <a href="mailto:hello@cbs-cameroon.com">hello@cbs-cameroon.com</a>
                                 </div>
                             </div>
                             <div class="update-form">
                                 <form action="#">
-                                    <span><i class="fas fa-mail"></i></span>
+                                    <span><i class="fas fa-envelope"></i></span>
                                     <input type="email" class="form-control" placeholder="Enter You Email Here">
-                                    <button type="submit" class="btn btn-subscribe"><span><i
-                                                class="fas fa-send"></i></span></button>
+                                    <button type="submit" class="btn btn-subscribe"><span><i class="fas fa-paper-plane"></i></span></button>
                                 </form>
                             </div>
                         </div>
@@ -128,24 +125,20 @@
                             <h6>Connect with us</h6>
                             <ul class="nav-social">
                                 <li>
-                                    <a href="javascript:void(0)" target="_blank"><i
-                                            class="fa-brands fa-facebook-f fa-facebook fi-icon"></i></a>
+                                    <a href="javascript:void(0)" target="_blank"><i class="fa-brands fa-facebook-f fa-facebook fi-icon"></i></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)" target="_blank"><i
-                                            class="fab fa-instagram fi-icon"></i></a>
+                                    <a href="javascript:void(0)" target="_blank"><i class="fab fa-instagram fi-icon"></i></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)" target="_blank"><i
-                                            class="fab fa-behance fi-icon"></i></a>
+                                    <a href="javascript:void(0)" target="_blank"><i class="fab fa-behance fi-icon"></i></a>
                                 </li>
                                 <li>
                                     <a href="javascript:void(0)" target="_blank"><i class="fab fa-twitter fi-icon"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)" target="_blank"><i
-                                            class="fab fa-linkedin fi-icon"></i></a>
+                                    <a href="javascript:void(0)" target="_blank"><i class="fab fa-linkedin fi-icon"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -170,16 +163,12 @@
 
                         <div class="copyright-menu">
                             <div class="vistors-details">
-                                <ul class="d-flex">
-                                    <li><a href="javascript:void(0)"><img class="img-fluid"
-                                                src="/../assets/img/icons/paypal.svg" alt="Paypal"></a></li>
-                                    <li><a href="javascript:void(0)"><img class="img-fluid"
-                                                src="/../assets/img/icons/visa.svg" alt="Visa"></a></li>
-                                    <li><a href="javascript:void(0)"><img class="img-fluid"
-                                                src="/../assets/img/icons/master.svg" alt="Master"></a></li>
-                                    <li><a href="javascript:void(0)"><img class="img-fluid"
-                                                src="/../assets/img/icons/applegpay.svg" alt="applegpay"></a></li>
-                                </ul>
+                                <!-- <ul class="d-flex">
+                                    <li><a href="javascript:void(0)"><img class="img-fluid" src="/../assets/img/icons/paypal.svg" alt="Paypal"></a></li>
+                                    <li><a href="javascript:void(0)"><img class="img-fluid" src="/../assets/img/icons/visa.svg" alt="Visa"></a></li>
+                                    <li><a href="javascript:void(0)"><img class="img-fluid" src="/../assets/img/icons/master.svg" alt="Master"></a></li>
+                                    <li><a href="javascript:void(0)"><img class="img-fluid" src="/../assets/img/icons/applegpay.svg" alt="applegpay"></a></li>
+                                </ul> -->
                             </div>
                         </div>
 

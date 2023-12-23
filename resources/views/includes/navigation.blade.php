@@ -41,9 +41,9 @@
                                 <a href="javascript:void(0);">Services</a>
                                 <ul class="submenu">
                                     <li><a href="{{route('location.list')}}">Location</a></li>
-                                    <li><a href="login.html">Signin</a></li>
+                                    <!-- <li><a href="login.html">Signin</a></li>
                                     <li><a href="forgot-password.html">Forgot Password</a></li>
-                                    <li><a href="reset-password.html">Reset Password</a></li>
+                                    <li><a href="reset-password.html">Reset Password</a></li> -->
                                 </ul>
                             </li>
                             <!-- <li class="has-submenu">
@@ -61,7 +61,7 @@
                                     <li><a href="error-500.html">500 Error</a></li>
                                 </ul>
                             </li> -->
-                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="pricing.html">Abonnements</a></li>
                             <!-- <li><a href="faq.html">FAQ</a></li>
                             <li><a href="gallery.html">Gallery</a></li>
                             <li><a href="our-team.html">Our Team</a></li>
