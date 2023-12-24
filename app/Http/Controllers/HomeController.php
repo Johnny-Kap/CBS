@@ -38,4 +38,12 @@ class HomeController extends Controller
         return view('admin_page.home_admin');
     }
 
+    public function contact(){
+        return view('contact');
+    }
+
+    public function propos(){
+        return view('propos');
+    }
+
 }

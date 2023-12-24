@@ -104,13 +104,13 @@
                             <div class="footer-address">
                                 <span><i class="fas fa-phone"></i></span>
                                 <div class="addr-info">
-                                    <a href="tel:+1(888)7601940">+ 1 (888) 760 1940</a>
+                                    <a href="tel:+237 659826528">+237 659826528 / +237 653100205</a>
                                 </div>
                             </div>
                             <div class="footer-address">
                                 <span><i class="fas fa-envelope"></i></span>
                                 <div class="addr-info">
-                                    <a href="mailto:hello@cbs-cameroon.com">hello@cbs-cameroon.com</a>
+                                    <a href="mailto:hello@cbs-cameroon.com">hello@cbs-cameroun.com</a>
                                 </div>
                             </div>
                             <div class="update-form">

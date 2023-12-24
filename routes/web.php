@@ -20,11 +20,13 @@ Route::get('/', function () {
     $location = LocationVehicule::all();
 
     return view('welcome', compact('location'));
-});
+})->name('welcome');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
+Route::get('/propos', [App\Http\Controllers\HomeController::class, 'propos'])->name('propos');
 
 // Gestion des locations
 Route::get('/location-list', [App\Http\Controllers\LocationVehiculeController::class, 'list'])->name('location.list');
