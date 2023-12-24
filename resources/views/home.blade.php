@@ -7,16 +7,15 @@
         <div class="home-banner">
             <div class="row align-items-center">
                 <div class="col-lg-6" data-aos="fade-down">
-                    <p class="explore-text"> <span><i class="fa-solid fa-thumbs-up me-2"></i></span>100% Trusted
-                        car rental platform in the World</p>
-                    <h1>Find Your Best <br>
-                        <span>Dream Car for Rental</span>
+                    <p class="explore-text"> <span><i class="fa-solid fa-thumbs-up me-2"></i></span>100 % de confiance
+                        plateforme de location de voitures dans le monde</p>
+                    <h1>Trouvez votre meilleur <br>
+                        <span>Voiture de rêve à louer</span>
                     </h1>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                        has been the industry's standard dummy text ever since the 1500s</p>
+                    <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                        has been the industry's standard dummy text ever since the 1500s</p> -->
                     <div class="view-all">
-                        <a href="listing-grid.html" class="btn btn-view d-inline-flex align-items-center">View
-                            all Cars <span><i class="fas fa-arrow-right ms-2"></i></span></a>
+                        <a href="{{route('location.list')}}" class="btn btn-view d-inline-flex align-items-center">Voir toutes les locations <span><i class="fas fa-arrow-right ms-2"></i></span></a>
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-down">
@@ -29,7 +28,7 @@
     </div>
 </section>
 
-<div class="section-search">
+<!-- <div class="section-search">
     <div class="container">
         <div class="search-box-banner">
             <form action="listing-grid.html">
@@ -93,7 +92,7 @@
             </form>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <section class="section services">
@@ -103,7 +102,7 @@
     <div class="container">
 
         <div class="section-heading" data-aos="fade-down">
-            <h2>How It Works</h2>
+            <h2>Comment ca marche</h2>
             <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
         </div>
 
@@ -112,11 +111,10 @@
                 <div class="col-lg-4 col-md-4 col-12" data-aos="fade-down">
                     <div class="services-group">
                         <div class="services-icon border-secondary">
-                            <img class="icon-img bg-secondary" src="assets/img/icons/services-icon-01.svg"
-                                alt="Choose Locations">
+                            <img class="icon-img bg-secondary" src="assets/img/icons/services-icon-01.svg" alt="Choose Locations">
                         </div>
                         <div class="services-content">
-                            <h3>1. Choose Locations</h3>
+                            <h3>1. Choisir des emplacements</h3>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                 Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
                         </div>
@@ -125,11 +123,10 @@
                 <div class="col-lg-4 col-md-4 col-12" data-aos="fade-down">
                     <div class="services-group">
                         <div class="services-icon border-warning">
-                            <img class="icon-img bg-warning" src="assets/img/icons/services-icon-01.svg"
-                                alt="Choose Locations">
+                            <img class="icon-img bg-warning" src="assets/img/icons/services-icon-01.svg" alt="Choose Locations">
                         </div>
                         <div class="services-content">
-                            <h3>2. Pick-Up Locations</h3>
+                            <h3>2. Lieux de prise en charge</h3>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                 Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
                         </div>
@@ -138,11 +135,10 @@
                 <div class="col-lg-4 col-md-4 col-12" data-aos="fade-down">
                     <div class="services-group">
                         <div class="services-icon border-dark">
-                            <img class="icon-img bg-dark" src="assets/img/icons/services-icon-01.svg"
-                                alt="Choose Locations">
+                            <img class="icon-img bg-dark" src="assets/img/icons/services-icon-01.svg" alt="Choose Locations">
                         </div>
                         <div class="services-content">
-                            <h3>3. Book your Car</h3>
+                            <h3>3. Réservez votre voiture</h3>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                 Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
                         </div>
@@ -161,7 +157,7 @@
             <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
         </div>
 
-        <div class="row justify-content-center">
+        <!-- <div class="row justify-content-center">
             <div class="col-lg-12" data-aos="fade-down">
                 <div class="listing-tabs-group">
                     <ul class="nav listing-buttons gap-3" data-bs-tabs="tabs">
@@ -216,20 +212,20 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="tab-content">
             <div class="tab-pane active" id="Carmazda">
                 <div class="row">
-
+                    @foreach($location as $item)
                     <div class="col-lg-4 col-md-6 col-12" data-aos="fade-down">
                         <div class="listing-item">
                             <div class="listing-img">
-                                <a href="listing-details.html">
-                                    <img src="assets/img/cars/car-01.jpg" class="img-fluid" alt="Toyota">
+                                <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->intitule)]) }}">
+                                    <img src="{{ Storage::url($item->vehicules->image_illustrative) }}" style="width: 30rem; height: 15rem;" class="img-fluid" alt="Toyota">
                                 </a>
                                 <div class="fav-item">
-                                    <span class="featured-text">Toyota</span>
+                                    <span class="featured-text">{{$item->vehicules->intitule}}</span>
                                     <a href="javascript:void(0)" class="fav-icon">
                                         <i class="feather-heart"></i>
                                     </a>
@@ -241,678 +237,62 @@
                                         <img src="assets/img/profiles/avatar-0.jpg" alt="author">
                                     </a>
                                     <h3 class="listing-title">
-                                        <a href="listing-details.html">Toyota Camry SE 350</a>
+                                        <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->intitule)]) }}">{{$item->intitule}}</a>
                                     </h3>
-                                    <div class="list-rating">
+                                    <!-- <div class="list-rating">
                                         <i class="fas fa-star filled"></i>
                                         <i class="fas fa-star filled"></i>
                                         <i class="fas fa-star filled"></i>
                                         <i class="fas fa-star filled"></i>
                                         <i class="fas fa-star filled"></i>
                                         <span>(5.0)</span>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="listing-details-group">
                                     <ul>
                                         <li>
                                             <span><img src="assets/img/icons/car-parts-01.svg" alt="Auto"></span>
-                                            <p>Auto</p>
+                                            <p>{{$item->vehicules->transmission}}</p>
                                         </li>
                                         <li>
                                             <span><img src="assets/img/icons/car-parts-02.svg" alt="10 KM"></span>
-                                            <p>10 KM</p>
+                                            <p>{{$item->vehicules->nombre_kilometrage}} km</p>
                                         </li>
                                         <li>
                                             <span><img src="assets/img/icons/car-parts-03.svg" alt="Petrol"></span>
-                                            <p>Petrol</p>
+                                            <p>{{$item->vehicules->type_moteur}}</p>
                                         </li>
                                     </ul>
                                     <ul>
                                         <li>
                                             <span><img src="assets/img/icons/car-parts-04.svg" alt="Power"></span>
-                                            <p>Power</p>
+                                            <p>{{$item->vehicules->modele}}</p>
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                             <span><img src="assets/img/icons/car-parts-05.svg" alt="2018"></span>
-                                            <p>2018</p>
-                                        </li>
+                                            <p>{{$item->vehicules->annee_fabrication}}</p>
+                                        </li> -->
                                         <li>
                                             <span><img src="assets/img/icons/car-parts-06.svg" alt="Persons"></span>
-                                            <p>5 Persons</p>
+                                            <p>{{$item->vehicules->nombre_portieres}} portières</p>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="listing-location-details">
-                                    <div class="listing-price">
+                                    <!-- <div class="listing-price">
                                         <span><i class="feather-map-pin"></i></span>Germany
-                                    </div>
+                                    </div> -->
                                     <div class="listing-price">
-                                        <h6>$400 <span>/ Day</span></h6>
+                                        <h6>{{$item->tarif}} FCFA <span>/ jour</span></h6>
                                     </div>
                                 </div>
                                 <div class="listing-button">
-                                    <a href="listing-details.html" class="btn btn-order"><span><i
-                                                class="feather-calendar me-2"></i></span>Rent Now</a>
+                                    <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->intitule)]) }}" class="btn btn-order"><span><i class="fas fa-calendar me-2"></i></span>Louer maintenant</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="col-lg-4 col-md-6 col-12" data-aos="fade-down">
-                        <div class="listing-item">
-                            <div class="listing-img">
-                                <a href="listing-details.html">
-                                    <img src="assets/img/cars/car-02.jpg" class="img-fluid" alt="KIA">
-                                </a>
-                                <div class="fav-item">
-                                    <span class="featured-text">KIA</span>
-                                    <a href="javascript:void(0)" class="fav-icon">
-                                        <i class="feather-heart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="listing-content">
-                                <div class="listing-features">
-                                    <a href="javascript:void(0)" class="author-img">
-                                        <img src="assets/img/profiles/avatar-02.jpg" alt="author">
-                                    </a>
-                                    <h3 class="listing-title">
-                                        <a href="listing-details.html">Kia Soul 2016</a>
-                                    </h3>
-                                    <div class="list-rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <span>(5.0)</span>
-                                    </div>
-                                </div>
-                                <div class="listing-details-group">
-                                    <ul>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-01.svg" alt="Auto"></span>
-                                            <p>Auto</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-02.svg" alt="22 KM"></span>
-                                            <p>22 KM</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-03.svg" alt="Petrol"></span>
-                                            <p>Petrol</p>
-                                        </li>
-                                    </ul>
-                                    <ul>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-04.svg" alt="Diesel"></span>
-                                            <p>Diesel</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-05.svg" alt="2016"></span>
-                                            <p>2016</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-06.svg" alt="Persons"></span>
-                                            <p>5 Persons</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="listing-location-details">
-                                    <div class="listing-price">
-                                        <span><i class="feather-map-pin"></i></span>Belgium
-                                    </div>
-                                    <div class="listing-price">
-                                        <h6>$80 <span>/ Day</span></h6>
-                                    </div>
-                                </div>
-                                <div class="listing-button">
-                                    <a href="listing-details.html" class="btn btn-order"><span><i
-                                                class="feather-calendar me-2"></i></span>Rent Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-6 col-12" data-aos="fade-down">
-                        <div class="listing-item">
-                            <div class="listing-img">
-                                <a href="listing-details.html">
-                                    <img src="assets/img/cars/car-03.jpg" class="img-fluid" alt="Audi">
-                                </a>
-                                <div class="fav-item">
-                                    <span class="featured-text">Audi</span>
-                                    <a href="javascript:void(0)" class="fav-icon">
-                                        <i class="feather-heart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="listing-content">
-                                <div class="listing-features">
-                                    <a href="javascript:void(0)" class="author-img">
-                                        <img src="assets/img/profiles/avatar-03.jpg" alt="author">
-                                    </a>
-                                    <h3 class="listing-title">
-                                        <a href="listing-details.html">Audi A3 2019 new</a>
-                                    </h3>
-                                    <div class="list-rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <span>(5.0)</span>
-                                    </div>
-                                </div>
-                                <div class="listing-details-group">
-                                    <ul>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-05.svg" alt="Manual"></span>
-                                            <p>Manual</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-02.svg" alt="10 KM"></span>
-                                            <p>10 KM</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-03.svg" alt="Petrol"></span>
-                                            <p>Petrol</p>
-                                        </li>
-                                    </ul>
-                                    <ul>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-04.svg" alt="Power"></span>
-                                            <p>Power</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-05.svg" alt="2019"></span>
-                                            <p>2019</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-06.svg" alt="Persons"></span>
-                                            <p>4 Persons</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="listing-location-details">
-                                    <div class="listing-price">
-                                        <span><i class="feather-map-pin"></i></span>Newyork, USA
-                                    </div>
-                                    <div class="listing-price">
-                                        <h6>$45 <span>/ Day</span></h6>
-                                    </div>
-                                </div>
-                                <div class="listing-button">
-                                    <a href="listing-details.html" class="btn btn-order"><span><i
-                                                class="feather-calendar me-2"></i></span>Rent Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-6 col-12" data-aos="fade-down">
-                        <div class="listing-item">
-                            <div class="listing-img">
-                                <a href="listing-details.html">
-                                    <img src="assets/img/cars/car-04.jpg" class="img-fluid" alt="Audi">
-                                </a>
-                                <div class="fav-item">
-                                    <span class="featured-text">Ferrai</span>
-                                    <a href="javascript:void(0)" class="fav-icon">
-                                        <i class="feather-heart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="listing-content">
-                                <div class="listing-features">
-                                    <a href="javascript:void(0)" class="author-img">
-                                        <img src="assets/img/profiles/avatar-04.jpg" alt="author">
-                                    </a>
-                                    <h3 class="listing-title">
-                                        <a href="listing-details.html">Ferrari 458 MM Speciale</a>
-                                    </h3>
-                                    <div class="list-rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <span>(5.0)</span>
-                                    </div>
-                                </div>
-                                <div class="listing-details-group">
-                                    <ul>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-05.svg" alt="Manual"></span>
-                                            <p>Manual</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-02.svg" alt="14 KM"></span>
-                                            <p>14 KM</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-03.svg" alt="Diesel"></span>
-                                            <p>Diesel</p>
-                                        </li>
-                                    </ul>
-                                    <ul>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-04.svg" alt="Basic"></span>
-                                            <p>Basic</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-05.svg" alt="2022"></span>
-                                            <p>2022</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-06.svg" alt="Persons"></span>
-                                            <p>5 Persons</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="listing-location-details">
-                                    <div class="listing-price">
-                                        <span><i class="feather-map-pin"></i></span>Newyork, USA
-                                    </div>
-                                    <div class="listing-price">
-                                        <h6>$160 <span>/ Day</span></h6>
-                                    </div>
-                                </div>
-                                <div class="listing-button">
-                                    <a href="listing-details.html" class="btn btn-order"><span><i
-                                                class="feather-calendar me-2"></i></span>Rent Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-6 col-12" data-aos="fade-down">
-                        <div class="listing-item">
-                            <div class="listing-img">
-                                <a href="listing-details.html">
-                                    <img src="assets/img/cars/car-05.jpg" class="img-fluid" alt="Audi">
-                                </a>
-                                <div class="fav-item">
-                                    <span class="featured-text">Chevrolet</span>
-                                    <a href="javascript:void(0)" class="fav-icon">
-                                        <i class="feather-heart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="listing-content">
-                                <div class="listing-features">
-                                    <a href="javascript:void(0)" class="author-img">
-                                        <img src="assets/img/profiles/avatar-05.jpg" alt="author">
-                                    </a>
-                                    <h3 class="listing-title">
-                                        <a href="listing-details.html">2018 Chevrolet Camaro</a>
-                                    </h3>
-                                    <div class="list-rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <span>(5.0)</span>
-                                    </div>
-                                </div>
-                                <div class="listing-details-group">
-                                    <ul>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-05.svg" alt="Manual"></span>
-                                            <p>Manual</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-02.svg" alt="18 KM"></span>
-                                            <p>18 KM</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-03.svg" alt="Diesel"></span>
-                                            <p>Diesel</p>
-                                        </li>
-                                    </ul>
-                                    <ul>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-04.svg" alt="Power"></span>
-                                            <p>Power</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-05.svg" alt="2018"></span>
-                                            <p>2018</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-06.svg" alt="Persons"></span>
-                                            <p>4 Persons</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="listing-location-details">
-                                    <div class="listing-price">
-                                        <span><i class="feather-map-pin"></i></span>Germany
-                                    </div>
-                                    <div class="listing-price">
-                                        <h6>$36 <span>/ Day</span></h6>
-                                    </div>
-                                </div>
-                                <div class="listing-button">
-                                    <a href="listing-details.html" class="btn btn-order"><span><i
-                                                class="feather-calendar me-2"></i></span>Rent Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-6 col-12" data-aos="fade-down">
-                        <div class="listing-item">
-                            <div class="listing-img">
-                                <a href="listing-details.html">
-                                    <img src="assets/img/cars/car-06.jpg" class="img-fluid" alt="Audi">
-                                </a>
-                                <div class="fav-item">
-                                    <span class="featured-text">Acura</span>
-                                    <a href="javascript:void(0)" class="fav-icon">
-                                        <i class="feather-heart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="listing-content">
-                                <div class="listing-features">
-                                    <a href="javascript:void(0)" class="author-img">
-                                        <img src="assets/img/profiles/avatar-06.jpg" alt="author">
-                                    </a>
-                                    <h3 class="listing-title">
-                                        <a href="listing-details.html">Acura Sport Version</a>
-                                    </h3>
-                                    <div class="list-rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <span>(5.0)</span>
-                                    </div>
-                                </div>
-                                <div class="listing-details-group">
-                                    <ul>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-01.svg" alt="Auto"></span>
-                                            <p>Auto</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-02.svg" alt="12 KM"></span>
-                                            <p>12 KM</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-03.svg" alt="Diesel"></span>
-                                            <p>Diesel</p>
-                                        </li>
-                                    </ul>
-                                    <ul>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-04.svg" alt="Power"></span>
-                                            <p>Power</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-05.svg" alt="2013"></span>
-                                            <p>2013</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-06.svg" alt="Persons"></span>
-                                            <p>5 Persons</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="listing-location-details">
-                                    <div class="listing-price">
-                                        <span><i class="feather-map-pin"></i></span>Newyork, USA
-                                    </div>
-                                    <div class="listing-price">
-                                        <h6>$30 <span>/ Day</span></h6>
-                                    </div>
-                                </div>
-                                <div class="listing-button">
-                                    <a href="listing-details.html" class="btn btn-order"><span><i
-                                                class="feather-calendar me-2"></i></span>Rent Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-6 col-12" data-aos="fade-down">
-                        <div class="listing-item">
-                            <div class="listing-img">
-                                <a href="listing-details.html">
-                                    <img src="assets/img/cars/car-07.jpg" class="img-fluid" alt="Audi">
-                                </a>
-                                <div class="fav-item">
-                                    <span class="featured-text">Chevrolet</span>
-                                    <a href="javascript:void(0)" class="fav-icon">
-                                        <i class="feather-heart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="listing-content">
-                                <div class="listing-features">
-                                    <a href="javascript:void(0)" class="author-img">
-                                        <img src="assets/img/profiles/avatar-07.jpg" alt="author">
-                                    </a>
-                                    <h3 class="listing-title">
-                                        <a href="listing-details.html">Chevrolet Pick Truck 3.5L</a>
-                                    </h3>
-                                    <div class="list-rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <span>(5.0)</span>
-                                    </div>
-                                </div>
-                                <div class="listing-details-group">
-                                    <ul>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-05.svg" alt="Manual"></span>
-                                            <p>Manual</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-02.svg" alt="10 KM"></span>
-                                            <p>10 KM</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-03.svg" alt="Petrol"></span>
-                                            <p>Petrol</p>
-                                        </li>
-                                    </ul>
-                                    <ul>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-04.svg" alt="Power"></span>
-                                            <p>Power</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-05.svg" alt="2012"></span>
-                                            <p>2012</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-06.svg" alt="Persons"></span>
-                                            <p>5 Persons</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="listing-location-details">
-                                    <div class="listing-price">
-                                        <span><i class="feather-map-pin"></i></span>Spain
-                                    </div>
-                                    <div class="listing-price">
-                                        <h6>$77 <span>/ Day</span></h6>
-                                    </div>
-                                </div>
-                                <div class="listing-button">
-                                    <a href="listing-details.html" class="btn btn-order"><span><i
-                                                class="feather-calendar me-2"></i></span>Rent Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-6 col-12" data-aos="fade-down">
-                        <div class="listing-item">
-                            <div class="listing-img">
-                                <a href="listing-details.html">
-                                    <img src="assets/img/cars/car-08.jpg" class="img-fluid" alt="Toyota">
-                                </a>
-                                <div class="fav-item">
-                                    <span class="featured-text">Toyota</span>
-                                    <a href="javascript:void(0)" class="fav-icon">
-                                        <i class="feather-heart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="listing-content">
-                                <div class="listing-features">
-                                    <a href="javascript:void(0)" class="author-img">
-                                        <img src="assets/img/profiles/avatar-08.jpg" alt="author">
-                                    </a>
-                                    <h3 class="listing-title">
-                                        <a href="listing-details.html">Toyota Tacoma 4WD</a>
-                                    </h3>
-                                    <div class="list-rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <span>(5.0)</span>
-                                    </div>
-                                </div>
-                                <div class="listing-details-group">
-                                    <ul>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-01.svg" alt="Auto"></span>
-                                            <p>Auto</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-02.svg" alt="22 miles"></span>
-                                            <p>22 miles</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-03.svg" alt="Diesel"></span>
-                                            <p>Diesel</p>
-                                        </li>
-                                    </ul>
-                                    <ul>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-04.svg" alt="Power"></span>
-                                            <p>Power</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-05.svg" alt="2019"></span>
-                                            <p>2019</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-06.svg" alt="Persons"></span>
-                                            <p>5 Persons</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="listing-location-details">
-                                    <div class="listing-price">
-                                        <span><i class="feather-map-pin"></i></span>Dallas, USA
-                                    </div>
-                                    <div class="listing-price">
-                                        <h6>$30 <span>/ Day</span></h6>
-                                    </div>
-                                </div>
-                                <div class="listing-button">
-                                    <a href="listing-details.html" class="btn btn-order"><span><i
-                                                class="feather-calendar me-2"></i></span>Rent Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-6 col-12" data-aos="fade-down">
-                        <div class="listing-item">
-                            <div class="listing-img">
-                                <a href="listing-details.html">
-                                    <img src="assets/img/cars/car-09.jpg" class="img-fluid" alt="Toyota">
-                                </a>
-                                <div class="fav-item">
-                                    <span class="featured-text">Accura</span>
-                                    <a href="javascript:void(0)" class="fav-icon">
-                                        <i class="feather-heart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="listing-content">
-                                <div class="listing-features">
-                                    <a href="javascript:void(0)" class="author-img">
-                                        <img src="assets/img/profiles/avatar-10.jpg" alt="author">
-                                    </a>
-                                    <h3 class="listing-title">
-                                        <a href="listing-details.html">Acura RDX FWD</a>
-                                    </h3>
-                                    <div class="list-rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <span>(5.0)</span>
-                                    </div>
-                                </div>
-                                <div class="listing-details-group">
-                                    <ul>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-01.svg" alt="Auto"></span>
-                                            <p>Auto</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-02.svg" alt="22 miles"></span>
-                                            <p>42 miles</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-03.svg" alt="Petrol"></span>
-                                            <p>Petrol</p>
-                                        </li>
-                                    </ul>
-                                    <ul>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-04.svg" alt="Power"></span>
-                                            <p>Power</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-05.svg" alt="2019"></span>
-                                            <p>2021</p>
-                                        </li>
-                                        <li>
-                                            <span><img src="assets/img/icons/car-parts-06.svg" alt="Persons"></span>
-                                            <p>5 Persons</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="listing-location-details">
-                                    <div class="listing-price">
-                                        <span><i class="feather-map-pin"></i></span>Dallas, USA
-                                    </div>
-                                    <div class="listing-price">
-                                        <h6>$80 <span>/ Day</span></h6>
-                                    </div>
-                                </div>
-                                <div class="listing-button">
-                                    <a href="listing-details.html" class="btn btn-order"><span><i
-                                                class="feather-calendar me-2"></i></span>Rent Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -926,7 +306,7 @@
     <div class="container">
 
         <div class="section-heading" data-aos="fade-down">
-            <h2>Why Choose Us</h2>
+            <h2>Pourquoi nous choisir</h2>
             <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
         </div>
 
@@ -939,9 +319,9 @@
                                 <img src="assets/img/icons/bx-user-check.svg" alt>
                             </div>
                             <div class="choose-content">
-                                <h4>Easy & Fast Booking</h4>
-                                <p>Completely carinate e business testing process whereas fully researched
-                                    customer service. Globally extensive content with quality.</p>
+                                <h4>Réservation facile et rapide</h4>
+                                <p>Processus de test e-business complètement caréné alors qu'il a fait l'objet de recherches complètes
+                                    service client. Contenu mondial étendu et de qualité.</p>
                             </div>
                         </div>
                     </div>
@@ -953,9 +333,9 @@
                                 <img src="assets/img/icons/bx-user-check.svg" alt>
                             </div>
                             <div class="choose-content">
-                                <h4>Many Pickup Location</h4>
-                                <p>Enthusiastically magnetic initiatives with cross-platform sources.
-                                    Dynamically target testing procedures through effective.</p>
+                                <h4>De nombreux lieux de ramassage</h4>
+                                <p>Des initiatives enthousiastes et magnétiques avec des sources multiplateformes.
+                                    Ciblez dynamiquement les procédures de test grâce à leur efficacité.</p>
                             </div>
                         </div>
                     </div>
@@ -967,9 +347,9 @@
                                 <img src="assets/img/icons/bx-user-check.svg" alt>
                             </div>
                             <div class="choose-content">
-                                <h4>Customer Satisfaction</h4>
-                                <p>Globally user centric method interactive. Seamlessly revolutionize unique
-                                    portals corporate collaboration.</p>
+                                <h4>Satisfaction du client</h4>
+                                <p>Méthode globalement centrée sur l'utilisateur interactive. Révolutionnez en toute transparence l'unique
+                                    portails collaboration d'entreprise.</p>
                             </div>
                         </div>
                     </div>

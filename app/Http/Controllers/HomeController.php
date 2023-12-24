@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LocationVehicule;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $location = LocationVehicule::all();
+        
+        return view('home', compact('location'));
     }
 
     public function login_admin(){

@@ -63,6 +63,14 @@ class VehiculeController extends Controller
 
         $data['images'] = $images;
 
+        // $fonctionnalites = [];
+
+        // foreach($request->fonctionnalites as $item){
+        //     $fonctionnalites[] = $item;
+        // }
+
+        // dd($fonctionnalites);
+
         // Ajouter image illustrative
         $filename_illustrative = time() . '.' . $request->image_illustrative->extension();
 

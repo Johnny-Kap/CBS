@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\LocationVehicule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $location = LocationVehicule::all();
+
+    return view('welcome', compact('location'));
 });
 
 Auth::routes();

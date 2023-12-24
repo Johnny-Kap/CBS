@@ -44,7 +44,7 @@
                             <div class="camaro-location-inner">
                                 <i class="fas fa-map-pin me-2"></i>
                                 <span class="me-2">
-                                    <b>Location :</b> Miami St, Destin, FL 32550, USA
+                                    <b>Location :</b> Douala, Cameroun
                                 </span>
                             </div>
                             <!-- <div class="camaro-locations-inner">
@@ -89,8 +89,8 @@
                                         <img src="/../assets/img/specification/specification-icon-1.svg" alt />
                                     </div>
                                     <div class="featues-info">
-                                        <span>Body </span>
-                                        <h6>Sedan</h6>
+                                        <span>Type </span>
+                                        <h6>{{$locationShow->vehicules->type_vehicules->intitule}}</h6>
                                     </div>
                                 </div>
                                 <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
@@ -98,8 +98,8 @@
                                         <img src="/../assets/img/specification/specification-icon-2.svg" alt />
                                     </div>
                                     <div class="featues-info">
-                                        <span>Make </span>
-                                        <h6>Nisssan</h6>
+                                        <span>Coupe modèle </span>
+                                        <h6>{{$locationShow->vehicules->modele}}</h6>
                                     </div>
                                 </div>
                                 <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="featues-info">
                                         <span>Transmission </span>
-                                        <h6>Automatic</h6>
+                                        <h6>{{$locationShow->vehicules->transmission}}</h6>
                                     </div>
                                 </div>
                                 <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
@@ -116,8 +116,8 @@
                                         <img src="/../assets/img/specification/specification-icon-4.svg" alt />
                                     </div>
                                     <div class="featues-info">
-                                        <span>Fuel Type </span>
-                                        <h6>Diesel</h6>
+                                        <span>Type moteur </span>
+                                        <h6>{{$locationShow->vehicules->type_moteur}}</h6>
                                     </div>
                                 </div>
                                 <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
@@ -125,11 +125,11 @@
                                         <img src="/../assets/img/specification/specification-icon-5.svg" alt />
                                     </div>
                                     <div class="featues-info">
-                                        <span>Mileage </span>
-                                        <h6>16 Km</h6>
+                                        <span>Kilometrage </span>
+                                        <h6>{{$locationShow->vehicules->nombre_kilometrage}} Km</h6>
                                     </div>
                                 </div>
-                                <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
+                                <!-- <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
                                     <div class="feature-img">
                                         <img src="/../assets/img/specification/specification-icon-6.svg" alt />
                                     </div>
@@ -137,8 +137,8 @@
                                         <span>Drivetrian </span>
                                         <h6>Front Wheel</h6>
                                     </div>
-                                </div>
-                                <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
+                                </div> -->
+                                <!-- <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
                                     <div class="feature-img">
                                         <img src="/../assets/img/specification/specification-icon-7.svg" alt />
                                     </div>
@@ -146,17 +146,17 @@
                                         <span>Year</span>
                                         <h6>2018</h6>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
                                     <div class="feature-img">
                                         <img src="/../assets/img/specification/specification-icon-8.svg" alt />
                                     </div>
                                     <div class="featues-info">
-                                        <span>AC </span>
-                                        <h6>Air Condition</h6>
+                                        <span>Air conditionné </span>
+                                        <h6>{{$locationShow->vehicules->air_conditionne}}</h6>
                                     </div>
                                 </div>
-                                <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
+                                <!-- <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
                                     <div class="feature-img">
                                         <img src="/../assets/img/specification/specification-icon-9.svg" alt />
                                     </div>
@@ -164,17 +164,17 @@
                                         <span>VIN </span>
                                         <h6>45456444</h6>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
                                     <div class="feature-img">
                                         <img src="/../assets/img/specification/specification-icon-10.svg" alt />
                                     </div>
                                     <div class="featues-info">
-                                        <span>Door </span>
-                                        <h6>4 Doors</h6>
+                                        <span>Portières </span>
+                                        <h6>{{$locationShow->vehicules->nombre_portieres}} portières</h6>
                                     </div>
                                 </div>
-                                <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
+                                <!-- <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
                                     <div class="feature-img">
                                         <img src="/../assets/img/specification/specification-icon-11.svg" alt />
                                     </div>
@@ -182,8 +182,8 @@
                                         <span>Brake </span>
                                         <h6>ABS</h6>
                                     </div>
-                                </div>
-                                <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
+                                </div> -->
+                                <!-- <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
                                     <div class="feature-img">
                                         <img src="/../assets/img/specification/specification-icon-12.svg" alt />
                                     </div>
@@ -191,7 +191,7 @@
                                         <span>Engine (Hp) </span>
                                         <h6>3,000</h6>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -205,16 +205,16 @@
                             <div class="col-md-4">
                                 <ul>
                                     <li>
-                                        <span><i class="fa-solid fa-check-double"></i></span>Multi-zone A/C
+                                        <span><i class="fa-solid fa-check-double"></i></span>Premium sound system
                                     </li>
                                     <li>
-                                        <span><i class="fa-solid fa-check-double"></i></span>Heated front seats
+                                        <span><i class="fa-solid fa-check-double"></i></span>Bluetooth
                                     </li>
                                     <li>
-                                        <span><i class="fa-solid fa-check-double"></i></span>Andriod Auto
+                                        <span><i class="fa-solid fa-check-double"></i></span>Keyles Start
                                     </li>
                                     <li>
-                                        <span><i class="fa-solid fa-check-double"></i></span>Navigation system
+                                        <span><i class="fa-solid fa-check-double"></i></span>Memory seat
                                     </li>
                                 </ul>
                             </div>
@@ -258,43 +258,11 @@
 
                 <div class="review-sec extra-service mb-0">
                     <div class="review-header">
-                        <h4>Description of Listing</h4>
+                        <h4>Description</h4>
                     </div>
                     <div class="description-list">
                         <p>
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry. Lorem Ipsum has been the industry's
-                            standard dummy text ever since the 1500s, when an unknown
-                            printer took a galley of type and scrambled it to make a
-                            type specimen book. It has survived not only five centuries,
-                            but also the leap into electronic typesetting, remaining
-                            essentially unchanged.
-                        </p>
-                        <p>
-                            It was popularised in the 1960s with the release of Letraset
-                            sheets containing Lorem Ipsum passages, and more recently
-                            with desktop publishing software like Aldus PageMaker
-                            including versions of Lorem Ipsum.It was popularised in the
-                            1960s with the release of Letraset sheets containing Lorem
-                            Ipsum passages, and more recently with desktop publishing
-                            software like Aldus PageMaker including versions of Lorem
-                            Ipsum.
-                        </p>
-                        <p>
-                            It was popularised in the 1960s with the release of Letraset
-                            sheets containing Lorem Ipsum passages, and more recently
-                            with desktop publishing software like Aldus PageMaker
-                            including versions of Lorem Ipsum.
-                        </p>
-                        <p>
-                            It was popularised in the 1960s with the release of Letraset
-                            sheets containing Lorem Ipsum passages, and more recently
-                            with desktop publishing software like Aldus PageMaker
-                            including versions of Lorem Ipsum.It was popularised in the
-                            1960s with the release of Letraset sheets containing Lorem
-                            Ipsum passages, and more recently with desktop publishing
-                            software like Aldus PageMaker including versions of Lorem
-                            Ipsum.
+                        {{$locationShow->description}}
                         </p>
                     </div>
                 </div>
@@ -323,7 +291,7 @@
                                     <div class="form-group-wrapp sidebar-form">
                                         <div class="form-group me-2">
                                             <div class="group-img">
-                                                <input type="text" name="date_depart" class="form-control datetimepicker" placeholder="04/11/2023" required/>
+                                                <input type="text" name="date_depart" class="form-control datetimepicker" placeholder="04/11/2023" required />
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -340,12 +308,12 @@
                                     <div class="form-group-wrapp sidebar-form">
                                         <div class="form-group me-2">
                                             <div class="group-img">
-                                                <input type="text" name="date_arrivee" class="form-control datetimepicker" placeholder="04/11/2023" required/>
+                                                <input type="text" name="date_arrivee" class="form-control datetimepicker" placeholder="04/11/2023" required />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="group-img">
-                                                <input type="text" name="heure_arrivee" class="form-control timepicker" placeholder="11:00 AM" required/>
+                                                <input type="text" name="heure_arrivee" class="form-control timepicker" placeholder="11:00 AM" required />
                                                 <input type="hidden" value="{{ $locationShow->id }}" name="location_id">
                                             </div>
                                         </div>

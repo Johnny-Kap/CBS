@@ -322,7 +322,7 @@
                             <div class="blog-widget d-flex">
                                 <div class="blog-img">
                                     <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->intitule)]) }}">
-                                        <img src="{{ Storage::url($item->vehicules->image_illustrative) }}" class="img-fluid" alt="blog-img">
+                                        <img src="{{ Storage::url($item->vehicules->image_illustrative) }}" style="width: 20rem; height: 10rem;" class="img-fluid" alt="blog-img">
                                     </a>
                                 </div>
                                 <div class="bloglist-content w-100">
@@ -342,7 +342,7 @@
                                                     <i class="fas fa-star filled"></i>
                                                     <span>(5.0)</span>
                                                 </div> -->
-                                                <h6>{{$item->tarif}} <span>/ Day</span></h6>
+                                                <h6>{{$item->tarif}} FCFA <span>/ jour</span></h6>
                                             </div>
                                         </div>
                                         <div class="listing-details-group">
@@ -363,32 +363,31 @@
                                                     <span><img src="assets/img/icons/car-parts-04.svg" alt="Power"></span>
                                                     <p>{{$item->vehicules->modele}}</p>
                                                 </li>
-                                                <li>
+                                                <!-- <li>
                                                     <span><img src="assets/img/icons/car-parts-05.svg" alt="2018"></span>
                                                     <p>{{$item->vehicules->annee_fabrication}}</p>
-                                                </li>
+                                                </li> -->
                                                 <li>
                                                     <span><img src="assets/img/icons/car-parts-06.svg" alt="Persons"></span>
-                                                    <p>{{$item->vehicules->nombre_portieres}}</p>
+                                                    <p>{{$item->vehicules->nombre_portieres}} portières</p>
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="blog-list-head list-head-bottom d-flex">
                                             <div class="blog-list-title">
                                                 <div class="title-bottom">
-                                                    <div class="car-list-icon">
+                                                    <!-- <div class="car-list-icon">
                                                         <img src="assets/img/cars/car-list-icon-01.png" alt>
-                                                    </div>
-                                                    <div class="address-info">
+                                                    </div> -->
+                                                    <!-- <div class="address-info">
                                                         <h5><a href>Toyota Of Lincoln Park</a></h5>
                                                         <h6><i class="fas fa-map-pin me-2"></i>Newyork, USA
                                                         </h6>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                             <div class="listing-button">
-                                                <a href="listing-details.html" type="sumit" class="btn btn-order"><span><i class="fas fa-calendar me-2"></i></span>Rent
-                                                    Now</a>
+                                                <a href="listing-details.html" type="sumit" class="btn btn-order"><span><i class="fas fa-calendar me-2"></i></span>Louer maintenant</a>
                                             </div>
                                         </div>
                                     </div>
@@ -401,39 +400,9 @@
 
                 <div class="blog-pagination">
                     <nav>
-                        <ul class="pagination page-item justify-content-center">
-                            <li class="previtem">
-                                <a class="page-link" href="#"><i class="fas fa-regular fa-arrow-left me-2"></i>
-                                    Prev</a>
-                            </li>
-                            <li class="justify-content-center pagination-center">
-                                <div class="page-group">
-                                    <ul>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">1</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="active page-link" href="#">2 <span class="visually-hidden">(current)</span></a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">3</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">4</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">5</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nextlink">
-                                <a class="page-link" href="#">Next <i class="fas fa-regular fa-arrow-right ms-2"></i></a>
-                            </li>
-                        </ul>
+                        {{ $locationList->links() }}
                     </nav>
                 </div>
-
             </div>
         </div>
     </div>

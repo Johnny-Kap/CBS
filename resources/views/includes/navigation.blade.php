@@ -72,14 +72,14 @@
                             <li><a href="coming-soon.html">Coming Soon</a></li> -->
                         </ul>
                     </li>
-                    <li class="has-submenu">
+                    <!-- <li class="has-submenu">
                         <a href>Blog <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
                             <li><a href="blog-list.html">Blog List</a></li>
                             <li><a href="blog-grid.html">Blog Grid</a></li>
                             <li><a href="blog-details.html">Blog Details</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li><a href="contact-us.html">Contact</a></li>
                     <li><a href="contact-us.html">A propos</a></li>
                     <li class="login-link">
