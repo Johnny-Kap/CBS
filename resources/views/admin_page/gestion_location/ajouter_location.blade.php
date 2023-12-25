@@ -43,8 +43,8 @@
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-text-input">Description</label>
-                        <div class="col-md-9">
-                            <input type="text" id="example-text-input" name="description" class="form-control" placeholder="Entrer une description">
+                        <div class="col-xs-9">
+                            <textarea id="textarea-ckeditor" name="description" class="ckeditor"></textarea>
                         </div>
                         @error('description')
                         <div class="text-sm text-red-600">{{ $message }}</div>

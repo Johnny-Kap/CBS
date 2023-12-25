@@ -2,16 +2,16 @@
 
 @section('content')
 
-<section class="banner-section banner-slider">
+<section class="banner-section banner-slider" style="height: 45rem;">
     <div class="container">
         <div class="home-banner">
             <div class="row align-items-center">
                 <div class="col-lg-6" data-aos="fade-down">
-                    <p class="explore-text"> <span><i class="fa-solid fa-thumbs-up me-2"></i></span>100 % de confiance
+                    <!-- <p class="explore-text"> <span><i class="fa-solid fa-thumbs-up me-2"></i></span>100 % de confiance
                         plateforme de location de voitures dans le monde</p>
                     <h1>Trouvez votre meilleur <br>
                         <span>Voiture de rêve à louer</span>
-                    </h1>
+                    </h1> -->
                     <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
                         has been the industry's standard dummy text ever since the 1500s</p> -->
                     <div class="view-all">
@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-lg-6" data-aos="fade-down">
                     <div class="banner-imgs">
-                        <img src="/../assets/img/car-right.png" class="img-fluid aos" alt="bannerimage">
+                        <!-- <img src="/../assets/img/car-right.png" class="img-fluid aos" alt="bannerimage"> -->
                     </div>
                 </div>
             </div>

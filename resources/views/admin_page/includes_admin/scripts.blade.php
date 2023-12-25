@@ -14,6 +14,7 @@
 
     <!-- Load and execute javascript code used only in this page -->
     <script src="/../../assets_admin/js/pages/index.js"></script>
+    <script src="/../../assets_admin/js/helpers/ckeditor/ckeditor.js"></script>
     <script>
 $(function() {
     Index.init();
