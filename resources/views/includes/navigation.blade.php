@@ -34,17 +34,20 @@
                         </ul>
                     </li> -->
                     <li class="has-submenu {{ Request::route()->named('location.list') ? 'active' : '' }}">
-                        <a href>Nos offres <i class="fas fa-chevron-down"></i></a>
+                        <a href>Nos offres de services <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
                             <!-- <li><a href="about-us.html">About Us</a></li> -->
-                            <li class="has-submenu {{ Request::route()->named('location.list') ? 'active' : '' }}">
-                                <a href="javascript:void(0);">Services</a>
-                                <ul class="submenu">
-                                    <li class="{{ Request::route()->named('location.list') ? 'active' : '' }}"><a href="{{route('location.list')}}">Location</a></li>
-                                    <!-- <li><a href="login.html">Signin</a></li>
-                                    <li><a href="forgot-password.html">Forgot Password</a></li>
-                                    <li><a href="reset-password.html">Reset Password</a></li> -->
-                                </ul>
+                            <li class=" {{ Request::route()->named('location.list') ? 'active' : '' }}">
+                                <a href="{{route('location.list')}}">Location de voitures</a>
+                            </li>
+                            <li class=" {{ Request::route()->named('location.list') ? 'active' : '' }}">
+                                <a href="#">Maintenance automobile</a>
+                            </li>
+                            <li class=" {{ Request::route()->named('location.list') ? 'active' : '' }}">
+                                <a href="#">Bibliothèque</a>
+                            </li>
+                            <li class=" {{ Request::route()->named('location.list') ? 'active' : '' }}">
+                                <a href="#">Formation</a>
                             </li>
                             <!-- <li class="has-submenu">
                                 <a href="javascript:void(0);">Booking</a>
@@ -61,7 +64,6 @@
                                     <li><a href="error-500.html">500 Error</a></li>
                                 </ul>
                             </li> -->
-                            <li><a href="#">Abonnements</a></li>
                             <!-- <li><a href="faq.html">FAQ</a></li>
                             <li><a href="gallery.html">Gallery</a></li>
                             <li><a href="our-team.html">Our Team</a></li>
@@ -72,21 +74,16 @@
                             <li><a href="coming-soon.html">Coming Soon</a></li> -->
                         </ul>
                     </li>
-                    <!-- <li class="has-submenu">
-                        <a href>Blog <i class="fas fa-chevron-down"></i></a>
-                        <ul class="submenu">
-                            <li><a href="blog-list.html">Blog List</a></li>
-                            <li><a href="blog-grid.html">Blog Grid</a></li>
-                            <li><a href="blog-details.html">Blog Details</a></li>
-                        </ul>
-                    </li> -->
+                    <li class="">
+                        <a href="#">Abonnez-vous</a>
+                    </li>
                     <li class="{{ Request::route()->named('contact') ? 'active' : '' }}"><a href="{{route('contact')}}">Contact</a></li>
                     <li class="{{ Request::route()->named('propos') ? 'active' : '' }}"><a href="{{route('propos')}}">A propos</a></li>
                     <li class="login-link">
-                        <a href="register.html">Sign Up</a>
+                        <a href="register.html">S'inscrire</a>
                     </li>
                     <li class="login-link">
-                        <a href="login.html">Sign In</a>
+                        <a href="login.html">Se connecter</a>
                     </li>
                 </ul>
             </div>
