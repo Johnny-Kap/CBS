@@ -75,7 +75,7 @@
                         </ul>
                     </li>
                     <li class="">
-                        <a href="#">Abonnez-vous</a>
+                        <a href="#">Abonnements</a>
                     </li>
                     <li class="{{ Request::route()->named('contact') ? 'active' : '' }}"><a href="{{route('contact')}}">Contact</a></li>
                     <li class="{{ Request::route()->named('propos') ? 'active' : '' }}"><a href="{{route('propos')}}">A propos</a></li>
