@@ -387,7 +387,7 @@
                                                 </div>
                                             </div>
                                             <div class="listing-button">
-                                                <a href="listing-details.html" type="sumit" class="btn btn-order"><span><i class="fas fa-calendar me-2"></i></span>Louer maintenant</a>
+                                                <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->intitule)]) }}" type="sumit" class="btn btn-order"><span><i class="fas fa-calendar me-2"></i></span>Louer maintenant</a>
                                             </div>
                                         </div>
                                     </div>

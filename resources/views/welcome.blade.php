@@ -168,16 +168,16 @@
                                 </a>
                                 <div class="fav-item">
                                     <span class="featured-text">{{$item->vehicules->intitule}}</span>
-                                    <a href="javascript:void(0)" class="fav-icon">
+                                    <!-- <a href="javascript:void(0)" class="fav-icon">
                                         <i class="feather-heart"></i>
-                                    </a>
+                                    </a> -->
                                 </div>
                             </div>
                             <div class="listing-content">
                                 <div class="listing-features">
-                                    <a href="javascript:void(0)" class="author-img">
+                                    <!-- <a href="javascript:void(0)" class="author-img">
                                         <img src="assets/img/profiles/avatar-0.jpg" alt="author">
-                                    </a>
+                                    </a> -->
                                     <h3 class="listing-title">
                                         <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->intitule)]) }}">{{$item->intitule}}</a>
                                     </h3>
@@ -248,7 +248,7 @@
     <div class="container">
 
         <div class="section-heading" data-aos="fade-down">
-            <h2>Faîtes confiance Booking Services pour assurer la maintenance de vos véhicules</h2>
+            <h2>Faîtes confiance à Car Booking Services pour assurer la maintenance de vos véhicules</h2>
             <!-- <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p> -->
         </div>
 

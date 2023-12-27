@@ -7,7 +7,7 @@
         <div class="home-banner">
             <div class="row align-items-center">
                 <div class="col-lg-6" data-aos="fade-down">
-                    <!-- <p class="explore-text"> <span><i class="fa-solid fa-thumbs-up me-2"></i></span>100 % de confiance
+                    <!-- <p class="explore-text"> <span><i class="fa-solid fa-thumbs-up me-2"></i></span>100% de confiance
                         plateforme de location de voitures dans le monde</p>
                     <h1>Trouvez votre meilleur <br>
                         <span>Voiture de rêve à louer</span>
@@ -102,37 +102,38 @@
     <div class="container">
 
         <div class="section-heading" data-aos="fade-down">
-            <h2>Comment ca marche</h2>
-            <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+            <h2>Faîtes confiance à Car Booking Services</h2>
+            <p>Votre agence de location pour vos déplacements urbain et Inter-Urbain en toute sécurité
+            </p>
         </div>
 
         <div class="services-work">
             <div class="row">
-                <div class="col-lg-4 col-md-4 col-12" data-aos="fade-down">
+                <div class="col-lg-6 col-md-6 col-12" data-aos="fade-down">
                     <div class="services-group">
                         <div class="services-icon border-secondary">
                             <img class="icon-img bg-secondary" src="assets/img/icons/services-icon-01.svg" alt="Choose Locations">
                         </div>
                         <div class="services-content">
-                            <h3>1. Choisir des emplacements</h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                            <h3>1. Abonnez- vous et réservez maintenant </h3>
+                            <p>Bénéficiez d'un rabais de 30% sur vos courses avec un numéro d'abonnement
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-12" data-aos="fade-down">
+                <div class="col-lg-6 col-md-6 col-12" data-aos="fade-down">
                     <div class="services-group">
                         <div class="services-icon border-warning">
                             <img class="icon-img bg-warning" src="assets/img/icons/services-icon-01.svg" alt="Choose Locations">
                         </div>
                         <div class="services-content">
-                            <h3>2. Lieux de prise en charge</h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                            <h3>2. Reservez sans abonnement</h3>
+                            <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                Ipsum has been the industry's standard dummy text ever since the 1500s,</p> -->
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-12" data-aos="fade-down">
+                <!-- <div class="col-lg-4 col-md-4 col-12" data-aos="fade-down">
                     <div class="services-group">
                         <div class="services-icon border-dark">
                             <img class="icon-img bg-dark" src="assets/img/icons/services-icon-01.svg" alt="Choose Locations">
@@ -143,77 +144,18 @@
                                 Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
 </section>
 
-
 <section class="section popular-services popular-explore">
     <div class="container">
         <div class="section-heading" data-aos="fade-down">
             <h2>Location de voitures</h2>
-            <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+            <!-- <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p> -->
         </div>
-
-        <!-- <div class="row justify-content-center">
-            <div class="col-lg-12" data-aos="fade-down">
-                <div class="listing-tabs-group">
-                    <ul class="nav listing-buttons gap-3" data-bs-tabs="tabs">
-                        <li>
-                            <a class="active" aria-current="true" data-bs-toggle="tab" href="#Carmazda">
-                                <span>
-                                    <img src="assets/img/icons/car-icon-01.svg" alt="Mazda">
-                                </span>
-                                Mazda
-                            </a>
-                        </li>
-                        <li>
-                            <a data-bs-toggle="tab" href="#Caraudi">
-                                <span>
-                                    <img src="assets/img/icons/car-icon-02.svg" alt="Audi">
-                                </span>
-                                Audi
-                            </a>
-                        </li>
-                        <li>
-                            <a data-bs-toggle="tab" href="#Carhonda">
-                                <span>
-                                    <img src="assets/img/icons/car-icon-03.svg" alt="Honda">
-                                </span>
-                                Honda
-                            </a>
-                        </li>
-                        <li>
-                            <a data-bs-toggle="tab" href="#Cartoyota">
-                                <span>
-                                    <img src="assets/img/icons/car-icon-04.svg" alt="Toyota">
-                                </span>
-                                Toyota
-                            </a>
-                        </li>
-                        <li>
-                            <a data-bs-toggle="tab" href="#Caracura">
-                                <span>
-                                    <img src="assets/img/icons/car-icon-05.svg" alt="Acura">
-                                </span>
-                                Acura
-                            </a>
-                        </li>
-                        <li>
-                            <a data-bs-toggle="tab" href="#Cartesla">
-                                <span>
-                                    <img src="assets/img/icons/car-icon-06.svg" alt="Tesla">
-                                </span>
-                                Tesla
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div> -->
-
         <div class="tab-content">
             <div class="tab-pane active" id="Carmazda">
                 <div class="row">
@@ -226,16 +168,16 @@
                                 </a>
                                 <div class="fav-item">
                                     <span class="featured-text">{{$item->vehicules->intitule}}</span>
-                                    <a href="javascript:void(0)" class="fav-icon">
+                                    <!-- <a href="javascript:void(0)" class="fav-icon">
                                         <i class="feather-heart"></i>
-                                    </a>
+                                    </a> -->
                                 </div>
                             </div>
                             <div class="listing-content">
                                 <div class="listing-features">
-                                    <a href="javascript:void(0)" class="author-img">
+                                    <!-- <a href="javascript:void(0)" class="author-img">
                                         <img src="assets/img/profiles/avatar-0.jpg" alt="author">
-                                    </a>
+                                    </a> -->
                                     <h3 class="listing-title">
                                         <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->intitule)]) }}">{{$item->intitule}}</a>
                                     </h3>
@@ -306,41 +248,41 @@
     <div class="container">
 
         <div class="section-heading" data-aos="fade-down">
-            <h2>Pourquoi nous choisir</h2>
-            <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+            <h2>Faîtes confiance à Car Booking Services pour assurer la maintenance de vos véhicules</h2>
+            <!-- <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p> -->
         </div>
 
         <div class="why-choose-group">
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-12 d-flex" data-aos="fade-down">
+                <div class="col-lg-6 col-md-6 col-12 d-flex" data-aos="fade-down">
                     <div class="card flex-fill">
                         <div class="card-body">
                             <div class="choose-img choose-black">
                                 <img src="assets/img/icons/bx-user-check.svg" alt>
                             </div>
                             <div class="choose-content">
-                                <h4>Réservation facile et rapide</h4>
-                                <p>Processus de test e-business complètement caréné alors qu'il a fait l'objet de recherches complètes
-                                    service client. Contenu mondial étendu et de qualité.</p>
+                                <h4>Abonnez vous et décrivez votre panne</h4>
+                                <!-- <p>Processus de test e-business complètement caréné alors qu'il a fait l'objet de recherches complètes
+                                    service client. Contenu mondial étendu et de qualité.</p> -->
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-12 d-flex" data-aos="fade-down">
+                <div class="col-lg-6 col-md-6 col-12 d-flex" data-aos="fade-down">
                     <div class="card flex-fill">
                         <div class="card-body">
                             <div class="choose-img choose-secondary">
                                 <img src="assets/img/icons/bx-user-check.svg" alt>
                             </div>
                             <div class="choose-content">
-                                <h4>De nombreux lieux de ramassage</h4>
-                                <p>Des initiatives enthousiastes et magnétiques avec des sources multiplateformes.
-                                    Ciblez dynamiquement les procédures de test grâce à leur efficacité.</p>
+                                <h4>Décrivez votre panne sans abonnement</h4>
+                                <!-- <p>Des initiatives enthousiastes et magnétiques avec des sources multiplateformes.
+                                    Ciblez dynamiquement les procédures de test grâce à leur efficacité.</p> -->
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-12 d-flex" data-aos="fade-down">
+                <!-- <div class="col-lg-4 col-md-6 col-12 d-flex" data-aos="fade-down">
                     <div class="card flex-fill">
                         <div class="card-body">
                             <div class="choose-img choose-primary">
@@ -353,7 +295,151 @@
                             </div>
                         </div>
                     </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section facts-number">
+    <div class="facts-left">
+        <img src="assets/img/bg/facts-left.png" class="img-fluid" alt="facts left">
+    </div>
+    <div class="facts-right">
+        <img src="assets/img/bg/facts-right.png" class="img-fluid" alt="facts right">
+    </div>
+    <div class="container">
+
+        <div class="section-heading" data-aos="fade-down">
+            <h2 class="title text-white">Perfectionnez vous</h2>
+            <!-- <p class="description text-white">Lorem Ipsum has been the industry's standard dummy text ever since
+                the 1500s,</p> -->
+        </div>
+
+        <div class="counter-group">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12 d-flex" data-aos="fade-down">
+                    <div class="count-group flex-fill">
+                        <div class="customer-count d-flex align-items-center">
+                            <div class="count-img">
+                                <img src="assets/img/icons/bx-car.svg" alt>
+                            </div>
+                            <div class="count-content">
+                                <h4>Conduite Automobile</h4>
+                                <!-- <p>Happy Customers</p> -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-lg-4 col-md-6 col-12 d-flex" data-aos="fade-down">
+                    <div class="count-group flex-fill">
+                        <div class="customer-count d-flex align-items-center">
+                            <div class="count-img">
+                                <img src="assets/img/icons/bx-car.svg" alt>
+                            </div>
+                            <div class="count-content">
+                                <h4>Gestion des transports </h4>
+                                <!-- <p>Count of Cars</p> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12 d-flex" data-aos="fade-down">
+                    <div class="count-group flex-fill">
+                        <div class="customer-count d-flex align-items-center">
+                            <div class="count-img">
+                                <img src="assets/img/icons/bx-car.svg" alt>
+                            </div>
+                            <div class="count-content">
+                                <h4>Amélioration continue</h4>
+                                <!-- <p>Amélioration continue</p> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12 d-flex" data-aos="fade-down">
+                    <div class="count-group flex-fill">
+                        <div class="customer-count d-flex align-items-center">
+                            <div class="count-img">
+                                <img src="assets/img/icons/bx-car.svg" alt>
+                            </div>
+                            <div class="count-content">
+                                <h4>Gestion des transports </h4>
+                                <!-- <p>Car Center Solutions</p> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12 d-flex" data-aos="fade-down">
+                    <div class="count-group flex-fill">
+                        <div class="customer-count d-flex align-items-center">
+                            <div class="count-img">
+                                <img src="assets/img/icons/bx-car.svg" alt>
+                            </div>
+                            <div class="count-content">
+                                <h4>Gestion des operations</h4>
+                                <!-- <p>Total Kilometer</p> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section services">
+    <div class="service-right">
+        <img src="assets/img/bg/service-right.svg" class="img-fluid" alt="services right">
+    </div>
+    <div class="container">
+
+        <div class="section-heading" data-aos="fade-down">
+            <h2>Bibliotheque Numerique</h2>
+            <p>Abonnez vous et ayez accès à une panoplie d'information Nationale et Internationale sur le transport
+            </p>
+        </div>
+
+        <div class="services-work">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12" data-aos="fade-down">
+                    <div class="services-group">
+                        <div class="services-icon border-secondary">
+                            <img class="icon-img bg-secondary" src="assets/img/icons/services-icon-01.svg" alt="Choose Locations">
+                        </div>
+                        <div class="services-content">
+                            <h3>1. Abonnez vous maintenant et ayez accès à toutes l'information disponible </h3>
+                            <!-- <p>Bénéficiez d'un rabais de 30% sur vos courses avec un numéro d'abonnement
+                            </p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12" data-aos="fade-down">
+                    <div class="services-group">
+                        <div class="services-icon border-warning">
+                            <img class="icon-img bg-warning" src="assets/img/icons/services-icon-01.svg" alt="Choose Locations">
+                        </div>
+                        <div class="services-content">
+                            <h3>2. Consultez sans abonnement</h3>
+                            <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                Ipsum has been the industry's standard dummy text ever since the 1500s,</p> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-4 col-md-4 col-12" data-aos="fade-down">
+                    <div class="services-group">
+                        <div class="services-icon border-dark">
+                            <img class="icon-img bg-dark" src="assets/img/icons/services-icon-01.svg" alt="Choose Locations">
+                        </div>
+                        <div class="services-content">
+                            <h3>3. Réservez votre voiture</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                        </div>
+                    </div>
+                </div> -->
             </div>
         </div>
     </div>
