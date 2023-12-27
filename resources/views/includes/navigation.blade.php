@@ -34,7 +34,7 @@
                         </ul>
                     </li> -->
                     <li class="has-submenu {{ Request::route()->named('location.list') ? 'active' : '' }}">
-                        <a href>Nos offres de services <i class="fas fa-chevron-down"></i></a>
+                        <a href>Nos offres <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
                             <!-- <li><a href="about-us.html">About Us</a></li> -->
                             <li class=" {{ Request::route()->named('location.list') ? 'active' : '' }}">
