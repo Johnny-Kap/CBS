@@ -4,7 +4,7 @@
 
 
 <header class="log-header">
-    <a href="{{url('/')}}"><img class="img-fluid logo-dark" src="/../assets/img/logo.svg" alt="Logo"></a>
+    <a href="{{url('/')}}"><img class="img-fluid logo-dark" src="/../assets/img/logo_final.PNG" alt="Logo"></a>
 </header>
 
 <div class="login-wrapper">

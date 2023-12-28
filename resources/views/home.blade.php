@@ -472,7 +472,7 @@
                                 Viser loin, et y aller par petits pas a toujours été la boussole de nos engaements. Nous
                                 n'allons ménager aucun effort pour vous offrir l'excellence dans nos Agences. Vos désirs
                                 seront nos priorités. Je vous invite à vous abonner pour découvrir notre gamme de
-                                produits et services...Nous vous attendons
+                                produits et services...Nous vous attendons.
                             </p>
                         </div>
                     </div>
