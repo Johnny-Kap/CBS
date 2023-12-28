@@ -318,7 +318,7 @@
 
         <div class="counter-group">
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-12 d-flex" data-aos="fade-down">
+                <div class="col-lg-3 col-md-6 col-12 d-flex" data-aos="fade-down">
                     <div class="count-group flex-fill">
                         <div class="customer-count d-flex align-items-center">
                             <div class="count-img">
@@ -331,7 +331,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-12 d-flex" data-aos="fade-down">
+                <div class="col-lg-3 col-md-6 col-12 d-flex" data-aos="fade-down">
                     <div class="count-group flex-fill">
                         <div class="customer-count d-flex align-items-center">
                             <div class="count-img">
@@ -344,7 +344,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-12 d-flex" data-aos="fade-down">
+                <div class="col-lg-3 col-md-6 col-12 d-flex" data-aos="fade-down">
                     <div class="count-group flex-fill">
                         <div class="customer-count d-flex align-items-center">
                             <div class="count-img">
@@ -357,22 +357,7 @@
                         </div>
                     </div>
                 </div>
-            </div><br>
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-12 d-flex" data-aos="fade-down">
-                    <div class="count-group flex-fill">
-                        <div class="customer-count d-flex align-items-center">
-                            <div class="count-img">
-                                <img src="assets/img/icons/bx-car.svg" alt>
-                            </div>
-                            <div class="count-content">
-                                <h4>Gestion des transports </h4>
-                                <!-- <p>Car Center Solutions</p> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12 d-flex" data-aos="fade-down">
+                <div class="col-lg-3 col-md-6 col-12 d-flex" data-aos="fade-down">
                     <div class="count-group flex-fill">
                         <div class="customer-count d-flex align-items-center">
                             <div class="count-img">
