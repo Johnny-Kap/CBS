@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="banner-section banner-slider" style="height: 45rem;">
+<section class="banner-section banner-slider">
     <div class="container">
         <div class="home-banner">
             <div class="row align-items-center">
