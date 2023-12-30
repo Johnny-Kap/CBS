@@ -46,4 +46,8 @@ class HomeController extends Controller
         return view('propos');
     }
 
+    public function myprofile(){
+        return view('profile.myprofile');
+    }
+
 }

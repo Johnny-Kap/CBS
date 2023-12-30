@@ -29,7 +29,8 @@ class Vehicule extends Model
     ];
 
     protected $casts = [
-        'images' => 'array'
+        'images' => 'array',
+        'fonctionnalites' => 'array'
     ];
 
     public function type_vehicules(){

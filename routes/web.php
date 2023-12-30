@@ -35,6 +35,12 @@ Route::get('/paiement-location', [App\Http\Controllers\LocationVehiculeControlle
 Route::get('/comande/location/{location_id}/{compte_id}/{date_heure_depart}/{date_heure_arrivee}/{mode_paiement}/{total_tarif}/{diff}', [App\Http\Controllers\CommandeLocationController::class, 'create'])->middleware('auth')->name('location.paiement');
 Route::get('/successfully-commande', [App\Http\Controllers\CommandeLocationController::class, 'success'])->name('sucess');
 
+// Mon profil utilisateur
+Route::get('/myprofile', [App\Http\Controllers\HomeController::class, 'myprofile'])->name('myprofile')->middleware('auth');
+
+// Les abonnements
+Route::get('/abonnement-list', [App\Http\Controllers\AbonnementController::class, 'index'])->name('abonnement.index');
+
 
 /* ------------- Routes de l'Admin --------------*/
 

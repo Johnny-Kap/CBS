@@ -75,7 +75,7 @@
                         </ul>
                     </li>
                     <li class="">
-                        <a href="#">Abonnements</a>
+                        <a href="{{route('abonnement.index')}}">Abonnements</a>
                     </li>
                     <li class="{{ Request::route()->named('contact') ? 'active' : '' }}"><a href="{{route('contact')}}">Contact</a></li>
                     <li class="{{ Request::route()->named('propos') ? 'active' : '' }}"><a href="{{route('propos')}}">A propos</a></li>
@@ -92,13 +92,8 @@
                 @if (Route::has('login'))
                 @auth
                 <li class="nav-item">
-                    <a class="nav-link header-login" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">{{Auth::user()->name}}
-                        <span><i class="fa fa-gear"></i></span></a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+                    <a class="nav-link header-login" href="{{ route('myprofile') }}">{{Auth::user()->name}}
+                         <span><i class="fa fa-user"></i></span></a>
                 </li>
                 @else
                 <li class="nav-item">

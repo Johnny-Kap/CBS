@@ -8,19 +8,21 @@
             <div class="row align-items-center">
                 <div class="col-lg-6" data-aos="fade-down">
                     <!-- <p class="explore-text"> <span><i class="fa-solid fa-thumbs-up me-2"></i></span>100% de confiance
-                        plateforme de location de voitures dans le monde</p>
-                    <h1>Trouvez votre meilleur <br>
-                        <span>Voiture de rêve à louer</span>
-                    </h1> -->
-                    <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                        has been the industry's standard dummy text ever since the 1500s</p> -->
+                        plateforme de location de voitures dans le monde</p> -->
+                    <h1>Car Booking  <br>
+                        <span>Services</span>
+                    </h1>
+                    <p>Nous tenons à vous remercier pour votre confiance et vous présentons nos meilleurs voeux pour 
+                        l'année 2024. Nous vous souhaitons une nouvelle année remplie de joie, de bonheur et de 
+                        reussite. Avec une excellente santé.
+                    </p>
                     <div class="view-all">
                         <a href="{{route('location.list')}}" class="btn btn-view d-inline-flex align-items-center">Voir toutes les locations <span><i class="fas fa-arrow-right ms-2"></i></span></a>
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-down">
                     <div class="banner-imgs">
-                        <!-- <img src="/../assets/img/car-right.png" class="img-fluid aos" alt="bannerimage"> -->
+                        <img src="/../assets/img/car-right.png" class="img-fluid aos" alt="bannerimage">
                     </div>
                 </div>
             </div>
@@ -472,7 +474,7 @@
                                 Viser loin, et y aller par petits pas a toujours été la boussole de nos engaements. Nous
                                 n'allons ménager aucun effort pour vous offrir l'excellence dans nos Agences. Vos désirs
                                 seront nos priorités. Je vous invite à vous abonner pour découvrir notre gamme de
-                                produits et services...Nous vous attendons
+                                produits et services...Nous vous attendons.
                             </p>
                         </div>
                     </div>
