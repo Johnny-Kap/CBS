@@ -209,9 +209,9 @@
                                 <li class="column-group-last">
                                     <div class="form-group mb-2">
                                         <div class="search-btn">
-                                            <button class="btn btn-primary check-available w-100" type="button" data-bs-toggle="modal" data-bs-target="#pages_edit">
-                                                Mes validations de commande
-                                            </button>
+                                            <a class="btn btn-primary check-available w-100" href="{{route('myprofile.confirmation_paiement')}}">
+                                                Mes validations de paiement
+                                            </a>
                                         </div>
                                     </div>
                                 </li>

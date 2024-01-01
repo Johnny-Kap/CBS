@@ -265,18 +265,21 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Page Layouts</span></a>
+                            <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Commande location</span></a>
                             <ul>
                                 <li>
-                                    <a href="page_layout_static.html">Static</a>
+                                    <a class="{{ Request::route()->named('commande_location.attente') ? 'active' : '' }}" href="{{route('commande_location.attente')}}">En attente</a>
                                 </li>
                                 <li>
-                                    <a href="page_layout_static_fixed_footer.html">Static + Fixed Footer</a>
+                                    <a class="{{ Request::route()->named('commande_location.commande_validee') ? 'active' : '' }}" href="{{route('commande_location.commande_validee')}}">Commandes validées</a>
                                 </li>
                                 <li>
-                                    <a href="page_layout_fixed_top.html">Fixed Top Header</a>
+                                    <a href="page_layout_static_fixed_footer.html">Validation paiement</a>
                                 </li>
                                 <li>
+                                    <a href="page_layout_fixed_top.html">Confirmées</a>
+                                </li>
+                                <!-- <li>
                                     <a href="page_layout_fixed_top_footer.html">Fixed Top Header + Footer</a>
                                 </li>
                                 <li>
@@ -310,7 +313,7 @@
                                 </li>
                                 <li>
                                     <a href="page_layout_static_animated.html">Animated Sidebar Transitions</a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
                         <!-- <li class="sidebar-header">

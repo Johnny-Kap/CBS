@@ -42,7 +42,7 @@
                     <div class="single-contact-info flex-fill">
                         <span><i class="fas fa-map-pin"></i></span>
                         <h3>Localisation</h3>
-                        <a href="javascript:void(0);">Bonanjo, Douala, Cameroun</a>
+                        <a href="javascript:void(0);">Bonapriso - Douala</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-12 d-flex" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="0.4">

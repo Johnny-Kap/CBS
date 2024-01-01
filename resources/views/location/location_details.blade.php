@@ -30,7 +30,7 @@
             <div class="detail-headings">
                 <div class="star-rated">
                     <div class="list-rating">
-                        <span class="year">{{$locationShow->created_at->format('d/m/Y')}}</span>
+                        <span class="year">{{$locationShow->tarif}} FCFA</span>
                         <!-- <i class="fas fa-star filled"></i>
                         <i class="fas fa-star filled"></i>
                         <i class="fas fa-star filled"></i>
@@ -262,7 +262,7 @@
                     </div>
                     <div class="description-list">
                         <p>
-                        {{$locationShow->description}}
+                        {!! html_entity_decode($locationShow->description) !!}
                         </p>
                     </div>
                 </div>

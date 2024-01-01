@@ -8,28 +8,16 @@
                         <div class="col-lg-4 col-md-6">
 
                             <div class="footer-widget footer-menu">
-                                <h5 class="footer-title">About Company</h5>
+                                <h5 class="footer-title">Notre entreprise</h5>
                                 <ul>
                                     <li>
-                                        <a href="about.html">Our Company</a>
+                                        <a href="{{route('propos')}}">A propos de nous</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)">Shop Toyota</a>
+                                        <a href="{{route('term_condition')}}">Termes et conditions</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)">Dreamsrentals USA</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">Dreamsrentals Worldwide</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">Dreamsrentals Racing</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">Dreamsrentals Racing</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">Virtual Auto Show</a>
+                                        <a href="{{route('contact')}}">Contact</a>
                                     </li>
                                 </ul>
                             </div>
@@ -38,37 +26,28 @@
                         <div class="col-lg-4 col-md-6">
 
                             <div class="footer-widget footer-menu">
-                                <h5 class="footer-title">Vehicles Type</h5>
+                                <h5 class="footer-title">Nos services</h5>
                                 <ul>
                                     <li>
-                                        <a href="javascript:void(0)">All Vehicles</a>
+                                        <a href="{{route('location.list')}}">Location de vehicule</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)">SUVs</a>
+                                        <a href="javascript:void(0)">Maintenance automobile</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)">Trucks</a>
+                                        <a href="javascript:void(0)">Bibliothèque</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)">Cars</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">Crossovers</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">Electrified Vehicles</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">Hybrids</a>
+                                        <a href="javascript:void(0)">Formation</a>
                                     </li>
                                 </ul>
                             </div>
 
                         </div>
-                        <div class="col-lg-4 col-md-6">
+                        <!-- <div class="col-lg-4 col-md-6">
 
                             <div class="footer-widget footer-menu">
-                                <h5 class="footer-title">Quick links</h5>
+                                <h5 class="footer-title">Nos pages</h5>
                                 <ul>
                                     <li>
                                         <a href="javascript:void(0)">My Account</a>
@@ -93,8 +72,7 @@
                                     </li>
                                 </ul>
                             </div>
-
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -122,7 +100,7 @@
                             </div>
                         </div>
                         <div class="footer-social-widget">
-                            <h6>Connect with us</h6>
+                            <h6>Nos réseaux sociaux </h6>
                             <ul class="nav-social">
                                 <li>
                                     <a href="javascript:void(0)" target="_blank"><i class="fa-brands fa-facebook-f fa-facebook fi-icon"></i></a>
@@ -156,7 +134,12 @@
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="copyright-text">
-                            <p>© 2023 Car Booking Services. All Rights Reserved.</p>
+                            <p>© <span id="copyright">
+                                    <script>
+                                        document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+                                    </script>
+                                    Car Booking Services. Tous droits reservés.
+                            </p>
                         </div>
                     </div>
                     <div class="col-md-6">

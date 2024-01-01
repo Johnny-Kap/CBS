@@ -24,4 +24,8 @@ class LocationVehicule extends Model
     public function users(){
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function commande_locations(){
+        return $this->hasMany(CommandeLocation::class);
+    }
 }

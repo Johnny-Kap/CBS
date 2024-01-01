@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\CommandeLocation;
 use App\Models\Compte;
 use App\Models\LocationVehicule;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CommandeLocationController extends Controller
 {
@@ -15,67 +17,129 @@ class CommandeLocationController extends Controller
      */
     public function index()
     {
-        //
+
+        $commade_attente = CommandeLocation::where('etat_commande', 'En attente de validation')->simplePaginate(15);
+
+        return view('admin_page.gestion_commande_location.attente_validation', compact('commade_attente'));
     }
 
-    public function success(){
+    public function commande_validee()
+    {
+
+        $commande_validee = CommandeLocation::where('etat_commande', 'Validation de la commande')->simplePaginate(15);
+
+        return view('admin_page.gestion_commande_location.commande_validee', compact('commande_validee'));
+    }
+
+    public function confirmation_paiement()
+    {
+
+        $commande = CommandeLocation::where('user_id', Auth::user()->id)
+                                    ->where('etat_commande', 'Validation de la commande')
+                                    ->where('photo', null)->simplePaginate(15);
+
+        return view('profile.confirmation_paiement', compact('commande'));
+    }
+
+    public function success()
+    {
         return view('location.success_commande');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create($location_id, $compte_id, $date_heure_depart, $date_heure_arrivee, $mode_paiement, $total_tarif, $diff)
+    public function create($location_id, $date_heure_depart, $date_heure_arrivee, $mode_paiement, $total_tarif, $diff)
     {
 
         $location = LocationVehicule::find($location_id);
 
-        $compte = Compte::find($compte_id);
+        $numero_commande = 'COMLO' . Carbon::now()->format('Ymd') . Str::padLeft(Auth::user()->id, 4, 0);
 
-        if ($compte_id == '') {
+        // $compte = Compte::find($compte_id);
 
-            return back()->with('error', 'Veuillez créer un compte de paiement dans les paramètres.');
-        } else {
-            if ($compte->solde < $total_tarif) {
+        // if ($compte_id == '') {
 
-                return back()->with('error', 'Solde insuffisant. Veuillez recharger votre compte de paiement dans les paramètres.');
-            } else {
+        //     return back()->with('error', 'Veuillez créer un compte de paiement dans les paramètres.');
+        // } else {
+        //     if ($compte->solde < $total_tarif) {
 
-                // Calcul du nouveau solde apres débit du tarif de la location
-                $restant_compte = $compte->solde - $total_tarif;
+        //         return back()->with('error', 'Solde insuffisant. Veuillez recharger votre compte de paiement dans les paramètres.');
+        //     } else {
 
-                // Nouveau solde affecté
-                $new_solde = Compte::where('id', $compte_id)
-                    ->update([
-                        'solde' => $restant_compte,
-                    ]);
+        //         // Calcul du nouveau solde apres débit du tarif de la location
+        //         $restant_compte = $compte->solde - $total_tarif;
 
-                // Enregistrement de la commande
-                $commande = new CommandeLocation();
+        //         // Nouveau solde affecté
+        //         $new_solde = Compte::where('id', $compte_id)
+        //             ->update([
+        //                 'solde' => $restant_compte,
+        //             ]);
 
-                $commande->date_debut = $date_heure_depart;
+        //         // Enregistrement de la commande
+        //         $commande = new CommandeLocation();
 
-                $commande->date_fin = $date_heure_arrivee;
+        //         $commande->date_debut = $date_heure_depart;
 
-                $commande->tarif = $total_tarif;
+        //         $commande->date_fin = $date_heure_arrivee;
 
-                $commande->nombre_jours = $diff + 1;
+        //         $commande->tarif = $total_tarif;
 
-                $commande->etat_paiement = 'Payé';
+        //         $commande->nombre_jours = $diff + 1;
 
-                $commande->etat_commande = 'En attente de confirmation';
+        //         $commande->etat_paiement = 'Payé';
 
-                $commande->mode_paiement_id = $mode_paiement;
+        //         $commande->etat_commande = 'En attente de confirmation';
 
-                $commande->location_vehicule_id = $location_id;
+        //         $commande->mode_paiement_id = $mode_paiement;
 
-                $commande->user_id = Auth::user()->id;
+        //         $commande->location_vehicule_id = $location_id;
 
-                $commande->save();
+        //         $commande->user_id = Auth::user()->id;
 
-                return redirect()->route('sucess');
-            }
-        }
+        //         $commande->save();
+
+        //         return redirect()->route('sucess');
+        //     }
+        // }
+
+        // Enregistrement de la commande
+        $commande = new CommandeLocation();
+
+        $commande->date_debut = $date_heure_depart;
+
+        $commande->date_fin = $date_heure_arrivee;
+
+        $commande->tarif = $total_tarif;
+
+        $commande->nombre_jours = $diff + 1;
+
+        $commande->etat_paiement = 'Non payé';
+
+        $commande->etat_commande = 'En attente de validation';
+
+        $commande->numero_commande = $numero_commande;
+
+        $commande->mode_paiement_id = $mode_paiement;
+
+        $commande->location_vehicule_id = $location_id;
+
+        $commande->user_id = Auth::user()->id;
+
+        $commande->save();
+
+        return redirect()->route('success');
+    }
+
+    public function validation_commande(Request $request)
+    {
+
+        $affected = CommandeLocation::where('id', $request->commande_id)
+            ->update([
+                'etat_commande' => $request->etat,
+            ]);
+
+        return back()->with('success', 'Validé avec succès');
     }
 
     /**

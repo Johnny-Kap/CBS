@@ -54,4 +54,8 @@ class User extends Authenticatable
     {
         return $this->getAttribute('role') === $role;
     }
+
+    public function commande_locations(){
+        return $this->hasMany(CommandeLocation::class);
+    }
 }

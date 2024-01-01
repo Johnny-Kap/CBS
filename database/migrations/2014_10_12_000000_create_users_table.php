@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('date_naiss')->nullable();
             $table->string('image')->nullable();
-            $table->string('bio')->nullable();
+            $table->text('bio')->nullable();
             $table->string('profession');
             $table->string('tel');
             $table->string('adresse');

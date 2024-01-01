@@ -73,7 +73,7 @@
                     @foreach($location as $item)
                     <tr>
                         <td>{{$item->intitule}}</td>
-                        <td>{{$item->description}}</td>
+                        <td>{!! html_entity_decode($item->description) !!}</td>
                         <td>{{$item->tarif}}</td>
                         <td>{{$item->vehicules->numero_immatriculation}}</td>
                         <td>{{$item->vehicules->type_vehicules->intitule}}</td>

@@ -50,4 +50,8 @@ class HomeController extends Controller
         return view('profile.myprofile');
     }
 
+    public function term_condition(){
+        return view('term_condition');
+    }
+
 }

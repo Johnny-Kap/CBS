@@ -27,16 +27,18 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 Route::get('/propos', [App\Http\Controllers\HomeController::class, 'propos'])->name('propos');
+Route::get('/term-conditions', [App\Http\Controllers\HomeController::class, 'term_condition'])->name('term_condition');
 
 // Gestion des locations
 Route::get('/location-list', [App\Http\Controllers\LocationVehiculeController::class, 'list'])->name('location.list');
 Route::get('/location-detail/{id}/{name}', [App\Http\Controllers\LocationVehiculeController::class, 'show'])->name('location.details');
 Route::get('/paiement-location', [App\Http\Controllers\LocationVehiculeController::class, 'verifierDispo'])->name('verifier.location')->middleware('auth');
-Route::get('/comande/location/{location_id}/{compte_id}/{date_heure_depart}/{date_heure_arrivee}/{mode_paiement}/{total_tarif}/{diff}', [App\Http\Controllers\CommandeLocationController::class, 'create'])->middleware('auth')->name('location.paiement');
-Route::get('/successfully-commande', [App\Http\Controllers\CommandeLocationController::class, 'success'])->name('sucess');
+Route::get('/comande/location/{location_id}/{date_heure_depart}/{date_heure_arrivee}/{mode_paiement}/{total_tarif}/{diff}', [App\Http\Controllers\CommandeLocationController::class, 'create'])->middleware('auth')->name('location.paiement');
+Route::get('/successfully-commande', [App\Http\Controllers\CommandeLocationController::class, 'success'])->name('success');
 
 // Mon profil utilisateur
 Route::get('/myprofile', [App\Http\Controllers\HomeController::class, 'myprofile'])->name('myprofile')->middleware('auth');
+Route::get('/confirmation-paiement', [App\Http\Controllers\CommandeLocationController::class, 'confirmation_paiement'])->name('myprofile.confirmation_paiement')->middleware('auth');
 
 // Les abonnements
 Route::get('/abonnement-list', [App\Http\Controllers\AbonnementController::class, 'index'])->name('abonnement.index');
@@ -68,4 +70,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/mode_paiement/consulter', [App\Http\Controllers\ModePaiementController::class, 'index'])->name('mode_paiement.consulter');
     Route::get('/admin/mode_paiement/ajouter', [App\Http\Controllers\ModePaiementController::class, 'create'])->name('mode_paiement.ajouter');
     Route::post('/admin/mode_paiement/add', [App\Http\Controllers\ModePaiementController::class, 'store'])->name('mode_paiement.add');
+
+    // Gestion des commandes de location
+    Route::get('/admin/commande_location/attente', [App\Http\Controllers\CommandeLocationController::class, 'index'])->name('commande_location.attente');
+    Route::post('/admin/commande_location/change/etat', [App\Http\Controllers\CommandeLocationController::class, 'validation_commande'])->name('commande_location.validation.etat');
+    Route::get('/admin/commande_location/commande_validee', [App\Http\Controllers\CommandeLocationController::class, 'commande_validee'])->name('commande_location.commande_validee');
+
 });

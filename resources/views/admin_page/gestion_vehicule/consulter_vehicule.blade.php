@@ -77,7 +77,7 @@
                     @foreach($showVehicule as $item)
                     <tr>
                         <td>{{$item->intitule}}</td>
-                        <td>{{$item->description}}</td>
+                        <td>{!! html_entity_decode($item->description) !!}</td>
                         <td>{{$item->modele}}</td>
                         <td>{{$item->numero_immatriculation}}</td>
                         <td>{{$item->type_vehicules->intitule}}</td>

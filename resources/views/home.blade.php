@@ -12,7 +12,7 @@
                     <h1>Car Booking  <br>
                         <span>Services</span>
                     </h1>
-                    <p>Nous tenons à vous remercier pour votre confiance et vous présentons nos meilleurs voeux pour 
+                     <p>Nous tenons à vous remercier pour votre confiance et vous présentons nos meilleurs voeux pour 
                         l'année 2024. Nous vous souhaitons une nouvelle année remplie de joie, de bonheur et de 
                         reussite. Avec une excellente santé.
                     </p>

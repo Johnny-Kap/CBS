@@ -77,8 +77,11 @@
                     <li class="">
                         <a href="{{route('abonnement.index')}}">Abonnements</a>
                     </li>
+                    <li class="">
+                        <a href="{{route('abonnement.index')}}">Bibliothèque</a>
+                    </li>
                     <li class="{{ Request::route()->named('contact') ? 'active' : '' }}"><a href="{{route('contact')}}">Contact</a></li>
-                    <li class="{{ Request::route()->named('propos') ? 'active' : '' }}"><a href="{{route('propos')}}">A propos</a></li>
+                    <li class="{{ Request::route()->named('propos') ? 'active' : '' }}"><a href="{{route('propos')}}">A propos de nous</a></li>
                     <li class="login-link">
                         <a href="register.html">S'inscrire</a>
                     </li>

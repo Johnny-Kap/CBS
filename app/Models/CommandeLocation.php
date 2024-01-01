@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class CommandeLocation extends Model
 {
     use HasFactory;
+
+    public function users(){
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function locations(){
+        return $this->belongsTo(LocationVehicule::class, 'location_vehicule_id', 'id');
+    }
 }

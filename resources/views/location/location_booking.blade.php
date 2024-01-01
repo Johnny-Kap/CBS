@@ -55,7 +55,6 @@
                         <div class="visa-card">
                             <span>Mode de paiement : <b>{{$mode_paiement->intitule}}</b> </span>
                             <br><br>
-                            <h6>Votre compte : {{$compte->numero_compte ? $compte->numero_compte : 'Aucun compte'}}</h6>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -94,7 +93,7 @@
                 </div>
             </div>
             <div class="place-order-btn">
-                <a href="{{ route('location.paiement', ['location_id' => $location->id, 'compte_id' => $compte->id , 'date_heure_depart' => $date_heure_depart, 'date_heure_arrivee' => $date_heure_arrivee, 'mode_paiement' => $mode_paiement->id, 'total_tarif' => $total_tarif, 'diff' => $diff]) }}" class="btn btn-primary"><i class="fas fa-bar-chart me-2"></i>Commander</a>
+                <a href="{{ route('location.paiement', ['location_id' => $location->id, 'date_heure_depart' => $date_heure_depart, 'date_heure_arrivee' => $date_heure_arrivee, 'mode_paiement' => $mode_paiement->id, 'total_tarif' => $total_tarif, 'diff' => $diff]) }}" class="btn btn-primary"><i class="fas fa-bar-chart me-2"></i>Commander</a>
             </div>
         </div>
     </div>

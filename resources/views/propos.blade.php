@@ -26,7 +26,7 @@
             <div class="col-lg-6" data-aos="fade-down">
                 <div class="about-img">
                     <div class="about-exp">
-                        <span>12+ years of experiences</span>
+
                     </div>
                     <div class="abt-img">
                         <img src="assets/img/about-us.png" class="img-fluid" alt="About us">
@@ -35,37 +35,29 @@
             </div>
             <div class="col-lg-6" data-aos="fade-down">
                 <div class="about-content">
-                    <h6>ABOUT OUR COMPANY</h6>
-                    <h2>Best Solution For Cleaning Services</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <h6>A propos de notre entreprise</h6>
+                    <h2>CAR BOOKING SERVICES</h2>
+                    <p style="text-align: justify;">
+                        CAR BOOKING SERVICES est une entreprise spécialisée dans le domaine du transport, et des services qui y
+                        sont associés notamment la location de véhicules, la maintenance automobile, la formation, le conseil et
+                        l’assistance. Notre entreprise jouit du support et de la longue expérience des promoteurs, et nos interactions avec
+                        nos clients nous permet de détecter et suggérer des axes d’efficiences opérationnelles et d’y apporter des
+                        solutions palliatives; Notre objectif est de nous placer au cœur de vos préoccupations et d’y trouver des solutions
+                        sur mesure…Nous offrons la garantie des prestations de qualité et sécurisées. Nous disons Merci à vous, nos
+                        précieux clients d’ici et d’ailleurs qui ne cessent de nous faire confiance et notre engagement est de ne pas vous
+                        décevoir…Notre engagement est de continuer à vous garantir l’excellence…
+                        Alors, contactez-nous, exprimez votre besoin et recevez votre cotation sous 48h maximum…Nous sommes à
+                        votre services !!!
+                        Ou plus simplement, abonnez-vous et bénéficiez de nombreux services et publications !!!
+                        Merci.
                     </p>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                        laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-                        architecto beatae vitae dicta sunt explicabo.</p>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <ul>
-                                <li>At vero et accusamus iusto dignissimos</li>
-                                <li>At vero et accusamus iusto dignissimos</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <ul>
-                                <li>Nam libero tempore, cum soluta nobis</li>
-                                <li>Nam libero tempore, cum soluta nobis</li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="section facts-number">
+<!-- <section class="section facts-number">
     <div class="facts-left">
         <img src="assets/img/bg/facts-left.png" class="img-fluid" alt="facts left">
     </div>
@@ -137,6 +129,6 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 @endsection

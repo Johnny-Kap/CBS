@@ -9,11 +9,11 @@
                 <div class="col-lg-6" data-aos="fade-down">
                     <!-- <p class="explore-text"> <span><i class="fa-solid fa-thumbs-up me-2"></i></span>100% de confiance
                         plateforme de location de voitures dans le monde</p> -->
-                    <h1>Car Booking  <br>
+                    <h1>Car Booking <br>
                         <span>Services</span>
                     </h1>
-                    <p>Nous tenons à vous remercier pour votre confiance et vous présentons nos meilleurs voeux pour 
-                        l'année 2024. Nous vous souhaitons une nouvelle année remplie de joie, de bonheur et de 
+                    <p>Nous tenons à vous remercier pour votre confiance et vous présentons nos meilleurs voeux pour
+                        l'année 2024. Nous vous souhaitons une nouvelle année remplie de joie, de bonheur et de
                         reussite. Avec une excellente santé.
                     </p>
                     <div class="view-all">
@@ -483,5 +483,42 @@
         </div>
     </div>
 </div>
+
+<section class="section faq-section bg-light-primary">
+    <div class="container">
+
+        <div class="section-heading" data-aos="fade-down">
+            <h2>FAITES-UN DON </h2>
+            <p>Nous avons besoin de vous pour grandir. L'Afrique a besoin de vous pour assurer son épanouissement social...La PME Africaine a besoin de votre support</p>
+        </div>
+
+        <div class="faq-info mb-3">
+            <div class="faq-card bg-white" data-aos="fade-down">
+                <h4 class="faq-title">
+                    1. Je suis de la Diaspora et je veux aider CBS
+                </h4>
+            </div>
+            <div class="faq-card bg-white" data-aos="fade-down">
+                <h4 class="faq-title">
+                    2. Je suis de la Diaspora et je veux aider une entreprise autre que CBS
+                </h4>
+            </div>
+            <div class="faq-card bg-white" data-aos="fade-down">
+                <h4 class="faq-title">
+                    3. Je suis résidant Camerounais et je veux aider CBS
+                </h4>
+            </div>
+            <div class="faq-card bg-white" data-aos="fade-down">
+                <h4 class="faq-title">
+                    4. Je suis résidant Camerounais et je veux aider une entreprise autre que CBS
+                </h4>
+            </div>
+        </div>
+        <div class="view-all text-center" data-aos="fade-down">
+            <a href="#" class="btn btn-view d-inline-flex align-items-center"> 
+                <span>OM : +237 659826528 / MOMO :  +237 653100205</span></a>
+        </div>
+    </div>
+</section>
 
 @endsection
