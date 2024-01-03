@@ -35,8 +35,8 @@
             </div>
             <div class="col-lg-6" data-aos="fade-down">
                 <div class="about-content">
-                    <h6>A propos de notre entreprise</h6>
-                    <h2>CAR BOOKING SERVICES</h2>
+                    <!-- <h6>A propos de notre entreprise</h6>
+                    <h2>CAR BOOKING SERVICES</h2> -->
                     <p style="text-align: justify;">
                         CAR BOOKING SERVICES est une entreprise spécialisée dans le domaine du transport, et des services qui y
                         sont associés notamment la location de véhicules, la maintenance automobile, la formation, le conseil et
