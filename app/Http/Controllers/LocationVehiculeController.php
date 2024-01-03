@@ -100,9 +100,10 @@ class LocationVehiculeController extends Controller
             $total_tarif = ($location->tarif * $diff) + $location->tarif;
         }
 
-        $commandeDispo = CommandeLocation::where('date_debut', '>=' , $date_heure_depart)
-                                        ->where('date_fin', '<=' , $date_heure_arrivee)
+        $commandeDispo = CommandeLocation::where('date_debut', '<=' , $date_heure_depart)
+                                        ->where('date_fin', '>=' , $date_heure_arrivee)
                                         ->where('location_vehicule_id', $request->location_id)
+                                        ->where('etat_commande', 'Validation de la commande')
                                         ->count();
 
         $abonnementDispo = SouscrireAbonnement::where('numero_abonnement', $request->abonnement)

@@ -75,5 +75,6 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/commande_location/attente', [App\Http\Controllers\CommandeLocationController::class, 'index'])->name('commande_location.attente');
     Route::post('/admin/commande_location/change/etat', [App\Http\Controllers\CommandeLocationController::class, 'validation_commande'])->name('commande_location.validation.etat');
     Route::get('/admin/commande_location/commande_validee', [App\Http\Controllers\CommandeLocationController::class, 'commande_validee'])->name('commande_location.commande_validee');
+    Route::post('/admin/commande_location/paiement/etat', [App\Http\Controllers\CommandeLocationController::class, 'validation_paiement'])->name('commande_location.validation.paiement');
 
 });

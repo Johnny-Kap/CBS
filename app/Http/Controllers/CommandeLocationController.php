@@ -35,8 +35,8 @@ class CommandeLocationController extends Controller
     {
 
         $commande = CommandeLocation::where('user_id', Auth::user()->id)
-                                    ->where('etat_commande', 'Validation de la commande')
-                                    ->where('photo', null)->simplePaginate(15);
+            ->where('etat_commande', 'Validation de la commande')
+            ->where('photo', null)->simplePaginate(15);
 
         return view('profile.confirmation_paiement', compact('commande'));
     }
@@ -54,7 +54,7 @@ class CommandeLocationController extends Controller
 
         $location = LocationVehicule::find($location_id);
 
-        $numero_commande = 'COMLO' . Carbon::now()->format('Ymd') . Str::padLeft(Auth::user()->id, 4, 0);
+        $numero_commande = 'COMLO' . Carbon::now()->format('Ymdx') . Str::padLeft(Auth::user()->id, 4, 0);
 
         // $compte = Compte::find($compte_id);
 
@@ -133,6 +133,21 @@ class CommandeLocationController extends Controller
 
     public function validation_commande(Request $request)
     {
+
+        $affected = CommandeLocation::where('id', $request->commande_id)
+            ->update([
+                'etat_commande' => $request->etat,
+            ]);
+
+        return back()->with('success', 'Validé avec succès');
+    }
+
+    public function validation_paiement(Request $request)
+    {
+
+        $filename = time() . '.' . $request->file->extension();
+
+        $path = $request->file('file')->storeAs('images', $filename, 'public');
 
         $affected = CommandeLocation::where('id', $request->commande_id)
             ->update([

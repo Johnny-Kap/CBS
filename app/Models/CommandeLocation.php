@@ -16,4 +16,8 @@ class CommandeLocation extends Model
     public function locations(){
         return $this->belongsTo(LocationVehicule::class, 'location_vehicule_id', 'id');
     }
+
+    public function mode_paiements(){
+        return $this->belongsTo(ModePaiement::class, 'mode_paiement_id', 'id');
+    }
 }

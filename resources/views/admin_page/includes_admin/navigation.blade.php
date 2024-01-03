@@ -3,7 +3,7 @@
     <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
     <!-- Used only if page preloader is enabled from inc/config (PHP version) or the class 'page-loading' is added in #page-wrapper element (HTML version) -->
     <div class="preloader themed-background">
-        <h1 class="push-top-bottom text-light text-center"><strong>Pro</strong>UI</h1>
+        <h1 class="push-top-bottom text-light text-center"><strong>CBS</strong>Admin</h1>
         <div class="inner">
             <h3 class="text-light visible-lt-ie10"><strong>Loading..</strong></h3>
             <div class="preloader-spinner hidden-lt-ie10"></div>
@@ -66,7 +66,7 @@
                                 <img src="/../assets_admin/img/placeholders/avatars/avatar2.jpg" alt="avatar">
                             </a>
                         </div>
-                        <div class="sidebar-user-name">John Doe</div>
+                        <div class="sidebar-user-name">{{Auth::user()->name}}</div>
                         <div class="sidebar-user-links">
                             <a href="page_ready_user_profile.html" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="gi gi-user"></i></a>
                             <a href="page_ready_inbox.html" data-toggle="tooltip" data-placement="bottom" title="Messages"><i class="gi gi-envelope"></i></a>
@@ -153,9 +153,9 @@
 
                     <!-- Sidebar Navigation -->
                     <ul class="sidebar-nav">
-                        <li>
+                        <!-- <li>
                             <a href="index.html" class=""><i class="gi gi-stopwatch sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Dashboard</span></a>
-                        </li>
+                        </li> -->
                         <!-- <li>
                             <a href="index2.html"><i class="gi gi-leaf sidebar-nav-icon"></i><span
                                     class="sidebar-nav-mini-hide">Dashboard 2</span></a>
@@ -212,7 +212,7 @@
                         </li> -->
                         <li class="sidebar-header">
                             <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
-                            <span class="sidebar-header-title">Design Kit</span>
+                            <span class="sidebar-header-title">Panel de controle</span>
                         </li>
                         <li>
                             <a href="#" class="sidebar-nav-menu {{ Request::route()->named('vehicule.ajouter') || Request::route()->named('vehicule.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-certificate sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Véhicules</span></a>
@@ -259,9 +259,9 @@
                                 <li>
                                     <a class="{{ Request::route()->named('mode_paiement.consulter') ? 'active' : '' }}" href="{{route('mode_paiement.consulter')}}">Consulter mode de paiemnt</a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="page_icons_glyphicons_pro.html">Glyphicons Pro</a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
                         <li>
