@@ -16,7 +16,7 @@
                 <!-- END Main Title -->
 
                 <!-- Top Stats -->
-                <div class="col-md-8 col-lg-6">
+                <!-- <div class="col-md-8 col-lg-6">
                     <div class="row text-center">
                         <div class="col-xs-4 col-sm-3">
                             <h2 class="animation-hatch">
@@ -36,7 +36,6 @@
                                 <small><i class="fa fa-calendar-o"></i> Events</small>
                             </h2>
                         </div>
-                        <!-- We hide the last stat to fit the other 3 on small devices -->
                         <div class="col-sm-3 hidden-xs">
                             <h2 class="animation-hatch">
                                 <strong>27&deg; C</strong><br>
@@ -44,7 +43,7 @@
                             </h2>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- END Top Stats -->
             </div>
         </div>
