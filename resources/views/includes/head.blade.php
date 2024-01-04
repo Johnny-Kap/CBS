@@ -6,4 +6,4 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <title>Car Booking Services</title>
 
-    <link rel="shortcut icon" href="/../assets/img/logo_petit.PNG">
+    <link rel="shortcut icon" href="/../assets/img/logo_first_petit.png">

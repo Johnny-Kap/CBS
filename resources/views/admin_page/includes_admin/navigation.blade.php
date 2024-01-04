@@ -274,10 +274,10 @@
                                     <a class="{{ Request::route()->named('commande_location.commande_validee') ? 'active' : '' }}" href="{{route('commande_location.commande_validee')}}">Commandes validées</a>
                                 </li>
                                 <li>
-                                    <a href="page_layout_static_fixed_footer.html">Validation paiement</a>
+                                    <a class="{{ Request::route()->named('commande_location.validation_paiement') ? 'active' : '' }}" href="{{route('commande_location.validation_paiement')}}">Validation paiement</a>
                                 </li>
                                 <li>
-                                    <a href="page_layout_fixed_top.html">Confirmées</a>
+                                    <a class="{{ Request::route()->named('commande_location.commande_confirmees') ? 'active' : '' }}" href="{{route('commande_location.commande_confirmees')}}">Confirmées</a>
                                 </li>
                                 <!-- <li>
                                     <a href="page_layout_fixed_top_footer.html">Fixed Top Header + Footer</a>

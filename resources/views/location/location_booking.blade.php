@@ -34,7 +34,7 @@
                             <!-- <a href="javascript:void(0)">Edit</a> -->
                         </div>
                         <div class="order-car">
-                            <span><img src="assets/img/detail-smallcar-img-2.jpg" alt></span>
+                            <span><img src="{{Storage::url($location->vehicules->image_illustrative)}}" alt></span>
                             <h5>{{$location->intitule}}<span>{{$location->tarif}}</span></h5>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                         <div class="confirmation-title">
                             <h4>Details du paiement</h4>
                             <!-- <a href="javascript:void(0)">Edit</a> -->
-                        </div>
+                        </div>  
                         <div class="visa-card">
                             <span>Mode de paiement : <b>{{$mode_paiement->intitule}}</b> </span>
                             <br><br>

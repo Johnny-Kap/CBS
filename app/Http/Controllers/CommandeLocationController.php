@@ -142,19 +142,55 @@ class CommandeLocationController extends Controller
         return back()->with('success', 'Validé avec succès');
     }
 
+    public function soumission_paiement(Request $request)
+    {
+
+        if ($request->has('file')) {
+
+            $filename = time() . '.' . $request->file->extension();
+
+            $path = $request->file('file')->storeAs('images', $filename, 'public');
+
+            $affected = CommandeLocation::where('id', $request->commande_id)
+                ->update([
+                    'photo' => $path,
+                ]);
+
+            return back()->with('success', 'Preuve de paiement soumis avec succès! Vous serez contacté après validation.');
+        } else {
+            return back()->with('error', 'Veuillez ajouté votre capture d\'écran.');
+        }
+    }
+
     public function validation_paiement(Request $request)
     {
 
-        $filename = time() . '.' . $request->file->extension();
+        $commande_validation_paiement = CommandeLocation::where('etat_commande', 'Validation de la commande')
+            ->where('etat_paiement', 'Non payé')
+            ->whereNotNull('photo')->simplePaginate(15);
 
-        $path = $request->file('file')->storeAs('images', $filename, 'public');
+        return view('admin_page.gestion_commande_location.validation_paiement', compact('commande_validation_paiement'));
+    }
+
+    public function paiement_valide(Request $request)
+    {
 
         $affected = CommandeLocation::where('id', $request->commande_id)
             ->update([
-                'etat_commande' => $request->etat,
+                'etat_paiement' => $request->etat,
             ]);
 
-        return back()->with('success', 'Validé avec succès');
+        return back()->with('success', 'Paiement validé avec succès');
+    }
+
+    public function commande_confirmees(Request $request)
+    {
+
+        $commande_confirmees = CommandeLocation::where('etat_commande', 'Validation de la commande')
+            ->where('etat_paiement', 'Payé')
+            ->whereNotNull('photo')->simplePaginate(15);
+
+        return view('admin_page.gestion_commande_location.commande_confirmees', compact('commande_confirmees'));
     }
 
     /**

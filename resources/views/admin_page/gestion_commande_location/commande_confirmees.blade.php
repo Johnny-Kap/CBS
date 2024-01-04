@@ -7,7 +7,7 @@
     <div class="content-header">
         <div class="header-section">
             <h1>
-                <i class="gi gi-table"></i>Gestion des locations en attente de validation<br><small>Consulter les ici !</small>
+                <i class="gi gi-table"></i>Gestion des commandes confirmées<br><small>Consulter les ici !</small>
             </h1>
         </div>
     </div>
@@ -64,30 +64,31 @@
                         <th>Tarif total</th>
                         <th>Nombe de jours</th>
                         <th>Etat de la commande</th>
+                        <th>Etat du paiement</th>
                         <th>Commandé par</th>
                         <th>Intitule de la location</th>
                         <th>Commandé le</th>
-                        <th style="width: 150px;" class="text-center">Actions</th>
+                        <!-- <th style="width: 150px;" class="text-center">Actions</th> -->
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($commade_attente as $item)
+                    @foreach($commande_confirmees as $item)
                     <tr>
                         <td>{{$item->numero_commande}}</td>
                         <td>{{$item->date_debut}}</td>
                         <td>{{$item->date_fin}}</td>
-                        <td>{{$item->tarif}}</td>
+                        <td><b>{{$item->tarif}} FCFA</b></td>
                         <td>{{$item->nombre_jours}}</td>
                         <td>{{$item->etat_commande}}</td>
+                        <td>{{$item->etat_paiement}}</td>
                         <td>{{$item->users->name}}</td>
                         <td>{{$item->locations->intitule}}</td>
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
-                        <td class="text-center">
+                        <!-- <td class="text-center">
                             <div class="btn-group btn-group-xs">
                                 <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit"><i class="fa fa-pencil"></i></button>
-                                <!-- <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#pages_delete"><i class="fa fa-times"></i></button> -->
                             </div>
-                        </td>
+                        </td> -->
                     </tr>
 
                     <div class="modal fade" id="pages_edit" role="dialog">
@@ -95,33 +96,40 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <div class="form-header text-start mb-0">
-                                        <h4 class="mb-0 text-dark fw-bold">Effectuer la validation de commande</h4>
+                                        <h4 class="mb-0 text-dark fw-bold">Effectuer la validation de paiement</h4>
                                     </div>
                                 </div>
                                 <form action="{{route('commande_location.validation.etat')}}" method="post">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="row">
-                                            <div class="col-lg-12 col-md-12">
-                                                <div class="available-for-ride">
-                                                    <p>
-                                                        <i class="fa-regular fa-circle-check"></i>Choisir l'option :
-                                                    </p>
+                                            <div class="col-md-12">
+                                                <div class="booking-info pay-amount">
+                                                    <img style="width: 25rem; height: 50rem;" src="{{Storage::url($item->photo)}}" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="booking-info pay-amount">
-                                                    <select name="etat">
-                                                        <option value="Validation de la commande">Validation de la commande</option>
-                                                        <option value="En attente de validation">En attente de validation</option>
-                                                    </select>
+                                                    <h6>Choisir l'option</h6>
+                                                    <div class="radio radio-btn">
+                                                        <label>
+                                                            <select name="etat">
+                                                                <option value="Payé">Payé</option>
+                                                                <option value="Non payé">Non payé</option>
+                                                                <option value="Montant insuffisant">Montant insuffisant</option>
+                                                            </select>
+                                                        </label>
+                                                    </div>
+                                                    <div class="mt-4">
+
+                                                    </div>
                                                     <input type="hidden" name="commande_id" value="{{$item->id}}" />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-back">Valider <i class="fa fa-arrow-right"></i></button>
+                                        <button type="submit" class="btn btn-primary">Valider <i class="fa fa-arrow-right"></i></button>
                                     </div>
                                 </form>
                             </div>

@@ -52,7 +52,8 @@
                                             <div class="modal custom-modal fade check-availability-modal" id="pages_edit" role="dialog">
                                                 <div class="modal-dialog modal-dialog-centered modal-md">
                                                     <div class="modal-content">
-                                                        <form action="" method="post">
+                                                        <form action="{{route('soumission_paiement')}}" enctype="multipart/form-data" method="post">
+                                                            @csrf
                                                             <div class="modal-body">
                                                                 <div class="row">
                                                                     <div class="col-md-12">
@@ -62,6 +63,7 @@
                                                                                 <label>
                                                                                     <input type="file" name="file"> Téléverser ici
                                                                                 </label>
+                                                                                <input type="hidden" value="{{$item->id}}" name="commande_id">
                                                                             </div>
                                                                         </div>
                                                                     </div>
