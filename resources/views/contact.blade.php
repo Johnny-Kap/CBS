@@ -49,7 +49,7 @@
                     <div class="single-contact-info flex-fill">
                         <span><i class="fas fa-clock"></i></span>
                         <h3>Heures d'ouverture</h3>
-                        <a href="javascript:void(0);">Lun - Sam (8h00 - 18h00)</a>
+                        <a href="javascript:void(0);">Lun - Ven (8h00 - 18h00) | Sam (9h00 - 14h00)</a>
                     </div>
                 </div>
             </div>
