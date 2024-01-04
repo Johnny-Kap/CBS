@@ -5,7 +5,7 @@
 
 <div class="main-wrapper login-body">
     <header class="log-header">
-        <a href="index.html"><img class="img-fluid logo-dark" src="assets/img/logo_final.PNG" alt="Logo" /></a>
+        <a href="index.html"><img class="img-fluid logo-dark" src="assets/img/logo_first.png" alt="Logo" /></a>
     </header>
 
     <div class="login-wrapper">
