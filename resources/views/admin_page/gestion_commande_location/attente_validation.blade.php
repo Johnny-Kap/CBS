@@ -112,8 +112,8 @@
                                             <div class="col-md-12">
                                                 <div class="booking-info pay-amount">
                                                     <select name="etat">
-                                                        <option value="Validation de la commande">Validation de la commande</option>
-                                                        <option value="En attente de validation">En attente de validation</option>
+                                                        <option value="yes">Valider</option>
+                                                        <option value="attente">Mettre en attente</option>
                                                     </select>
                                                     <input type="hidden" name="commande_id" value="{{$item->id}}" />
                                                 </div>

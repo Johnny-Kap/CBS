@@ -68,6 +68,13 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="detail-product">
+                    <div class="slider detail-bigimg">
+                        @foreach($locationShow->vehicules->images as $image)
+                        <div class="product-img">
+                            <img src="{{ Storage::url($image) }}" alt="Slider" />
+                        </div>
+                        @endforeach
+                    </div>
                     <div class="slider slider-nav-thumbnails">
                         @foreach($locationShow->vehicules->images as $image)
                         <div>
@@ -262,7 +269,7 @@
                     </div>
                     <div class="description-list">
                         <p>
-                        {!! html_entity_decode($locationShow->description) !!}
+                            {!! html_entity_decode($locationShow->description) !!}
                         </p>
                     </div>
                 </div>
@@ -494,7 +501,6 @@
         </div>
     </div>
 </div>
-
 
 
 @endsection

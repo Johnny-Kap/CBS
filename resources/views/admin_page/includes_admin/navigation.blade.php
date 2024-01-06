@@ -215,7 +215,7 @@
                             <span class="sidebar-header-title">Panel de controle</span>
                         </li>
                         <li>
-                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('vehicule.ajouter') || Request::route()->named('vehicule.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-certificate sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Véhicules</span></a>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('vehicule.ajouter') || Request::route()->named('vehicule.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Véhicules</span></a>
                             <ul>
                                 <li>
                                     <a class="{{ Request::route()->named('vehicule.ajouter') ? 'active' : '' }}" href="{{route('vehicule.ajouter')}}">Ajouter</a>
@@ -226,9 +226,9 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('type_vehicule.ajouter') || Request::route()->named('type_vehicule.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-notes_2 sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Type de vehicule</span></a>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('type_vehicule.ajouter') || Request::route()->named('type_vehicule.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Type de vehicule</span></a>
                             <ul>
-                            <li>
+                                <li>
                                     <a class="{{ Request::route()->named('type_vehicule.ajouter') ? 'active' : '' }}" href="{{route('type_vehicule.ajouter')}}">Ajouter</a>
                                 </li>
                                 <li>
@@ -237,7 +237,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('location.ajouter') || Request::route()->named('location.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-table sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Location</span></a>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('location.ajouter') || Request::route()->named('location.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Location</span></a>
                             <ul>
                                 <li>
                                     <a class="{{ Request::route()->named('location.ajouter') ? 'active' : '' }}" href="{{route('location.ajouter')}}">Ajouter</a>
@@ -245,25 +245,12 @@
                                 <li>
                                     <a class="{{ Request::route()->named('location.consulter') ? 'active' : '' }}" href="{{route('location.consulter')}}">Consulter</a>
                                 </li>
-                                <li>
-                                    <a href="page_tables_datatables.html">Recap commande</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('mode_paiement.ajouter') || Request::route()->named('mode_paiement.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-cup sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Recharge</span></a>
-                            <ul>
-                                <li>
-                                    <a class="{{ Request::route()->named('mode_paiement.ajouter') ? 'active' : '' }}" href="{{route('mode_paiement.ajouter')}}">Ajouter mode de paiemnt</a>
-                                </li>
-                                <li>
-                                    <a class="{{ Request::route()->named('mode_paiement.consulter') ? 'active' : '' }}" href="{{route('mode_paiement.consulter')}}">Consulter mode de paiemnt</a>
-                                </li>
                                 <!-- <li>
-                                    <a href="page_icons_glyphicons_pro.html">Glyphicons Pro</a>
+                                    <a href="page_tables_datatables.html">Recap commande</a>
                                 </li> -->
                             </ul>
                         </li>
+
                         <li>
                             <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Commande location</span></a>
                             <ul>
@@ -313,6 +300,48 @@
                                 </li>
                                 <li>
                                     <a href="page_layout_static_animated.html">Animated Sidebar Transitions</a>
+                                </li> -->
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('mode_paiement.ajouter') || Request::route()->named('mode_paiement.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Mode de paiement</span></a>
+                            <ul>
+                                <li>
+                                    <a class="{{ Request::route()->named('mode_paiement.ajouter') ? 'active' : '' }}" href="{{route('mode_paiement.ajouter')}}">Ajouter mode de paiemnt</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('mode_paiement.consulter') ? 'active' : '' }}" href="{{route('mode_paiement.consulter')}}">Consulter mode de paiemnt</a>
+                                </li>
+                                <!-- <li>
+                                    <a href="page_icons_glyphicons_pro.html">Glyphicons Pro</a>
+                                </li> -->
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Type d'abonnement</span></a>
+                            <ul>
+                                <li>
+                                    <a class="" href="#">Ajouter mode de paiemnt</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#">Consulter mode de paiemnt</a>
+                                </li>
+                                <!-- <li>
+                                    <a href="page_icons_glyphicons_pro.html">Glyphicons Pro</a>
+                                </li> -->
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Abonnements</span></a>
+                            <ul>
+                                <li>
+                                    <a class="" href="#">Ajouter mode de paiemnt</a>
+                                </li>
+                                <li>
+                                    <a class="" href="#">Consulter mode de paiemnt</a>
+                                </li>
+                                <!-- <li>
+                                    <a href="page_icons_glyphicons_pro.html">Glyphicons Pro</a>
                                 </li> -->
                             </ul>
                         </li>

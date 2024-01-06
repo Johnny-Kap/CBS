@@ -113,9 +113,8 @@
                                                     <div class="radio radio-btn">
                                                         <label>
                                                         <select name="etat">
-                                                            <option value="Payé">Payé</option>
-                                                            <option value="Non payé">Non payé</option>
-                                                            <option value="Montant insuffisant">Montant insuffisant</option>
+                                                            <option value="yes">Payé</option>
+                                                            <option value="no">Non payé</option>
                                                         </select>
                                                         </label>
                                                     </div>

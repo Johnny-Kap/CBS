@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="/../assets/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="/../assets/plugins/fontawesome/css/fontawesome.min.css">

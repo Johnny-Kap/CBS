@@ -82,12 +82,23 @@
                     </li>
                     <li class="{{ Request::route()->named('contact') ? 'active' : '' }}"><a href="{{route('contact')}}">Contact</a></li>
                     <li class="{{ Request::route()->named('propos') ? 'active' : '' }}"><a href="{{route('propos')}}">A propos de nous</a></li>
+                    @if (Route::has('login'))
+                    @auth
                     <li class="login-link">
-                        <a href="register.html">S'inscrire</a>
+                        <a class="nav-link header-login" href="{{ route('myprofile') }}">{{Auth::user()->name}}
+                            <span><i class="fa fa-user"></i></span></a>
                     </li>
+                    @else
                     <li class="login-link">
-                        <a href="login.html">Se connecter</a>
+                        <a href="{{route('login')}}">Se connecter</a>
                     </li>
+                    @if (Route::has('register'))
+                    <li class="login-link">
+                        <a href="{{route('register')}}">S'inscrire</a>
+                    </li>
+                    @endif
+                    @endauth
+                    @endif
                 </ul>
             </div>
 
@@ -96,7 +107,7 @@
                 @auth
                 <li class="nav-item">
                     <a class="nav-link header-login" href="{{ route('myprofile') }}">{{Auth::user()->name}}
-                         <span><i class="fa fa-user"></i></span></a>
+                        <span><i class="fa fa-user"></i></span></a>
                 </li>
                 @else
                 <li class="nav-item">
