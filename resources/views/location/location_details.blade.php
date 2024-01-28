@@ -44,7 +44,7 @@
                             <div class="camaro-location-inner">
                                 <i class="fas fa-map-pin me-2"></i>
                                 <span class="me-2">
-                                    <b>Location :</b> Douala, Cameroun
+                                    <b>Localisation :</b> Douala, Cameroun
                                 </span>
                             </div>
                             <!-- <div class="camaro-locations-inner">
@@ -287,7 +287,7 @@
                                     <div class="form-group">
                                         <label>N° abonnement du service</label>
                                         <div class="group-img">
-                                            <input type="text" class="form-control" name="abonnement" placeholder="AA88873889N" required />
+                                            <input type="text" class="form-control" name="abonnement" placeholder="AA88873889"/>
                                         </div>
                                     </div>
                                 </li>

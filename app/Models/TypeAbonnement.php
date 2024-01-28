@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class TypeAbonnement extends Model
 {
     use HasFactory;
+
+    public function abonnements(){
+        return $this->hasMany(Abonnement::class);
+    }
 }

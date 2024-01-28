@@ -76,7 +76,8 @@ class LocationVehiculeController extends Controller
         return view('location.location_details', compact('locationShow'));
     }
 
-    public function verifierDispo(Request $request){
+    public function verifierDispo(Request $request)
+    {
 
         // Obtenir les modes de paiement
         $mode_paiement = ModePaiement::first();
@@ -86,7 +87,7 @@ class LocationVehiculeController extends Controller
 
         //Formatage de la date et heure de depart
         $date_heure_depart = date('Y-m-d H:i', strtotime("$request->date_depart $request->heure_depart"));
-        
+
         //Formatage de la date et heure d'arrivée
         $date_heure_arrivee = date('Y-m-d H:i', strtotime("$request->date_arrivee $request->heure_arrivee"));
 
@@ -94,40 +95,67 @@ class LocationVehiculeController extends Controller
 
         $diff = $date->diffInDays($date_heure_arrivee);
 
-        if($diff == 0){
-            $total_tarif = $location->tarif;
-        }else{
-            $total_tarif = ($location->tarif * $diff) + $location->tarif;
-        }
-
-        $commandeDispo = CommandeLocation::where('date_debut', '<=' , $date_heure_depart)
-                                        ->where('date_fin', '>=' , $date_heure_arrivee)
-                                        ->where('location_vehicule_id', $request->location_id)
-                                        ->where('etat_commande', 'Validation de la commande')
-                                        ->count();
+        $commandeDispo = CommandeLocation::where('date_debut', '<=', $date_heure_depart)
+            ->where('date_fin', '>=', $date_heure_arrivee)
+            ->where('location_vehicule_id', $request->location_id)
+            ->where('etat_commande', 'yes')
+            ->count();
 
         $abonnementDispo = SouscrireAbonnement::where('numero_abonnement', $request->abonnement)
-                                                ->where('user_id', Auth::user()->id)
-                                                ->count();
+            ->where('user_id', Auth::user()->id)
+            ->where('is_expired', 'no')
+            ->where('etat', 'confirmee')
+            ->count();
+
+        $abonnementDispo_other = SouscrireAbonnement::where('numero_abonnement', $request->abonnement)
+            ->where('user_id', Auth::user()->id)
+            ->where('is_expired', 'no')
+            ->where('etat', 'confirmee')
+            ->first();
 
         // Recuperation des infos du compte de l'utilisateur
-        $compte = Compte::where('user_id', Auth::user()->id)->first();
+        // $compte = Compte::where('user_id', Auth::user()->id)->first();
 
         // CommandeDispo == 0 => c'est dispo && AbonnementDispo == 1 c'est valable
 
-        if($commandeDispo == 0 && $abonnementDispo == 0){
 
-            return back()->with('error', 'Numéro abonnement non valable! Essayez un autre.');
+        if ($request->filled('abonnement') == true) {
 
-        } elseif($commandeDispo == 1 && $abonnementDispo == 0){
+            if ($commandeDispo == 0 && $abonnementDispo == 0) {
 
-            return back()->with('error', 'Numéro abonnement non valable et Location non disponible. Réessayez.');
+                return back()->with('error', 'Numéro abonnement non valable! Essayez un autre.');
+            } elseif ($commandeDispo == 1 && $abonnementDispo == 0) {
 
-        }elseif($commandeDispo == 0 && $abonnementDispo == 1){
+                return back()->with('error', 'Numéro abonnement non valable et Location non disponible. Réessayez.');
+            } elseif ($commandeDispo == 0 && $abonnementDispo == 1) {
 
-            return view('location.location_booking', compact('location','date_heure_depart', 'date_heure_arrivee', 'compte', 'mode_paiement', 'total_tarif', 'diff'));
-        }else{
-            return back()->with('error', 'Location non disponible à ces dates renseignées.');
+                if ($diff == 0) {
+                    $total_tarif = $location->tarif * (1 - ($abonnementDispo_other->abonnements->rabais / 100));
+                } else {
+                    $total_tarif_provisoire = ($location->tarif * $diff) + $location->tarif;
+
+                    $total_tarif = $total_tarif_provisoire * (1 - ($abonnementDispo_other->abonnements->rabais / 100));
+                }
+
+                return view('location.location_booking', compact('location', 'date_heure_depart', 'date_heure_arrivee', 'mode_paiement', 'total_tarif', 'diff'));
+            } else {
+                return back()->with('error', 'Location non disponible à ces dates renseignées.');
+            }
+        } else {
+
+            if ($commandeDispo == 1) {
+
+                return back()->with('error', 'Location non disponible. Réessayez une autre date.');
+            } elseif ($commandeDispo == 0) {
+
+                if ($diff == 0) {
+                    $total_tarif = $location->tarif;
+                } else {
+                    $total_tarif = ($location->tarif * $diff) + $location->tarif;
+                }
+
+                return view('location.location_booking', compact('location', 'date_heure_depart', 'date_heure_arrivee', 'mode_paiement', 'total_tarif', 'diff'));
+            }
         }
     }
 

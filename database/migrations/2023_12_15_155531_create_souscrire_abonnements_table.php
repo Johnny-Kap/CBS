@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string('numero_abonnement')->unique();
             $table->string('etat');
             $table->string('date_expiration');
+            $table->string('is_expired');
+            $table->string('is_buy');
+            $table->string('montant');
+            $table->string('image')->nullable();
             $table->foreignId('abonnement_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

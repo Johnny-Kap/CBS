@@ -58,4 +58,8 @@ class User extends Authenticatable
     public function commande_locations(){
         return $this->hasMany(CommandeLocation::class);
     }
+
+    public function souscrire_abonnements(){
+        return $this->hasMany(SouscrireAbonnement::class);
+    }
 }

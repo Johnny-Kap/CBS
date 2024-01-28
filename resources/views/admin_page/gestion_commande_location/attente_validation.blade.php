@@ -78,7 +78,7 @@
                         <td>{{$item->date_fin}}</td>
                         <td>{{$item->tarif}}</td>
                         <td>{{$item->nombre_jours}}</td>
-                        <td>{{$item->etat_commande}}</td>
+                        <td>@if($item->etat_commande == 'yes') Confirmée @else En attente @endif</td>
                         <td>{{$item->users->name}}</td>
                         <td>{{$item->locations->intitule}}</td>
                         <td>{{$item->created_at->format('d/m/Y')}}</td>

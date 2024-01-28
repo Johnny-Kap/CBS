@@ -252,7 +252,7 @@
                         </li>
 
                         <li>
-                            <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Commande location</span></a>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_location.attente') || Request::route()->named('commande_location.commande_validee') || Request::route()->named('commande_location.validation_paiement') || Request::route()->named('commande_location.commande_confirmees') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Commande location</span></a>
                             <ul>
                                 <li>
                                     <a class="{{ Request::route()->named('commande_location.attente') ? 'active' : '' }}" href="{{route('commande_location.attente')}}">En attente</a>
@@ -318,13 +318,13 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Type d'abonnement</span></a>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('type_abonnement.ajouter') || Request::route()->named('type_abonnement.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Type d'abonnement</span></a>
                             <ul>
                                 <li>
-                                    <a class="" href="#">Ajouter mode de paiemnt</a>
+                                    <a class="{{ Request::route()->named('type_abonnement.ajouter') ? 'active' : '' }}" href="{{route('type_abonnement.ajouter')}}">Ajouter</a>
                                 </li>
                                 <li>
-                                    <a class="" href="#">Consulter mode de paiemnt</a>
+                                    <a class="{{ Request::route()->named('type_abonnement.consulter') ? 'active' : '' }}" href="{{route('type_abonnement.consulter')}}">Consulter</a>
                                 </li>
                                 <!-- <li>
                                     <a href="page_icons_glyphicons_pro.html">Glyphicons Pro</a>
@@ -332,13 +332,33 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Abonnements</span></a>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('abonnement.ajouter') || Request::route()->named('abonnement.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Abonnements</span></a>
                             <ul>
                                 <li>
-                                    <a class="" href="#">Ajouter mode de paiemnt</a>
+                                    <a class="{{ Request::route()->named('abonnement.ajouter') ? 'active' : '' }}" href="{{route('abonnement.ajouter')}}">Ajouter</a>
                                 </li>
                                 <li>
-                                    <a class="" href="#">Consulter mode de paiemnt</a>
+                                    <a class="{{ Request::route()->named('abonnement.consulter') ? 'active' : '' }}" href="{{route('abonnement.consulter')}}">Consulter</a>
+                                </li>
+                                <!-- <li>
+                                    <a href="page_icons_glyphicons_pro.html">Glyphicons Pro</a>
+                                </li> -->
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('abonnement.attente') || Request::route()->named('abonnement.confirmes') || Request::route()->named('abonnement.attente.paiement') || Request::route()->named('abonnement.expires') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Sous. Abonnements</span></a>
+                            <ul>
+                                <li>
+                                    <a class="{{ Request::route()->named('abonnement.attente.paiement') ? 'active' : '' }}" href="{{route('abonnement.attente.paiement')}}">Paiement non soumis</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('abonnement.attente') ? 'active' : '' }}" href="{{route('abonnement.attente')}}">En attente de validation</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('abonnement.confirmes') ? 'active' : '' }}" href="{{route('abonnement.confirmes')}}">Confirmés</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('abonnement.expires') ? 'active' : '' }}" href="{{route('abonnement.expires')}}">Expirés</a>
                                 </li>
                                 <!-- <li>
                                     <a href="page_icons_glyphicons_pro.html">Glyphicons Pro</a>

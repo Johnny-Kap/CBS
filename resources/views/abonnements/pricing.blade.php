@@ -15,38 +15,56 @@
 <section class="section pricing-section pricing-page">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-12" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="200">
+            <div class="col-lg-4 col-md-4 col-12">
+                @foreach($abonnements as $item)
                 <div class="price-card">
                     <div class="price-head">
                         <div class="price-level">
-                            <h6>Essential</h6>
-                            <p>For the basics</p>
+                            <h6>{{$item->intitule}}</h6>
                         </div>
-                        <h4>$49</h4>
-                        <span>Per user per month</span>
+                        <h4>{{$item->montant}} FCFA</h4>
+                        <span>Par an</span>
                     </div>
                     <div class="price-details">
                         <ul>
-                            <li class="price-check"><span><i class="fa-regular fa-circle-check"></i></span>Get
-                                Starting message</li>
-                            <li class="price-check"><span><i class="fa-regular fa-circle-check"></i></span>Min 1
-                                month, extend anytime</li>
-                            <li class="price-check"><span><i class="fa-regular fa-circle-check"></i></span>Rental car prices include
-                                tax</li>
-                            <li class="price-uncheck"><span><i class="fa-regular fa-circle-xmark"></i></span>Extend or return anytime
+                            <li class="price-check">
+                                <b>{!! html_entity_decode($item->packages) !!}</b>
                             </li>
-                            <li class="price-uncheck"><span><i class="fa-regular fa-circle-xmark"></i></span>Doorstep delivery in 2days
-                            </li>
-                            <li class="price-uncheck"><span><i class="fa-regular fa-circle-xmark"></i></span>Car
-                                system included free of charge.</li>
-                            <li class="price-uncheck"><span><i class="fa-regular fa-circle-xmark"></i></span>Min
-                                1 month, extend anytime</li>
                         </ul>
                         <div>
-                            <a href="login.html" class="btn viewdetails-btn">Request a demo</a>
+                            <a href="#pages_edit" class="btn viewdetails-btn" data-bs-toggle="modal">S'inscrire</a>
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="pages_edit">
+                    <div class="modal-dialog modal-dialog-centered modal-md">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="form-header text-start mb-0">
+                                    <h4 class="mb-0 text-dark fw-bold">Confirmer la souscription</h4>
+                                </div>
+                            </div>
+                            <form action="{{route('souscrire.abonnement')}}" method="post">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="booking-info pay-amount">
+                                                <h5>Voulez-vous vraiment souscrire à cet abonnement ?</h5>
+                                                <input type="hidden" name="abonnement_id" value="{{$item->id}}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-back">Valider <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
             </div>
         </div>
     </div>

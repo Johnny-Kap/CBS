@@ -12,7 +12,9 @@ class TypeAbonnementController extends Controller
      */
     public function index()
     {
-        //
+        $type_abonnements = TypeAbonnement::all();
+
+        return view('admin_page.gestion_abonnement.consulter_type_abonnement', compact('type_abonnements'));
     }
 
     /**
@@ -20,7 +22,7 @@ class TypeAbonnementController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin_page.gestion_abonnement.ajouter_type_abonnement');
     }
 
     /**
@@ -28,7 +30,15 @@ class TypeAbonnementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $add = new TypeAbonnement();
+
+        $add->intitule = $request->intitule;
+
+        $add->code = $request->code;
+
+        $add->save();
+
+        return back()->with('success', 'Ajouté avec succès');
     }
 
     /**

@@ -35,7 +35,7 @@
                         </div>
                         <div class="order-car">
                             <span><img src="{{Storage::url($location->vehicules->image_illustrative)}}" alt></span>
-                            <h5>{{$location->intitule}}<span>{{$location->tarif}}</span></h5>
+                            <h5>{{$location->intitule}}<span>{{$location->tarif}} FCFA /Jour</span></h5>
                         </div>
                     </div>
                     <!-- <div class="col-lg-6">

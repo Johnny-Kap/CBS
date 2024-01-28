@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SouscrireAbonnement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SouscrireAbonnementController extends Controller
 {
@@ -12,7 +13,9 @@ class SouscrireAbonnementController extends Controller
      */
     public function index()
     {
-        //
+        $mes_abonnements = SouscrireAbonnement::where('user_id', Auth::user()->id)->simplePaginate(10);
+
+        return view('profile.mes-abonnements', compact('mes_abonnements'));
     }
 
     /**

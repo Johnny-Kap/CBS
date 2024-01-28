@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Abonnement;
+use App\Models\SouscrireAbonnement;
+use App\Models\TypeAbonnement;
+use Carbon\Carbon;
+use Hamcrest\Core\IsNot;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AbonnementController extends Controller
 {
@@ -12,7 +18,87 @@ class AbonnementController extends Controller
      */
     public function index()
     {
-        return view('abonnements.pricing');
+
+        $abonnements = Abonnement::all();
+
+        return view('abonnements.pricing', compact('abonnements'));
+    }
+
+    public function souscrire(Request $request)
+    {
+        $verify = SouscrireAbonnement::where('abonnement_id', $request->abonnement_id)
+            ->where('date_expiration', Carbon::now()->format('d-m-Y'))
+            ->where('user_id', Auth::user()->id)
+            ->exists();
+
+        if ($verify) {
+            return back()->with('warning', 'Vous avez déja souscrit à cet abonnement');
+        } else {
+
+            $abonnement = Abonnement::find($request->abonnement_id);
+
+            $numero_abonnement = $abonnement->type_abonnements->code . Carbon::now()->format('dmY') . Str::padLeft(Auth::user()->id, 3, 0);
+
+            //Enregistrement
+
+            $add = new SouscrireAbonnement();
+
+            $add->numero_abonnement = $numero_abonnement;
+
+            $add->etat = 'attente';
+
+            $add->date_expiration = Carbon::now()->addYear()->format('d-m-Y');
+
+            $add->is_expired = 'no';
+
+            $add->is_buy = 'no';
+
+            $add->montant = $abonnement->montant;
+
+            $add->abonnement_id = $request->abonnement_id;
+
+            $add->user_id = Auth::user()->id;
+
+            $add->save();
+
+            return redirect()->route('success.abonnement');
+        }
+    }
+
+    public function success()
+    {
+        return view('abonnements.success_abonnement');
+    }
+
+    public function confirmation_abonnement()
+    {
+
+        $abonnement_souscrits = SouscrireAbonnement::where('etat', 'attente')
+            ->where('image', null)
+            ->where('is_buy', 'no')
+            ->simplePaginate(15);
+
+        return view('profile.confirmation_abonnement', compact('abonnement_souscrits'));
+    }
+
+    public function soumission_paiement(Request $request)
+    {
+
+        if ($request->has('file')) {
+
+            $filename = time() . '.' . $request->file->extension();
+
+            $path = $request->file('file')->storeAs('images', $filename, 'public');
+
+            $affected = SouscrireAbonnement::where('id', $request->souscription_abonnement_id)
+                ->update([
+                    'image' => $path,
+                ]);
+
+            return back()->with('success', 'Preuve de paiement soumis avec succès! Vous serez contacté après validation.');
+        } else {
+            return back()->with('error', 'Veuillez ajouté votre capture d\'écran.');
+        }
     }
 
     /**
@@ -20,7 +106,10 @@ class AbonnementController extends Controller
      */
     public function create()
     {
-        //
+
+        $type_abonnements = TypeAbonnement::all();
+
+        return view('admin_page.gestion_abonnement.ajouter_abonnement', compact('type_abonnements'));
     }
 
     /**
@@ -28,15 +117,87 @@ class AbonnementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $add = new Abonnement();
+
+        $add->intitule = $request->intitule;
+
+        $add->montant = $request->montant;
+
+        $add->rabais = $request->rabais;
+
+        $add->packages = $request->packages;
+
+        $add->type_abonnement_id = $request->type_abonnement_id;
+
+        $add->save();
+
+        return back()->with('success', 'Ajouté avec succès');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Abonnement $abonnement)
+    public function show()
     {
-        //
+        $abonnements = Abonnement::all();
+
+        return view('admin_page.gestion_abonnement.consulter_abonnement', compact('abonnements'));
+    }
+
+    public function attente()
+    {
+
+        $abonnement_attente = SouscrireAbonnement::where('etat', 'attente')
+            ->whereNotNull('image')->simplePaginate(15);
+
+        return view('admin_page.gestion_abonnement.attente_abonnement', compact('abonnement_attente'));
+    }
+
+    public function attente_paiement()
+    {
+
+        $abonnement_paiement_attente = SouscrireAbonnement::where('etat', 'attente')
+            ->where('image', null)->simplePaginate(15);
+
+        return view('admin_page.gestion_abonnement.attente_paiement_abonnement', compact('abonnement_paiement_attente'));
+    }
+
+    public function confirmer_souscription(Request $request)
+    {
+
+        if ($request->is_buy == 'no') {
+            $affected = SouscrireAbonnement::where('id', $request->souscrire_abonnement_id)
+                ->update([
+                    'is_buy' => $request->is_buy,
+                ]);
+
+            return back()->with('success', 'Paiement non validé avec succès');
+        } else {
+
+            $affected = SouscrireAbonnement::where('id', $request->souscrire_abonnement_id)
+                ->update([
+                    'is_buy' => $request->is_buy,
+                    'etat' => 'confirmee'
+                ]);
+
+            return back()->with('success', 'Paiement validé avec succès');
+        }
+    }
+
+    public function confirmes()
+    {
+
+        $abonnement_confirmee = SouscrireAbonnement::where('etat', 'confirmee')->simplePaginate(15);
+
+        return view('admin_page.gestion_abonnement.confirmes_abonnement', compact('abonnement_confirmee'));
+    }
+
+    public function expires()
+    {
+
+        $abonnement_expires = SouscrireAbonnement::where('is_expired', 'yes')->simplePaginate(15);
+
+        return view('admin_page.gestion_abonnement.expires_abonnement', compact('abonnement_expires'));
     }
 
     /**

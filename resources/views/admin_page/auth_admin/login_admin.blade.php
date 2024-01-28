@@ -1,6 +1,7 @@
-@extends('admin_page.layouts_admin.admin')
+@include('admin_page.includes_admin.head')
 
-@section('content')
+@include('admin_page.includes_admin.styles')
+
 
 <!-- Login Full Background -->
 <!-- For best results use an image with a resolution of 1280x1280 pixels (prefer a blurred image for smaller file size) -->
@@ -68,4 +69,5 @@
     </div>
 </div>
 
-@endsection
+
+@include('admin_page.includes_admin.scripts')
