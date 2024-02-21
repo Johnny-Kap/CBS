@@ -79,13 +79,10 @@
                         <ul class="submenu">
                             <!-- <li><a href="about-us.html">About Us</a></li> -->
                             <li class=" {{ Request::route()->named('location.list') ? 'active' : '' }}">
-                                <a href="{{route('location.list')}}">Location de voitures</a>
+                                <a href="{{route('location.list')}}">Assistance location appartements</a>
                             </li>
                             <li class=" {{ Request::route()->named('commande.maintenance.auto') ? 'active' : '' }}">
-                                <a href="{{route('commande.maintenance.auto')}}">Maintenance automobile</a>
-                            </li>
-                            <li class=" {{ Request::route()->named('location.list') ? 'active' : '' }}">
-                                <a href="#">Formation</a>
+                                <a href="{{route('commande.maintenance.auto')}}">Distribution Panier Alimentaire</a>
                             </li>
                             <!-- <li class="has-submenu">
                                 <a href="javascript:void(0);">Booking</a>
