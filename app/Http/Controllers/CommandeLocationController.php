@@ -54,7 +54,7 @@ class CommandeLocationController extends Controller
 
         $location = LocationVehicule::find($location_id);
 
-        $numero_commande = 'CL' . Carbon::now()->format('YmdH') . Str::padLeft(Auth::user()->id, 3, 0);
+        $numero_commande = 'CL' . Carbon::now()->format('YmdHms') . Str::padLeft(Auth::user()->id, 3, 0);
 
         // Enregistrement de la commande
         $commande = new CommandeLocation();

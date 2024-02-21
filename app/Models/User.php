@@ -62,4 +62,8 @@ class User extends Authenticatable
     public function souscrire_abonnements(){
         return $this->hasMany(SouscrireAbonnement::class);
     }
+
+    public function commande_maintenances(){
+        return $this->hasMany(CommandeMaintenanceAutomobile::class);
+    }
 }

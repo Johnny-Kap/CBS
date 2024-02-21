@@ -52,6 +52,7 @@
                                         <div class="col-md-12">
                                             <div class="booking-info pay-amount">
                                                 <h5>Voulez-vous vraiment souscrire à cet abonnement ?</h5>
+                                                <h6>NB : En validant votre inscription, vous acceptez nos <a href="{{route('term_condition')}}">termes et conditions</a></h6>
                                                 <input type="hidden" name="abonnement_id" value="{{$item->id}}" />
                                             </div>
                                         </div>

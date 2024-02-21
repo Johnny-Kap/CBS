@@ -51,7 +51,7 @@
                         <div class="confirmation-title">
                             <h4>Details du paiement</h4>
                             <!-- <a href="javascript:void(0)">Edit</a> -->
-                        </div>  
+                        </div>
                         <div class="visa-card">
                             <span>Mode de paiement : <b>{{$mode_paiement->intitule}}</b> </span>
                             <br><br>
@@ -88,6 +88,16 @@
                         <ul class="address-info mb-0">
                             <!-- <li>45, 4th Avanue Mark Street USA</li> -->
                             <li>{{$date_heure_arrivee}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="confirmation-title">
+                            <h4>Nos termes et conditions</h4>
+                            <!-- <a href="javascript:void(0)">Edit</a> -->
+                        </div>
+                        <ul class="address-info mb-0">
+                            <!-- <li>45, 4th Avanue Mark Street USA</li> -->
+                            <li>En validant votre commande, vous acceptez nos <a href="{{route('term_condition')}}">termes et conditions</a></li>
                         </ul>
                     </div>
                 </div>

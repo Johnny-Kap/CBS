@@ -27,17 +27,15 @@ class AbonnementController extends Controller
     public function souscrire(Request $request)
     {
         $verify = SouscrireAbonnement::where('abonnement_id', $request->abonnement_id)
-            ->where('date_expiration', Carbon::now()->format('d-m-Y'))
+            ->where('date_expiration', '>', Carbon::now()->format('d-m-Y'))
             ->where('user_id', Auth::user()->id)
             ->exists();
 
-        if ($verify) {
-            return back()->with('warning', 'Vous avez déja souscrit à cet abonnement');
-        } else {
+        if ($verify == false) {
 
             $abonnement = Abonnement::find($request->abonnement_id);
 
-            $numero_abonnement = $abonnement->type_abonnements->code . Carbon::now()->format('dmY') . Str::padLeft(Auth::user()->id, 3, 0);
+            $numero_abonnement = $abonnement->type_abonnements->code . Carbon::now()->format('dmYHms') . Str::padLeft(Auth::user()->id, 3, 0);
 
             //Enregistrement
 
@@ -62,6 +60,8 @@ class AbonnementController extends Controller
             $add->save();
 
             return redirect()->route('success.abonnement');
+        } else {
+            return back()->with('warning', 'Vous avez déja souscrit à cet abonnement étant toujours valable');
         }
     }
 

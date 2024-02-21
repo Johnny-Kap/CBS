@@ -38,17 +38,29 @@ Route::get('/successfully-commande', [App\Http\Controllers\CommandeLocationContr
 
 // Mon profil utilisateur
 Route::get('/myprofile', [App\Http\Controllers\HomeController::class, 'myprofile'])->name('myprofile')->middleware('auth');
+Route::get('/myprofile/parametres', [App\Http\Controllers\HomeController::class, 'mes_parametres'])->name('myprofile.modifier')->middleware('auth');
 Route::get('/myprofile/confirmation-paiement', [App\Http\Controllers\CommandeLocationController::class, 'confirmation_paiement'])->name('myprofile.confirmation_paiement')->middleware('auth');
 Route::post('/myprofile/soumission-paiement', [App\Http\Controllers\CommandeLocationController::class, 'soumission_paiement'])->name('soumission_paiement')->middleware('auth');
 Route::get('/myprofile/confirmation-abonnement', [App\Http\Controllers\AbonnementController::class, 'confirmation_abonnement'])->name('myprofile.confirmation_abonnement')->middleware('auth');
 Route::post('/myprofile/abonnement/soumission-paiement', [App\Http\Controllers\AbonnementController::class, 'soumission_paiement'])->name('abonnement.soumission_paiement')->middleware('auth');
 Route::get('/myprofile/mes-abonnements', [App\Http\Controllers\SouscrireAbonnementController::class, 'index'])->name('myprofile.abonnements')->middleware('auth');
+Route::post('/myprofile/parametres/photo-change', [App\Http\Controllers\HomeController::class, 'photoEdited'])->name('myprofile.parametres.photo.change')->middleware('auth');
+Route::post('/myprofile/parametres/update-profil', [App\Http\Controllers\HomeController::class, 'updateProfil'])->name('myprofile.parametres.update.profil')->middleware('auth');
+Route::post('/myprofile/parametres/update-password', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('myprofile.parametres.update.password')->middleware('auth');
+Route::post('/myprofile/parametres/update-email', [App\Http\Controllers\HomeController::class, 'updateEmail'])->name('myprofile.parametres.update.email')->middleware('auth');
 
 
 // Les abonnements
 Route::get('/abonnement-list', [App\Http\Controllers\AbonnementController::class, 'index'])->name('abonnement.index');
 Route::post('/souscription-abonnement', [App\Http\Controllers\AbonnementController::class, 'souscrire'])->name('souscrire.abonnement')->middleware('auth');
 Route::get('/successfully-souscription-abonnement', [App\Http\Controllers\AbonnementController::class, 'success'])->name('success.abonnement');
+
+
+// Gestion des maintenances
+Route::get('/commande-maintenance-automobile', [App\Http\Controllers\CommandeMaintenanceAutomobileController::class, 'index'])->name('commande.maintenance.auto');
+Route::get('/commande-maintenance-automobile/verification', [App\Http\Controllers\CommandeMaintenanceAutomobileController::class, 'create'])->name('commande.maintenance.auto.verify')->middleware('auth');
+Route::post('/commande-maintenance-automobile/add', [App\Http\Controllers\CommandeMaintenanceAutomobileController::class, 'store'])->name('commande.maintenance.auto.add')->middleware('auth');
+Route::get('/commande-maintenance-automobile/successfully-commande-maintenance', [App\Http\Controllers\CommandeMaintenanceAutomobileController::class, 'success'])->name('success.commande.maintenance');
 
 
 /* ------------- Routes de l'Admin --------------*/
@@ -101,5 +113,13 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/souscrire-abonnement/confirmes', [App\Http\Controllers\AbonnementController::class, 'confirmes'])->name('abonnement.confirmes');
     Route::post('/admin/souscrire-abonnement/paiement/validee', [App\Http\Controllers\AbonnementController::class, 'confirmer_souscription'])->name('abonnement.paiement.valide');
     Route::get('/admin/souscrire-abonnement/expires', [App\Http\Controllers\AbonnementController::class, 'expires'])->name('abonnement.expires');
+
+    // Gestion des commande de maintenance
+    Route::get('/admin/commande_maintenance/attente', [App\Http\Controllers\CommandeMaintenanceAutomobileController::class, 'attente'])->name('commande_maintenance.attente');
+    Route::post('/admin/commande_maintenance/validation/change/etat', [App\Http\Controllers\CommandeMaintenanceAutomobileController::class, 'validation_commande'])->name('commande_maintenance.validation.etat');
+    Route::get('/admin/commande_maintenance/commande_validee', [App\Http\Controllers\CommandeMaintenanceAutomobileController::class, 'commande_validee'])->name('commande_maintenance.commande_validee');
+    Route::post('/admin/commande_maintenance/paiement/validee', [App\Http\Controllers\CommandeMaintenanceAutomobileController::class, 'paiement_valide'])->name('commande_maintenance.paiement.valide');
+    Route::get('/admin/commande_maintenance/commande-confirmees', [App\Http\Controllers\CommandeMaintenanceAutomobileController::class, 'commande_confirmees'])->name('commande_maintenance.commande_confirmees');
+
 
 });

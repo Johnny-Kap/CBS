@@ -266,41 +266,20 @@
                                 <li>
                                     <a class="{{ Request::route()->named('commande_location.commande_confirmees') ? 'active' : '' }}" href="{{route('commande_location.commande_confirmees')}}">Confirmées</a>
                                 </li>
-                                <!-- <li>
-                                    <a href="page_layout_fixed_top_footer.html">Fixed Top Header + Footer</a>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_maintenance.attente') || Request::route()->named('commande_maintenance.commande_validee') || Request::route()->named('commande_maintenance.commande_confirmees') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Comm. maintenance</span></a>
+                            <ul>
+                                <li>
+                                    <a class="{{ Request::route()->named('commande_maintenance.attente') ? 'active' : '' }}" href="{{route('commande_maintenance.attente')}}">En attente</a>
                                 </li>
                                 <li>
-                                    <a href="page_layout_fixed_bottom.html">Fixed Bottom Header</a>
+                                    <a class="{{ Request::route()->named('commande_maintenance.commande_validee') ? 'active' : '' }}" href="{{route('commande_maintenance.commande_validee')}}">Commandes validées</a>
                                 </li>
                                 <li>
-                                    <a href="page_layout_fixed_bottom_footer.html">Fixed Bottom Header + Footer</a>
+                                    <a class="{{ Request::route()->named('commande_maintenance.commande_confirmees') ? 'active' : '' }}" href="{{route('commande_maintenance.commande_confirmees')}}">Commandes confirmées</a>
                                 </li>
-                                <li>
-                                    <a href="page_layout_static_main_sidebar_mini.html">Mini Main Sidebar</a>
-                                </li>
-                                <li>
-                                    <a href="page_layout_static_main_sidebar_partial.html">Partial Main Sidebar</a>
-                                </li>
-                                <li>
-                                    <a href="page_layout_static_main_sidebar_visible.html">Visible Main Sidebar</a>
-                                </li>
-                                <li>
-                                    <a href="page_layout_static_alternative_sidebar_partial.html">Partial
-                                        Alternative Sidebar</a>
-                                </li>
-                                <li>
-                                    <a href="page_layout_static_alternative_sidebar_visible.html">Visible
-                                        Alternative Sidebar</a>
-                                </li>
-                                <li>
-                                    <a href="page_layout_static_no_sidebars.html">No Sidebars</a>
-                                </li>
-                                <li>
-                                    <a href="page_layout_static_both_partial.html">Both Sidebars Partial</a>
-                                </li>
-                                <li>
-                                    <a href="page_layout_static_animated.html">Animated Sidebar Transitions</a>
-                                </li> -->
                             </ul>
                         </li>
                         <li>

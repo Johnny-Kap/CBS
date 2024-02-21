@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card-body text-center">
-                <H4>PAPA</H4><br><br>
+                <H4>Veuillez effectuer vos paiments sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</H4><br><br>
                     <div class="invoice-table-wrap">
                         <div class="row">
                             <div class="col-md-12"> 

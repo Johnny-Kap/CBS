@@ -21,7 +21,12 @@
                         <!-- <span class="year">2023</span> -->
                         <div class="owner-detail">
                             <div class="owner-img">
-                                <img src="assets/img/profiles/avatar-07.jpg" alt />
+                            @if (Auth::user()->image == null)
+                            <img src="assets/img/profiles/avatar-07.jpg" alt />
+                            @else
+                            <img src="{{ Storage::url(Auth::user()->image) }}" alt="">
+                            @endif
+                                
                             </div>
                         </div>
                     </div>
@@ -43,8 +48,8 @@
                 </div>
             </div>
             <div class="details-btn">
-                <a href> <i class="fas fa-gear"></i> Mes paramètres</a>
-                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                <a href="{{route('myprofile.modifier')}}"> <i class="fas fa-gear"></i> Mes paramètres</a>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();    
                                         document.getElementById('logout-form').submit();"><i class="fas fa-sign-out"></i> Déconnecter</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
