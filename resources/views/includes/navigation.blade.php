@@ -33,7 +33,7 @@
                             <li><a href="listing-details.html">Listing Details</a></li>
                         </ul>
                     </li> -->
-                    <li class="has-submenu {{ Request::route()->named('location.list') ? 'active' : '' }}">
+                    <li class="has-submenu {{ Request::route()->named('location.list') || Request::route()->named('commande.maintenance.auto') || Request::route()->named('bibliotheque.verifier')  ? 'active' : '' }}">
                         <a href>Nos offres <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
                             <!-- <li><a href="about-us.html">About Us</a></li> -->
@@ -43,12 +43,12 @@
                             <li class=" {{ Request::route()->named('commande.maintenance.auto') ? 'active' : '' }}">
                                 <a href="{{route('commande.maintenance.auto')}}">Maintenance automobile</a>
                             </li>
-                            <li class=" {{ Request::route()->named('location.list') ? 'active' : '' }}">
+                            <li class="{{ Request::route()->named('bibliotheque.verifier') ? 'active' : '' }}">
+                                <a href="{{route('bibliotheque.verifier')}}">Bibliothèque</a>
+                            </li>
+                            <li class="">
                                 <a href="#">Formation</a>
-                            </li>
-                            <li class=" {{ Request::route()->named('location.list') ? 'active' : '' }}">
-                                <a href="#">Bibliothèque</a>
-                            </li>
+                            </li>     
                             <!-- <li class="has-submenu">
                                 <a href="javascript:void(0);">Booking</a>
                                 <ul class="submenu">
@@ -74,15 +74,15 @@
                             <li><a href="coming-soon.html">Coming Soon</a></li> -->
                         </ul>
                     </li>
-                    <li class="has-submenu {{ Request::route()->named('location.list') ? 'active' : '' }}">
+                    <li class="has-submenu">
                         <a href>Autres services <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
                             <!-- <li><a href="about-us.html">About Us</a></li> -->
-                            <li class=" {{ Request::route()->named('location.list') ? 'active' : '' }}">
-                                <a href="{{route('location.list')}}">Assistance location appartements</a>
+                            <li class=" ">
+                                <a href="{{route('commande.reservation.appart.hotel')}}">Assistance réservation appartements / hotel</a>
                             </li>
-                            <li class=" {{ Request::route()->named('commande.maintenance.auto') ? 'active' : '' }}">
-                                <a href="{{route('commande.maintenance.auto')}}">Distribution Panier Alimentaire</a>
+                            <li class="">
+                                <a href="">Distribution Panier Alimentaire</a>
                             </li>
                             <!-- <li class="has-submenu">
                                 <a href="javascript:void(0);">Booking</a>

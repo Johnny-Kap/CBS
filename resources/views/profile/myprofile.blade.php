@@ -41,7 +41,10 @@
                             </div>
                             <div class="camaro-locations-inner">
                                 <i class="fas fa-envelope me-2"></i>
-                                <span><b>Email :</b> {{Auth::user()->email}} </span>
+                                <span><b>Email :</b> {{Auth::user()->email}} | </span>
+                            </div>
+                            <div class="camaro-locations-inner">
+                            @if(Auth::user()->email_verified_at == null) <span class="badge bg-danger">E-mail non vérifié</span> @else <span class="badge bg-success">E-mail vérifié</span> @endif
                             </div>
                         </div>
                     </div>

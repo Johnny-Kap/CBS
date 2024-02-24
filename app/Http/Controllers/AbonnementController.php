@@ -35,7 +35,7 @@ class AbonnementController extends Controller
 
             $abonnement = Abonnement::find($request->abonnement_id);
 
-            $numero_abonnement = $abonnement->type_abonnements->code . Carbon::now()->format('dmYHms') . Str::padLeft(Auth::user()->id, 3, 0);
+            $numero_abonnement = $abonnement->code . Carbon::now()->format('dmYHms') . Str::padLeft(Auth::user()->id, 3, 0);
 
             //Enregistrement
 
@@ -121,9 +121,13 @@ class AbonnementController extends Controller
 
         $add->intitule = $request->intitule;
 
+        $add->code = $request->code;
+
         $add->montant = $request->montant;
 
         $add->rabais = $request->rabais;
+
+        $add->nombre_livraison_panier = $request->nombre_livraison_panier;
 
         $add->packages = $request->packages;
 

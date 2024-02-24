@@ -71,6 +71,10 @@ class HomeController extends Controller
     public function photoEdited(Request $request)
     {
 
+        $request->validate([
+            'file' => 'required|mimes:jpeg,png,jpg',
+        ]);
+
         if ($request->hasFile('file')) {
 
             $filename = time() . '.' . $request->file->extension();

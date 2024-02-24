@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('welcome', compact('location'));
 })->name('welcome');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
@@ -61,6 +61,19 @@ Route::get('/commande-maintenance-automobile', [App\Http\Controllers\CommandeMai
 Route::get('/commande-maintenance-automobile/verification', [App\Http\Controllers\CommandeMaintenanceAutomobileController::class, 'create'])->name('commande.maintenance.auto.verify')->middleware('auth');
 Route::post('/commande-maintenance-automobile/add', [App\Http\Controllers\CommandeMaintenanceAutomobileController::class, 'store'])->name('commande.maintenance.auto.add')->middleware('auth');
 Route::get('/commande-maintenance-automobile/successfully-commande-maintenance', [App\Http\Controllers\CommandeMaintenanceAutomobileController::class, 'success'])->name('success.commande.maintenance');
+
+
+// Gestion des réservations des appartements / hotels
+Route::get('/commande-reservation-appartement-hotel', [App\Http\Controllers\CommandeReservationAppartementHotelController::class, 'index'])->name('commande.reservation.appart.hotel');
+Route::get('/commande-reservation-appartement-hotel/formulaire', [App\Http\Controllers\CommandeReservationAppartementHotelController::class, 'create'])->name('commande.reservation.appart.hotel.verify')->middleware('auth');
+Route::post('/commande-reservation-appartement-hotel/add', [App\Http\Controllers\CommandeReservationAppartementHotelController::class, 'store'])->name('commande.reservation.appart.hotel.add')->middleware('auth');
+Route::get('/commande-maintenance-automobile/successfully-commande-maintenance', [App\Http\Controllers\CommandeReservationAppartementHotelController::class, 'success'])->name('success.commande.reservation');
+
+
+// Gestion de la gestion bibliothèques
+Route::get('/bibliotheque/entrer-abonnement', [App\Http\Controllers\BibliothequeController::class, 'verifier'])->name('bibliotheque.verifier');
+Route::get('/bibliotheque/acces', [App\Http\Controllers\BibliothequeController::class, 'show'])->name('bibliotheque.show')->middleware('auth');
+
 
 
 /* ------------- Routes de l'Admin --------------*/
@@ -121,5 +134,15 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/admin/commande_maintenance/paiement/validee', [App\Http\Controllers\CommandeMaintenanceAutomobileController::class, 'paiement_valide'])->name('commande_maintenance.paiement.valide');
     Route::get('/admin/commande_maintenance/commande-confirmees', [App\Http\Controllers\CommandeMaintenanceAutomobileController::class, 'commande_confirmees'])->name('commande_maintenance.commande_confirmees');
 
+    // Gestion des commandes de réservation des appartements / hotel
+    Route::get('/admin/commande_reservation/attente', [App\Http\Controllers\CommandeReservationAppartementHotelController::class, 'attente'])->name('commande_reservation.attente');
+    Route::post('/admin/commande_reservation/validation/change/etat', [App\Http\Controllers\CommandeReservationAppartementHotelController::class, 'validation_commande'])->name('commande_reservation.validation.etat');
+    Route::get('/admin/commande_reservation/commande_validee', [App\Http\Controllers\CommandeReservationAppartementHotelController::class, 'commande_validee'])->name('commande_reservation.commande_validee');
+
+
+    // Gestion de la bibliothèque
+    Route::get('/admin/bibliotheque/ajouter', [App\Http\Controllers\BibliothequeController::class, 'create'])->name('admin.bibliotheque.ajouter');
+    Route::post('/admin/bibliotheque/add', [App\Http\Controllers\BibliothequeController::class, 'store'])->name('admin.bibliotheque.add');
+    Route::get('admin/bibliotheque/consulter', [App\Http\Controllers\BibliothequeController::class, 'index'])->name('admin.bibliotheque.consulter');
 
 });

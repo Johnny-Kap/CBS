@@ -283,6 +283,17 @@
                             </ul>
                         </li>
                         <li>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_reservation.attente') || Request::route()->named('commande_reservation.commande_validee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Réser. hôtel/Appart</span></a>
+                            <ul>
+                                <li>
+                                    <a class="{{ Request::route()->named('commande_reservation.attente') ? 'active' : '' }}" href="{{route('commande_reservation.attente')}}">En attente</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('commande_reservation.commande_validee') ? 'active' : '' }}" href="{{route('commande_reservation.commande_validee')}}">Validées</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#" class="sidebar-nav-menu {{ Request::route()->named('mode_paiement.ajouter') || Request::route()->named('mode_paiement.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Mode de paiement</span></a>
                             <ul>
                                 <li>
@@ -342,6 +353,21 @@
                                 <!-- <li>
                                     <a href="page_icons_glyphicons_pro.html">Glyphicons Pro</a>
                                 </li> -->
+                            </ul>
+                        </li>
+                        <li class="sidebar-header">
+                            <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
+                            <span class="sidebar-header-title">Autres config</span>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('admin.bibliotheque.ajouter') || Request::route()->named('admin.bibliotheque.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Bibliothèque</span></a>
+                            <ul>
+                                <li>
+                                    <a class="{{ Request::route()->named('admin.bibliotheque.ajouter') ? 'active' : '' }}" href="{{route('admin.bibliotheque.ajouter')}}">Ajouter doc.</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('admin.bibliotheque.consulter') ? 'active' : '' }}" href="{{route('admin.bibliotheque.consulter')}}">Consulter doc.</a>
+                                </li>
                             </ul>
                         </li>
                         <!-- <li class="sidebar-header">

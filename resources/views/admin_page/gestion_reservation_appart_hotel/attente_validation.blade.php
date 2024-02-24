@@ -7,13 +7,13 @@
     <div class="content-header">
         <div class="header-section">
             <h1>
-                <i class="gi gi-table"></i>Nos abonnements<br><small>Consulter les ici !</small>
+                <i class="gi gi-table"></i>Gestion des commande de réservaion hotel / appartement en attente de validation<br><small>Consulter les ici !</small>
             </h1>
         </div>
     </div>
-    <ul class="breadcrumb breadcrumb-top">
-        <li><a href="{{route('abonnement.ajouter')}}"><b>AJOUTER UN ABONNEMENT</b></a></li>
-    </ul>
+    <!-- <ul class="breadcrumb breadcrumb-top">
+        <li><a href="{{route('location.ajouter')}}"><b>AJOUTER UNE LOCATION</b></a></li>
+    </ul> -->
     <!-- END Table Styles Header -->
 
     <!-- Table Styles Block -->
@@ -58,35 +58,79 @@
             <table id="general-table" class="table table-striped table-vcenter">
                 <thead>
                     <tr>
-                        <th>Intitule</th>
-                        <th>Code</th>
-                        <th>Montant</th>
-                        <th>Rabais</th>
-                        <th>Nbre de livraison du panier</th>
-                        <th>Packages</th>
-                        <th>Type d'abonnement</th>
-                        <th>Date de création</th>
+                        <th>N° Commande</th>
+                        <th>N° abonnement utilisé</th>
+                        <th>Type de réservation</th>
+                        <th>Date de réservation</th>
+                        <th>Ville</th>
+                        <th>Localite / Quartier</th>
+                        <th>Prix inférieur</th>
+                        <th>Prix supérieur</th>
+                        <th>Etat de la commande</th>
+                        <th>Commandé par</th>
+                        <th>Commandé le</th>
                         <th style="width: 150px;" class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($abonnements as $item)
+                    @foreach($commade_attente as $item)
                     <tr>
-                        <td>{{$item->intitule}}</td>
-                        <td>{{$item->code}}</td>
-                        <td>{{$item->montant}}</td>
-                        <td>{{$item->rabais}}</td>
-                        <td>{{$item->nombre_livraison_panier}}</td>
-                        <td>{!! html_entity_decode($item->packages) !!}</td>
-                        <td>{{$item->type_abonnements->intitule}}</td>
-                        <td><a href="javascript:void(0)" class="label label-primary">{{$item->created_at->format('d/m/Y')}}</a></td>
+                        <td>{{$item->numero_commande}}</td>
+                        <td>{{$item->numero_abonnement_valide}}</td>
+                        <td>{{$item->type_resevation}}</td>
+                        <td>{{$item->date_reservation}}</td>
+                        <td>{{$item->ville}}</td>
+                        <td>{{$item->localite}}</td>
+                        <td>{{$item->prix_inferieur}}</td>
+                        <td>{{$item->prix_superieur}}</td>
+                        <td>@if($item->etat_commande == 'yes') Confirmée @else En attente @endif</td>
+                        <td>{{$item->users->name}} {{$item->users->prenom}}</td>
+                        <td>{{$item->created_at->format('d/m/Y')}}</td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-pencil"></i></a>
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit"><i class="fa fa-pencil"></i></button>
+                                <!-- <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#pages_delete"><i class="fa fa-times"></i></button> -->
                             </div>
                         </td>
                     </tr>
+
+                    <div class="modal fade" id="pages_edit" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="form-header text-start mb-0">
+                                        <h4 class="mb-0 text-dark fw-bold">Effectuer la validation de commande</h4>
+                                    </div>
+                                </div>
+                                <form action="{{route('commande_reservation.validation.etat')}}" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Choisir l'option :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="booking-info pay-amount">
+                                                    <select name="etat">
+                                                        <option value="yes">Valider</option>
+                                                        <option value="attente">Mettre en attente</option>
+                                                    </select>
+                                                    <input type="hidden" name="commande_id" value="{{$item->id}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-back">Valider <i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     @endforeach
                 </tbody>
                 <tfoot>
@@ -109,7 +153,7 @@
                                 </div>
                             </div>
                             <div class="btn-group btn-group-sm">
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Edit Selected"><i class="fa fa-pencil"></i></a>
+                                <a href="#pages_edit" class="btn btn-primary" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#pages_edit" title="Edit Selected"><i class="fa fa-pencil"></i></a>
                                 <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Delete Selected"><i class="fa fa-times"></i></a>
                             </div>
                         </td>

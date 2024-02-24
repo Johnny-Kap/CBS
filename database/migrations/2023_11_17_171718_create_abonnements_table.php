@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('abonnements', function (Blueprint $table) {
             $table->id();
             $table->string('intitule');
+            $table->string('code');
             $table->double('montant');
             $table->double('rabais')->nullable();
+            $table->double('nombre_livraison_panier')->nullable();
             $table->text('packages')->nullable();
             $table->foreignId('type_abonnement_id')->constrained();
             $table->timestamps();

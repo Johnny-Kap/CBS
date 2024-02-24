@@ -42,6 +42,15 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label class="col-md-3 control-label" for="example-text-input">Code de l'abonnement</label>
+                        <div class="col-md-9">
+                            <input type="text" id="example-text-input" name="code" class="form-control" required placeholder="Entrer un code de l'abonnement">
+                        </div>
+                        @error('code')
+                        <div class="text-sm text-red-600">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-3 control-label" for="example-text-input">Montant</label>
                         <div class="col-md-9">
                             <input type="number" id="example-text-input" name="montant" class="form-control" required placeholder="Entrer un montant">
@@ -56,6 +65,15 @@
                             <input type="number" id="example-text-input" name="rabais" class="form-control" required placeholder="Entrer un pourcentage de rabais">
                         </div>
                         @error('rabais')
+                        <div class="text-sm text-red-600">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="example-text-input">Nombre de livraison du panier</label>
+                        <div class="col-md-9">
+                            <input type="number" id="example-text-input" name="nombre_livraison_panier" class="form-control" required placeholder="Entrer un nombre de livraison du panier">
+                        </div>
+                        @error('nombre_livraison_panier')
                         <div class="text-sm text-red-600">{{ $message }}</div>
                         @enderror
                     </div>

@@ -7,12 +7,12 @@
     <div class="content-header">
         <div class="header-section">
             <h1>
-                <i class="gi gi-table"></i>Nos abonnements<br><small>Consulter les ici !</small>
+                <i class="gi gi-table"></i>Notre bibliothèque<br><small>Consulter les documents ici !</small>
             </h1>
         </div>
     </div>
     <ul class="breadcrumb breadcrumb-top">
-        <li><a href="{{route('abonnement.ajouter')}}"><b>AJOUTER UN ABONNEMENT</b></a></li>
+        <li><a href="{{route('admin.bibliotheque.ajouter')}}"><b>AJOUTER UN DOCUMENT DANS LA BIBLIOTHEQUE</b></a></li>
     </ul>
     <!-- END Table Styles Header -->
 
@@ -58,27 +58,21 @@
             <table id="general-table" class="table table-striped table-vcenter">
                 <thead>
                     <tr>
-                        <th>Intitule</th>
-                        <th>Code</th>
-                        <th>Montant</th>
-                        <th>Rabais</th>
-                        <th>Nbre de livraison du panier</th>
-                        <th>Packages</th>
-                        <th>Type d'abonnement</th>
+                        <th>Titre</th>
+                        <th>Description</th>
+                        <th>Fichier</th>
+                        <th>Ajouté par</th>
                         <th>Date de création</th>
                         <th style="width: 150px;" class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($abonnements as $item)
+                    @foreach($bibliotheque_show as $item)
                     <tr>
-                        <td>{{$item->intitule}}</td>
-                        <td>{{$item->code}}</td>
-                        <td>{{$item->montant}}</td>
-                        <td>{{$item->rabais}}</td>
-                        <td>{{$item->nombre_livraison_panier}}</td>
-                        <td>{!! html_entity_decode($item->packages) !!}</td>
-                        <td>{{$item->type_abonnements->intitule}}</td>
+                        <td>{{$item->titre}}</td>
+                        <td>{!! html_entity_decode($item->description) !!}</td>
+                        <td>{{$item->pdf}}</td>
+                        <td>{{$item->users->name}}</td>
                         <td><a href="javascript:void(0)" class="label label-primary">{{$item->created_at->format('d/m/Y')}}</a></td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
