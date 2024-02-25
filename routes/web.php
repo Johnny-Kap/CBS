@@ -41,6 +41,7 @@ Route::get('/myprofile', [App\Http\Controllers\HomeController::class, 'myprofile
 Route::get('/myprofile/parametres', [App\Http\Controllers\HomeController::class, 'mes_parametres'])->name('myprofile.modifier')->middleware('auth');
 Route::get('/myprofile/confirmation-paiement', [App\Http\Controllers\CommandeLocationController::class, 'confirmation_paiement'])->name('myprofile.confirmation_paiement')->middleware('auth');
 Route::post('/myprofile/soumission-paiement', [App\Http\Controllers\CommandeLocationController::class, 'soumission_paiement'])->name('soumission_paiement')->middleware('auth');
+Route::post('/myprofile/soumission-paiement/achat_livraison', [App\Http\Controllers\LivraisonPanierController::class, 'soumission_paiement_achat_livraison'])->name('soumission_paiement.achat_livraison')->middleware('auth');
 Route::get('/myprofile/confirmation-abonnement', [App\Http\Controllers\AbonnementController::class, 'confirmation_abonnement'])->name('myprofile.confirmation_abonnement')->middleware('auth');
 Route::post('/myprofile/abonnement/soumission-paiement', [App\Http\Controllers\AbonnementController::class, 'soumission_paiement'])->name('abonnement.soumission_paiement')->middleware('auth');
 Route::get('/myprofile/mes-abonnements', [App\Http\Controllers\SouscrireAbonnementController::class, 'index'])->name('myprofile.abonnements')->middleware('auth');
@@ -73,6 +74,14 @@ Route::get('/commande-maintenance-automobile/successfully-commande-maintenance',
 // Gestion de la gestion bibliothèques
 Route::get('/bibliotheque/entrer-abonnement', [App\Http\Controllers\BibliothequeController::class, 'verifier'])->name('bibliotheque.verifier');
 Route::get('/bibliotheque/acces', [App\Http\Controllers\BibliothequeController::class, 'show'])->name('bibliotheque.show')->middleware('auth');
+
+// Gestion de la livraison / Achat des paniers
+Route::get('/livraison-panier', [App\Http\Controllers\LivraisonPanierController::class, 'index'])->name('livraison.panier');
+Route::get('/livraison-panier/formulaire', [App\Http\Controllers\LivraisonPanierController::class, 'create'])->name('livraison.panier.verify')->middleware('auth');
+Route::post('/livraison-panier/add', [App\Http\Controllers\LivraisonPanierController::class, 'store'])->name('livraison.panier.add')->middleware('auth');
+Route::get('/livraison-panier/successfully-commande/achat_livraison', [App\Http\Controllers\LivraisonPanierController::class, 'success_achat_livraison'])->name('success.achat.livraison.panier');
+Route::get('/livraison-panier/successfully-commande/livraison', [App\Http\Controllers\LivraisonPanierController::class, 'success_livraison'])->name('success.livraison.panier');
+
 
 
 
@@ -144,5 +153,19 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/bibliotheque/ajouter', [App\Http\Controllers\BibliothequeController::class, 'create'])->name('admin.bibliotheque.ajouter');
     Route::post('/admin/bibliotheque/add', [App\Http\Controllers\BibliothequeController::class, 'store'])->name('admin.bibliotheque.add');
     Route::get('admin/bibliotheque/consulter', [App\Http\Controllers\BibliothequeController::class, 'index'])->name('admin.bibliotheque.consulter');
+
+
+    // Gestion de livraison / achat des paniers
+    Route::get('/admin/achat-livraison/attente', [App\Http\Controllers\LivraisonPanierController::class, 'attente_achat_livraison'])->name('achat_livraison.attente');
+    Route::post('/admin/achat-livraison/change/etat', [App\Http\Controllers\LivraisonPanierController::class, 'validation_achat_livraison'])->name('achat_livraison.validation.etat');
+    Route::get('/admin/achat-livraison/commande_validee', [App\Http\Controllers\LivraisonPanierController::class, 'achat_livraison_validee'])->name('achat_livraison.validee');
+    Route::get('/admin/achat-livraison/validation-paiement', [App\Http\Controllers\LivraisonPanierController::class, 'validation_paiement_achat_livraison'])->name('achat_livraison.validation_paiement');
+    Route::post('/admin/achat-livraison/paiement/validee', [App\Http\Controllers\LivraisonPanierController::class, 'paiement_achat_livraison_valide'])->name('achat_livraison.paiement.valide');
+    Route::get('/admin/achat-livraison/commande-confirmees', [App\Http\Controllers\LivraisonPanierController::class, 'achat_livraison_confirmees'])->name('achat_livraison.confirmees');
+
+    Route::get('/admin/livraison/attente', [App\Http\Controllers\LivraisonPanierController::class, 'attente_livraison'])->name('livraison.attente');
+    Route::post('/admin/livraison/change/etat', [App\Http\Controllers\LivraisonPanierController::class, 'validation_livraison'])->name('livraison.validation.etat');
+    Route::get('/admin/livraison/commande_validee', [App\Http\Controllers\LivraisonPanierController::class, 'livraison_validee'])->name('livraison.validee');
+
 
 });

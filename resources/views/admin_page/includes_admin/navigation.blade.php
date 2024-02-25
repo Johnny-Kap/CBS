@@ -294,6 +294,39 @@
                             </ul>
                         </li>
                         <li>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_reservation.attente') || Request::route()->named('commande_reservation.commande_validee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Livraison panier</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#" class="sidebar-nav-submenu"><i class="fa fa-angle-left sidebar-nav-indicator"></i>Achat et livraison</a>
+                                    <ul>
+                                        <li>
+                                            <a href="{{route('achat_livraison.attente')}}">En attente</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('achat_livraison.validee')}}">Validées</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('achat_livraison.validation_paiement')}}">Validation paiement</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('achat_livraison.confirmees')}}">Confirmées</a>
+                                        </li>   
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="sidebar-nav-submenu"><i class="fa fa-angle-left sidebar-nav-indicator"></i>Livraison</a>
+                                    <ul>
+                                        <li>
+                                            <a href="{{route('livraison.attente')}}">En attente</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('livraison.validee')}}">Validées</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#" class="sidebar-nav-menu {{ Request::route()->named('mode_paiement.ajouter') || Request::route()->named('mode_paiement.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Mode de paiement</span></a>
                             <ul>
                                 <li>

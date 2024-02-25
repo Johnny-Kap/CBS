@@ -74,15 +74,15 @@
                             <li><a href="coming-soon.html">Coming Soon</a></li> -->
                         </ul>
                     </li>
-                    <li class="has-submenu">
+                    <li class="has-submenu {{ Request::route()->named('commande.reservation.appart.hotel') || Request::route()->named('livraison.panier') ? 'active' : '' }}">
                         <a href>Autres services <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
                             <!-- <li><a href="about-us.html">About Us</a></li> -->
-                            <li class=" ">
+                            <li class="{{Request::route()->named('commande.reservation.appart.hotel') ? 'active' : ''}}">
                                 <a href="{{route('commande.reservation.appart.hotel')}}">Assistance réservation appartements / hotel</a>
                             </li>
-                            <li class="">
-                                <a href="">Distribution Panier Alimentaire</a>
+                            <li class="{{Request::route()->named('livraison.panier') ? 'active' : ''}}">
+                                <a href="{{route('livraison.panier')}}">Livraison Panier Alimentaire</a>
                             </li>
                             <!-- <li class="has-submenu">
                                 <a href="javascript:void(0);">Booking</a>

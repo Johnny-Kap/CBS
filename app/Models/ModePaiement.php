@@ -12,4 +12,8 @@ class ModePaiement extends Model
     public function commande_locations(){
         return $this->hasMany(CommandeLocation::class);
     }
+
+    public function livraison_paniers(){
+        return $this->hasMany(LivraisonPanier::class);
+    }
 }

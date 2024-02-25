@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CommandeLocation;
 use App\Models\Compte;
+use App\Models\LivraisonPanier;
 use App\Models\LocationVehicule;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -38,7 +39,13 @@ class CommandeLocationController extends Controller
             ->where('etat_commande', 'yes')
             ->where('photo', null)->simplePaginate(15);
 
-        return view('profile.confirmation_paiement', compact('commande'));
+
+        $achat_livraison = LivraisonPanier::where('user_id', Auth::user()->id)
+            ->where('type_prestation', 'achat')
+            ->where('etat_commande', 'yes')
+            ->where('image', null)->simplePaginate(15);
+
+        return view('profile.confirmation_paiement', compact('commande', 'achat_livraison'));
     }
 
     public function success()
@@ -99,6 +106,10 @@ class CommandeLocationController extends Controller
     {
 
         if ($request->has('file')) {
+
+            $request->validate([
+                'file' => 'required|mimes:jpeg,png,jpg',
+            ]);
 
             $filename = time() . '.' . $request->file->extension();
 

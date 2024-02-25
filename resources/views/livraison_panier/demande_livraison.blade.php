@@ -8,10 +8,10 @@
         <div class="loginbox">
             <div class="login-auth">
                 <div class="login-auth-wrap">
-                    <h1 class="text-center">Vérifier l'éligibilité pour une demande de réservation d'un appartement / hotel</h1>
-                    <p class="account-subtitle">Entrer votre numéro d'abonnement pour passer une commande de maintenance automobile.
+                    <h1 class="text-center">Vérifier votre éligibilité pour une demande de distribution de panier</h1>
+                    <p class="account-subtitle">Entrer votre numéro d'abonnement pour passer une commande de distribution de panier.
                     </p>
-                    <form method="get" action="{{route('commande.reservation.appart.hotel.verify')}}">
+                    <form method="get" action="{{route('livraison.panier.verify')}}">
                         <div class="form-group">
                             <label class="form-label">N° abonnement <span class="text-danger">*</span></label>
                             <div class="pass-group">
