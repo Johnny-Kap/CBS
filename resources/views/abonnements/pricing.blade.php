@@ -15,8 +15,8 @@
 <section class="section pricing-section pricing-page">
     <div class="container">
         <div class="row">
+            @foreach($abonnements as $item)
             <div class="col-lg-4 col-md-4 col-12">
-                @foreach($abonnements as $item)
                 <div class="price-card">
                     <div class="price-head">
                         <div class="price-level">
@@ -65,8 +65,8 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
             </div>
+            @endforeach
         </div>
     </div>
 </section>
