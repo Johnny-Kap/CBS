@@ -32,12 +32,12 @@
                             </li>
                         </ul>
                         <div>
-                            <a href="#pages_edit" class="btn viewdetails-btn" data-bs-toggle="modal">S'inscrire</a>
+                            <a href="#pages_edit_{{$item->id}}" class="btn viewdetails-btn" data-bs-toggle="modal">S'inscrire</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="modal fade" id="pages_edit">
+                <div class="modal fade" id="pages_edit_{{$item->id}}">
                     <div class="modal-dialog modal-dialog-centered modal-md">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -52,6 +52,7 @@
                                         <div class="col-md-12">
                                             <div class="booking-info pay-amount">
                                                 <h5>Voulez-vous vraiment souscrire à cet abonnement ?</h5>
+                                                <H6>Titre : {{$item->intitule}}</H6>
                                                 <h6>NB : En validant votre inscription, vous acceptez nos <a href="{{route('term_condition')}}">termes et conditions</a></h6>
                                                 <input type="hidden" name="abonnement_id" value="{{$item->id}}" />
                                             </div>
