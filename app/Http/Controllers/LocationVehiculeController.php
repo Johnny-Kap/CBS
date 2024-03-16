@@ -86,10 +86,10 @@ class LocationVehiculeController extends Controller
         $location = LocationVehicule::find($request->location_id);
 
         //Formatage de la date et heure de depart
-        $date_heure_depart = date('Y-m-d H:i', strtotime("$request->date_depart $request->heure_depart"));
+        $date_heure_depart = date('Y-m-d', strtotime("$request->date_depart"));
 
         //Formatage de la date et heure d'arrivée
-        $date_heure_arrivee = date('Y-m-d H:i', strtotime("$request->date_arrivee $request->heure_arrivee"));
+        $date_heure_arrivee = date('Y-m-d', strtotime("$request->date_arrivee"));
 
         $date = Carbon::parse($date_heure_depart);
 
@@ -97,8 +97,8 @@ class LocationVehiculeController extends Controller
 
         $commandeDispo = CommandeLocation::where('date_debut', '<=', $date_heure_depart)
             ->where('date_fin', '>=', $date_heure_arrivee)
+            ->orWhere('date_debut', '>=', $date_heure_depart)->where('date_fin', '<=', $date_heure_arrivee)
             ->where('location_vehicule_id', $request->location_id)
-            ->where('etat_commande', 'yes')
             ->count();
 
         $abonnementDispo = SouscrireAbonnement::where('numero_abonnement', $request->abonnement)
@@ -113,6 +113,7 @@ class LocationVehiculeController extends Controller
             ->where('etat', 'confirmee')
             ->first();
 
+        
         // Recuperation des infos du compte de l'utilisateur
         // $compte = Compte::where('user_id', Auth::user()->id)->first();
 
@@ -121,10 +122,10 @@ class LocationVehiculeController extends Controller
 
         if ($request->filled('abonnement') == true) {
 
-            if ($commandeDispo == 0 && $abonnementDispo == 0) {
+            if ($commandeDispo == 0 && $abonnementDispo != 1) {
 
                 return back()->with('error', 'Numéro abonnement non valable! Essayez un autre.');
-            } elseif ($commandeDispo == 1 && $abonnementDispo == 0) {
+            } elseif ($commandeDispo != 0 && $abonnementDispo != 1) {
 
                 return back()->with('error', 'Numéro abonnement non valable et Location non disponible. Réessayez.');
             } elseif ($commandeDispo == 0 && $abonnementDispo == 1) {
@@ -143,7 +144,7 @@ class LocationVehiculeController extends Controller
             }
         } else {
 
-            if ($commandeDispo == 1) {
+            if ($commandeDispo != 0) {
 
                 return back()->with('error', 'Location non disponible. Réessayez une autre date.');
             } elseif ($commandeDispo == 0) {

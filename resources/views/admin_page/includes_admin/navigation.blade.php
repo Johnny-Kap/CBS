@@ -237,6 +237,20 @@
                             </ul>
                         </li>
                         <li>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('mode_paiement.ajouter') || Request::route()->named('mode_paiement.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Mode de paiement</span></a>
+                            <ul>
+                                <li>
+                                    <a class="{{ Request::route()->named('mode_paiement.ajouter') ? 'active' : '' }}" href="{{route('mode_paiement.ajouter')}}">Ajouter mode de paiement</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('mode_paiement.consulter') ? 'active' : '' }}" href="{{route('mode_paiement.consulter')}}">Consulter mode de paiement</a>
+                                </li>
+                                <!-- <li>
+                                    <a href="page_icons_glyphicons_pro.html">Glyphicons Pro</a>
+                                </li> -->
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#" class="sidebar-nav-menu {{ Request::route()->named('location.ajouter') || Request::route()->named('location.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Location</span></a>
                             <ul>
                                 <li>
@@ -252,13 +266,13 @@
                         </li>
 
                         <li>
-                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_location.attente') || Request::route()->named('commande_location.commande_validee') || Request::route()->named('commande_location.validation_paiement') || Request::route()->named('commande_location.commande_confirmees') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Commande location</span></a>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_location.attente') || Request::route()->named('commande_location.commande_paiement_non_soumis') || Request::route()->named('commande_location.validation_paiement') || Request::route()->named('commande_location.commande_confirmees') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Commande location</span></a>
                             <ul>
                                 <li>
                                     <a class="{{ Request::route()->named('commande_location.attente') ? 'active' : '' }}" href="{{route('commande_location.attente')}}">En attente</a>
                                 </li>
                                 <li>
-                                    <a class="{{ Request::route()->named('commande_location.commande_validee') ? 'active' : '' }}" href="{{route('commande_location.commande_validee')}}">Commandes validées</a>
+                                    <a class="{{ Request::route()->named('commande_location.commande_paiement_non_soumis') ? 'active' : '' }}" href="{{route('commande_location.commande_paiement_non_soumis')}}">Paiement non soumis</a>
                                 </li>
                                 <li>
                                     <a class="{{ Request::route()->named('commande_location.validation_paiement') ? 'active' : '' }}" href="{{route('commande_location.validation_paiement')}}">Validation paiement</a>
@@ -269,16 +283,19 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_maintenance.attente') || Request::route()->named('commande_maintenance.commande_validee') || Request::route()->named('commande_maintenance.commande_confirmees') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Comm. maintenance</span></a>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_maintenance.attente') || Request::route()->named('commande_maintenance.paiement_non_soumis') || Request::route()->named('commande_maintenance.validation_paiement') || Request::route()->named('commande_maintenance.commande_confirmees') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Comm. maintenance</span></a>
                             <ul>
                                 <li>
                                     <a class="{{ Request::route()->named('commande_maintenance.attente') ? 'active' : '' }}" href="{{route('commande_maintenance.attente')}}">En attente</a>
                                 </li>
                                 <li>
-                                    <a class="{{ Request::route()->named('commande_maintenance.commande_validee') ? 'active' : '' }}" href="{{route('commande_maintenance.commande_validee')}}">Commandes validées</a>
+                                    <a class="{{ Request::route()->named('commande_maintenance.paiement_non_soumis') ? 'active' : '' }}" href="{{route('commande_maintenance.paiement_non_soumis')}}">Paiement non soumis</a>
                                 </li>
                                 <li>
-                                    <a class="{{ Request::route()->named('commande_maintenance.commande_confirmees') ? 'active' : '' }}" href="{{route('commande_maintenance.commande_confirmees')}}">Commandes confirmées</a>
+                                    <a class="{{ Request::route()->named('commande_maintenance.validation_paiement') ? 'active' : '' }}" href="{{route('commande_maintenance.validation_paiement')}}">Validation paiement</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('commande_maintenance.commande_confirmees') ? 'active' : '' }}" href="{{route('commande_maintenance.commande_confirmees')}}">Confirmées</a>
                                 </li>
                             </ul>
                         </li>
@@ -294,27 +311,27 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_reservation.attente') || Request::route()->named('commande_reservation.commande_validee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Livraison panier</span></a>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('achat_livraison.attente') || Request::route()->named('achat_livraison.paiement_non_soumis') || Request::route()->named('achat_livraison.validation_paiement') || Request::route()->named('achat_livraison.confirmees') || Request::route()->named('livraison.attente') || Request::route()->named('livraison.validee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Livraison panier</span></a>
                             <ul>
                                 <li>
-                                    <a href="#" class="sidebar-nav-submenu"><i class="fa fa-angle-left sidebar-nav-indicator"></i>Achat et livraison</a>
+                                    <a href="#" class="sidebar-nav-submenu {{ Request::route()->named('achat_livraison.attente') || Request::route()->named('achat_livraison.paiement_non_soumis') || Request::route()->named('achat_livraison.validation_paiement') || Request::route()->named('achat_livraison.confirmees') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator"></i>Achat et livraison</a>
                                     <ul>
                                         <li>
                                             <a href="{{route('achat_livraison.attente')}}">En attente</a>
                                         </li>
                                         <li>
-                                            <a href="{{route('achat_livraison.validee')}}">Validées</a>
+                                            <a href="{{route('achat_livraison.paiement_non_soumis')}}">Paiement non soumis</a>
                                         </li>
                                         <li>
                                             <a href="{{route('achat_livraison.validation_paiement')}}">Validation paiement</a>
                                         </li>
                                         <li>
                                             <a href="{{route('achat_livraison.confirmees')}}">Confirmées</a>
-                                        </li>   
+                                        </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#" class="sidebar-nav-submenu"><i class="fa fa-angle-left sidebar-nav-indicator"></i>Livraison</a>
+                                    <a href="#" class="sidebar-nav-submenu {{ Request::route()->named('livraison.attente') || Request::route()->named('livraison.validee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator"></i>Livraison</a>
                                     <ul>
                                         <li>
                                             <a href="{{route('livraison.attente')}}">En attente</a>
@@ -324,20 +341,6 @@
                                         </li>
                                     </ul>
                                 </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('mode_paiement.ajouter') || Request::route()->named('mode_paiement.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Mode de paiement</span></a>
-                            <ul>
-                                <li>
-                                    <a class="{{ Request::route()->named('mode_paiement.ajouter') ? 'active' : '' }}" href="{{route('mode_paiement.ajouter')}}">Ajouter mode de paiemnt</a>
-                                </li>
-                                <li>
-                                    <a class="{{ Request::route()->named('mode_paiement.consulter') ? 'active' : '' }}" href="{{route('mode_paiement.consulter')}}">Consulter mode de paiemnt</a>
-                                </li>
-                                <!-- <li>
-                                    <a href="page_icons_glyphicons_pro.html">Glyphicons Pro</a>
-                                </li> -->
                             </ul>
                         </li>
                         <li>

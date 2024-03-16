@@ -24,6 +24,7 @@ return new class extends Migration
             $table->double('montant')->nullable();
             $table->string('etat_commande');
             $table->string('etat_paiement');
+            $table->string('image')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('mode_paiement_id')->nullable();
             $table->timestamps();

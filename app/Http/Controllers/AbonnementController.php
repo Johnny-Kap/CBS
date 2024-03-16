@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SuccessSouscriptionAbonnement;
 use App\Models\Abonnement;
 use App\Models\SouscrireAbonnement;
 use App\Models\TypeAbonnement;
@@ -9,6 +10,7 @@ use Carbon\Carbon;
 use Hamcrest\Core\IsNot;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class AbonnementController extends Controller
@@ -58,6 +60,10 @@ class AbonnementController extends Controller
             $add->user_id = Auth::user()->id;
 
             $add->save();
+
+            $souscription_abonnement = SouscrireAbonnement::where('numero_abonnement', $numero_abonnement)->first();
+
+            Mail::to(Auth::user()->email)->send(new SuccessSouscriptionAbonnement($souscription_abonnement));
 
             return redirect()->route('success.abonnement');
         } else {

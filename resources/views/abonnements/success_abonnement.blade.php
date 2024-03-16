@@ -36,7 +36,7 @@
                             d'aide, veuillez nous contacter via : hello@cbs-cameroun.com</h6>
                     </div>
                     <div class="col-12 text-center mt-4 mt-sm-5">
-                        <a class="btn btn-outline-primary mb-3 mb-sm-0" href="{{url('/')}}">Proceder au paiement</a>
+                        <a class="btn btn-outline-primary mb-3 mb-sm-0" href="{{route('myprofile.confirmation_abonnement')}}">Proceder au paiement</a>
                         <a class="btn btn-outline-primary mb-3 mb-sm-0" href="{{url('/')}}">Retour à l'accueil</a>
                         <!-- <a class="btn btn-outline-primary mb-3 mb-sm-0" href="#">View Job</a> -->
                     </div>

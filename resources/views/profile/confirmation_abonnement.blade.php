@@ -45,12 +45,12 @@
                                                 <td>@if($item->is_buy == 'no') Non payé @else / @endif</td>
                                                 <td>{{$item->montant}}</td>
                                                 <td>OM/MOMO</td>
-                                                <td><button class="btn btn-primary check-available w-100" type="button" data-bs-toggle="modal" data-bs-target="#pages_edit">
+                                                <td><button class="btn btn-primary check-available w-100" type="button" data-bs-toggle="modal" data-bs-target="#pages_edit_{{$item->id}}">
                                                         Télécharger image ici <i class="fa fa-upload"></i>
                                                     </button>
                                                 </td>
                                             </tr>
-                                            <div class="modal custom-modal fade check-availability-modal" id="pages_edit" role="dialog">
+                                            <div class="modal custom-modal fade check-availability-modal" id="pages_edit_{{$item->id}}" role="dialog">
                                                 <div class="modal-dialog modal-dialog-centered modal-md">
                                                     <div class="modal-content">
                                                         <form action="{{route('abonnement.soumission_paiement')}}" enctype="multipart/form-data" method="post">

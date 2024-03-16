@@ -161,14 +161,15 @@ class LivraisonPanierController extends Controller
         return back()->with('success', 'Validé avec succès');
     }
 
-    public function achat_livraison_validee()
+    public function achat_livraison_paiement_non_soumis()
     {
 
-        $achat_livraison_validee = LivraisonPanier::where('etat_commande', 'yes')
+        $achat_livraison_paiement_non_soumis = LivraisonPanier::where('etat_commande', 'yes')
             ->where('type_prestation', 'achat')
+            ->where('image', null)
             ->simplePaginate(15);
 
-        return view('admin_page.gestion_livraison_panier.achat_livraison_validee', compact('achat_livraison_validee'));
+        return view('admin_page.gestion_livraison_panier.achat_livraison_paiement_non_soumis', compact('achat_livraison_paiement_non_soumis'));
     }
 
     public function soumission_paiement_achat_livraison(Request $request)
@@ -262,9 +263,17 @@ class LivraisonPanierController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(LivraisonPanier $livraisonPanier)
+    public function show()
     {
-        //
+
+        $achat_livraison = LivraisonPanier::where('etat_commande', 'yes')
+            ->where('type_prestation', 'achat')
+            ->where('etat_paiement', 'no')
+            ->where('user_id', Auth::user()->id)
+            ->whereNotNull('image')->simplePaginate(15);
+
+
+        return view('profile.confirmation_paiement', compact('achat_livraison'));
     }
 
     /**

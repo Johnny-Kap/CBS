@@ -84,13 +84,13 @@
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil"></i></button>
                                 <!-- <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#pages_delete"><i class="fa fa-times"></i></button> -->
                             </div>
                         </td>
                     </tr>
 
-                    <div class="modal fade" id="pages_edit" role="dialog">
+                    <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
                         <div class="modal-dialog modal-dialog-centered modal-md">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -102,7 +102,7 @@
                                     @csrf
                                     <div class="modal-body">
                                         <div class="row">
-                                            <div class="col-lg-12 col-md-12">
+                                            <div class="col-lg-12 col-md-12 w-auto">
                                                 <div class="available-for-ride">
                                                     <p>
                                                         <i class="fa-regular fa-circle-check"></i>Choisir l'option :
@@ -111,11 +111,25 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="booking-info pay-amount">
-                                                    <select name="etat">
+                                                    <select class="form-control" name="etat">
                                                         <option value="yes">Valider</option>
                                                         <option value="attente">Mettre en attente</option>
                                                     </select>
                                                     <input type="hidden" name="commande_id" value="{{$item->id}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Entrer le montant :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="number" name="montant">
                                                 </div>
                                             </div>
                                         </div>

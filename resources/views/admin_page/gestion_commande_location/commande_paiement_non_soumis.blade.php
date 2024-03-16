@@ -7,7 +7,7 @@
     <div class="content-header">
         <div class="header-section">
             <h1>
-                <i class="gi gi-table"></i>Gestion des commandes de maintenance validées<br><small>Consulter les ici !</small>
+                <i class="gi gi-table"></i>Gestion des locations n'ayant pas recu de paiement<br><small>Consulter les ici !</small>
             </h1>
         </div>
     </div>
@@ -58,96 +58,64 @@
             <table id="general-table" class="table table-striped table-vcenter">
                 <thead>
                     <tr>
-                        <th>N° Commande main.</th>
-                        <th>Intitulé de la panne</th>
-                        <th>Description de la panne</th>
-                        <th>Date de main. souhaitée</th>
-                        <th>Situation du véhicule</th>
-                        <th>Marque du véhicule</th>
+                        <th>N° Commande</th>
+                        <th>Date de départ</th>
+                        <th>Date d'arrivée</th>
+                        <th>Tarif total</th>
+                        <th>Nombe de jours</th>
                         <th>Etat de la commande</th>
                         <th>Commandé par</th>
+                        <th>Intitule de la location</th>
                         <th>Commandé le</th>
                         <th style="width: 150px;" class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($commande_validee as $item)
+                    @foreach($paiement_non_soumis as $item)
                     <tr>
                         <td>{{$item->numero_commande}}</td>
-                        <td>{{$item->intitule}}</td>
-                        <td>{{$item->debrief}}</td>
-                        <td>{{$item->date_maintenance}}</td>
-                        <td>{{$item->situation_vehicule}}</td>
-                        <td>{{$item->marque_vehicule}}</td>
-                        <td>@if($item->etat_commande == 'yes') Confirmée @else En attente @endif</td>
+                        <td>{{$item->date_debut}}</td>
+                        <td>{{$item->date_fin}}</td>
+                        <td>{{$item->tarif}}</td>
+                        <td>{{$item->nombre_jours}}</td>
+                        <td>@if($item->etat_commande == 'yes') Validée @else En attente @endif</td>
                         <td>{{$item->users->name}}</td>
+                        <td>{{$item->locations->intitule}}</td>
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil"></i></button>
                                 <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#pages_delete"><i class="fa fa-times"></i></button>
                             </div>
                         </td>
                     </tr>
 
-                    <div class="modal fade" id="pages_edit" role="dialog">
+                    <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
                         <div class="modal-dialog modal-dialog-centered modal-md">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <div class="form-header text-start mb-0">
-                                        <h4 class="mb-0 text-dark fw-bold">Effectuer le paiement de la commande</h4>
+                                        <h4 class="mb-0 text-dark fw-bold">Effectuer la validation de commande</h4>
                                     </div>
                                 </div>
-                                <form action="{{route('commande_maintenance.paiement.valide')}}" method="post">
+                                <form action="{{route('commande_location.validation.etat')}}" method="post">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="row">
-                                            <div class="col-lg-6 col-md-6">
+                                            <div class="col-lg-12 col-md-12">
                                                 <div class="available-for-ride">
                                                     <p>
                                                         <i class="fa-regular fa-circle-check"></i>Choisir l'option :
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="booking-info pay-amount">
-                                                    <select name="etat_paiement">
-                                                        <option value="yes">Payé</option>
-                                                        <option value="no">Non payé</option>
+                                                    <select name="etat">
+                                                        <option value="yes">Valider</option>
+                                                        <option value="attente">Mettre en attente</option>
                                                     </select>
                                                     <input type="hidden" name="commande_id" value="{{$item->id}}" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6">
-                                                <div class="available-for-ride">
-                                                    <p>
-                                                        <i class="fa-regular fa-circle-check"></i>Entrer le montant :
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="booking-info pay-amount">
-                                                    <input type="number" name="montant">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6">
-                                                <div class="available-for-ride">
-                                                    <p>
-                                                        <i class="fa-regular fa-circle-check"></i>Choisir le mode de paiement :
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="booking-info pay-amount">
-                                                    <select name="mode_paiement">
-                                                        @foreach($mode_paiement as $item)
-                                                        <option value="{{$item->id}}">{{$item->intitule}}</option>
-                                                        @endforeach
-                                                    </select>
                                                 </div>
                                             </div>
                                         </div>

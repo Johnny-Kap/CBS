@@ -79,7 +79,7 @@
                         <td>{{$item->date_fin}}</td>
                         <td><b>{{$item->tarif}} FCFA</b></td>
                         <td>{{$item->nombre_jours}}</td>
-                        <td>@if($item->etat_commande == 'yes') Confirmée @else En attente @endif</td>
+                        <td>@if($item->etat_commande == 'yes') Validée @else En attente @endif</td>
                         <td>@if($item->etat_paiement == 'yes') Payée @else Non payée @endif</td>
                         <td>{{$item->users->name}}</td>
                         <td>{{$item->locations->intitule}}</td>

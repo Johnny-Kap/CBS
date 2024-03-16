@@ -86,13 +86,13 @@
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil"></i></button>
                                 <!-- <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#pages_delete"><i class="fa fa-times"></i></button> -->
                             </div>
                         </td>
                     </tr>
 
-                    <div class="modal fade" id="pages_edit" role="dialog">
+                    <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
                         <div class="modal-dialog modal-dialog-centered modal-md">
                             <div class="modal-content">
                                 <div class="modal-header">

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SuccessCommandeMaintenance;
+use App\Mail\ValidationCommandeMaintenance;
+use App\Mail\ValidationPaiementCommandeMaintenance;
 use App\Models\CommandeMaintenanceAutomobile;
 use App\Models\ModePaiement;
 use App\Models\SouscrireAbonnement;
@@ -9,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class CommandeMaintenanceAutomobileController extends Controller
@@ -26,19 +30,19 @@ class CommandeMaintenanceAutomobileController extends Controller
      */
     public function create(Request $request)
     {
-        
+
         $abonnementDispo = SouscrireAbonnement::where('numero_abonnement', $request->abonnement)
             ->where('user_id', Auth::user()->id)
             ->where('is_expired', 'no')
             ->where('etat', 'confirmee')
             ->count();
 
-            if ($abonnementDispo == 1) {
+        if ($abonnementDispo == 1) {
 
-                return view('maintenance_automobile.formulaire_maintenance');
-            }else{
-                return back()->with('error', 'N° abonnement invalide ou non valable.');
-            }
+            return view('maintenance_automobile.formulaire_maintenance');
+        } else {
+            return back()->with('error', 'N° abonnement invalide ou non valable.');
+        }
     }
 
     /**
@@ -48,10 +52,10 @@ class CommandeMaintenanceAutomobileController extends Controller
     {
 
         $numero_commande = 'CM' . Carbon::now()->format('YmdHms') . Str::padLeft(Auth::user()->id, 3, 0);
-        
+
         $commande = new CommandeMaintenanceAutomobile();
 
-        $commande->numero_commande = $numero_commande; 
+        $commande->numero_commande = $numero_commande;
 
         $commande->intitule = $request->intitule;
 
@@ -79,15 +83,21 @@ class CommandeMaintenanceAutomobileController extends Controller
 
         $commande->save();
 
+        $commande_maintenance = CommandeMaintenanceAutomobile::where('numero_commande', $numero_commande)->first();
+
+        Mail::to(Auth::user()->email)->send(new SuccessCommandeMaintenance($commande_maintenance));
+
         return redirect()->route('success.commande.maintenance');
     }
 
-    public function success(){
+    public function success()
+    {
 
         return view('maintenance_automobile.success_commande_maintenance');
     }
 
-    public function attente(){
+    public function attente()
+    {
 
         $commade_attente = CommandeMaintenanceAutomobile::where('etat_commande', 'attente')->simplePaginate(15);
 
@@ -97,37 +107,97 @@ class CommandeMaintenanceAutomobileController extends Controller
     public function validation_commande(Request $request)
     {
 
-        $affected = CommandeMaintenanceAutomobile::where('id', $request->commande_id)
-            ->update([
-                'etat_commande' => $request->etat,
-            ]);
+        if ($request->etat == 'yes') {
+            $affected = CommandeMaintenanceAutomobile::where('id', $request->commande_id)
+                ->update([
+                    'etat_commande' => $request->etat,
+                    'montant' => $request->montant,
+                ]);
 
-        return back()->with('success', 'Validé avec succès');
+            $commande_validation_maintenance = CommandeMaintenanceAutomobile::find($request->command_id);
+
+            Mail::to($commande_validation_maintenance->users->email)->send(new ValidationCommandeMaintenance($commande_validation_maintenance));
+
+            return back()->with('success', 'Validé avec succès. Email de notification envoyé au client.');
+        } else {
+
+            $affected = CommandeMaintenanceAutomobile::where('id', $request->commande_id)
+                ->update([
+                    'etat_commande' => $request->etat,
+                ]);
+
+            return back()->with('success', 'Mise en attente avec succès.');
+        }
     }
 
-    public function commande_validee()
+    public function paiement_non_soumis()
     {
 
-        $mode_paiement = ModePaiement::all();
+        $commande_paiement_non_soumis = CommandeMaintenanceAutomobile::where('etat_commande', 'yes')
+            ->where('etat_commande', 'yes')
+            ->where('image', null)
+            ->simplePaginate(15);
 
-        $commande_validee = CommandeMaintenanceAutomobile::where('etat_commande', 'yes')
-        ->where('etat_paiement', 'no')
-        ->simplePaginate(15);
+        return view('admin_page.gestion_commande_maintenance.commande_paiement_non_soumis', compact('commande_paiement_non_soumis'));
+    }
 
-        return view('admin_page.gestion_commande_maintenance.commande_validee', compact('commande_validee', 'mode_paiement'));
+    public function validation_paiement(Request $request)
+    {
+
+        $commande_validation_paiement = CommandeMaintenanceAutomobile::where('etat_commande', 'yes')
+            ->where('etat_paiement', 'no')
+            ->whereNotNull('image')->simplePaginate(15);
+
+        return view('admin_page.gestion_commande_maintenance.validation_paiement', compact('commande_validation_paiement'));
+    }
+
+    public function soumission_paiement_commande_maintenance(Request $request)
+    {
+
+        if ($request->has('file')) {
+
+            $request->validate([
+                'file' => 'required|mimes:jpeg,png,jpg',
+            ]);
+
+            $filename = time() . '.' . $request->file->extension();
+
+            $path = $request->file('file')->storeAs('images', $filename, 'public');
+
+            $affected = CommandeMaintenanceAutomobile::where('id', $request->commande_id)
+                ->update([
+                    'image' => $path,
+                    'mode_paiement_id' => $request->mode_paiement
+                ]);
+
+            return back()->with('success', 'Preuve de paiement soumis avec succès! Vous serez contacté après validation du paiement.');
+        } else {
+            return back()->with('error', 'Veuillez ajouté votre capture d\'écran.');
+        }
     }
 
     public function paiement_valide(Request $request)
     {
 
-        $affected = CommandeMaintenanceAutomobile::where('id', $request->commande_id)
-            ->update([
-                'etat_paiement' => $request->etat_paiement,
-                'montant' => $request->montant,
-                'mode_paiement_id' => $request->mode_paiement,
-            ]);
+        if ($request->etat_paiement == 'yes') {
+            $affected = CommandeMaintenanceAutomobile::where('id', $request->commande_id)
+                ->update([
+                    'etat_paiement' => $request->etat_paiement,
+                ]);
 
-        return back()->with('success', 'Paiement validé avec succès');
+            $commande_validation_paiement_main = CommandeMaintenanceAutomobile::find($request->command_id);
+
+            Mail::to($commande_validation_paiement_main->users->email)->send(new ValidationPaiementCommandeMaintenance($commande_validation_paiement_main));
+
+            return back()->with('success', 'Paiement validé avec succès. Email de notification envoyé au client.');
+        } else {
+            $affected = CommandeMaintenanceAutomobile::where('id', $request->commande_id)
+                ->update([
+                    'etat_paiement' => $request->etat_paiement,
+                ]);
+
+            return back()->with('success', 'Paiement non validé avec succès');
+        }
     }
 
     public function commande_confirmees()

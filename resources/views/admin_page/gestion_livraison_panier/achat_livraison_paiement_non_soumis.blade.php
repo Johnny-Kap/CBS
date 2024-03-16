@@ -2,12 +2,17 @@
 
 @section('content')
 
+<style>
+    th{
+        font-size: 15px !important;
+    }
+</style>
 <div id="page-content">
     <!-- Table Styles Header -->
     <div class="content-header">
         <div class="header-section">
             <h1>
-                <i class="gi gi-table"></i>Gestion des achats et livraison des paniers validées<br><small>Consulter les ici !</small>
+                <i class="gi gi-table"></i>Gestion des achats et livraison des paniers n'ayant pas recu de paiement<br><small>Consulter les ici !</small>
             </h1>
         </div>
     </div>
@@ -72,7 +77,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($achat_livraison_validee as $item)
+                    @foreach($achat_livraison_paiement_non_soumis as $item)
                     <tr>
                         <td>{{$item->numero_commande}}</td>
                         <td>{{$item->type_prestation}}</td>
@@ -81,18 +86,18 @@
                         <td>{{$item->adresse_recuperation}}</td>
                         <td>{{$item->adresse_livraison}}</td>
                         <td>{{$item->montant}}</td>
-                        <td>@if($item->etat_commande == 'yes') Confirmée @else En attente @endif</td>
+                        <td>@if($item->etat_commande == 'yes') Validée @else En attente @endif</td>
                         <td>{{$item->users->name}}</td>
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil"></i></button>
                                 <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#pages_delete"><i class="fa fa-times"></i></button>
                             </div>
                         </td>
                     </tr>
 
-                    <div class="modal fade" id="pages_edit" role="dialog">
+                    <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
                         <div class="modal-dialog modal-dialog-centered modal-md">
                             <div class="modal-content">
                                 <div class="modal-header">

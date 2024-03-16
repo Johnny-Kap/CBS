@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SuccessCommandeLocation;
+use App\Mail\ValidationCommandeLocation;
+use App\Mail\ValidationPaiementCommandeLocation;
 use App\Models\CommandeLocation;
+use App\Models\CommandeMaintenanceAutomobile;
 use App\Models\Compte;
 use App\Models\LivraisonPanier;
 use App\Models\LocationVehicule;
+use App\Models\ModePaiement;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class CommandeLocationController extends Controller
@@ -24,16 +30,20 @@ class CommandeLocationController extends Controller
         return view('admin_page.gestion_commande_location.attente_validation', compact('commade_attente'));
     }
 
-    public function commande_validee()
+    public function paiement_non_soumis()
     {
 
-        $commande_validee = CommandeLocation::where('etat_commande', 'yes')->simplePaginate(15);
+        $paiement_non_soumis = CommandeLocation::where('etat_commande', 'yes')
+            ->where('photo', null)
+            ->simplePaginate(15);
 
-        return view('admin_page.gestion_commande_location.commande_validee', compact('commande_validee'));
+        return view('admin_page.gestion_commande_location.commande_paiement_non_soumis', compact('paiement_non_soumis'));
     }
 
     public function confirmation_paiement()
     {
+
+        $mode_paiement = ModePaiement::all();
 
         $commande = CommandeLocation::where('user_id', Auth::user()->id)
             ->where('etat_commande', 'yes')
@@ -45,7 +55,11 @@ class CommandeLocationController extends Controller
             ->where('etat_commande', 'yes')
             ->where('image', null)->simplePaginate(15);
 
-        return view('profile.confirmation_paiement', compact('commande', 'achat_livraison'));
+        $commande_maintenance = CommandeMaintenanceAutomobile::where('user_id', Auth::user()->id)
+            ->where('etat_commande', 'yes')
+            ->where('image', null)->simplePaginate(15);
+
+        return view('profile.confirmation_paiement', compact('commande', 'achat_livraison', 'commande_maintenance', 'mode_paiement'));
     }
 
     public function success()
@@ -88,18 +102,35 @@ class CommandeLocationController extends Controller
 
         $commande->save();
 
+        $commande_location = CommandeLocation::where('numero_commande', $numero_commande)->first();
+
+        Mail::to(Auth::user()->email)->send(new SuccessCommandeLocation($commande_location));
+
         return redirect()->route('success');
     }
 
     public function validation_commande(Request $request)
     {
 
-        $affected = CommandeLocation::where('id', $request->commande_id)
-            ->update([
-                'etat_commande' => $request->etat,
-            ]);
+        if ($request->etat == 'yes') {
+            $affected = CommandeLocation::where('id', $request->commande_id)
+                ->update([
+                    'etat_commande' => $request->etat,
+                ]);
 
-        return back()->with('success', 'Validé avec succès');
+            $commande_validation = CommandeLocation::find($request->commande_id);
+
+            Mail::to($commande_validation->users->email)->send(new ValidationCommandeLocation($commande_validation));
+
+            return back()->with('success', 'Validé avec succès. Email de notification envoyé au client.');
+        } else {
+            $affected = CommandeLocation::where('id', $request->commande_id)
+                ->update([
+                    'etat_commande' => $request->etat,
+                ]);
+
+            return back()->with('success', 'Mise en attente avec succès.');
+        }
     }
 
     public function soumission_paiement(Request $request)
@@ -139,12 +170,25 @@ class CommandeLocationController extends Controller
     public function paiement_valide(Request $request)
     {
 
-        $affected = CommandeLocation::where('id', $request->commande_id)
-            ->update([
-                'etat_paiement' => $request->etat,
-            ]);
+        if ($request->etat == 'yes') {
+            $affected = CommandeLocation::where('id', $request->commande_id)
+                ->update([
+                    'etat_paiement' => $request->etat,
+                ]);
 
-        return back()->with('success', 'Paiement validé avec succès');
+            $commande_validation_paiement = CommandeLocation::find($request->commande_id);
+
+            Mail::to($commande_validation_paiement->users->email)->send(new ValidationPaiementCommandeLocation($commande_validation_paiement));
+
+            return back()->with('success', 'Paiement validé avec succès. Email de notification envoyé au client. ');
+        } else {
+            $affected = CommandeLocation::where('id', $request->commande_id)
+                ->update([
+                    'etat_paiement' => $request->etat,
+                ]);
+
+            return back()->with('success', 'Commande non payée.');
+        }
     }
 
     public function commande_confirmees(Request $request)
