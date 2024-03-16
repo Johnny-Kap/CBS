@@ -53,9 +53,16 @@ class TypeVehiculeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(TypeVehicule $typeVehicule)
+    public function edit(Request $request)
     {
-        //
+
+        $affected = TypeVehicule::where('id', $request->type_vehicule_id)
+            ->update([
+                'intitule' => $request->intitule,
+                'description' => $request->description,
+            ]);
+
+        return back()->with('success', 'Modifié avec succès.');
     }
 
     /**

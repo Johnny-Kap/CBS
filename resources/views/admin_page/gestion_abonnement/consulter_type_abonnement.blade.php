@@ -72,11 +72,61 @@
                         <td><a href="javascript:void(0)" class="label label-primary">{{$item->created_at->format('d/m/Y')}}</a></td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-pencil"></i></a>
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil-square-o" title="Modifier"></i></button>
+                                <!-- <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i></a> -->
                             </div>
                         </td>
                     </tr>
+
+
+                    <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="form-header text-start mb-0">
+                                        <h4 class="mb-0 text-dark fw-bold">Modifier</h4>
+                                    </div>
+                                </div>
+                                <form action="{{route('type_abonnement.edit')}}" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 w-auto">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Entrer l'intitulé :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="text" value="{{$item->intitule}}" name="intitule">
+                                                    <input type="hidden" name="type_abonnement_id" value="{{$item->id}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Entrer le code :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="text" value="{{$item->code}}" name="code">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-back">Valider <i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     @endforeach
                 </tbody>
                 <tfoot>

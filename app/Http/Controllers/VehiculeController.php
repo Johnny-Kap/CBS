@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\TypeVehicule;
 use App\Models\Vehicule;
+use Egulias\EmailValidator\Result\Reason\UnclosedComment;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
+
+use function PHPSTORM_META\type;
 
 class VehiculeController extends Controller
 {
@@ -16,7 +19,9 @@ class VehiculeController extends Controller
     {
         $showVehicule = Vehicule::all();
 
-        return view('admin_page.gestion_vehicule.consulter_vehicule', compact('showVehicule'));
+        $type_vehicule = TypeVehicule::all();
+
+        return view('admin_page.gestion_vehicule.consulter_vehicule', compact('showVehicule', 'type_vehicule'));
     }
 
     /**
@@ -109,9 +114,60 @@ class VehiculeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Vehicule $vehicule)
+    public function edit(Request $request)
     {
-        //
+
+        $affected = Vehicule::where('id', $request->vehicule_id)
+            ->update([
+                'intitule' => $request->intitule,
+                'numero_immatriculation' => $request->immatriculation,
+                'modele' => $request->modele,
+                'couleur' => $request->couleur,
+                'annee_fabrication' => $request->annee_fabrication,
+                'description' => $request->description,
+                'etat' => $request->etat,
+                'transmission' => $request->transmission,
+                'type_moteur' => $request->moteur,
+                'nombre_kilometrage' => $request->kilometrage,
+                'air_conditionne' => $request->air_conditionne,
+                'nombre_portieres' => $request->nombre_portieres,
+                'fonctionnalites' => $request->fonctionnalites,
+                'type_vehicule_id' => $request->type_vehicule_id,
+            ]);
+
+        return back()->with('success', 'Informations modifiées avec succès.');
+    }
+
+    public function edit_images(Request $request)
+    {
+
+        $data = $request->validate([
+            'images' => 'array',
+        ]);
+
+        $images = [];
+
+        foreach ($data['images'] as $image) {
+            $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image_path =  $image->storeAs('images', $fileName, 'public');
+
+            array_push($images, $image_path);
+        }
+
+        $data['images'] = $images;
+
+        // Ajouter image illustrative
+        $filename_illustrative = time() . '.' . $request->image_illustrative->extension();
+
+        $path = $request->file('image_illustrative')->storeAs('images', $filename_illustrative, 'public');
+
+        $affected = Vehicule::where('id', $request->vehicule_id)
+            ->update([
+                'images' => $images,
+                'image_illustrative' => $path
+            ]);
+
+        return back()->with('success', 'Images modifié avec succès.');
     }
 
     /**

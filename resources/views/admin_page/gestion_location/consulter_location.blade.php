@@ -73,7 +73,7 @@
                     @foreach($location as $item)
                     <tr>
                         <td>{{$item->intitule}}</td>
-                        <td>{!! html_entity_decode($item->description) !!}</td>
+                        <td>{!! html_entity_decode( str_limit($item->description, 20)) !!}</td>
                         <td>{{$item->tarif}}</td>
                         <td>{{$item->vehicules->numero_immatriculation}}</td>
                         <td>{{$item->vehicules->type_vehicules->intitule}}</td>
@@ -82,11 +82,93 @@
                         <td><a href="javascript:void(0)" class="label label-primary">{{$item->created_at->format('d/m/Y')}}</a></td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-pencil"></i></a>
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil-square-o" title="Modifier"></i></button>
+                                <!-- <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i></a> -->
                             </div>
                         </td>
                     </tr>
+
+
+                    <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="form-header text-start mb-0">
+                                        <h4 class="mb-0 text-dark fw-bold">Modifier</h4>
+                                    </div>
+                                </div>
+                                <form action="{{route('location.edit')}}" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Intitule de location :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="text" value="{{$item->intitule}}" name="intitule">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-2">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Entrer la description:
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <div class="booking-info pay-amount">
+                                                    <textarea id="textarea-ckeditor" name="description" class="ckeditor">{{$item->description}}</textarea>
+                                                    <input type="hidden" name="location_id" value="{{$item->id}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Tarif :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="text" value="{{$item->tarif}}" name="tarif">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Choisir le véhicule :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <select id="example-select" name="vehicule_id" class="form-control" size="1">
+                                                        @foreach($vehicules as $item)
+                                                        <option value="{{$item->id}}">{{$item->intitule}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-back">Valider <i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     @endforeach
                 </tbody>
                 <tfoot>

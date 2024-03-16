@@ -97,21 +97,26 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/type_vehicule/consulter', [App\Http\Controllers\TypeVehiculeController::class, 'index'])->name('type_vehicule.consulter');
     Route::get('/admin/type_vehicule/ajouter', [App\Http\Controllers\TypeVehiculeController::class, 'create'])->name('type_vehicule.ajouter');
     Route::post('/admin/type_vehicule/add', [App\Http\Controllers\TypeVehiculeController::class, 'store'])->name('type_vehicule.add');
+    Route::post('/admin/type_vehicule/edit', [App\Http\Controllers\TypeVehiculeController::class, 'edit'])->name('type_vehicule.edit');
 
     //Gestion des vehicules
     Route::get('/admin/vehicule/consulter', [App\Http\Controllers\VehiculeController::class, 'index'])->name('vehicule.consulter');
     Route::get('/admin/vehicule/ajouter', [App\Http\Controllers\VehiculeController::class, 'create'])->name('vehicule.ajouter');
     Route::post('/admin/vehicule/add', [App\Http\Controllers\VehiculeController::class, 'store'])->name('vehicule.add');
+    Route::post('/admin/vehicule/edit', [App\Http\Controllers\VehiculeController::class, 'edit'])->name('vehicule.edit');
+    Route::post('/admin/vehicule/edit/images', [App\Http\Controllers\VehiculeController::class, 'edit_images'])->name('vehicule.edit.images');
 
     //Gestion location
     Route::get('/admin/location/consulter', [App\Http\Controllers\LocationVehiculeController::class, 'index'])->name('location.consulter');
     Route::get('/admin/location/ajouter', [App\Http\Controllers\LocationVehiculeController::class, 'create'])->name('location.ajouter');
     Route::post('/admin/location/add', [App\Http\Controllers\LocationVehiculeController::class, 'store'])->name('location.add');
+    Route::post('/admin/location/edit', [App\Http\Controllers\LocationVehiculeController::class, 'edit'])->name('location.edit');
 
-    //Gestion de recharge
+    //Gestion des modes de paiement
     Route::get('/admin/mode_paiement/consulter', [App\Http\Controllers\ModePaiementController::class, 'index'])->name('mode_paiement.consulter');
     Route::get('/admin/mode_paiement/ajouter', [App\Http\Controllers\ModePaiementController::class, 'create'])->name('mode_paiement.ajouter');
     Route::post('/admin/mode_paiement/add', [App\Http\Controllers\ModePaiementController::class, 'store'])->name('mode_paiement.add');
+    Route::post('/admin/mode_paiement/edit', [App\Http\Controllers\ModePaiementController::class, 'edit'])->name('mode_paiement.edit');
 
     // Gestion des commandes de location
     Route::get('/admin/commande_location/attente', [App\Http\Controllers\CommandeLocationController::class, 'index'])->name('commande_location.attente');
@@ -124,9 +129,11 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     // Gestion des abonnements
     Route::get('/admin/abonnement/type/ajouter', [App\Http\Controllers\TypeAbonnementController::class, 'create'])->name('type_abonnement.ajouter');
     Route::post('/admin/abonnement/type/add', [App\Http\Controllers\TypeAbonnementController::class, 'store'])->name('type_abonnement.add');
+    Route::post('/admin/abonnement/type/edit', [App\Http\Controllers\TypeAbonnementController::class, 'edit'])->name('type_abonnement.edit');
     Route::get('/admin/abonnement/type/consulter', [App\Http\Controllers\TypeAbonnementController::class, 'index'])->name('type_abonnement.consulter');
     Route::get('/admin/abonnement/ajouter', [App\Http\Controllers\AbonnementController::class, 'create'])->name('abonnement.ajouter');
     Route::post('/admin/abonnement/add', [App\Http\Controllers\AbonnementController::class, 'store'])->name('abonnement.add');
+    Route::post('/admin/abonnement/edit', [App\Http\Controllers\AbonnementController::class, 'edit'])->name('abonnement.edit');
     Route::get('/admin/abonnement/consulter', [App\Http\Controllers\AbonnementController::class, 'show'])->name('abonnement.consulter');
     Route::get('/admin/abonnement/ajouter', [App\Http\Controllers\AbonnementController::class, 'create'])->name('abonnement.ajouter');
 
@@ -154,6 +161,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     // Gestion de la bibliothèque
     Route::get('/admin/bibliotheque/ajouter', [App\Http\Controllers\BibliothequeController::class, 'create'])->name('admin.bibliotheque.ajouter');
     Route::post('/admin/bibliotheque/add', [App\Http\Controllers\BibliothequeController::class, 'store'])->name('admin.bibliotheque.add');
+    Route::post('/admin/bibliotheque/edit', [App\Http\Controllers\BibliothequeController::class, 'edit'])->name('admin.bibliotheque.edit');
+    Route::post('/admin/bibliotheque/edit/file', [App\Http\Controllers\BibliothequeController::class, 'edit_file'])->name('admin.bibliotheque.edit.file');
     Route::get('admin/bibliotheque/consulter', [App\Http\Controllers\BibliothequeController::class, 'index'])->name('admin.bibliotheque.consulter');
 
 

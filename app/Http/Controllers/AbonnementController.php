@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SuccessSouscriptionAbonnement;
+use App\Mail\ValidationPaiementAbonnement;
 use App\Models\Abonnement;
 use App\Models\SouscrireAbonnement;
 use App\Models\TypeAbonnement;
+use App\Models\TypeVehicule;
 use Carbon\Carbon;
 use Hamcrest\Core\IsNot;
 use Illuminate\Http\Request;
@@ -151,7 +153,9 @@ class AbonnementController extends Controller
     {
         $abonnements = Abonnement::all();
 
-        return view('admin_page.gestion_abonnement.consulter_abonnement', compact('abonnements'));
+        $type_abonnement = TypeAbonnement::all();
+
+        return view('admin_page.gestion_abonnement.consulter_abonnement', compact('abonnements', 'type_abonnement'));
     }
 
     public function attente()
@@ -190,7 +194,11 @@ class AbonnementController extends Controller
                     'etat' => 'confirmee'
                 ]);
 
-            return back()->with('success', 'Paiement validé avec succès');
+            $validation_paiement_abo = SouscrireAbonnement::find($request->souscrire_abonnement_id);
+
+            Mail::to($validation_paiement_abo->users->email)->send(new ValidationPaiementAbonnement($validation_paiement_abo));
+
+            return back()->with('success', 'Paiement validé avec succès. Email de notification envoyé au client');
         }
     }
 
@@ -213,9 +221,21 @@ class AbonnementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Abonnement $abonnement)
+    public function edit(Request $request)
     {
-        //
+
+        $affected = Abonnement::where('id', $request->abonnement_id)
+            ->update([
+                'intitule' => $request->intitule,
+                'code' => $request->code,
+                'montant' => $request->montant,
+                'rabais' => $request->rabais,
+                'nombre_livraison_panier' => $request->nombre_livraison_panier,
+                'packages' => $request->packages,
+                'type_abonnement_id' => $request->type_abonnement_id,
+            ]);
+
+        return back()->with('success', 'Modifié avec succès.');
     }
 
     /**

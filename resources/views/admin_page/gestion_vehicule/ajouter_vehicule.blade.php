@@ -159,7 +159,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-file-multiple-input">Images</label>
+                        <label class="col-md-3 control-label" for="example-file-multiple-input">Les images du véhicule</label>
                         <div class="col-md-9">
                             <input type="file" id="example-file-multiple-input" name="images[]" multiple>
                         </div>

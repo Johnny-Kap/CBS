@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TypeAbonnement;
 use Illuminate\Http\Request;
+use Laravel\Ui\Presets\React;
 
 class TypeAbonnementController extends Controller
 {
@@ -52,9 +53,16 @@ class TypeAbonnementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(TypeAbonnement $typeAbonnement)
+    public function edit(Request $request)
     {
-        //
+
+        $affected = TypeAbonnement::where('id', $request->type_abonnement_id)
+            ->update([
+                'intitule' => $request->intitule,
+                'code' => $request->code,
+            ]);
+
+        return back()->with('success', 'Modifié avec succès.');
     }
 
     /**

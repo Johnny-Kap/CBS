@@ -52,9 +52,16 @@ class ModePaiementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ModePaiement $modePaiement)
+    public function edit(Request $request)
     {
-        //
+
+        $affected = ModePaiement::where('id', $request->mode_paiement_id)
+            ->update([
+                'intitule' => $request->intitule,
+                'description' => $request->description,
+            ]);
+
+        return back()->with('success', 'Modifié avec succès.');
     }
 
     /**

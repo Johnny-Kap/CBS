@@ -29,7 +29,9 @@ class LocationVehiculeController extends Controller
     {
         $location = LocationVehicule::all();
 
-        return view('admin_page.gestion_location.consulter_location', compact('location'));
+        $vehicules = Vehicule::all();
+
+        return view('admin_page.gestion_location.consulter_location', compact('location', 'vehicules'));
     }
 
     /**
@@ -113,7 +115,7 @@ class LocationVehiculeController extends Controller
             ->where('etat', 'confirmee')
             ->first();
 
-        
+
         // Recuperation des infos du compte de l'utilisateur
         // $compte = Compte::where('user_id', Auth::user()->id)->first();
 
@@ -163,9 +165,19 @@ class LocationVehiculeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(LocationVehicule $locationVehicule)
+    public function edit(Request $request)
     {
-        //
+
+        $affected = LocationVehicule::where('id', $request->location_id)
+            ->update([
+                'intitule' => $request->intitule,
+                'description' => $request->description,
+                'tarif' => $request->tarif,
+                'vehicule_id' => $request->vehicule_id,
+                'user_id' => Auth::user()->id,
+            ]);
+
+        return back()->with('success', 'Modifié avec succès.');
     }
 
     /**

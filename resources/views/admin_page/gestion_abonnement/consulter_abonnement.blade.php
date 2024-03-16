@@ -77,16 +77,140 @@
                         <td>{{$item->montant}}</td>
                         <td>{{$item->rabais}}</td>
                         <td>{{$item->nombre_livraison_panier}}</td>
-                        <td>{!! html_entity_decode($item->packages) !!}</td>
+                        <td>{!! html_entity_decode( str_limit($item->packages, 50)) !!}</td>
                         <td>{{$item->type_abonnements->intitule}}</td>
                         <td><a href="javascript:void(0)" class="label label-primary">{{$item->created_at->format('d/m/Y')}}</a></td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-pencil"></i></a>
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil-square-o" title="Modifier"></i></button>
+                                <!-- <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i></a> -->
                             </div>
                         </td>
                     </tr>
+
+
+                    <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="form-header text-start mb-0">
+                                        <h4 class="mb-0 text-dark fw-bold">Modifier</h4>
+                                    </div>
+                                </div>
+                                <form action="{{route('abonnement.edit')}}" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Intitule de l'abonnement :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="text" value="{{$item->intitule}}" name="intitule">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Code de l'abonnement :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="text" value="{{$item->code}}" name="code">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Montant :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="number" value="{{$item->montant}}" name="montant">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Rabais :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="number" value="{{$item->rabais}}" name="rabais">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Nombre de livraison de panier :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="number" value="{{$item->nombre_livraison_panier}}" name="nombre_livraison_panier">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-2">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Entrer le packages:
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <div class="booking-info pay-amount">
+                                                    <textarea id="textarea-ckeditor" name="packages" class="ckeditor">{{$item->packages }}</textarea>
+                                                    <input type="hidden" name="abonnement_id" value="{{$item->id}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Choisir le type d'abonnement :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <select id="example-select" name="type_abonnement_id" class="form-control" size="1">
+                                                        @foreach($type_abonnement as $item)
+                                                        <option value="{{$item->id}}">{{$item->intitule}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-back">Valider les informations <i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     @endforeach
                 </tbody>
                 <tfoot>

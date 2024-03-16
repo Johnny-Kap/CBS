@@ -70,17 +70,91 @@
                     @foreach($bibliotheque_show as $item)
                     <tr>
                         <td>{{$item->titre}}</td>
-                        <td>{!! html_entity_decode($item->description) !!}</td>
+                        <td>{!! html_entity_decode( str_limit($item->description, 50)) !!}</td>
                         <td>{{$item->pdf}}</td>
                         <td>{{$item->users->name}}</td>
                         <td><a href="javascript:void(0)" class="label label-primary">{{$item->created_at->format('d/m/Y')}}</a></td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-pencil"></i></a>
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil-square-o" title="Modifier"></i></button>
+                                <!-- <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i></a> -->
                             </div>
                         </td>
                     </tr>
+
+
+                    <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="form-header text-start mb-0">
+                                        <h4 class="mb-0 text-dark fw-bold">Modifier</h4>
+                                    </div>
+                                </div>
+                                <form action="{{route('admin.bibliotheque.edit')}}" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Entrer le titre :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="text" value="{{$item->titre}}" name="titre">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-2">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Entrer la description:
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <div class="booking-info pay-amount">
+                                                    <textarea id="textarea-ckeditor" name="description" class="ckeditor">{{$item->description}}</textarea>
+                                                    <input type="hidden" name="bibliotheque_id" value="{{$item->id}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-back">Valider les informations <i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                                <form action="{{route('admin.bibliotheque.edit.file')}}" enctype="multipart/form-data" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <h4 class="text-center">Gérez le fichier ici</h4>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Fichier (PDF) :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input type="file" id="example-file-multiple-input" name="pdf">
+                                                    <input type="hidden" name="bibliotheque_id" value="{{$item->id}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-back">Valider le fichier <i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     @endforeach
                 </tbody>
                 <tfoot>
@@ -103,8 +177,8 @@
                                 </div>
                             </div>
                             <div class="btn-group btn-group-sm">
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Edit Selected"><i class="fa fa-pencil"></i></a>
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Delete Selected"><i class="fa fa-times"></i></a>
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil-square-o" title="Modifier"></i></button>
+                                <!-- <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Delete Selected"><i class="fa fa-times"></i></a> -->
                             </div>
                         </td>
                     </tr>

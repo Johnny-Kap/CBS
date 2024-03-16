@@ -28,12 +28,9 @@
         <!-- Changing classes functionality initialized in js/pages/tablesGeneral.js -->
         <div class="table-options clearfix">
             <div class="btn-group btn-group-sm pull-right">
-                <a href="javascript:void(0)" class="btn btn-primary active" id="style-striped" data-toggle="tooltip"
-                    title=".table-striped">Striped</a>
-                <a href="javascript:void(0)" class="btn btn-primary" id="style-condensed" data-toggle="tooltip"
-                    title=".table-condensed">Condensed</a>
-                <a href="javascript:void(0)" class="btn btn-primary" id="style-hover" data-toggle="tooltip"
-                    title=".table-hover">Hover</a>
+                <a href="javascript:void(0)" class="btn btn-primary active" id="style-striped" data-toggle="tooltip" title=".table-striped">Striped</a>
+                <a href="javascript:void(0)" class="btn btn-primary" id="style-condensed" data-toggle="tooltip" title=".table-condensed">Condensed</a>
+                <a href="javascript:void(0)" class="btn btn-primary" id="style-hover" data-toggle="tooltip" title=".table-hover">Hover</a>
             </div>
             <div class="btn-group btn-group-sm pull-left" data-toggle="buttons">
                 <label id="style-default" class="btn btn-primary active" data-toggle="tooltip" title=".table">
@@ -77,7 +74,7 @@
                     @foreach($showVehicule as $item)
                     <tr>
                         <td>{{$item->intitule}}</td>
-                        <td>{!! html_entity_decode($item->description) !!}</td>
+                        <td>{!! html_entity_decode( str_limit($item->description, 20)) !!}</td>
                         <td>{{$item->modele}}</td>
                         <td>{{$item->numero_immatriculation}}</td>
                         <td>{{$item->type_vehicules->intitule}}</td>
@@ -90,28 +87,295 @@
                         <td class="text-center">
                             <img src="{{ Storage::url($item->image_illustrative) }}" alt="avatar" style="height: 50px;">
                         </td>
-                        <td><a href="javascript:void(0)"
-                                class="label label-primary">{{$item->created_at->format('d/m/Y')}}</a></td>
+                        <td><a href="javascript:void(0)" class="label label-primary">{{$item->created_at->format('d/m/Y')}}</a></td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="Edit"
-                                    class="btn btn-default"><i class="fa fa-pencil"></i></a>
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="Delete"
-                                    class="btn btn-danger"><i class="fa fa-times"></i></a>
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil-square-o" title="Modifier"></i></button>
                             </div>
                         </td>
                     </tr>
+
+
+                    <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="form-header text-start mb-0">
+                                        <h4 class="mb-0 text-dark fw-bold">Modifier</h4>
+                                    </div>
+                                </div>
+                                <form action="{{route('vehicule.edit')}}" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Nom du véhicule :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="text" value="{{$item->intitule}}" name="intitule">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Immatriculation :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="text" value="{{$item->numero_immatriculation}}" name="immatriculation">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Modele :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="text" value="{{$item->modele}}" name="modele">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Couleur :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="text" value="{{$item->couleur}}" name="couleur">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Année de fabrication :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="text" value="{{$item->annee_fabrication}}" name="annee_fabrication">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-2">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Entrer la description:
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <div class="booking-info pay-amount">
+                                                    <textarea id="textarea-ckeditor" name="description" class="ckeditor">{{$item->description}}</textarea>
+                                                    <input type="hidden" name="vehicule_id" value="{{$item->id}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Etat du véhicule :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <select id="example-select" name="etat" class="form-control" size="1">
+                                                        <option value="Très bon état">Très bon état</option>
+                                                        <option value="Bon état">Bon état</option>
+                                                        <option value="Moyen état">Moyen état</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Type de transmission :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <select id="example-select" name="transmission" class="form-control" size="1">
+                                                        <option value="Automatique">Automatique</option>
+                                                        <option value="Manuelle">Manuelle</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Type de moteur :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <select id="example-select" name="moteur" class="form-control" size="1">
+                                                        <option value="Essence">Essence</option>
+                                                        <option value="Diesel">Diesel</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Nombre de kilometrage :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="number" value="{{$item->nombre_kilometrage}}" name="kilometrage">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Air conditionné :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <select id="example-select" name="air_conditionne" class="form-control" size="1">
+                                                        <option value="Oui">Oui</option>
+                                                        <option value="Non">Non</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Nombre de portieres :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="number" value="{{$item->nombre_portieres}}" name="nombre_portieres">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Fonctionnalites du véhicule :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input type="text" id="example-tags" name="fonctionnalites" value="{{$item->fonctionnalites}}" class="input-tags" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Type de véhicule :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <select id="example-select" name="type_vehicule_id" class="form-control" size="1">
+                                                        @foreach($type_vehicule as $item)
+                                                        <option value="{{$item->id}}">{{$item->intitule}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-back">Valider les informations <i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                                <form action="{{route('vehicule.edit.images')}}" enctype="multipart/form-data" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <h4 class="text-center">Gérez les images ici</h4>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Les images du véhicule :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input type="file" id="example-file-multiple-input" name="images[]" multiple>
+                                                    <input type="hidden" name="vehicule_id" value="{{$item->id}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Image illustrative :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input type="file" id="example-file-multiple-input" name="image_illustrative">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-back">Valider les images <i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="6">
                             <div class="btn-group btn-group-sm pull-right">
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip"
-                                    title="Settings"><i class="fa fa-cog"></i></a>
+                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
                                 <div class="btn-group btn-group-sm dropup">
-                                    <a href="javascript:void(0)" class="btn btn-primary pull-right dropdown-toggle"
-                                        data-toggle="dropdown"><span class="caret"></span></a>
+                                    <a href="javascript:void(0)" class="btn btn-primary pull-right dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                                     <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
                                         <li><a href="javascript:void(0)"><i class="fa fa-print pull-right"></i>
                                                 Print</a></li>
@@ -125,10 +389,8 @@
                                 </div>
                             </div>
                             <div class="btn-group btn-group-sm">
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip"
-                                    title="Edit Selected"><i class="fa fa-pencil"></i></a>
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip"
-                                    title="Delete Selected"><i class="fa fa-times"></i></a>
+                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Edit Selected"><i class="fa fa-pencil"></i></a>
+                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Delete Selected"><i class="fa fa-times"></i></a>
                             </div>
                         </td>
                     </tr>

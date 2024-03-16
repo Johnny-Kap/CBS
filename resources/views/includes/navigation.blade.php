@@ -126,7 +126,7 @@
                     </li>
                     @if (Route::has('register'))
                     <li class="login-link">
-                        <a href="{{route('register')}}">S'inscrire</a>
+                        <a href="{{route('register')}}">S'abonner</a>
                     </li>
                     @endif
                     @endauth
@@ -147,7 +147,7 @@
                 </li>
                 @if (Route::has('register'))
                 <li class="nav-item">
-                    <a class="nav-link header-reg" href="{{route('register')}}"><span><i class="fa-solid fa-lock"></i></span>S'incrire</a>
+                    <a class="nav-link header-reg" href="{{route('register')}}"><span><i class="fa-solid fa-lock"></i></span>S'abonner</a>
                 </li>
                 @endif
                 @endauth

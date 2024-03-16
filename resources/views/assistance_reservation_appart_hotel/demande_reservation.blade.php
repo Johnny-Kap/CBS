@@ -9,7 +9,7 @@
             <div class="login-auth">
                 <div class="login-auth-wrap">
                     <h1 class="text-center">Vérifier l'éligibilité pour une demande de réservation d'un appartement / hotel</h1>
-                    <p class="account-subtitle">Entrer votre numéro d'abonnement pour passer une commande de maintenance automobile.
+                    <p class="account-subtitle">Entrer votre numéro d'abonnement pour passer une commande de réservation d'un appartement / hotel.
                     </p>
                     <form method="get" action="{{route('commande.reservation.appart.hotel.verify')}}">
                         <div class="form-group">

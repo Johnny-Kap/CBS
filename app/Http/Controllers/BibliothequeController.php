@@ -14,7 +14,7 @@ class BibliothequeController extends Controller
      */
     public function index()
     {
-        
+
         $bibliotheque_show = Bibliotheque::simplePaginate(10);
 
         return view('admin_page.gestion_bibliotheque.consulter_document', compact('bibliotheque_show'));
@@ -58,7 +58,8 @@ class BibliothequeController extends Controller
         return back()->with('success', 'Document ajouté avec succès!');
     }
 
-    public function verifier(){
+    public function verifier()
+    {
 
         return view('bibliotheque.demande_document');
     }
@@ -68,7 +69,7 @@ class BibliothequeController extends Controller
      */
     public function show(Request $request)
     {
-        
+
         $abonnementDispo = SouscrireAbonnement::where('numero_abonnement', $request->abonnement)
             ->where('user_id', Auth::user()->id)
             ->where('is_expired', 'no')
@@ -77,20 +78,46 @@ class BibliothequeController extends Controller
 
         $bibliotheque_display = Bibliotheque::simplePaginate(10);
 
-            if ($abonnementDispo == 1) {
+        if ($abonnementDispo == 1) {
 
-                return view('bibliotheque.bibliotheque_display', compact('bibliotheque_display'));
-            }else{
-                return back()->with('error', 'N° abonnement invalide ou non valable.');
-            }
+            return view('bibliotheque.bibliotheque_display', compact('bibliotheque_display'));
+        } else {
+            return back()->with('error', 'N° abonnement invalide ou non valable.');
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Bibliotheque $bibliotheque)
+    public function edit(Request $request)
     {
-        //
+
+        $affected = Bibliotheque::where('id', $request->bibliotheque_id)
+            ->update([
+                'titre' => $request->titre,
+                'description' => $request->description,
+            ]);
+
+        return back()->with('success', 'Information(s) modifiée(s) avec succès.');
+    }
+
+    public function edit_file(Request $request)
+    {
+
+        $request->validate([
+            'pdf' => 'required|mimes:pdf',
+        ]);
+
+        $filename = time() . '.' . $request->pdf->extension();
+
+        $path = $request->file('pdf')->storeAs('documents', $filename, 'public');
+
+        $affected = Bibliotheque::where('id', $request->bibliotheque_id)
+            ->update([
+                'pdf' => $path,
+            ]);
+
+        return back()->with('success', 'Document modifié avec succès.');
     }
 
     /**
