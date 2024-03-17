@@ -66,6 +66,7 @@
                         <th>Etat du vehicule</th>
                         <th>Créé par</th>
                         <th>Date de création</th>
+                        <th>Visibilité</th>
                         <th style="width: 150px;" class="text-center">Actions</th>
                     </tr>
                 </thead>
@@ -80,14 +81,81 @@
                         <td>{{$item->vehicules->etat}}</td>
                         <td>{{$item->users->name}}</td>
                         <td><a href="javascript:void(0)" class="label label-primary">{{$item->created_at->format('d/m/Y')}}</a></td>
+                        <td>@if($item->masked == 'no') <span class="label label-success">Visible</span> @else <span class="label label-danger">Masqué</span> @endif</td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
                                 <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil-square-o" title="Modifier"></i></button>
-                                <!-- <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i></a> -->
+                                @if($item->masked == 'no')
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_mask_{{$item->id}}"><i class="fa fa-eye-slash" title="Modifier"></i></button>
+                                @else
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_demask_{{$item->id}}"><i class="fa fa-eye" title="Modifier"></i></button>
+                                @endif
                             </div>
                         </td>
                     </tr>
 
+
+                    <div class="modal fade" id="pages_mask_{{$item->id}}" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="form-header text-start mb-0">
+                                        <h4 class="mb-0 text-dark fw-bold">Masquer la location de véhicule {{$item->intitule}}</h4>
+                                    </div>
+                                </div>
+                                <form action="{{route('location.masked')}}" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="available-for-ride">
+                                                    <h3>
+                                                        <i class="fa-regular fa-circle-check"></i>Voulez-vous vraiment masquer cette location de véhicule ?
+                                                    </h3>
+                                                    <input type="hidden" name="location_id" value="{{$item->id}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+                                        <button type="submit" class="btn btn-default">Oui</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="pages_demask_{{$item->id}}" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="form-header text-start mb-0">
+                                        <h4 class="mb-0 text-dark fw-bold">Démasquer la location de véhicule {{$item->intitule}}</h4>
+                                    </div>
+                                </div>
+                                <form action="{{route('location.demasked')}}" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="available-for-ride">
+                                                    <h3>
+                                                        <i class="fa-regular fa-circle-check"></i>Voulez-vous vraiment démasquer cette location de véhicule ?
+                                                    </h3>
+                                                    <input type="hidden" name="location_id" value="{{$item->id}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+                                        <button type="submit" class="btn btn-default">Oui</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
                         <div class="modal-dialog modal-dialog-centered modal-md">

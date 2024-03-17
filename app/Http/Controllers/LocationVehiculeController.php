@@ -19,7 +19,7 @@ class LocationVehiculeController extends Controller
      */
     public function list()
     {
-        $locationList = LocationVehicule::simplePaginate(10);
+        $locationList = LocationVehicule::where('masked', 'no')->simplePaginate(10);
 
         return view('location.location_list', compact('locationList'));
     }
@@ -61,6 +61,7 @@ class LocationVehiculeController extends Controller
             'intitule' => $request->intitule,
             'description' => $request->description,
             'tarif' => $request->tarif,
+            'masked' => 'no',
             'vehicule_id' => $request->vehicule_id,
             'user_id' => Auth::user()->id,
         ]);
@@ -178,6 +179,28 @@ class LocationVehiculeController extends Controller
             ]);
 
         return back()->with('success', 'Modifié avec succès.');
+    }
+
+    public function masked(Request $request)
+    {
+
+        $affected = LocationVehicule::where('id', $request->location_id)
+            ->update([
+                'masked' => 'yes',
+            ]);
+
+        return back()->with('success', 'Masqué avec succès.');
+    }
+
+    public function demasked(Request $request)
+    {
+
+        $affected = LocationVehicule::where('id', $request->location_id)
+            ->update([
+                'masked' => 'no',
+            ]);
+
+        return back()->with('success', 'Démasqué avec succès.');
     }
 
     /**

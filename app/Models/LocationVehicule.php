@@ -14,6 +14,7 @@ class LocationVehicule extends Model
         'description',
         'tarif',
         'vehicule_id',
+        'masked',
         'user_id'
     ];
 

@@ -23,7 +23,7 @@ class AbonnementController extends Controller
     public function index()
     {
 
-        $abonnements = Abonnement::all();
+        $abonnements = Abonnement::where('masked', 'no')->get();
 
         return view('abonnements.pricing', compact('abonnements'));
     }
@@ -139,6 +139,8 @@ class AbonnementController extends Controller
 
         $add->packages = $request->packages;
 
+        $add->masked = 'no';
+
         $add->type_abonnement_id = $request->type_abonnement_id;
 
         $add->save();
@@ -236,6 +238,28 @@ class AbonnementController extends Controller
             ]);
 
         return back()->with('success', 'Modifié avec succès.');
+    }
+
+    public function masked(Request $request)
+    {
+
+        $affected = Abonnement::where('id', $request->abonnement_id)
+            ->update([
+                'masked' => 'yes',
+            ]);
+
+        return back()->with('success', 'Masqué avec succès.');
+    }
+
+    public function demasked(Request $request)
+    {
+
+        $affected = Abonnement::where('id', $request->abonnement_id)
+            ->update([
+                'masked' => 'no',
+            ]);
+
+        return back()->with('success', 'Démasqué avec succès.');
     }
 
     /**

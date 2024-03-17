@@ -111,6 +111,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/location/ajouter', [App\Http\Controllers\LocationVehiculeController::class, 'create'])->name('location.ajouter');
     Route::post('/admin/location/add', [App\Http\Controllers\LocationVehiculeController::class, 'store'])->name('location.add');
     Route::post('/admin/location/edit', [App\Http\Controllers\LocationVehiculeController::class, 'edit'])->name('location.edit');
+    Route::post('/admin/location/masked', [App\Http\Controllers\LocationVehiculeController::class, 'masked'])->name('location.masked');
+    Route::post('/admin/location/demasked', [App\Http\Controllers\LocationVehiculeController::class, 'demasked'])->name('location.demasked');
 
     //Gestion des modes de paiement
     Route::get('/admin/mode_paiement/consulter', [App\Http\Controllers\ModePaiementController::class, 'index'])->name('mode_paiement.consulter');
@@ -134,6 +136,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/abonnement/ajouter', [App\Http\Controllers\AbonnementController::class, 'create'])->name('abonnement.ajouter');
     Route::post('/admin/abonnement/add', [App\Http\Controllers\AbonnementController::class, 'store'])->name('abonnement.add');
     Route::post('/admin/abonnement/edit', [App\Http\Controllers\AbonnementController::class, 'edit'])->name('abonnement.edit');
+    Route::post('/admin/abonnement/masked', [App\Http\Controllers\AbonnementController::class, 'masked'])->name('abonnement.masked');
+    Route::post('/admin/abonnement/demasked', [App\Http\Controllers\AbonnementController::class, 'demasked'])->name('abonnement.demasked');
     Route::get('/admin/abonnement/consulter', [App\Http\Controllers\AbonnementController::class, 'show'])->name('abonnement.consulter');
     Route::get('/admin/abonnement/ajouter', [App\Http\Controllers\AbonnementController::class, 'create'])->name('abonnement.ajouter');
 
@@ -162,6 +166,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/bibliotheque/ajouter', [App\Http\Controllers\BibliothequeController::class, 'create'])->name('admin.bibliotheque.ajouter');
     Route::post('/admin/bibliotheque/add', [App\Http\Controllers\BibliothequeController::class, 'store'])->name('admin.bibliotheque.add');
     Route::post('/admin/bibliotheque/edit', [App\Http\Controllers\BibliothequeController::class, 'edit'])->name('admin.bibliotheque.edit');
+    Route::post('/admin/bibliotheque/masked', [App\Http\Controllers\BibliothequeController::class, 'masked'])->name('admin.bibliotheque.masked');
+    Route::post('/admin/bibliotheque/demasked', [App\Http\Controllers\BibliothequeController::class, 'demasked'])->name('admin.bibliotheque.demasked');
     Route::post('/admin/bibliotheque/edit/file', [App\Http\Controllers\BibliothequeController::class, 'edit_file'])->name('admin.bibliotheque.edit.file');
     Route::get('admin/bibliotheque/consulter', [App\Http\Controllers\BibliothequeController::class, 'index'])->name('admin.bibliotheque.consulter');
 

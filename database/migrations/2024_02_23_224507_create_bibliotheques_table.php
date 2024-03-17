@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('titre');
             $table->text('description')->nullable();
             $table->string('pdf');
+            $table->string('masked')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

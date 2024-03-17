@@ -72,7 +72,11 @@
                             <a href="page_ready_inbox.html" data-toggle="tooltip" data-placement="bottom" title="Messages"><i class="gi gi-envelope"></i></a>
                             <!-- Opens the user settings modal that can be found at the bottom of each page (page_footer.html in PHP version) -->
                             <a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Settings" onclick="$('#modal-user-settings').modal('show');"><i class="gi gi-cogwheel"></i></a>
-                            <a href="login.html" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="gi gi-exit"></i></a>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();    
+                                        document.getElementById('logout-form').submit();" data-toggle="tooltip" data-placement="bottom" title="Deconnexion"><i class="gi gi-exit"></i></a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </div>
                     </div>
                     <!-- END User Info -->

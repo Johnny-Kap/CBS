@@ -19,6 +19,7 @@ return new class extends Migration
             $table->double('rabais')->nullable();
             $table->double('nombre_livraison_panier')->nullable();
             $table->text('packages')->nullable();
+            $table->string('masked')->nullable();
             $table->foreignId('type_abonnement_id')->constrained();
             $table->timestamps();
         });

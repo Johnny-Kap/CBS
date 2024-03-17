@@ -51,6 +51,8 @@ class BibliothequeController extends Controller
 
         $bibliotheque->pdf = $path;
 
+        $bibliotheque->masked = 'no';
+
         $bibliotheque->user_id = Auth::user()->id;
 
         $bibliotheque->save();
@@ -76,7 +78,7 @@ class BibliothequeController extends Controller
             ->where('etat', 'confirmee')
             ->count();
 
-        $bibliotheque_display = Bibliotheque::simplePaginate(10);
+        $bibliotheque_display = Bibliotheque::where('masked', 'no')->simplePaginate(10);
 
         if ($abonnementDispo == 1) {
 
@@ -99,6 +101,28 @@ class BibliothequeController extends Controller
             ]);
 
         return back()->with('success', 'Information(s) modifiée(s) avec succès.');
+    }
+
+    public function masked(Request $request)
+    {
+
+        $affected = Bibliotheque::where('id', $request->bibliotheque_id)
+            ->update([
+                'masked' => 'yes',
+            ]);
+
+        return back()->with('success', 'Masqué avec succès.');
+    }
+
+    public function demasked(Request $request)
+    {
+
+        $affected = Bibliotheque::where('id', $request->bibliotheque_id)
+            ->update([
+                'masked' => 'no',
+            ]);
+
+        return back()->with('success', 'Démasqué avec succès.');
     }
 
     public function edit_file(Request $request)

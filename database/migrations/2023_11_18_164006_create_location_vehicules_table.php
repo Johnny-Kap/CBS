@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('intitule');
             $table->text('description')->nullable();
             $table->double('tarif');
+            $table->string('masked')->nullable();
             $table->foreignId('vehicule_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

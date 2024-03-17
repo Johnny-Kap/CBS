@@ -12,7 +12,7 @@
         </div>
     </div>
     <ul class="breadcrumb breadcrumb-top">
-        <li><a href="{{route('location.ajouter')}}"><b>AJOUTER UN TYPE D'ABONNEMENT</b></a></li>
+        <li><a href="{{route('type_abonnement.ajouter')}}"><b>AJOUTER UN TYPE D'ABONNEMENT</b></a></li>
     </ul>
     <!-- END Table Styles Header -->
 
