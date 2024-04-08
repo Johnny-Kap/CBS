@@ -169,4 +169,11 @@ class HomeController extends Controller
             return back()->with('error', 'Insérer un email différent de celui actuel.');
         }
     }
+
+    public function user_profile($id){
+
+        $user = User::find($id);
+
+        return view('admin_page.client_profile.client_profile', compact('user'));
+    }
 }

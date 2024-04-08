@@ -33,7 +33,7 @@ Route::get('/term-conditions', [App\Http\Controllers\HomeController::class, 'ter
 Route::get('/location-list', [App\Http\Controllers\LocationVehiculeController::class, 'list'])->name('location.list');
 Route::get('/location-detail/{id}/{name}', [App\Http\Controllers\LocationVehiculeController::class, 'show'])->name('location.details');
 Route::get('/paiement-location', [App\Http\Controllers\LocationVehiculeController::class, 'verifierDispo'])->name('verifier.location')->middleware('auth');
-Route::get('/comande/location/{location_id}/{date_heure_depart}/{date_heure_arrivee}/{mode_paiement}/{total_tarif}/{diff}', [App\Http\Controllers\CommandeLocationController::class, 'create'])->middleware('auth')->name('location.paiement');
+Route::get('/comande/location/{location_id}/{date_heure_depart}/{date_heure_arrivee}/{total_tarif}/{diff}', [App\Http\Controllers\CommandeLocationController::class, 'create'])->middleware('auth')->name('location.paiement');
 Route::get('/successfully-commande', [App\Http\Controllers\CommandeLocationController::class, 'success'])->name('success');
 
 // Mon profil utilisateur
@@ -84,6 +84,12 @@ Route::get('/livraison-panier/successfully-commande/achat_livraison', [App\Http\
 Route::get('/livraison-panier/successfully-commande/livraison', [App\Http\Controllers\LivraisonPanierController::class, 'success_livraison'])->name('success.livraison.panier');
 
 
+// Gestion des formations
+Route::get('/formation-list', [App\Http\Controllers\FormationController::class, 'list'])->name('formation.list');
+Route::get('/formation-detail/{id}/{name}', [App\Http\Controllers\FormationController::class, 'show'])->name('formation.details');
+Route::get('/formation-location', [App\Http\Controllers\FormationController::class, 'PasserCommande'])->name('passer.commande.formation')->middleware('auth');
+Route::get('/successfully-commande-formation', [App\Http\Controllers\CommandeLocationController::class, 'success'])->name('success.formation');
+
 
 
 /* ------------- Routes de l'Admin --------------*/
@@ -92,6 +98,8 @@ Route::get('/livraison-panier/successfully-commande/livraison', [App\Http\Contro
 Route::get('/admin/login', [App\Http\Controllers\HomeController::class, 'login_admin'])->name('login.admin');
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'index_admin'])->name('home.admin');
+
+    Route::get('/admin/user-profile/details/{id}/{name}', [App\Http\Controllers\HomeController::class, 'user_profile'])->name('user.profile.details');
 
     //Gestion type de vehicule
     Route::get('/admin/type_vehicule/consulter', [App\Http\Controllers\TypeVehiculeController::class, 'index'])->name('type_vehicule.consulter');
@@ -184,5 +192,21 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/admin/livraison/change/etat', [App\Http\Controllers\LivraisonPanierController::class, 'validation_livraison'])->name('livraison.validation.etat');
     Route::get('/admin/livraison/commande_validee', [App\Http\Controllers\LivraisonPanierController::class, 'livraison_validee'])->name('livraison.validee');
 
+
+    // Gestion des utilisateurs
+    Route::get('/admin/consulter/utilisateurs', [App\Http\Controllers\UserController::class, 'show'])->name('utilisateurs.show');
+    Route::get('/admin/ajouter/utilisateurs', [App\Http\Controllers\UserController::class, 'create'])->name('utilisateurs.create');
+    Route::post('/admin/add/utilisateurs', [App\Http\Controllers\UserController::class, 'store'])->name('utilisateurs.store');
+    Route::post('/admin/edit/utilisateurs', [App\Http\Controllers\UserController::class, 'edit'])->name('utilisateurs.edit');
+    Route::post('/admin/change/role/utilisateurs', [App\Http\Controllers\UserController::class, 'change_role'])->name('utilisateurs.change.role');
+
+
+    // Gestion de la formation
+    Route::get('/admin/formation/ajouter', [App\Http\Controllers\FormationController::class, 'create'])->name('admin.formation.ajouter');
+    Route::post('/admin/formation/add', [App\Http\Controllers\FormationController::class, 'store'])->name('admin.formation.add');
+    Route::post('/admin/formation/edit', [App\Http\Controllers\FormationController::class, 'edit'])->name('admin.formation.edit');
+    Route::post('/admin/formation/masked', [App\Http\Controllers\FormationController::class, 'masked'])->name('admin.formation.masked');
+    Route::post('/admin/formation/demasked', [App\Http\Controllers\FormationController::class, 'demasked'])->name('admin.formation.demasked');
+    Route::get('admin/formation/consulter', [App\Http\Controllers\FormationController::class, 'index'])->name('admin.formation.consulter');
 
 });

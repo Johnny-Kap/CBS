@@ -55,7 +55,7 @@
                                     'table-hover'       - rows highlighted on mouse hover
                                     'table-vcenter'     - middle align content vertically
                                 -->
-            <table id="general-table" class="table table-striped table-vcenter">
+            <table id="general-table" class="table table-striped table-vcenter table-condensed table-bordered">
                 <thead>
                     <tr>
                         <th>N° Abonnement</th>
@@ -77,8 +77,10 @@
                         <td><b>{{$item->montant}} FCFA</b></td>
                         <td>{{$item->date_expiration}}</td>
                         <td>@if($item->is_expired == 'no') Non expirée @else Expirée @endif</td>
-                        <td>{{$item->users->name}}</td>
-                        <td>{{$item->created_at->format('d/m/Y')}}</td> 
+                        <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">
+                                {{$item->users->name}} {{$item->users->prenom}}
+                            </a></td>
+                        <td>{{$item->created_at->format('d/m/Y')}}</td>
                     </tr>
 
                     <div class="modal fade" id="pages_edit" role="dialog">

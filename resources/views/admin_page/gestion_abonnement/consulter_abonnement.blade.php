@@ -55,7 +55,7 @@
                                     'table-hover'       - rows highlighted on mouse hover
                                     'table-vcenter'     - middle align content vertically
                                 -->
-            <table id="general-table" class="table table-striped table-vcenter">
+            <table id="general-table" class="table table-striped table-vcenter table-condensed table-bordered">
                 <thead>
                     <tr>
                         <th>Intitule</th>
@@ -78,7 +78,7 @@
                         <td>{{$item->montant}}</td>
                         <td>{{$item->rabais}}</td>
                         <td>{{$item->nombre_livraison_panier}}</td>
-                        <td>{!! html_entity_decode( str_limit($item->packages, 50)) !!}</td>
+                        <td><a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Description" onclick="$('#pages_desc_{{$item->id}}').modal('show');">{!! html_entity_decode( str_limit($item->packages, 50)) !!}</a></td>
                         <td>{{$item->type_abonnements->intitule}}</td>
                         <td><a href="javascript:void(0)" class="label label-primary">{{$item->created_at->format('d/m/Y')}}</a></td>
                         <td>@if($item->masked == 'no') <span class="label label-success">Visible</span> @else <span class="label label-danger">Masqué</span> @endif</td>
@@ -93,6 +93,33 @@
                             </div>
                         </td>
                     </tr>
+
+
+                    <div class="modal fade" id="pages_desc_{{$item->id}}" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="form-header text-start mb-0">
+                                        <h4 class="mb-0 text-dark fw-bold">Packages de l'abonnement {{$item->intitule}}</h4>
+                                    </div>
+                                </div>
+                                <form action="{{route('vehicule.edit')}}" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        {!! html_entity_decode($item->packages) !!}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
 
                     <div class="modal fade" id="pages_mask_{{$item->id}}" role="dialog">

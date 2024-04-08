@@ -17,7 +17,7 @@
     <!-- END Table Styles Header -->
 
     <!-- Table Styles Block -->
-    <div class="block">
+    <div class="block full">
         <!-- Table Styles Title -->
         <div class="block-title">
             <h2><strong>Table</strong> Styles</h2>
@@ -26,7 +26,7 @@
 
         <!-- Table Styles Content -->
         <!-- Changing classes functionality initialized in js/pages/tablesGeneral.js -->
-        <div class="table-options clearfix">
+        <!-- <div class="table-options clearfix">
             <div class="btn-group btn-group-sm pull-right">
                 <a href="javascript:void(0)" class="btn btn-primary active" id="style-striped" data-toggle="tooltip" title=".table-striped">Striped</a>
                 <a href="javascript:void(0)" class="btn btn-primary" id="style-condensed" data-toggle="tooltip" title=".table-condensed">Condensed</a>
@@ -43,7 +43,7 @@
                     <input type="radio" name="style-options"> Borderless
                 </label>
             </div>
-        </div>
+        </div> -->
         <div class="table-responsive">
             <!--
                                 Available Table Classes:
@@ -55,10 +55,10 @@
                                     'table-hover'       - rows highlighted on mouse hover
                                     'table-vcenter'     - middle align content vertically
                                 -->
-            <table id="general-table" class="table table-striped table-vcenter">
+            <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
                 <thead>
                     <tr>
-                    <th>N° Abonnement</th>
+                        <th>N° Abonnement</th>
                         <th>Abonnement</th>
                         <th>Etat</th>
                         <th>Montant</th>
@@ -73,13 +73,15 @@
                 <tbody>
                     @foreach($abonnement_confirmee as $item)
                     <tr>
-                    <td>{{$item->numero_abonnement}}</td>
+                        <td>{{$item->numero_abonnement}}</td>
                         <td>{{$item->abonnements->intitule}}</td>
                         <td>@if($item->etat == 'confirmee') Confirmée @else En attente @endif</td>
                         <td><b>{{$item->montant}} FCFA</b></td>
                         <td>{{$item->date_expiration}}</td>
                         <td>@if($item->image == null) Non @else Oui @endif</td>
-                        <td>{{$item->users->name}}</td>
+                        <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">
+                                {{$item->users->name}} {{$item->users->prenom}}
+                            </a></td>
                         <td>@if($item->is_buy == 'no') Non @else Oui @endif</td>
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
                         <td class="text-center">
@@ -131,7 +133,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="6">
+                        <td colspan="10">
                             <div class="btn-group btn-group-sm pull-right">
                                 <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
                                 <div class="btn-group btn-group-sm dropup">

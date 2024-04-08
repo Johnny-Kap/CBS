@@ -7,12 +7,12 @@
     <div class="content-header">
         <div class="header-section">
             <h1>
-                <i class="gi gi-table"></i>Nos véhicules<br><small>Consulter les ici !</small>
+                <i class="gi gi-table"></i>Les utilisateurs<br><small>Consulter les ici !</small>
             </h1>
         </div>
     </div>
     <ul class="breadcrumb breadcrumb-top">
-        <li><a href="{{route('vehicule.ajouter')}}"><b>AJOUTER UN VEHICULE</b></a></li>
+        <li><a href="{{route('utilisateurs.create')}}"><b>AJOUTER UN UTILISATEUR</b></a></li>
     </ul>
     <!-- END Table Styles Header -->
 
@@ -58,64 +58,81 @@
             <table id="general-table" class="table table-striped table-vcenter table-condensed table-bordered">
                 <thead>
                     <tr>
-                        <th>Intitule</th>
-                        <th>Description</th>
-                        <th>Modele</th>
-                        <th>Immatriculation</th>
-                        <th>Type de véhicule</th>
-                        <th>Etat</th>
-                        <th>Images</th>
-                        <th>Image illustrative</th>
-                        <th>Date de création</th>
+                        <th>ID</th>
+                        <th>Nom(s)</th>
+                        <th>Prénom(s)</th>
+                        <th>Email</th>
+                        <th>Date de naissance</th>
+                        <th>Profession</th>
+                        <th>Téléphone</th>
+                        <th>Photo de profil</th>
+                        <th>Rôle</th>
                         <th style="width: 150px;" class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($showVehicule as $item)
+                    @foreach($users as $item)
                     <tr>
-                        <td>{{$item->intitule}}</td>
-                        <td><a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Description" onclick="$('#pages_desc_{{$item->id}}').modal('show');">{!! html_entity_decode( str_limit($item->description, 20)) !!}</a></td>
-                        <td>{{$item->modele}}</td>
-                        <td>{{$item->numero_immatriculation}}</td>
-                        <td>{{$item->type_vehicules->intitule}}</td>
-                        <td>{{$item->etat}}</td>
+                        <td><a href="{{ route('user.profile.details', ['id' => $item->id, 'name' => str_slug($item->name)]) }}">
+                                {{$item->id}}
+                            </a></td>
+                        <td>{{$item->name}}</td>
+                        <td>@if($item->prenom != null) {{$item->prenom}} @else Non renseigné @endif</td>
+                        <td>{{$item->email}}</td>
+                        <td>@if($item->date_naiss != null) {{$item->date_naiss}} @else Non renseigné @endif</td>
+                        <td>@if($item->Profession != null) {{$item->Profession}} @else Non renseigné @endif</td>
+                        <td class="text-center">{{$item->tel}}</td>
                         <td class="text-center">
-                            @foreach($item->images as $image)
-                            <img src="{{ Storage::url($image) }}" alt="avatar" style="height: 50px;">
-                            @endforeach
+                            @if($item->image != null)
+                            <img src="{{ Storage::url($item->image) }}" alt="avatar" style="height: 50px;">
+                            @else
+                            No image
+                            @endif
                         </td>
-                        <td class="text-center">
-                            <img src="{{ Storage::url($item->image_illustrative) }}" alt="avatar" style="height: 50px;">
-                        </td>
-                        <td><a href="javascript:void(0)" class="label label-primary">{{$item->created_at->format('d/m/Y')}}</a></td>
+                        <td><a href="javascript:void(0)" class="label label-primary">{{$item->role}}</a></td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil-square-o" title="Modifier"></i></button>
+                                <!-- <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil-square-o" title="Modifier"></i></button> -->
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_role_{{$item->id}}"><i class="fa fa-users" title="Changer rôle"></i></button>
                             </div>
                         </td>
                     </tr>
 
 
-                    <div class="modal fade" id="pages_desc_{{$item->id}}" role="dialog">
+                    <div class="modal fade" id="pages_role_{{$item->id}}" role="dialog">
                         <div class="modal-dialog modal-dialog-centered modal-md">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <div class="form-header text-start mb-0">
-                                        <h4 class="mb-0 text-dark fw-bold">La description du véhicule {{$item->intitule}}</h4>
+                                        <h4 class="mb-0 text-dark fw-bold">Changer le rôle de {{$item->name}} {{$item->prenom}}</h4>
                                     </div>
                                 </div>
-                                <form action="{{route('vehicule.edit')}}" method="post">
+                                <form action="{{route('utilisateurs.change.role')}}" method="post">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="row">
-                                            <div class="col-lg-12 col-md-12">
+                                            <div class="col-lg-3 col-md-6">
                                                 <div class="available-for-ride">
                                                     <p>
-                                                    {!! html_entity_decode($item->description) !!}
+                                                        <i class="fa-regular fa-circle-check"></i>Le rôle
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9 col-md-6">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <select name="role" id="" class="form-control">
+                                                            <option value="user">Utilisateur</option>
+                                                            <option value="admin">Administrateur</option>
+                                                        </select>
+                                                        <input type="hidden" name="user_id" value="{{$item->id}}">
                                                     </p>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-back">Valider <i class="fa fa-arrow-right"></i></button>
                                     </div>
                                 </form>
                             </div>
@@ -341,9 +358,7 @@
                                             <div class="col-md-8">
                                                 <div class="booking-info pay-amount">
                                                     <select id="example-select" name="type_vehicule_id" class="form-control" size="1">
-                                                        @foreach($type_vehicule as $item)
-                                                        <option value="{{$item->id}}">{{$item->intitule}}</option>
-                                                        @endforeach
+
                                                     </select>
                                                 </div>
                                             </div>

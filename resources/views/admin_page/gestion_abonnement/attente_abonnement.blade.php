@@ -55,7 +55,7 @@
                                     'table-hover'       - rows highlighted on mouse hover
                                     'table-vcenter'     - middle align content vertically
                                 -->
-            <table id="general-table" class="table table-striped table-vcenter">
+            <table id="example-datatable" class="table table-striped table-vcenter table-condensed table-bordered">
                 <thead>
                     <tr>
                         <th>N° Abonnement</th>
@@ -79,7 +79,9 @@
                         <td><b>{{$item->montant}} FCFA</b></td>
                         <td>{{$item->date_expiration}}</td>
                         <td>@if($item->image == null) Non @else Oui @endif</td>
-                        <td>{{$item->users->name}}</td>
+                        <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">
+                                {{$item->users->name}} {{$item->users->prenom}}
+                            </a></td>
                         <td>@if($item->is_buy == 'no') Non @else Oui @endif</td>
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
                         <td class="text-center">
@@ -137,7 +139,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="6">
+                        <td colspan="10">
                             <div class="btn-group btn-group-sm pull-right">
                                 <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
                                 <div class="btn-group btn-group-sm dropup">

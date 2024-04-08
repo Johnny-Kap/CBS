@@ -24,7 +24,7 @@
         <div class="confirm-order">
             <div class="section-title">
                 <h3>Confirmation de la commande</h3>
-                <h5>Total : <span>{{$total_tarif}}</span></h5>
+                <h5>Total : <span>{{$total_tarif}} FCFA</span></h5>
             </div>
             <div class="booking-details order-confirm-box">
                 <div class="row">
@@ -47,16 +47,7 @@
                             <li>Baby Seat : $10</li>
                         </ul>
                     </div> -->
-                    <div class="col-lg-6">
-                        <div class="confirmation-title">
-                            <h4>Details du paiement</h4>
-                            <!-- <a href="javascript:void(0)">Edit</a> -->
-                        </div>
-                        <div class="visa-card">
-                            <span>Mode de paiement : <b>{{$mode_paiement->intitule}}</b> </span>
-                            <br><br>
-                        </div>
-                    </div>
+                    
                     <div class="col-lg-6">
                         <div class="confirmation-title">
                             <h4>Date de depart</h4>

@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('souscrire_abonnements', function (Blueprint $table) {
+        Schema::create('commande_formations', function (Blueprint $table) {
             $table->id();
-            $table->string('numero_abonnement')->unique();
-            $table->string('etat');
-            $table->string('date_expiration');
-            $table->string('is_expired');
-            $table->string('is_buy');
-            $table->string('montant');
-            $table->string('image')->nullable();
-            $table->foreignId('abonnement_id')->constrained();
+            $table->string('numero_commande')->unique()->nullable();
+            $table->double('montant');
+            $table->string('etat_paiement');
+            $table->string('etat_commande');
+            $table->string('photo')->nullable();
+            $table->string('type_cours')->nullable();
             $table->foreignId('mode_paiement_id')->nullable();
+            $table->foreignId('formation_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('souscrire_abonnements');
+        Schema::dropIfExists('commande_formations');
     }
 };

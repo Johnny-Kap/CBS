@@ -70,7 +70,7 @@ class CommandeLocationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create($location_id, $date_heure_depart, $date_heure_arrivee, $mode_paiement, $total_tarif, $diff)
+    public function create($location_id, $date_heure_depart, $date_heure_arrivee, $total_tarif, $diff)
     {
 
         $location = LocationVehicule::find($location_id);
@@ -93,8 +93,6 @@ class CommandeLocationController extends Controller
         $commande->etat_commande = 'attente';
 
         $commande->numero_commande = $numero_commande;
-
-        $commande->mode_paiement_id = $mode_paiement;
 
         $commande->location_vehicule_id = $location_id;
 
@@ -149,6 +147,7 @@ class CommandeLocationController extends Controller
             $affected = CommandeLocation::where('id', $request->commande_id)
                 ->update([
                     'photo' => $path,
+                    'mode_paiement_id' => $request->mode_paiement,
                 ]);
 
             return back()->with('success', 'Preuve de paiement soumis avec succès! Vous serez contacté après validation.');

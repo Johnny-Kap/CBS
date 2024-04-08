@@ -55,7 +55,7 @@
                                     'table-hover'       - rows highlighted on mouse hover
                                     'table-vcenter'     - middle align content vertically
                                 -->
-            <table id="general-table" class="table table-striped table-vcenter">
+            <table id="general-table" class="table table-striped table-vcenter table-condensed table-bordered">
                 <thead>
                     <tr>
                         <th>N° Commande main.</th>
@@ -82,7 +82,9 @@
                         <td>{{$item->marque_vehicule}}</td>
                         <td>@if($item->etat_commande == 'yes') Confirmée @else En attente @endif</td>
                         <td>@if($item->etat_paiement == 'yes') Payé @else Non payé @endif</td>
-                        <td>{{$item->users->name}}</td>
+                        <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">
+                                {{$item->users->name}} {{$item->users->prenom}}
+                            </a></td>
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
                         <!-- <td class="text-center">
                             <div class="btn-group btn-group-xs">

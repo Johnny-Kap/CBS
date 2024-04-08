@@ -46,8 +46,8 @@
                             <li class="{{ Request::route()->named('bibliotheque.verifier') ? 'active' : '' }}">
                                 <a href="{{route('bibliotheque.verifier')}}">Bibliothèque</a>
                             </li>
-                            <li class="">
-                                <a href="#">Formation</a>
+                            <li class="{{ Request::route()->named('formation.list') ? 'active' : '' }}">
+                                <a href="{{route('formation.list')}}">Formation</a>
                             </li>     
                             <!-- <li class="has-submenu">
                                 <a href="javascript:void(0);">Booking</a>

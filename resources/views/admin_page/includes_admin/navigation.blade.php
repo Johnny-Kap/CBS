@@ -66,7 +66,7 @@
                                 <img src="/../assets_admin/img/placeholders/avatars/avatar2.jpg" alt="avatar">
                             </a>
                         </div>
-                        <div class="sidebar-user-name">{{Auth::user()->name}}</div>
+                        <div class="sidebar-user-name">{{Auth::user()->name}} {{Auth::user()->prenom}}</div>
                         <div class="sidebar-user-links">
                             <a href="page_ready_user_profile.html" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="gi gi-user"></i></a>
                             <a href="page_ready_inbox.html" data-toggle="tooltip" data-placement="bottom" title="Messages"><i class="gi gi-envelope"></i></a>
@@ -90,7 +90,7 @@
                                 </li>
                                 -->
                         <li>
-                            <a href="javascript:void(0)" class="themed-background-dark-night themed-border-night" data-theme="{{url('/assets_admin/css/themes/night.css')}}" data-toggle="tooltip" title="Night"></a>
+                            <a href="javascript:void(0)" class="themed-background-dark-night themed-border-night" data-theme="/../../assets_admin/css/themes/night.css" data-toggle="tooltip" title="Night"></a>
                         </li>
                         <!-- <li>
                             <a href="javascript:void(0)" class="themed-background-dark-amethyst themed-border-amethyst"
@@ -128,7 +128,7 @@
                                 title="Fire"></a>
                         </li> -->
                         <li>
-                            <a href="javascript:void(0)" class="themed-background-dark-coral themed-border-coral" data-theme="css/themes/coral.css" data-toggle="tooltip" title="Coral"></a>
+                            <a href="javascript:void(0)" class="themed-background-dark-coral themed-border-coral" data-theme="/../../assets_admin/css/themes/coral.css" data-toggle="tooltip" title="Coral"></a>
                         </li>
                         <!-- <li>
                             <a href="javascript:void(0)" class="themed-background-dark-lake themed-border-lake"
@@ -157,9 +157,9 @@
 
                     <!-- Sidebar Navigation -->
                     <ul class="sidebar-nav">
-                        <!-- <li>
-                            <a href="index.html" class=""><i class="gi gi-stopwatch sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Dashboard</span></a>
-                        </li> -->
+                        <li class="">
+                            <a href="{{route('home.admin')}}" class="{{ Request::route()->named('home.admin') ? 'active' : '' }}"><i class="gi gi-stopwatch sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Dashboard</span></a>
+                        </li>
                         <!-- <li>
                             <a href="index2.html"><i class="gi gi-leaf sidebar-nav-icon"></i><span
                                     class="sidebar-nav-mini-hide">Dashboard 2</span></a>
@@ -268,7 +268,20 @@
                                 </li> -->
                             </ul>
                         </li>
-
+                        <li>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('admin.formation.ajouter') || Request::route()->named('admin.formation.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Formation</span></a>
+                            <ul>
+                                <li>
+                                    <a class="{{ Request::route()->named('admin.formation.ajouter') ? 'active' : '' }}" href="{{route('admin.formation.ajouter')}}">Ajouter</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('admin.formation.consulter') ? 'active' : '' }}" href="{{route('admin.formation.consulter')}}">Consulter</a>
+                                </li>
+                                <!-- <li>
+                                    <a href="page_tables_datatables.html">Recap commande</a>
+                                </li> -->
+                            </ul>
+                        </li>
                         <li>
                             <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_location.attente') || Request::route()->named('commande_location.commande_paiement_non_soumis') || Request::route()->named('commande_location.validation_paiement') || Request::route()->named('commande_location.commande_confirmees') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Commande location</span></a>
                             <ul>
@@ -395,10 +408,6 @@
                                 </li> -->
                             </ul>
                         </li>
-                        <li class="sidebar-header">
-                            <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
-                            <span class="sidebar-header-title">Autres config</span>
-                        </li>
                         <li>
                             <a href="#" class="sidebar-nav-menu {{ Request::route()->named('admin.bibliotheque.ajouter') || Request::route()->named('admin.bibliotheque.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Bibliothèque</span></a>
                             <ul>
@@ -407,6 +416,21 @@
                                 </li>
                                 <li>
                                     <a class="{{ Request::route()->named('admin.bibliotheque.consulter') ? 'active' : '' }}" href="{{route('admin.bibliotheque.consulter')}}">Consulter doc.</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-header">
+                            <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
+                            <span class="sidebar-header-title">Autres config</span>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('utilisateurs.create') || Request::route()->named('utilisateurs.show') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Utilisateurs</span></a>
+                            <ul>
+                                <li>
+                                    <a class="{{ Request::route()->named('utilisateurs.create') ? 'active' : '' }}" href="{{route('utilisateurs.create')}}">Ajouter</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('utilisateurs.show') ? 'active' : '' }}" href="{{route('utilisateurs.show')}}">Consulter</a>
                                 </li>
                             </ul>
                         </li>

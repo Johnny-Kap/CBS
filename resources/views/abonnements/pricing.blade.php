@@ -23,7 +23,7 @@
                             <h6>{{$item->intitule}}</h6>
                         </div>
                         <h4>{{$item->montant}} FCFA</h4>
-                        <span>Par an</span>
+                        <span>Par mois</span>
                     </div>
                     <div class="price-details">
                         <ul>

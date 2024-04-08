@@ -16,7 +16,25 @@
     <script src="/../../assets_admin/js/pages/index.js"></script>
     <script src="/../../assets_admin/js/helpers/ckeditor/ckeditor.js"></script>
     <script>
-$(function() {
-    Index.init();
-});
+        $(function() {
+            Index.init();
+        });
+    </script>
+    <script src="/../../assets_admin/js/pages/tablesGeneral.js"></script>
+    <script>
+        $(function() {
+            TablesGeneral.init();
+        });
+    </script>
+    <script src="/../../assets_admin/js/pages/tablesDatatables.js"></script>
+    <script>
+        $(function() {
+            TablesDatatables.init();
+        });
+    </script>
+    <script src="/../../assets_admin/js/pages/formsValidation.js"></script>
+    <script>
+        $(function() {
+            FormsValidation.init();
+        });
     </script>

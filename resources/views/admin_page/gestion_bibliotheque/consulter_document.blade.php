@@ -55,7 +55,7 @@
                                     'table-hover'       - rows highlighted on mouse hover
                                     'table-vcenter'     - middle align content vertically
                                 -->
-            <table id="general-table" class="table table-striped table-vcenter">
+            <table id="general-table" class="table table-striped table-vcenter table-condensed table-bordered">
                 <thead>
                     <tr>
                         <th>Titre</th>
@@ -71,7 +71,7 @@
                     @foreach($bibliotheque_show as $item)
                     <tr>
                         <td>{{$item->titre}}</td>
-                        <td>{!! html_entity_decode( str_limit($item->description, 50)) !!}</td>
+                        <td><a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Description" onclick="$('#pages_desc_{{$item->id}}').modal('show');">{!! html_entity_decode( str_limit($item->description, 50)) !!}</a></td>
                         <td>{{$item->pdf}}</td>
                         <td>{{$item->users->name}}</td>
                         <td><a href="javascript:void(0)" class="label label-primary">{{$item->created_at->format('d/m/Y')}}</a></td>
@@ -87,6 +87,29 @@
                             </div>
                         </td>
                     </tr>
+
+                    <div class="modal fade" id="pages_desc_{{$item->id}}" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="form-header text-start mb-0">
+                                        <h4 class="mb-0 text-dark fw-bold">La description du document {{$item->titre}}</h4>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="available-for-ride">
+                                                <p>
+                                                    {!! html_entity_decode($item->description) !!}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
                     <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
@@ -227,7 +250,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="6">
+                        <td colspan="7">
                             <div class="btn-group btn-group-sm pull-right">
                                 <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
                                 <div class="btn-group btn-group-sm dropup">

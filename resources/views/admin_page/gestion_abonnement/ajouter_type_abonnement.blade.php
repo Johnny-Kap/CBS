@@ -33,7 +33,7 @@
                 <form action="{{route('type_abonnement.add')}}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
                     @csrf
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-text-input">Intitule de l'abonnement</label>
+                        <label class="col-md-3 control-label" for="example-text-input">Intitule de du type d'abonnement</label>
                         <div class="col-md-9">
                             <input type="text" id="example-text-input" name="intitule" class="form-control" required placeholder="Entrer un intitule de l'abonnement">
                         </div>
