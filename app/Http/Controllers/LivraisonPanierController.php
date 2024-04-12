@@ -188,6 +188,7 @@ class LivraisonPanierController extends Controller
             $affected = LivraisonPanier::where('id', $request->commande_id)
                 ->update([
                     'image' => $path,
+                    'mode_paiement_id' => $request->mode_paiement,
                 ]);
 
             return back()->with('success', 'Preuve de paiement soumis avec succès! Vous serez contacté après validation du paiement.');

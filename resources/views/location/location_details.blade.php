@@ -306,7 +306,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="review-sec listing-feature">
+                <!-- <div class="review-sec listing-feature">
                     <div class="review-header">
                         <h4>Car Features</h4>
                     </div>
@@ -364,7 +364,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="review-sec extra-service mb-0">
                     <div class="review-header">

@@ -17,7 +17,7 @@
     <!-- END Table Styles Header -->
 
     <!-- Table Styles Block -->
-    <div class="block">
+    <div class="block full">
         <!-- Table Styles Title -->
         <div class="block-title">
             <h2><strong>Table</strong> Styles</h2>
@@ -26,24 +26,6 @@
 
         <!-- Table Styles Content -->
         <!-- Changing classes functionality initialized in js/pages/tablesGeneral.js -->
-        <div class="table-options clearfix">
-            <div class="btn-group btn-group-sm pull-right">
-                <a href="javascript:void(0)" class="btn btn-primary active" id="style-striped" data-toggle="tooltip" title=".table-striped">Striped</a>
-                <a href="javascript:void(0)" class="btn btn-primary" id="style-condensed" data-toggle="tooltip" title=".table-condensed">Condensed</a>
-                <a href="javascript:void(0)" class="btn btn-primary" id="style-hover" data-toggle="tooltip" title=".table-hover">Hover</a>
-            </div>
-            <div class="btn-group btn-group-sm pull-left" data-toggle="buttons">
-                <label id="style-default" class="btn btn-primary active" data-toggle="tooltip" title=".table">
-                    <input type="radio" name="style-options"> Default
-                </label>
-                <label id="style-bordered" class="btn btn-primary" data-toggle="tooltip" title=".table-bordered">
-                    <input type="radio" name="style-options"> Bordered
-                </label>
-                <label id="style-borderless" class="btn btn-primary" data-toggle="tooltip" title=".table-borderless">
-                    <input type="radio" name="style-options"> Borderless
-                </label>
-            </div>
-        </div>
         <div class="table-responsive">
             <!--
                                 Available Table Classes:
@@ -55,7 +37,7 @@
                                     'table-hover'       - rows highlighted on mouse hover
                                     'table-vcenter'     - middle align content vertically
                                 -->
-            <table id="general-table" class="table table-striped table-vcenter table-condensed table-bordered">
+            <table id="example-datatable" class="table table-striped table-vcenter table-condensed table-bordered">
                 <thead>
                     <tr>
                         <th>Titre</th>
@@ -282,3 +264,11 @@
 </div>
 
 @endsection
+
+@push('scripts')
+
+<script>
+    let table = new DataTable('#example-datatable');
+</script>
+
+@endpush

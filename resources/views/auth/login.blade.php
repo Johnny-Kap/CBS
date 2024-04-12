@@ -24,7 +24,7 @@
                             name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                         @error('email')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <strong>Email ou mot de passe incorrect !</strong>
                         </span>
                         @enderror
                     </div>
@@ -38,7 +38,7 @@
 
                             @error('password')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong>Mot de passe incorrect !</strong>
                             </span>
                             @enderror
                         </div>

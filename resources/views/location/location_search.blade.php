@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row align-items-center text-center">
             <div class="col-md-12 col-12">
-                <h2 class="breadcrumb-title">Liste de véhicules en location</h2>
+                <h2 class="breadcrumb-title">Résultat de la recherche des locations</h2>
                 <!-- <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="product-search">
                         <div class="form-custom">
-                            <input type="text" class="form-control" name="search" id="member_search1">
+                            <input type="text" class="form-control typeahead" name="search" id="member_search1">
                             <button type="submit" class="btn btn-primary w-100"><i class="fa fa-search"></i> Rechercher</button>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                                 <span>Activer/Désactiver ces champs</span>
                                 <label for="chkYes">
                                     <input type="checkbox" id="enableInputCheckbox" />
-                                    
+
                                 </label>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
                             <div class="card-body-chat">
                                 <div class="filter-range">
                                     <span>Prix inférieur</span>
-                                    <input type="number" name="prix_inferieur" id="prix_inferieur" disabled class="input-range form-control">
+                                    <input type="text" name="prix_inferieur" id="prix_inferieur" disabled class="input-range form-control">
                                 </div>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                             <div class="card-body-chat">
                                 <div class="filter-range">
                                     <span>Prix supérieur</span>
-                                    <input type="number" id="prix_superieur" name="prix_superieur" disabled class="input-range form-control">
+                                    <input type="text" id="prix_superieur" name="prix_superieur" disabled class="input-range form-control">
                                 </div>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
             </div>
             <div class="col-xl-9 col-lg-8 col-sm-12 col-12">
                 <div class="row">¨
-                    @foreach($locationList as $item)
+                    @foreach($results as $item)
                     <div class="listview-car">
                         <div class="card">
                             <div class="blog-widget d-flex">
@@ -219,7 +219,7 @@
 
                 <div class="blog-pagination">
                     <nav>
-                        {{ $locationList->links() }}
+                        {{ $results->links() }}
                     </nav>
                 </div>
             </div>
@@ -248,6 +248,19 @@
 
         }
 
+    });
+</script>
+
+<script type="text/javascript">
+    $(function() {
+        $("input[name='chkPassPort']").click(function() {
+            if ($("#chkYes").is(":checked")) {
+                $("#txtPassportNumber").removeAttr("disabled");
+                $("#txtPassportNumber").focus();
+            } else {
+                $("#txtPassportNumber").attr("disabled", "disabled");
+            }
+        });
     });
 </script>
 

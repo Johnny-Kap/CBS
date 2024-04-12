@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CommandeFormation;
 use App\Models\Formation;
+use App\Models\ModePaiement;
 use Illuminate\Http\Request;
 
 class FormationController extends Controller
@@ -26,6 +28,32 @@ class FormationController extends Controller
             ->simplePaginate(10);
 
         return view('formation.formation_list', compact('formations_list'));
+    }
+
+    public function PasserCommande(Request $request){
+
+        $formations_place_count = CommandeFormation::where('formation_id', $request->formation_id)->sum('nb_place_commande');
+
+        $formation = Formation::find($request->formation_id);
+
+        $nb_place_restant = $formation->nb_place - $formations_place_count;
+
+        if($request->nb_place_commande < $nb_place_restant){
+
+            $montant_total = $formation->montant * $request->nb_place_commande;
+
+            $nb_place_commande = $request->nb_place_commande;
+
+            $type_cours = $request->moyen_diffusion;
+
+            $mode_paiements = ModePaiement::all();
+
+            return view('formation.formation_booking', compact('formation','montant_total','nb_place_commande','mode_paiements','type_cours'));
+
+        }else{
+
+            return back()->with('error','Nombre de place indisponible.');
+        }
     }
 
     /**
@@ -105,7 +133,11 @@ class FormationController extends Controller
 
         $formationShow = Formation::find($id);
 
-        return view('formation.formation_details', compact('formationShow'));
+        $formations_place_count = CommandeFormation::where('formation_id', $formationShow->id)->sum('nb_place_commande');
+
+        $nb_place_restant = $formationShow->nb_place - $formations_place_count;
+
+        return view('formation.formation_details', compact('formationShow','nb_place_restant'));
     }
 
     /**

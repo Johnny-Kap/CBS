@@ -29,6 +29,7 @@ return new class extends Migration
             $table->text('images')->nullable();
             $table->string('image_illustrative')->nullable();
             $table->foreignId('type_vehicule_id')->constrained();
+            $table->foreignId('marque_id')->constrained();
             $table->timestamps();
         });
     }

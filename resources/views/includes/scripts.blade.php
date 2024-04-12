@@ -27,3 +27,4 @@
 <script src="/../assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
 
 <script src="/../assets/plugins/slick/slick.js"></script>
+

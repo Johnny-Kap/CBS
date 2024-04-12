@@ -164,6 +164,20 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="booking-info pay-amount">
+                                                                            <h6>Choisir le mode de paiement :</h6>
+                                                                            <div class="">
+                                                                                <select name="mode_paiement" class="form-control" id="">
+                                                                                    @foreach($mode_paiement as $item)
+                                                                                        <option value="{{$item->id}}">{{$item->intitule}}</option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="submit" class="btn btn-primary">Envoyer <i class="fa-solid fa-arrow-right"></i></button>

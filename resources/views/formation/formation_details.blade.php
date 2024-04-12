@@ -12,10 +12,10 @@
                     <a href="javascript:void(0)"><span> <i class="fa-solid fa-usd"></i> Coût : {{$formationShow->montant}} FCFA </span></a>
                 </div>
             </li>
-            <li class="date-icon"><i class="fa-solid fa-calendar-days"></i> Date : {{$formationShow->date_formation}}</li>
+            <li class="date-icon"><i class="fa-solid fa-calendar-days"></i> Date de formation : {{$formationShow->date_formation}}</li>
             <li class="date-icon"><i class="fa-solid fa-clock"></i> Heure début : {{$formationShow->heure_debut}}</li>
             <li class="date-icon"><i class="fa-solid fa-clock"></i> Heure fin : {{$formationShow->heure_fin}}</li>
-            <li class="date-icon"><i class="fa-solid fa-universal-access"></i> Nb de place : {{$formationShow->nb_place}}</li>
+            <li class="date-icon"><i class="fa-solid fa-universal-access"></i> Nombre de place : {{$nb_place_restant}}</li>
         </ul>
     </div>
 </div>
@@ -37,8 +37,7 @@
                 <div class="col-lg-8">
                     <div class="tag-list">
                         <ul class="tags">
-                            <li>Nom(s) formateur : {{$formationShow->nom_formateur}} </li>
-                            <li>Prénom(s) formateur : {{$formationShow->prenom_formateur}} </li>
+                            <li>Nom(s) et Prénom(s) formateur : {{$formationShow->nom_formateur}} {{$formationShow->prenom_formateur}} </li>
                             <!-- <li>Make </li>
                             <li>Transmission </li> -->
                         </ul>
@@ -54,19 +53,26 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="form-header text-start mb-0">
-                    <h4 class="mb-0 text-dark fw-bold">Choisir le type de cours :</h4>
+                    <h4 class="mb-0 text-dark fw-bold">Confirmer votre commande</h4>
                 </div>
             </div>
-            <form action="{{route('admin.formation.masked')}}" method="post">
+            <form action="{{route('passer.commande.formation')}}" method="get">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
+                        <label for="" class="">Choisir le type de cours :</label>
                             <div class="available-for-ride">
                                 <select name="moyen_diffusion" class="form-control" id="">
                                     <option value="presentiel">Présentiel</option>
                                     <option value="ligne">En ligne</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                        <label for="" class="">Entrer le nombre de place :</label>
+                            <div class="available-for-ride">  
+                                <input type="number" class="form-control" name="nb_place_commande" id="">
                                 <input type="hidden" name="formation_id" value="{{$formationShow->id}}" />
                             </div>
                         </div>

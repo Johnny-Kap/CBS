@@ -13,3 +13,4 @@
     <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
     <link rel="stylesheet" href="/../../assets_admin/css/themes.css">
     <!-- END Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />

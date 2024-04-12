@@ -34,36 +34,46 @@
                 <form action="{{route('vehicule.add')}}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
                     @csrf
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-text-input">Nom du véhicule</label>
+                        <label class="col-md-3 control-label" for="example-text-input">Nom du véhicule *</label>
                         <div class="col-md-9">
-                            <input type="text" id="example-text-input" name="intitule" class="form-control" placeholder="Entrer un nom">
+                            <input type="text" id="example-text-input" required name="intitule" class="form-control" placeholder="Entrer un nom">
                         </div>
                         @error('intitule')
                         <div class="text-sm text-red-600">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-text-input">Immatriculation</label>
+                        <label class="col-md-3 control-label" for="example-select">Marque du véhicule *</label>
                         <div class="col-md-9">
-                            <input type="text" id="example-text-input" name="immatriculation" class="form-control" placeholder="Entrer une immatriculation">
+                            <select id="example-select" name="marque_id" class="form-control" size="1">
+                                @foreach($marques as $item)
+                                <option value="{{$item->id}}">{{$item->intitule}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="example-text-input">Immatriculation *</label>
+                        <div class="col-md-9">
+                            <input type="text" id="example-text-input" required name="immatriculation" class="form-control" placeholder="Entrer une immatriculation">
                         </div>
                         @error('immatriculation')
                         <div class="text-sm text-red-600">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-text-input">Modele</label>
+                        <label class="col-md-3 control-label" for="example-text-input">Modele *</label>
                         <div class="col-md-9">
-                            <input type="text" id="example-text-input" name="modele" class="form-control" placeholder="Entrer un modele">
+                            <input type="text" id="example-text-input" required name="modele" class="form-control" placeholder="Entrer un modele">
                         </div>
                         @error('modele')
                         <div class="text-sm text-red-600">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-text-input">Couleur</label>
+                        <label class="col-md-3 control-label" for="example-text-input">Couleur *</label>
                         <div class="col-md-9">
-                            <input type="text" id="example-text-input" name="couleur" class="form-control" placeholder="Entrer une couleur">
+                            <input type="text" id="example-text-input" required name="couleur" class="form-control" placeholder="Entrer une couleur">
                         </div>
                         @error('couleur')
                         <div class="text-sm text-red-600">{{ $message }}</div>

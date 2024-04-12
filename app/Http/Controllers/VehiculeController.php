@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Marque;
 use App\Models\TypeVehicule;
 use App\Models\Vehicule;
 use Egulias\EmailValidator\Result\Reason\UnclosedComment;
@@ -32,7 +33,9 @@ class VehiculeController extends Controller
 
         $type_vehicule = TypeVehicule::all();
 
-        return view('admin_page.gestion_vehicule.ajouter_vehicule', compact('type_vehicule'));
+        $marques = Marque::all();
+
+        return view('admin_page.gestion_vehicule.ajouter_vehicule', compact('type_vehicule','marques'));
     }
 
     /**
@@ -83,6 +86,7 @@ class VehiculeController extends Controller
 
         $vehicule = Vehicule::create([
             'intitule' => $request->intitule,
+            'marque_id' => $request->marque_id,
             'numero_immatriculation' => $request->immatriculation,
             'modele' => $request->modele,
             'couleur' => $request->couleur,

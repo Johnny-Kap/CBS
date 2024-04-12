@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('commande_formations', function (Blueprint $table) {
             $table->id();
             $table->string('numero_commande')->unique()->nullable();
-            $table->double('montant');
+            $table->double('montant_total');
+            $table->integer('nb_place_commande');
             $table->string('etat_paiement');
             $table->string('etat_commande');
             $table->string('photo')->nullable();

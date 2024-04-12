@@ -27,14 +27,11 @@
         });
     </script>
     <script src="/../../assets_admin/js/pages/tablesDatatables.js"></script>
-    <script>
-        $(function() {
-            TablesDatatables.init();
-        });
-    </script>
     <script src="/../../assets_admin/js/pages/formsValidation.js"></script>
     <script>
         $(function() {
             FormsValidation.init();
         });
     </script>
+
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>

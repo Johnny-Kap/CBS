@@ -219,6 +219,33 @@
                             <span class="sidebar-header-title">Panel de controle</span>
                         </li>
                         <li>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('type_vehicule.ajouter') || Request::route()->named('type_vehicule.consulter') || Request::route()->named('marque.ajouter') || Request::route()->named('marque.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Catégorie véhicule</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#" class="sidebar-nav-submenu {{ Request::route()->named('type_vehicule.ajouter') || Request::route()->named('type_vehicule.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator"></i>Type de véhicule</a>
+                                    <ul>
+                                        <li>
+                                            <a class="{{ Request::route()->named('type_vehicule.ajouter') ? 'active' : '' }}" href="{{route('type_vehicule.ajouter')}}">Ajouter</a>
+                                        </li>
+                                        <li>
+                                            <a class="{{ Request::route()->named('type_vehicule.consulter') ? 'active' : '' }}" href="{{route('type_vehicule.consulter')}}">Consulter</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="sidebar-nav-submenu {{ Request::route()->named('marque.ajouter') || Request::route()->named('marque.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator"></i>Marque véhicule</a>
+                                    <ul>
+                                        <li>
+                                            <a href="{{route('marque.ajouter')}}">Ajouter</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('marque.consulter')}}">Consulter</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#" class="sidebar-nav-menu {{ Request::route()->named('vehicule.ajouter') || Request::route()->named('vehicule.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Véhicules</span></a>
                             <ul>
                                 <li>
@@ -226,17 +253,6 @@
                                 </li>
                                 <li>
                                     <a class="{{ Request::route()->named('vehicule.consulter') ? 'active' : '' }}" href="{{route('vehicule.consulter')}}">Consulter</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('type_vehicule.ajouter') || Request::route()->named('type_vehicule.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Type de vehicule</span></a>
-                            <ul>
-                                <li>
-                                    <a class="{{ Request::route()->named('type_vehicule.ajouter') ? 'active' : '' }}" href="{{route('type_vehicule.ajouter')}}">Ajouter</a>
-                                </li>
-                                <li>
-                                    <a class="{{ Request::route()->named('type_vehicule.consulter') ? 'active' : '' }}" href="{{route('type_vehicule.consulter')}}">Consulter</a>
                                 </li>
                             </ul>
                         </li>
@@ -391,6 +407,9 @@
                         <li>
                             <a href="#" class="sidebar-nav-menu {{ Request::route()->named('abonnement.attente') || Request::route()->named('abonnement.confirmes') || Request::route()->named('abonnement.attente.paiement') || Request::route()->named('abonnement.expires') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Sous. Abonnements</span></a>
                             <ul>
+                                <li>
+                                    <a class="{{ Request::route()->named('abonnement.formulaire') ? 'active' : '' }}" href="{{route('abonnement.formulaire')}}">Créer un sous. abonnement</a>
+                                </li>
                                 <li>
                                     <a class="{{ Request::route()->named('abonnement.attente.paiement') ? 'active' : '' }}" href="{{route('abonnement.attente.paiement')}}">Paiement non soumis</a>
                                 </li>

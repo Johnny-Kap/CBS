@@ -35,6 +35,9 @@ Route::get('/location-detail/{id}/{name}', [App\Http\Controllers\LocationVehicul
 Route::get('/paiement-location', [App\Http\Controllers\LocationVehiculeController::class, 'verifierDispo'])->name('verifier.location')->middleware('auth');
 Route::get('/comande/location/{location_id}/{date_heure_depart}/{date_heure_arrivee}/{total_tarif}/{diff}', [App\Http\Controllers\CommandeLocationController::class, 'create'])->middleware('auth')->name('location.paiement');
 Route::get('/successfully-commande', [App\Http\Controllers\CommandeLocationController::class, 'success'])->name('success');
+Route::get('/location_list/action', [App\Http\Controllers\LocationVehiculeController::class, 'action'])->name('location_list.action');
+Route::get('/location-list/filter', [App\Http\Controllers\LocationVehiculeController::class, 'filter'])->name('location.filter');
+Route::get('/location-list/search', [App\Http\Controllers\LocationVehiculeController::class, 'search'])->name('location.search');
 
 // Mon profil utilisateur
 Route::get('/myprofile', [App\Http\Controllers\HomeController::class, 'myprofile'])->name('myprofile')->middleware('auth');
@@ -88,7 +91,8 @@ Route::get('/livraison-panier/successfully-commande/livraison', [App\Http\Contro
 Route::get('/formation-list', [App\Http\Controllers\FormationController::class, 'list'])->name('formation.list');
 Route::get('/formation-detail/{id}/{name}', [App\Http\Controllers\FormationController::class, 'show'])->name('formation.details');
 Route::get('/formation-location', [App\Http\Controllers\FormationController::class, 'PasserCommande'])->name('passer.commande.formation')->middleware('auth');
-Route::get('/successfully-commande-formation', [App\Http\Controllers\CommandeLocationController::class, 'success'])->name('success.formation');
+Route::post('/formation-location/commander', [App\Http\Controllers\CommandeFormationController::class, 'create'])->name('commande.formation.add')->middleware('auth');
+Route::get('/successfully-commande-formation', [App\Http\Controllers\CommandeFormationController::class, 'success'])->name('success.formation');
 
 
 
@@ -106,6 +110,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/type_vehicule/ajouter', [App\Http\Controllers\TypeVehiculeController::class, 'create'])->name('type_vehicule.ajouter');
     Route::post('/admin/type_vehicule/add', [App\Http\Controllers\TypeVehiculeController::class, 'store'])->name('type_vehicule.add');
     Route::post('/admin/type_vehicule/edit', [App\Http\Controllers\TypeVehiculeController::class, 'edit'])->name('type_vehicule.edit');
+
+    // Gestion des marques de véhicule
+    Route::get('/admin/marque/consulter', [App\Http\Controllers\MarqueController::class, 'index'])->name('marque.consulter');
+    Route::get('/admin/marque/ajouter', [App\Http\Controllers\MarqueController::class, 'create'])->name('marque.ajouter');
+    Route::post('/admin/marque/add', [App\Http\Controllers\MarqueController::class, 'store'])->name('marque.add');
+    Route::post('/admin/marque/edit', [App\Http\Controllers\MarqueController::class, 'edit'])->name('marque.edit');
 
     //Gestion des vehicules
     Route::get('/admin/vehicule/consulter', [App\Http\Controllers\VehiculeController::class, 'index'])->name('vehicule.consulter');
@@ -155,6 +165,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/souscrire-abonnement/confirmes', [App\Http\Controllers\AbonnementController::class, 'confirmes'])->name('abonnement.confirmes');
     Route::post('/admin/souscrire-abonnement/paiement/validee', [App\Http\Controllers\AbonnementController::class, 'confirmer_souscription'])->name('abonnement.paiement.valide');
     Route::get('/admin/souscrire-abonnement/expires', [App\Http\Controllers\AbonnementController::class, 'expires'])->name('abonnement.expires');
+    Route::get('/admin/souscrire-abonnement/new', [App\Http\Controllers\SouscrireAbonnementController::class, 'souscrire_formulaire'])->name('abonnement.formulaire');
+    Route::post('/admin/souscrire-abonnement/new/add', [App\Http\Controllers\SouscrireAbonnementController::class, 'souscrire_new'])->name('abonnement.souscrire.new');
 
     // Gestion des commande de maintenance
     Route::get('/admin/commande_maintenance/attente', [App\Http\Controllers\CommandeMaintenanceAutomobileController::class, 'attente'])->name('commande_maintenance.attente');

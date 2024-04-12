@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\CommandeLocation;
 use App\Models\Compte;
 use App\Models\LocationVehicule;
+use App\Models\Marque;
 use App\Models\ModePaiement;
 use App\Models\SouscrireAbonnement;
+use App\Models\TypeVehicule;
 use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Database\Query\Builder;
 
 class LocationVehiculeController extends Controller
 {
@@ -21,7 +24,133 @@ class LocationVehiculeController extends Controller
     {
         $locationList = LocationVehicule::where('masked', 'no')->simplePaginate(10);
 
-        return view('location.location_list', compact('locationList'));
+        $type_vehicules = TypeVehicule::all();
+
+        $marques = Marque::all();
+
+        return view('location.location_list', compact('locationList', 'type_vehicules', 'marques'));
+    }
+
+    public function filter(Request $request)
+    {
+
+        if ($request->has('marque') == true && $request->has('categorie') == false && $request->has('prix_inferieur') == false && $request->has('prix_superieur') == false) {
+
+            $vehicules = Vehicule::where('marque_id', $request->marque)->pluck('id');
+
+            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->simplePaginate(15); 
+
+            $type_vehicules = TypeVehicule::all();
+
+            $marques = Marque::all();
+
+            return view('location.location_filter', compact('results', 'type_vehicules', 'marques'));
+
+        } elseif ($request->has('marque') == false && $request->has('categorie') == true && $request->has('prix_inferieur') == false && $request->has('prix_superieur') == false) {
+
+            $vehicules = Vehicule::where('type_vehicule_id', $request->categorie)->pluck('id');
+
+            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->simplePaginate(15); 
+
+            $type_vehicules = TypeVehicule::all();
+
+            $marques = Marque::all();
+
+            return view('location.location_filter', compact('results', 'type_vehicules', 'marques'));
+
+        } elseif ($request->has('marque') == false && $request->has('categorie') == false && $request->has('prix_inferieur') == true && $request->has('prix_superieur') == true) {
+
+            $results = LocationVehicule::whereBetween('tarif', [$request->prix_inferieur, $request->prix_superieur])->simplePaginate(15);
+
+            $type_vehicules = TypeVehicule::all();
+
+            $marques = Marque::all();
+
+            return view('location.location_filter', compact('results', 'type_vehicules', 'marques'));
+
+        }elseif($request->has('marque') == true && $request->has('categorie') == true && $request->has('prix_inferieur') == false && $request->has('prix_superieur') == false){
+
+            $vehicules = Vehicule::where('type_vehicule_id', $request->categorie)->where('marque_id', $request->marque)->pluck('id');
+
+            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->simplePaginate(15); 
+
+            $type_vehicules = TypeVehicule::all();
+
+            $marques = Marque::all();
+
+            return view('location.location_filter', compact('results', 'type_vehicules', 'marques'));
+
+        }elseif($request->has('marque') == true && $request->has('categorie') == false && $request->has('prix_inferieur') == true && $request->has('prix_superieur') == true){
+
+            $vehicules = Vehicule::where('marque_id', $request->marque)->pluck('id');
+
+            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->whereBetween('tarif', [$request->prix_inferieur, $request->prix_superieur])->simplePaginate(15); 
+
+            $type_vehicules = TypeVehicule::all();
+
+            $marques = Marque::all();
+
+            return view('location.location_filter', compact('results', 'type_vehicules', 'marques'));
+
+        }elseif($request->has('marque') == false && $request->has('categorie') == true && $request->has('prix_inferieur') == true && $request->has('prix_superieur') == true){
+
+            $vehicules = Vehicule::where('type_vehicule_id', $request->categorie)->pluck('id');
+
+            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->whereBetween('tarif', [$request->prix_inferieur, $request->prix_superieur])->simplePaginate(15); 
+
+            $type_vehicules = TypeVehicule::all();
+
+            $marques = Marque::all();
+
+            return view('location.location_filter', compact('results', 'type_vehicules', 'marques'));
+
+        }elseif($request->has('marque') == true && $request->has('categorie') == true && $request->has('prix_inferieur') == true && $request->has('prix_superieur') == true){
+            
+            $vehicules = Vehicule::where('type_vehicule_id', $request->categorie)->where('marque_id', $request->marque)->pluck('id');
+
+            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->whereBetween('tarif', [$request->prix_inferieur, $request->prix_superieur])->simplePaginate(15); 
+
+            $type_vehicules = TypeVehicule::all();
+
+            $marques = Marque::all();
+
+            return view('location.location_filter', compact('results', 'type_vehicules', 'marques'));
+        }else{
+
+            return back()->with('error','Veuillez renseigner un des champs pour appliquer le filtre.');
+        }
+    }
+
+    public function search(Request $request){
+
+        if($request->search == null){
+
+            return back()->with('error','Veuillez renseigner le champs.');
+
+        }else{
+
+            $results = LocationVehicule::where('intitule', 'like', '%' . $request->search . '%')->simplePaginate(15); 
+
+            $type_vehicules = TypeVehicule::all();
+
+            $marques = Marque::all();
+
+            return view('location.location_search', compact('results', 'type_vehicules', 'marques'));
+
+        }
+    }
+
+    function action(Request $request)
+    {
+        $data = $request->all();
+
+        $query = $data['query'];
+
+        $filter_data = LocationVehicule::select('intitule')
+            ->where('intitule', 'LIKE', '%' . $query . '%')
+            ->get();
+
+        return response()->json($filter_data);
     }
 
 

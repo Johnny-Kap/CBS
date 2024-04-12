@@ -31,24 +31,7 @@
 
         <!-- Table Styles Content -->
         <!-- Changing classes functionality initialized in js/pages/tablesGeneral.js -->
-        <div class="table-options clearfix">
-            <div class="btn-group btn-group-sm pull-right">
-                <a href="javascript:void(0)" class="btn btn-primary active" id="style-striped" data-toggle="tooltip" title=".table-striped">Striped</a>
-                <a href="javascript:void(0)" class="btn btn-primary" id="style-condensed" data-toggle="tooltip" title=".table-condensed">Condensed</a>
-                <a href="javascript:void(0)" class="btn btn-primary" id="style-hover" data-toggle="tooltip" title=".table-hover">Hover</a>
-            </div>
-            <div class="btn-group btn-group-sm pull-left" data-toggle="buttons">
-                <label id="style-default" class="btn btn-primary active" data-toggle="tooltip" title=".table">
-                    <input type="radio" name="style-options"> Default
-                </label>
-                <label id="style-bordered" class="btn btn-primary" data-toggle="tooltip" title=".table-bordered">
-                    <input type="radio" name="style-options"> Bordered
-                </label>
-                <label id="style-borderless" class="btn btn-primary" data-toggle="tooltip" title=".table-borderless">
-                    <input type="radio" name="style-options"> Borderless
-                </label>
-            </div>
-        </div>
+        
         <div class="table-responsive">
             <!--
                                 Available Table Classes:
@@ -261,3 +244,10 @@
 </div>
 
 @endsection
+@push('scripts')
+
+<script>
+    let table = new DataTable('#general-table');
+</script>
+
+@endpush
