@@ -28,6 +28,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 Route::get('/propos', [App\Http\Controllers\HomeController::class, 'propos'])->name('propos');
 Route::get('/term-conditions', [App\Http\Controllers\HomeController::class, 'term_condition'])->name('term_condition');
+Route::get('/term-conditions/abonnement', [App\Http\Controllers\HomeController::class, 'term_condition_abonnement'])->name('term_condition.abonnement');
 
 // Gestion des locations
 Route::get('/location-list', [App\Http\Controllers\LocationVehiculeController::class, 'list'])->name('location.list');
@@ -46,9 +47,11 @@ Route::get('/myprofile/confirmation-paiement', [App\Http\Controllers\CommandeLoc
 Route::post('/myprofile/soumission-paiement', [App\Http\Controllers\CommandeLocationController::class, 'soumission_paiement'])->name('soumission_paiement')->middleware('auth');
 Route::post('/myprofile/soumission-paiement/achat_livraison', [App\Http\Controllers\LivraisonPanierController::class, 'soumission_paiement_achat_livraison'])->name('soumission_paiement.achat_livraison')->middleware('auth');
 Route::post('/myprofile/soumission-paiement/commande_maintenance', [App\Http\Controllers\CommandeMaintenanceAutomobileController::class, 'soumission_paiement_commande_maintenance'])->name('soumission_paiement.commande_maintenance')->middleware('auth');
+Route::post('/myprofile/soumission-paiement/expression-besoin-formation', [App\Http\Controllers\ExpressionBesoinFormationController::class, 'soumission_paiement_expression_besoin'])->name('soumission_paiement_expression_besoin')->middleware('auth');
 Route::get('/myprofile/confirmation-abonnement', [App\Http\Controllers\AbonnementController::class, 'confirmation_abonnement'])->name('myprofile.confirmation_abonnement')->middleware('auth');
 Route::post('/myprofile/abonnement/soumission-paiement', [App\Http\Controllers\AbonnementController::class, 'soumission_paiement'])->name('abonnement.soumission_paiement')->middleware('auth');
 Route::get('/myprofile/mes-abonnements', [App\Http\Controllers\SouscrireAbonnementController::class, 'index'])->name('myprofile.abonnements')->middleware('auth');
+Route::get('/myprofile/historique-commande', [App\Http\Controllers\HomeController::class, 'mon_historique_commande'])->name('myprofile.historique.commande')->middleware('auth');
 Route::post('/myprofile/parametres/photo-change', [App\Http\Controllers\HomeController::class, 'photoEdited'])->name('myprofile.parametres.photo.change')->middleware('auth');
 Route::post('/myprofile/parametres/update-profil', [App\Http\Controllers\HomeController::class, 'updateProfil'])->name('myprofile.parametres.update.profil')->middleware('auth');
 Route::post('/myprofile/parametres/update-password', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('myprofile.parametres.update.password')->middleware('auth');
@@ -90,9 +93,14 @@ Route::get('/livraison-panier/successfully-commande/livraison', [App\Http\Contro
 // Gestion des formations
 Route::get('/formation-list', [App\Http\Controllers\FormationController::class, 'list'])->name('formation.list');
 Route::get('/formation-detail/{id}/{name}', [App\Http\Controllers\FormationController::class, 'show'])->name('formation.details');
-Route::get('/formation-location', [App\Http\Controllers\FormationController::class, 'PasserCommande'])->name('passer.commande.formation')->middleware('auth');
-Route::post('/formation-location/commander', [App\Http\Controllers\CommandeFormationController::class, 'create'])->name('commande.formation.add')->middleware('auth');
+Route::get('/formation-detail-verfy', [App\Http\Controllers\FormationController::class, 'PasserCommande'])->name('passer.commande.formation')->middleware('auth');
+Route::post('/formation/commander', [App\Http\Controllers\CommandeFormationController::class, 'create'])->name('commande.formation.add')->middleware('auth');
 Route::get('/successfully-commande-formation', [App\Http\Controllers\CommandeFormationController::class, 'success'])->name('success.formation');
+
+// Gestion des expressions de besoin des formations
+Route::get('/expression-besoin-formation/commander', [App\Http\Controllers\ExpressionBesoinFormationController::class, 'create'])->name('besoin.formation.create')->middleware('auth');
+Route::post('/expression-besoin-formation/add', [App\Http\Controllers\ExpressionBesoinFormationController::class, 'store'])->name('besoin.formation.store')->middleware('auth');
+Route::get('/successfully-expression-besoin-formation', [App\Http\Controllers\ExpressionBesoinFormationController::class, 'success'])->name('success.besoin.formation');
 
 
 
@@ -220,5 +228,18 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/admin/formation/masked', [App\Http\Controllers\FormationController::class, 'masked'])->name('admin.formation.masked');
     Route::post('/admin/formation/demasked', [App\Http\Controllers\FormationController::class, 'demasked'])->name('admin.formation.demasked');
     Route::get('admin/formation/consulter', [App\Http\Controllers\FormationController::class, 'index'])->name('admin.formation.consulter');
+
+    // Gestion des commande de formation
+    Route::get('/admin/commande_formation/paiement/validation_attente', [App\Http\Controllers\CommandeFormationController::class, 'validation_paiement'])->name('commande_formation.validation_paiement');
+    Route::post('/admin/commande_formation/paiement/validee', [App\Http\Controllers\CommandeFormationController::class, 'paiement_valide'])->name('commande_formation.paiement.valide');
+    Route::get('/admin/commande_formation/commande-confirmees', [App\Http\Controllers\CommandeFormationController::class, 'commande_confirmees'])->name('commande_formation.commande_confirmees');
+
+    // Gestion des expressions de besoin de formation
+    Route::get('/admin/expression-besoin-formation/attente', [App\Http\Controllers\ExpressionBesoinFormationController::class, 'index'])->name('expression.besoin.attente');
+    Route::post('/admin/expression-besoin-formation/change/etat', [App\Http\Controllers\ExpressionBesoinFormationController::class, 'validation_commande'])->name('expression.besoin.validation.etat');
+    Route::get('/admin/expression-besoin-formation/paiement-non-soumis', [App\Http\Controllers\ExpressionBesoinFormationController::class, 'paiement_non_soumis'])->name('expression.besoin.commande_paiement_non_soumis');
+    Route::get('/admin/expression-besoin-formation/validation-paiement', [App\Http\Controllers\ExpressionBesoinFormationController::class, 'validation_paiement'])->name('expression.besoin.validation_paiement');
+    Route::post('/admin/expression-besoin-formation/paiement/validee', [App\Http\Controllers\ExpressionBesoinFormationController::class, 'paiement_valide'])->name('expression.besoin.paiement.valide');
+    Route::get('/admin/expression-besoin-formation/commande-confirmees', [App\Http\Controllers\ExpressionBesoinFormationController::class, 'commande_confirmees'])->name('expression.besoin.commande_confirmees');
 
 });

@@ -1,7 +1,7 @@
 @component('mail::message')
 <h2>Bonjour chèr(e) {{$commande_location->users->name}} {{$commande_location->users->prenom}},</h2>
 <p>Votre commande N°{{$commande_location->numero_commande}} a été enregistrée avec succès</p>
-<p>Cette comande est <b>En attente</b>. Vous recevrez un mail lors de la validation de la commande
+<p>Cette commande est <b>En attente</b>. Vous recevrez un mail lors de la validation de la commande
 par l'administrateur pour passer ensuite au paiement.</p>
 
 <p>Voici les détails de votre commande :</p>

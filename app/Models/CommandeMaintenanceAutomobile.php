@@ -12,4 +12,8 @@ class CommandeMaintenanceAutomobile extends Model
     public function users(){
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function mode_paiements(){
+        return $this->belongsTo(ModePaiement::class, 'mode_paiement_id', 'id');
+    }
 }

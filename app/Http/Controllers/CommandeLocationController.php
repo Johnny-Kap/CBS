@@ -8,6 +8,7 @@ use App\Mail\ValidationPaiementCommandeLocation;
 use App\Models\CommandeLocation;
 use App\Models\CommandeMaintenanceAutomobile;
 use App\Models\Compte;
+use App\Models\ExpressionBesoinFormation;
 use App\Models\LivraisonPanier;
 use App\Models\LocationVehicule;
 use App\Models\ModePaiement;
@@ -49,7 +50,6 @@ class CommandeLocationController extends Controller
             ->where('etat_commande', 'yes')
             ->where('photo', null)->simplePaginate(15);
 
-
         $achat_livraison = LivraisonPanier::where('user_id', Auth::user()->id)
             ->where('type_prestation', 'achat')
             ->where('etat_commande', 'yes')
@@ -59,7 +59,11 @@ class CommandeLocationController extends Controller
             ->where('etat_commande', 'yes')
             ->where('image', null)->simplePaginate(15);
 
-        return view('profile.confirmation_paiement', compact('commande', 'achat_livraison', 'commande_maintenance', 'mode_paiement'));
+        $expression_besoin_formation = ExpressionBesoinFormation::where('user_id', Auth::user()->id)
+            ->where('etat_commande', 'yes')
+            ->where('photo_paiement', null)->simplePaginate(15);
+
+        return view('profile.confirmation_paiement', compact('commande', 'achat_livraison', 'commande_maintenance', 'mode_paiement','expression_besoin_formation'));
     }
 
     public function success()

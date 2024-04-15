@@ -68,8 +68,8 @@
                         </div>
                         <div class="sidebar-user-name">{{Auth::user()->name}} {{Auth::user()->prenom}}</div>
                         <div class="sidebar-user-links">
-                            <a href="page_ready_user_profile.html" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="gi gi-user"></i></a>
-                            <a href="page_ready_inbox.html" data-toggle="tooltip" data-placement="bottom" title="Messages"><i class="gi gi-envelope"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="gi gi-user"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Messages"><i class="gi gi-envelope"></i></a>
                             <!-- Opens the user settings modal that can be found at the bottom of each page (page_footer.html in PHP version) -->
                             <a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Settings" onclick="$('#modal-user-settings').modal('show');"><i class="gi gi-cogwheel"></i></a>
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();    
@@ -80,80 +80,6 @@
                         </div>
                     </div>
                     <!-- END User Info -->
-
-                    <!-- Theme Colors -->
-                    <!-- Change Color Theme functionality can be found in js/app.js - templateOptions() -->
-                    <ul class="sidebar-section sidebar-themes clearfix sidebar-nav-mini-hide">
-                        <!-- You can also add the default color theme
-                                <li class="active">
-                                    <a href="javascript:void(0)" class="themed-background-dark-default themed-border-default" data-theme="default" data-toggle="tooltip" title="Default Blue"></a>
-                                </li>
-                                -->
-                        <li>
-                            <a href="javascript:void(0)" class="themed-background-dark-night themed-border-night" data-theme="/../../assets_admin/css/themes/night.css" data-toggle="tooltip" title="Night"></a>
-                        </li>
-                        <!-- <li>
-                            <a href="javascript:void(0)" class="themed-background-dark-amethyst themed-border-amethyst"
-                                data-theme="/../assets_admin/css/themes/amethyst.css" data-toggle="tooltip"
-                                title="Amethyst"></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" class="themed-background-dark-modern themed-border-modern"
-                                data-theme="/../assets_admin/css/themes/modern.css" data-toggle="tooltip"
-                                title="Modern"></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" class="themed-background-dark-autumn themed-border-autumn"
-                                data-theme="/../assets_admin/css/themes/autumn.css" data-toggle="tooltip"
-                                title="Autumn"></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" class="themed-background-dark-flatie themed-border-flatie"
-                                data-theme="/../assets_admin/css/themes/flatie.css" data-toggle="tooltip"
-                                title="Flatie"></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" class="themed-background-dark-spring themed-border-spring"
-                                data-theme="/../assets_admin/css/themes/spring.css" data-toggle="tooltip"
-                                title="Spring"></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" class="themed-background-dark-fancy themed-border-fancy"
-                                data-theme="/../assets_admin/css/themes/fancy.css" data-toggle="tooltip"
-                                title="Fancy"></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" class="themed-background-dark-fire themed-border-fire"
-                                data-theme="/../assets_admin/css/themes/fire.css" data-toggle="tooltip"
-                                title="Fire"></a>
-                        </li> -->
-                        <li>
-                            <a href="javascript:void(0)" class="themed-background-dark-coral themed-border-coral" data-theme="/../../assets_admin/css/themes/coral.css" data-toggle="tooltip" title="Coral"></a>
-                        </li>
-                        <!-- <li>
-                            <a href="javascript:void(0)" class="themed-background-dark-lake themed-border-lake"
-                                data-theme="css/themes/lake.css" data-toggle="tooltip" title="Lake"></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" class="themed-background-dark-forest themed-border-forest"
-                                data-theme="css/themes/forest.css" data-toggle="tooltip" title="Forest"></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)"
-                                class="themed-background-dark-waterlily themed-border-waterlily"
-                                data-theme="css/themes/waterlily.css" data-toggle="tooltip" title="Waterlily"></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" class="themed-background-dark-emerald themed-border-emerald"
-                                data-theme="css/themes/emerald.css" data-toggle="tooltip" title="Emerald"></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)"
-                                class="themed-background-dark-blackberry themed-border-blackberry"
-                                data-theme="css/themes/blackberry.css" data-toggle="tooltip" title="Blackberry"></a>
-                        </li> -->
-                    </ul>
-                    <!-- END Theme Colors -->
 
                     <!-- Sidebar Navigation -->
                     <ul class="sidebar-nav">
@@ -216,7 +142,7 @@
                         </li> -->
                         <li class="sidebar-header">
                             <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
-                            <span class="sidebar-header-title">Panel de controle</span>
+                            <span class="sidebar-header-title">Véhicules</span>
                         </li>
                         <li>
                             <a href="#" class="sidebar-nav-menu {{ Request::route()->named('type_vehicule.ajouter') || Request::route()->named('type_vehicule.consulter') || Request::route()->named('marque.ajouter') || Request::route()->named('marque.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Catégorie véhicule</span></a>
@@ -257,20 +183,6 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('mode_paiement.ajouter') || Request::route()->named('mode_paiement.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Mode de paiement</span></a>
-                            <ul>
-                                <li>
-                                    <a class="{{ Request::route()->named('mode_paiement.ajouter') ? 'active' : '' }}" href="{{route('mode_paiement.ajouter')}}">Ajouter mode de paiement</a>
-                                </li>
-                                <li>
-                                    <a class="{{ Request::route()->named('mode_paiement.consulter') ? 'active' : '' }}" href="{{route('mode_paiement.consulter')}}">Consulter mode de paiement</a>
-                                </li>
-                                <!-- <li>
-                                    <a href="page_icons_glyphicons_pro.html">Glyphicons Pro</a>
-                                </li> -->
-                            </ul>
-                        </li>
-                        <li>
                             <a href="#" class="sidebar-nav-menu {{ Request::route()->named('location.ajouter') || Request::route()->named('location.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Location</span></a>
                             <ul>
                                 <li>
@@ -284,6 +196,28 @@
                                 </li> -->
                             </ul>
                         </li>
+                        <li class="sidebar-header">
+                            <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
+                            <span class="sidebar-header-title">Moyen paiement </span>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('mode_paiement.ajouter') || Request::route()->named('mode_paiement.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Mode de paiement</span></a>
+                            <ul>
+                                <li>
+                                    <a class="{{ Request::route()->named('mode_paiement.ajouter') ? 'active' : '' }}" href="{{route('mode_paiement.ajouter')}}">Ajouter mode de paiement</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('mode_paiement.consulter') ? 'active' : '' }}" href="{{route('mode_paiement.consulter')}}">Consulter mode de paiement</a>
+                                </li>
+                                <!-- <li>
+                                    <a href="page_icons_glyphicons_pro.html">Glyphicons Pro</a>
+                                </li> -->
+                            </ul>
+                        </li>
+                        <li class="sidebar-header">
+                            <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
+                            <span class="sidebar-header-title">Formation </span>
+                        </li>
                         <li>
                             <a href="#" class="sidebar-nav-menu {{ Request::route()->named('admin.formation.ajouter') || Request::route()->named('admin.formation.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Formation</span></a>
                             <ul>
@@ -296,6 +230,38 @@
                                 <!-- <li>
                                     <a href="page_tables_datatables.html">Recap commande</a>
                                 </li> -->
+                            </ul>
+                        </li>
+                        <li class="sidebar-header">
+                            <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
+                            <span class="sidebar-header-title">Commandes </span>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_formation.validation_paiement') || Request::route()->named('commande_formation.commande_confirmees') || Request::route()->named('expression.besoin.attente') || Request::route()->named('expression.besoin.commande_paiement_non_soumis') || Request::route()->named('expression.besoin.validation_paiement') || Request::route()->named('expression.besoin.commande_confirmees') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Comm. formation</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#" class="sidebar-nav-submenu {{ Request::route()->named('expression.besoin.attente') || Request::route()->named('expression.besoin.commande_paiement_non_soumis') || Request::route()->named('expression.besoin.validation_paiement') || Request::route()->named('expression.besoin.commande_confirmees') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator"></i>Expression besoin forma.</a>
+                                    <ul>
+                                        <li>
+                                            <a class="{{ Request::route()->named('expression.besoin.attente') ? 'active' : '' }}" href="{{route('expression.besoin.attente')}}">En attente</a>
+                                        </li>
+                                        <li>
+                                            <a class="{{ Request::route()->named('expression.besoin.commande_paiement_non_soumis') ? 'active' : '' }}" href="{{route('expression.besoin.commande_paiement_non_soumis')}}">Paiement non soumis</a>
+                                        </li>
+                                        <li>
+                                            <a class="{{ Request::route()->named('expression.besoin.validation_paiement') ? 'active' : '' }}" href="{{route('expression.besoin.validation_paiement')}}">Validation paiement</a>
+                                        </li>
+                                        <li>
+                                            <a class="{{ Request::route()->named('expression.besoin.commande_confirmees') ? 'active' : '' }}" href="{{route('expression.besoin.commande_confirmees')}}">Confirmées</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('commande_formation.validation_paiement') ? 'active' : '' }}" href="{{route('commande_formation.validation_paiement')}}">Validation paiement</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('commande_formation.commande_confirmees') ? 'active' : '' }}" href="{{route('commande_formation.commande_confirmees')}}">Confirmées</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -331,6 +297,10 @@
                                     <a class="{{ Request::route()->named('commande_maintenance.commande_confirmees') ? 'active' : '' }}" href="{{route('commande_maintenance.commande_confirmees')}}">Confirmées</a>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="sidebar-header">
+                            <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
+                            <span class="sidebar-header-title">Autres services </span>
                         </li>
                         <li>
                             <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_reservation.attente') || Request::route()->named('commande_reservation.commande_validee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Réser. hôtel/Appart</span></a>
@@ -375,6 +345,10 @@
                                     </ul>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="sidebar-header">
+                            <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
+                            <span class="sidebar-header-title">Abonnement </span>
                         </li>
                         <li>
                             <a href="#" class="sidebar-nav-menu {{ Request::route()->named('type_abonnement.ajouter') || Request::route()->named('type_abonnement.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Type d'abonnement</span></a>
@@ -426,6 +400,10 @@
                                     <a href="page_icons_glyphicons_pro.html">Glyphicons Pro</a>
                                 </li> -->
                             </ul>
+                        </li>
+                        <li class="sidebar-header">
+                            <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
+                            <span class="sidebar-header-title">Bibliothèque </span>
                         </li>
                         <li>
                             <a href="#" class="sidebar-nav-menu {{ Request::route()->named('admin.bibliotheque.ajouter') || Request::route()->named('admin.bibliotheque.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Bibliothèque</span></a>

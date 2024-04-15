@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CommandeFormation;
+use App\Models\CommandeLocation;
+use App\Models\CommandeMaintenanceAutomobile;
+use App\Models\LivraisonPanier;
 use App\Models\LocationVehicule;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -66,6 +70,25 @@ class HomeController extends Controller
     public function term_condition()
     {
         return view('term_condition');
+    }
+
+    public function term_condition_abonnement(){
+
+        return view('term_condition_abonnement');
+    }
+
+    public function mon_historique_commande(){
+
+        $commande_location = CommandeLocation::where('user_id', Auth::user()->id)->simplePaginate(15);
+
+        $achat_livraison = LivraisonPanier::where('user_id', Auth::user()->id)->simplePaginate(15);
+
+        $commande_maintenance = CommandeMaintenanceAutomobile::where('user_id', Auth::user()->id)->simplePaginate(15);
+
+        $commande_formation = CommandeFormation::where('user_id', Auth::user()->id)->simplePaginate(15);
+
+        return view('profile.historique_commande', compact('commande_location','achat_livraison','commande_maintenance','commande_formation'));
+
     }
 
     public function photoEdited(Request $request)

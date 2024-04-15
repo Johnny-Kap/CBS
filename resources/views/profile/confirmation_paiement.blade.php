@@ -18,7 +18,7 @@
             <div class="col-lg-12">
                 <div class="card-body text-center">
                     <h5>Commande de locations de véhicule</h5><br>
-                    <h5>Veuillez effectuer vos paiments sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h5><br>
+                    <h5>Veuillez effectuer vos paiments en transferant de l'argent sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h5><br>
                     <div class="invoice-table-wrap">
                         <div class="row">
                             <div class="col-md-12">
@@ -42,7 +42,7 @@
                                                 <td>{{$item->numero_commande}}</td>
                                                 <td>{{$item->date_debut}}</td>
                                                 <td>{{$item->date_fin}}</td>
-                                                <td>{{$item->etat_paiement}}</td>
+                                                <td>@if($item->etat_paiement == 'no') <span class="badge bg-danger">Non payé</span> @else <span class="badge bg-success">Payé</span> @endif</td>
                                                 <td>{{$item->locations->intitule}}</td>
                                                 <td>{{$item->tarif}} FCFA</td>
                                                 <td>{{$item->mode_paiements->intitule}}</td>
@@ -63,9 +63,7 @@
                                                                         <div class="booking-info pay-amount">
                                                                             <h6>Téléverser la capture d'ecran de votre paiement ici !</h6>
                                                                             <div class="radio">
-                                                                                <label>
-                                                                                    <input type="file" name="file"> Téléverser ici
-                                                                                </label>
+                                                                                <input type="file" class="form-control" name="file">
                                                                                 <input type="hidden" value="{{$item->id}}" name="commande_id">
                                                                             </div>
                                                                         </div>
@@ -78,7 +76,7 @@
                                                                             <div class="">
                                                                                 <select name="mode_paiement" class="form-control" id="">
                                                                                     @foreach($mode_paiement as $item)
-                                                                                        <option value="{{$item->id}}">{{$item->intitule}}</option>
+                                                                                    <option value="{{$item->id}}">{{$item->intitule}}</option>
                                                                                     @endforeach
                                                                                 </select>
                                                                             </div>
@@ -109,7 +107,7 @@
             <div class="col-lg-12">
                 <div class="card-body text-center">
                     <h5>Achat et livraison de panier</h5><br>
-                    <h5>Veuillez effectuer vos paiments sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h5><br>
+                    <h5>Veuillez effectuer vos paiments en transferant de l'argent sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h5><br>
                     <div class="invoice-table-wrap">
                         <div class="row">
                             <div class="col-md-12">
@@ -136,7 +134,7 @@
                                                 <td>{{$item->date_livraison}}</td>
                                                 <td>{{$item->adresse_recuperation}}</td>
                                                 <td>{{$item->adresse_livraison}}</td>
-                                                <td>@if($item->etat_paiement == 'no') Non payé @else Payé @endif</td>
+                                                <td>@if($item->etat_paiement == 'no') <span class="badge bg-danger">Non payé</span> @else <span class="badge bg-success">Payé</span> @endif</td>
                                                 <td>{{$item->montant}} FCFA</td>
                                                 <td>{{$item->mode_paiements->intitule}}</td>
                                                 <td><button class="btn btn-primary check-available w-100" type="button" data-bs-toggle="modal" data-bs-target="#pages_liv_{{$item->id}}">
@@ -156,9 +154,7 @@
                                                                         <div class="booking-info pay-amount">
                                                                             <h6>Téléverser la capture d'ecran de votre paiement ici !</h6>
                                                                             <div class="radio">
-                                                                                <label>
-                                                                                    <input type="file" name="file"> Téléverser ici
-                                                                                </label>
+                                                                                <input type="file" class="form-control" name="file">
                                                                                 <input type="hidden" value="{{$item->id}}" name="commande_id">
                                                                             </div>
                                                                         </div>
@@ -171,7 +167,7 @@
                                                                             <div class="">
                                                                                 <select name="mode_paiement" class="form-control" id="">
                                                                                     @foreach($mode_paiement as $item)
-                                                                                        <option value="{{$item->id}}">{{$item->intitule}}</option>
+                                                                                    <option value="{{$item->id}}">{{$item->intitule}}</option>
                                                                                     @endforeach
                                                                                 </select>
                                                                             </div>
@@ -202,7 +198,7 @@
             <div class="col-lg-12">
                 <div class="card-body text-center">
                     <h5>Maintenance automobile</h5><br>
-                    <h5>Veuillez effectuer vos paiments sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h5><br>
+                    <h5>Veuillez effectuer vos paiments en transferant de l'argent sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h5><br>
                     <div class="invoice-table-wrap">
                         <div class="row">
                             <div class="col-md-12">
@@ -230,7 +226,7 @@
                                                 <td>{{$item->date_maintenance}}</td>
                                                 <td>{{$item->situation_vehicule}}</td>
                                                 <td>{{$item->marque_vehicule}}</td>
-                                                <td>@if($item->etat_paiement == 'yes') Payé @else Non payé @endif</td>
+                                                <td>@if($item->etat_paiement == 'no') <span class="badge bg-danger">Non payé</span> @else <span class="badge bg-success">Payé</span> @endif</td>
                                                 <td><b>{{$item->montant}} FCFA</b></td>
                                                 <td><button class="btn btn-primary check-available w-100" type="button" data-bs-toggle="modal" data-bs-target="#pages_main_{{$item->id}}">
                                                         Télécharger image ici <i class="fa fa-upload"></i>
@@ -243,15 +239,13 @@
                                                         <form action="{{route('soumission_paiement.commande_maintenance')}}" enctype="multipart/form-data" method="post">
                                                             @csrf
                                                             <div class="modal-body">
-                                                            <h5>Maintenance automobile - Paiement de la commande : {{$item->numero_commande}}</h5>
+                                                                <h5>Maintenance automobile - Paiement de la commande : {{$item->numero_commande}}</h5>
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="booking-info pay-amount">
                                                                             <h6>Téléverser la capture d'ecran de votre paiement ici !</h6>
                                                                             <div class="radio">
-                                                                                <label>
-                                                                                    <input type="file" name="file"> Téléverser ici
-                                                                                </label>
+                                                                                <input type="file" class="form-control" name="file">
                                                                                 <input type="hidden" value="{{$item->id}}" name="commande_id">
                                                                             </div>
                                                                         </div>
@@ -264,7 +258,98 @@
                                                                             <div class="">
                                                                                 <select name="mode_paiement" class="form-control" id="">
                                                                                     @foreach($mode_paiement as $item)
-                                                                                        <option value="{{$item->id}}">{{$item->intitule}}</option>
+                                                                                    <option value="{{$item->id}}">{{$item->intitule}}</option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary">Envoyer <i class="fa-solid fa-arrow-right"></i></button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card-body text-center">
+                    <h5>Commande d'expression du besoin de formation</h5><br>
+                    <h5>Veuillez effectuer vos paiments en transferant de l'argent sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h5><br>
+                    <div class="invoice-table-wrap">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-center table-hover">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>N° commande</th>
+                                                <th>Date de formation</th>
+                                                <th>Heure de début</th>
+                                                <th>Heure de fin</th>
+                                                <th>Nombre de place</th>
+                                                <th>Etat paiement</th>
+                                                <th>Intitulé de formation</th>
+                                                <th>Montant</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($expression_besoin_formation as $item)
+                                            <tr>
+                                                <td>{{$item->numero_commande}}</td>
+                                                <td>{{$item->date_formation}}</td>
+                                                <td>{{$item->heure_debut}}</td>
+                                                <td>{{$item->heure_fin}}</td>
+                                                <td>{{$item->nb_place}}</td>
+                                                <td>@if($item->etat_paiement == 'no') <span class="badge bg-danger">Non payé</span> @else <span class="badge bg-success">Payé</span> @endif</td>
+                                                <td>{{$item->theme}}</td>
+                                                <td>{{$item->montant}} FCFA</td>
+                                                <td><button class="btn btn-primary check-available w-100" type="button" data-bs-toggle="modal" data-bs-target="#pages_loc_{{$item->id}}">
+                                                        Télécharger image ici <i class="fa fa-upload"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <div class="modal custom-modal fade check-availability-modal" id="pages_loc_{{$item->id}}" role="dialog">
+                                                <div class="modal-dialog modal-dialog-centered modal-md">
+                                                    <div class="modal-content">
+                                                        <form action="{{route('soumission_paiement_expression_besoin')}}" enctype="multipart/form-data" method="post">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                <h5>Commande de locations de véhicule - Paiement de la commande : {{$item->numero_commande}}</h5>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="booking-info pay-amount">
+                                                                            <h6>Téléverser la capture d'ecran de votre paiement ici !</h6>
+                                                                            <div class="radio">
+                                                                                <input type="file" class="form-control" name="file">
+                                                                                <input type="hidden" value="{{$item->id}}" name="expression_id">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="booking-info pay-amount">
+                                                                            <h6>Choisir le mode de paiement :</h6>
+                                                                            <div class="">
+                                                                                <select name="mode_paiement" class="form-control" id="">
+                                                                                    @foreach($mode_paiement as $item)
+                                                                                    <option value="{{$item->id}}">{{$item->intitule}}</option>
                                                                                     @endforeach
                                                                                 </select>
                                                                             </div>

@@ -21,12 +21,12 @@
                         <!-- <span class="year">2023</span> -->
                         <div class="owner-detail">
                             <div class="owner-img">
-                            @if (Auth::user()->image == null)
-                            <img src="assets/img/profiles/avatar-07.jpg" alt />
-                            @else
-                            <img src="{{ Storage::url(Auth::user()->image) }}" alt="">
-                            @endif
-                                
+                                @if (Auth::user()->image == null)
+                                <img src="assets/img/profiles/avatar-07.jpg" alt />
+                                @else
+                                <img src="{{ Storage::url(Auth::user()->image) }}" alt="">
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                                 <span><b>Email :</b> {{Auth::user()->email}} | </span>
                             </div>
                             <div class="camaro-locations-inner">
-                            @if(Auth::user()->email_verified_at == null) <span class="badge bg-danger">E-mail non vérifié</span> @else <span class="badge bg-success">E-mail vérifié</span> @endif
+                                @if(Auth::user()->email_verified_at == null) <span class="badge bg-danger">E-mail non vérifié</span> @else <span class="badge bg-success">E-mail vérifié</span> @endif
                             </div>
                         </div>
                     </div>
@@ -208,9 +208,9 @@
                                 <li class="column-group-last">
                                     <div class="form-group mb-2">
                                         <div class="search-btn">
-                                            <button class="btn btn-primary check-available w-100" type="button" data-bs-toggle="modal" data-bs-target="#pages_edit">
+                                            <a class="btn btn-primary check-available w-100" href="{{route('myprofile.historique.commande')}}">
                                                 Historique des commandes
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </li>

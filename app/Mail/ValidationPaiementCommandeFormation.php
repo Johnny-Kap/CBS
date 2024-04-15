@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\CommandeLocation;
+use App\Models\CommandeFormation;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ValidationPaiementCommandeLocation extends Mailable
+class ValidationPaiementCommandeFormation extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,8 +19,9 @@ class ValidationPaiementCommandeLocation extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(CommandeLocation $commande_validation_paiement)
+    public function __construct(CommandeFormation $commande_validation_paiement)
     {
+        
         $this->commande_validation_paiement = $commande_validation_paiement;
     }
 
@@ -30,7 +31,7 @@ class ValidationPaiementCommandeLocation extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Paiement de la commande location N° '.$this->commande_validation_paiement->numero_commande.' validée',
+            subject: 'Paiement de la commande formation N° '.$this->commande_validation_paiement->numero_commande.' validée',
         );
     }
 
@@ -40,7 +41,7 @@ class ValidationPaiementCommandeLocation extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mails.commande_location.validation_paiement_location',
+            markdown: 'mails.commande_formation.validation_paiement_formation',
         );
     }
 
