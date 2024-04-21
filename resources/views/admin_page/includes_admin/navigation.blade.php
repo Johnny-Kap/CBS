@@ -237,10 +237,10 @@
                             <span class="sidebar-header-title">Commandes </span>
                         </li>
                         <li>
-                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_formation.validation_paiement') || Request::route()->named('commande_formation.commande_confirmees') || Request::route()->named('expression.besoin.attente') || Request::route()->named('expression.besoin.commande_paiement_non_soumis') || Request::route()->named('expression.besoin.validation_paiement') || Request::route()->named('expression.besoin.commande_confirmees') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Comm. formation</span></a>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_formation.validation_paiement') || Request::route()->named('commande_formation.paiement_non_soumis') || Request::route()->named('commande_formation.commande_confirmees') || Request::route()->named('expression.besoin.attente') || Request::route()->named('expression.besoin.commande_paiement_non_soumis') || Request::route()->named('expression.besoin.validation_paiement') || Request::route()->named('expression.besoin.commande_confirmees') || Request::route()->named('expression.besoin.annulee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Comm. formation</span></a>
                             <ul>
                                 <li>
-                                    <a href="#" class="sidebar-nav-submenu {{ Request::route()->named('expression.besoin.attente') || Request::route()->named('expression.besoin.commande_paiement_non_soumis') || Request::route()->named('expression.besoin.validation_paiement') || Request::route()->named('expression.besoin.commande_confirmees') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator"></i>Expression besoin forma.</a>
+                                    <a href="#" class="sidebar-nav-submenu {{ Request::route()->named('expression.besoin.attente') || Request::route()->named('expression.besoin.commande_paiement_non_soumis') || Request::route()->named('expression.besoin.validation_paiement') || Request::route()->named('expression.besoin.commande_confirmees') || Request::route()->named('expression.besoin.annulee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator"></i>Expression besoin forma.</a>
                                     <ul>
                                         <li>
                                             <a class="{{ Request::route()->named('expression.besoin.attente') ? 'active' : '' }}" href="{{route('expression.besoin.attente')}}">En attente</a>
@@ -254,7 +254,13 @@
                                         <li>
                                             <a class="{{ Request::route()->named('expression.besoin.commande_confirmees') ? 'active' : '' }}" href="{{route('expression.besoin.commande_confirmees')}}">Confirmées</a>
                                         </li>
+                                        <li>
+                                            <a class="{{ Request::route()->named('expression.besoin.annulee') ? 'active' : '' }}" href="{{route('expression.besoin.annulee')}}">Annulée</a>
+                                        </li>
                                     </ul>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('commande_formation.paiement_non_soumis') ? 'active' : '' }}" href="{{route('commande_formation.paiement_non_soumis')}}">Paiement non soumis</a>
                                 </li>
                                 <li>
                                     <a class="{{ Request::route()->named('commande_formation.validation_paiement') ? 'active' : '' }}" href="{{route('commande_formation.validation_paiement')}}">Validation paiement</a>
@@ -265,7 +271,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_location.attente') || Request::route()->named('commande_location.commande_paiement_non_soumis') || Request::route()->named('commande_location.validation_paiement') || Request::route()->named('commande_location.commande_confirmees') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Commande location</span></a>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_location.attente') || Request::route()->named('commande_location.commande_paiement_non_soumis') || Request::route()->named('commande_location.validation_paiement') || Request::route()->named('commande_location.commande_confirmees') || Request::route()->named('commande_location.annulee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Commande location</span></a>
                             <ul>
                                 <li>
                                     <a class="{{ Request::route()->named('commande_location.attente') ? 'active' : '' }}" href="{{route('commande_location.attente')}}">En attente</a>
@@ -279,10 +285,13 @@
                                 <li>
                                     <a class="{{ Request::route()->named('commande_location.commande_confirmees') ? 'active' : '' }}" href="{{route('commande_location.commande_confirmees')}}">Confirmées</a>
                                 </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('commande_location.annulee') ? 'active' : '' }}" href="{{route('commande_location.annulee')}}">Annulées</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_maintenance.attente') || Request::route()->named('commande_maintenance.paiement_non_soumis') || Request::route()->named('commande_maintenance.validation_paiement') || Request::route()->named('commande_maintenance.commande_confirmees') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Comm. maintenance</span></a>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_maintenance.attente') || Request::route()->named('commande_maintenance.paiement_non_soumis') || Request::route()->named('commande_maintenance.validation_paiement') || Request::route()->named('commande_maintenance.commande_confirmees') || Request::route()->named('commande_maintenance.annulee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Comm. maintenance</span></a>
                             <ul>
                                 <li>
                                     <a class="{{ Request::route()->named('commande_maintenance.attente') ? 'active' : '' }}" href="{{route('commande_maintenance.attente')}}">En attente</a>
@@ -296,6 +305,9 @@
                                 <li>
                                     <a class="{{ Request::route()->named('commande_maintenance.commande_confirmees') ? 'active' : '' }}" href="{{route('commande_maintenance.commande_confirmees')}}">Confirmées</a>
                                 </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('commande_maintenance.annulee') ? 'active' : '' }}" href="{{route('commande_maintenance.annulee')}}">Annulées</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="sidebar-header">
@@ -303,13 +315,16 @@
                             <span class="sidebar-header-title">Autres services </span>
                         </li>
                         <li>
-                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_reservation.attente') || Request::route()->named('commande_reservation.commande_validee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Réser. hôtel/Appart</span></a>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('commande_reservation.attente') || Request::route()->named('commande_reservation.commande_validee') || Request::route()->named('commande_reservation.annulee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Réser. hôtel/Appart</span></a>
                             <ul>
                                 <li>
                                     <a class="{{ Request::route()->named('commande_reservation.attente') ? 'active' : '' }}" href="{{route('commande_reservation.attente')}}">En attente</a>
                                 </li>
                                 <li>
                                     <a class="{{ Request::route()->named('commande_reservation.commande_validee') ? 'active' : '' }}" href="{{route('commande_reservation.commande_validee')}}">Validées</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('commande_reservation.annulee') ? 'active' : '' }}" href="{{route('commande_reservation.annulee')}}">Annulés</a>
                                 </li>
                             </ul>
                         </li>

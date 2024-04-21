@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table class="table table-center table-hover">
+                                    <table class="table table-center table-hover" id="table-location">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>N° commande</th>
@@ -112,7 +112,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table class="table table-center table-hover">
+                                    <table class="table table-center table-hover" id="table-achat">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>N° commande</th>
@@ -203,7 +203,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table class="table table-center table-hover">
+                                    <table class="table table-center table-hover" id="table-maintenance">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>N° Commande main.</th>
@@ -288,13 +288,104 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card-body text-center">
+                    <h5>Commande de formation</h5><br>
+                    <h5>Veuillez effectuer vos paiments en transferant de l'argent sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h5><br>
+                    <div class="invoice-table-wrap">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-center table-hover" id="table-formation">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>N° commande</th>
+                                                <th>Date de formation</th>
+                                                <th>Heure de début</th>
+                                                <th>Heure de fin</th>
+                                                <th>Nombre de place</th>
+                                                <th>Etat paiement</th>
+                                                <th>Intitulé de formation</th>
+                                                <th>Montant</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($commande_formation as $item)
+                                            <tr>
+                                                <td>{{$item->numero_commande}}</td>
+                                                <td>{{$item->formations->date_formation}}</td>
+                                                <td>{{$item->formations->heure_debut}}</td>
+                                                <td>{{$item->formations->heure_fin}}</td>
+                                                <td>{{$item->nb_place_commande}}</td>
+                                                <td>@if($item->etat_paiement == 'no') <span class="badge bg-danger">Non payé</span> @else <span class="badge bg-success">Payé</span> @endif</td>
+                                                <td>{{$item->formations->theme}}</td>
+                                                <td>{{$item->montant_total}} FCFA</td>
+                                                <td><button class="btn btn-primary check-available w-100" type="button" data-bs-toggle="modal" data-bs-target="#pages_loc_{{$item->id}}">
+                                                        Télécharger image ici <i class="fa fa-upload"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <div class="modal custom-modal fade check-availability-modal" id="pages_loc_{{$item->id}}" role="dialog">
+                                                <div class="modal-dialog modal-dialog-centered modal-md">
+                                                    <div class="modal-content">
+                                                        <form action="{{route('soumission_paiement.commande_formation')}}" enctype="multipart/form-data" method="post">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                <h5>Commande de formation - Paiement de la commande : {{$item->numero_commande}}</h5>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="booking-info pay-amount">
+                                                                            <h6>Téléverser la capture d'ecran de votre paiement ici !</h6>
+                                                                            <div class="radio">
+                                                                                <input type="file" class="form-control" name="file">
+                                                                                <input type="hidden" value="{{$item->id}}" name="formation_id">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="booking-info pay-amount">
+                                                                            <h6>Choisir le mode de paiement :</h6>
+                                                                            <div class="">
+                                                                                <select name="mode_paiement" class="form-control" id="">
+                                                                                    @foreach($mode_paiement as $item)
+                                                                                    <option value="{{$item->id}}">{{$item->intitule}}</option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary">Envoyer <i class="fa-solid fa-arrow-right"></i></button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card-body text-center">
                     <h5>Commande d'expression du besoin de formation</h5><br>
                     <h5>Veuillez effectuer vos paiments en transferant de l'argent sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h5><br>
                     <div class="invoice-table-wrap">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table class="table table-center table-hover">
+                                    <table class="table table-center table-hover" id="table-besoin">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>N° commande</th>
@@ -378,3 +469,15 @@
 </div>
 
 @endsection
+
+@push('scripts')
+
+<script>
+    let table_location = new DataTable('#table-location');
+    let table_achat = new DataTable('#table-achat');
+    let table_maitnenance = new DataTable('#table-maintenance');
+    let table_formation = new DataTable('#table-formation');
+    let table_besoin = new DataTable('#table-besoin');
+</script>
+
+@endpush

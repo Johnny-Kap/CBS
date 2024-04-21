@@ -7,7 +7,7 @@
     <div class="content-header">
         <div class="header-section">
             <h1>
-                <i class="gi gi-table"></i>Gestion des expressions de besoin de formation en attente de validation<br><small>Consulter les ici !</small>
+                <i class="gi gi-table"></i>Gestion des expressions de besoin de formation annulée<br><small>Consulter les ici !</small>
             </h1>
         </div>
     </div>
@@ -51,11 +51,11 @@
                         <th>Commandé par</th>
                         <th>Intitule de la formation</th>
                         <th>Commandé le</th>
-                        <th style="width: 150px;" class="text-center">Actions</th>
+                        <!-- <th style="width: 150px;" class="text-center">Actions</th> -->
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($expression_besoin_attente as $item)
+                    @foreach($expression_besoin_annulee as $item)
                     <tr>
                         <td>{{$item->numero_commande}}</td>
                         <td>{{$item->date_formation}}</td>
@@ -69,12 +69,11 @@
                             </a></td>
                         <td>{{$item->theme}}</td>
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
-                        <td class="text-center">
+                        <!-- <td class="text-center">
                             <div class="btn-group btn-group-xs">
                                 <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil"></i></button>
-                                <!-- <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#pages_delete"><i class="fa fa-times"></i></button> -->
                             </div>
-                        </td>
+                        </td> -->
                     </tr>
 
                     <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">

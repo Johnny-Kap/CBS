@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AnnulationPaiementCommandeFormation;
 use App\Mail\SuccessCommandeFormation;
 use App\Mail\ValidationPaiementCommandeFormation;
 use App\Models\CommandeFormation;
@@ -73,6 +74,39 @@ class CommandeFormationController extends Controller
         return view('formation.success_commande_formation');
     }
 
+    public function paiement_non_soumis(){
+
+        $commande_formation_paiement_non_soumis = CommandeFormation::where('etat_commande', 'yes')
+            ->where('photo', null)
+            ->simplePaginate(15);
+
+        return view('admin_page.gestion_commande_formation.commande_paiement_non_soumis', compact('commande_formation_paiement_non_soumis'));
+    }
+
+    public function soumission_paiement_commande_formation(Request $request){
+
+        if ($request->has('file')) {
+
+            $request->validate([
+                'file' => 'required|mimes:jpeg,png,jpg',
+            ]);
+
+            $filename = time() . '.' . $request->file->extension();
+
+            $path = $request->file('file')->storeAs('images', $filename, 'public');
+
+            $affected = CommandeFormation::where('id', $request->formation_id)
+                ->update([
+                    'photo' => $path,
+                    'mode_paiement_id' => $request->mode_paiement,
+                ]);
+
+            return back()->with('success', 'Preuve de paiement soumis avec succès! Vous serez contacté après validation.');
+        } else {
+            return back()->with('error', 'Veuillez ajouté votre capture d\'écran.');
+        }
+    }
+
     public function validation_paiement(Request $request)
     {
 
@@ -100,8 +134,12 @@ class CommandeFormationController extends Controller
         } else {
             $affected = CommandeFormation::where('id', $request->commande_id)
                 ->update([
-                    'etat_paiement' => $request->etat,
+                    'photo' => null,
                 ]);
+
+            $paiement_formation_annule = CommandeFormation::find($request->commande_id);
+
+            Mail::to($paiement_formation_annule->users->email)->send(new AnnulationPaiementCommandeFormation($paiement_formation_annule));
 
             return back()->with('success', 'Paiement non validé avec succès');
         }

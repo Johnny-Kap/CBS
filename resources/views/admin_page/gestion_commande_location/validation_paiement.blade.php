@@ -61,7 +61,7 @@
                         <td>{{$item->date_fin}}</td>
                         <td><b>{{$item->tarif}} FCFA</b></td>
                         <td>{{$item->nombre_jours}}</td>
-                        <td>@if($item->etat_commande == 'yes') Confirmée @else En attente @endif</td>
+                        <td>@if($item->etat_commande == 'attente') <span class="badge bg-secondary">En attente</span> @elseif($item->etat_commande == 'canceled') <span class="label label-danger">Annulé</span> @else <span class="label label-success">Validé</span> @endif</td>
                         <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">
                                 {{$item->users->name}} {{$item->users->prenom}}
                             </a></td>
@@ -122,7 +122,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="6">
+                        <td colspan="10">
                             <div class="btn-group btn-group-sm pull-right">
                                 <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
                                 <div class="btn-group btn-group-sm dropup">

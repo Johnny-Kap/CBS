@@ -61,7 +61,7 @@
                         <td>{{$item->date_fin}}</td>
                         <td>{{$item->tarif}}</td>
                         <td>{{$item->nombre_jours}}</td>
-                        <td>@if($item->etat_commande == 'yes') Validée @else En attente @endif</td>
+                        <td>@if($item->etat_commande == 'attente') <span class="badge bg-secondary">En attente</span> @elseif($item->etat_commande == 'canceled') <span class="label label-danger">Annulé</span> @else <span class="label label-success">Validé</span> @endif</td>
                         <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">
                                 {{$item->users->name}} {{$item->users->prenom}}
                             </a></td>

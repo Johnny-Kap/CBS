@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AnnulationExpressionBesoinFormation;
+use App\Mail\AnnulationPaiementExpressionBesoinFormation;
 use App\Mail\SuccessExpressionBesoinFormation;
 use App\Mail\ValidationExpressionBesoinFormation;
 use App\Mail\ValidationPaiementExpressionBesoinFormation;
@@ -25,6 +27,14 @@ class ExpressionBesoinFormationController extends Controller
         return view('admin_page.gestion_expression_besoin_formation.attente_validation', compact('expression_besoin_attente'));
     }
 
+    public function annulee()
+    {
+
+        $expression_besoin_annulee = ExpressionBesoinFormation::where('etat_commande', 'canceled')->simplePaginate(15);
+
+        return view('admin_page.gestion_expression_besoin_formation.commande_annulee', compact('expression_besoin_annulee'));
+    }
+
     public function validation_commande(Request $request)
     {
 
@@ -46,7 +56,11 @@ class ExpressionBesoinFormationController extends Controller
                     'etat_commande' => $request->etat,
                 ]);
 
-            return back()->with('success', 'Mise en attente avec succès.');
+            $expression_besoin_annulee = ExpressionBesoinFormation::find($request->expression_id);
+
+            Mail::to($expression_besoin_annulee->users->email)->send(new AnnulationExpressionBesoinFormation($expression_besoin_annulee));
+
+            return back()->with('success', 'Annulé avec succès. Email de notification envoyé au client.');
         }
     }
 
@@ -112,10 +126,14 @@ class ExpressionBesoinFormationController extends Controller
         } else {
             $affected = ExpressionBesoinFormation::where('id', $request->expression_id)
                 ->update([
-                    'etat_paiement' => $request->etat,
+                    'photo_paiement' => null,
                 ]);
 
-            return back()->with('success', 'Commande non payée.');
+            $expression_besoin_paiement_annulee = ExpressionBesoinFormation::find($request->expression_id);
+
+            Mail::to($expression_besoin_paiement_annulee->users->email)->send(new AnnulationPaiementExpressionBesoinFormation($expression_besoin_paiement_annulee));
+
+            return back()->with('success', 'Commande non payée. La commande est repassée en paiement non soumis. Notification envoyée au client.');
         }
     }
 

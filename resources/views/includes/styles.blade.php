@@ -15,3 +15,5 @@
 <link rel="stylesheet" href="/../assets/css/owl.carousel.min.css">
 
 <link rel="stylesheet" href="/../assets/css/style.css">
+
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />

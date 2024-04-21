@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AnnulationCommandeReservationAppartHotel;
+use App\Mail\SuccessCommandeReservationAppartHotel;
 use App\Models\CommandeReservationAppartementHotel;
 use App\Models\SouscrireAbonnement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+
+use function PHPSTORM_META\elementType;
 
 class CommandeReservationAppartementHotelController extends Controller
 {
@@ -91,21 +96,48 @@ class CommandeReservationAppartementHotelController extends Controller
         return view('admin_page.gestion_reservation_appart_hotel.attente_validation', compact('commade_attente'));
     }
 
+    public function annulee(){
+
+        $commade_annulee = CommandeReservationAppartementHotel::where('etat_commande', 'canceled')->simplePaginate(15);
+
+        return view('admin_page.gestion_reservation_appart_hotel.commande_annulee', compact('commade_annulee'));
+    }
+
     public function validation_commande(Request $request)
     {
 
-        $affected = CommandeReservationAppartementHotel::where('id', $request->commande_id)
-            ->update([
-                'etat_commande' => $request->etat,
-            ]);
+        if ($request->etat == 'yes') {
 
-        return back()->with('success', 'Validé avec succès');
+            $affected = CommandeReservationAppartementHotel::where('id', $request->commande_id)
+                ->update([
+                    'etat_commande' => $request->etat,
+                ]);
+
+            $commande_reservation_success = CommandeReservationAppartementHotel::find($request->commande_id);
+
+            Mail::to($commande_reservation_success->users->email)->send(new SuccessCommandeReservationAppartHotel($commande_reservation_success));
+
+            return back()->with('success', 'Validé avec succès. Email de notification envoyé au client.');
+        } else {
+
+            $affected = CommandeReservationAppartementHotel::where('id', $request->commande_id)
+                ->update([
+                    'etat_commande' => $request->etat,
+                ]);
+
+            $commande_reserv_annulee = CommandeReservationAppartementHotel::find($request->commande_id);
+
+            Mail::to($commande_reserv_annulee->users->email)->send(new AnnulationCommandeReservationAppartHotel($commande_reserv_annulee));
+
+            return back()->with('success', 'Annulé avec succès. Email de notification envoyé au client.');
+        }
     }
 
-    public function commande_validee(Request $request){
+    public function commande_validee(Request $request)
+    {
 
         $commande_validee = CommandeReservationAppartementHotel::where('etat_commande', 'yes')
-        ->simplePaginate(15);
+            ->simplePaginate(15);
 
         return view('admin_page.gestion_reservation_appart_hotel.commande_validee', compact('commande_validee'));
     }

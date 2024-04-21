@@ -62,7 +62,7 @@
                         <td>{{$item->date_maintenance}}</td>
                         <td>{{$item->situation_vehicule}}</td>
                         <td>{{$item->marque_vehicule}}</td>
-                        <td>@if($item->etat_commande == 'yes') Confirmée @else En attente @endif</td>
+                        <td>@if($item->etat_commande == 'attente') <span class="badge bg-secondary">En attente</span> @elseif($item->etat_commande == 'canceled') <span class="label label-danger">Annulé</span> @else <span class="label label-success">Validé</span> @endif</td>
                         <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">
                                 {{$item->users->name}} {{$item->users->prenom}}
                             </a></td>
@@ -97,8 +97,8 @@
                                             <div class="col-md-12">
                                                 <div class="booking-info pay-amount">
                                                     <select class="form-control" name="etat">
-                                                        <option value="yes">Valider</option>
-                                                        <option value="attente">Mettre en attente</option>
+                                                        <option value="yes">Valider la commande</option>
+                                                        <option value="canceled">Annuler la commande</option>
                                                     </select>
                                                     <input type="hidden" name="commande_id" value="{{$item->id}}" />
                                                 </div>
@@ -108,7 +108,7 @@
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="available-for-ride">
                                                     <p>
-                                                        <i class="fa-regular fa-circle-check"></i>Entrer le montant :
+                                                        <i class="fa-regular fa-circle-check"></i>Entrer le montant (Si commande valider) :
                                                     </p>
                                                 </div>
                                             </div>
@@ -130,7 +130,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="6">
+                        <td colspan="10">
                             <div class="btn-group btn-group-sm pull-right">
                                 <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
                                 <div class="btn-group btn-group-sm dropup">

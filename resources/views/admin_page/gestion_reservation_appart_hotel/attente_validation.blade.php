@@ -101,8 +101,8 @@
                                             <div class="col-md-12">
                                                 <div class="booking-info pay-amount">
                                                     <select name="etat">
-                                                        <option value="yes">Valider</option>
-                                                        <option value="attente">Mettre en attente</option>
+                                                        <option value="yes">Valider la commande</option>
+                                                        <option value="canceled">Annuler la commande</option>
                                                     </select>
                                                     <input type="hidden" name="commande_id" value="{{$item->id}}" />
                                                 </div>
@@ -120,7 +120,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="6">
+                        <td colspan="12">
                             <div class="btn-group btn-group-sm pull-right">
                                 <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
                                 <div class="btn-group btn-group-sm dropup">

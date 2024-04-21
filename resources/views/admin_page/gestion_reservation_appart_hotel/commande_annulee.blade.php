@@ -7,7 +7,7 @@
     <div class="content-header">
         <div class="header-section">
             <h1>
-                <i class="gi gi-table"></i>Gestion des expressions de besoin de formation en attente de validation<br><small>Consulter les ici !</small>
+                <i class="gi gi-table"></i>Gestion des commande de réservaion hotel / appartement annulées<br><small>Consulter les ici !</small>
             </h1>
         </div>
     </div>
@@ -26,7 +26,7 @@
 
         <!-- Table Styles Content -->
         <!-- Changing classes functionality initialized in js/pages/tablesGeneral.js -->
-        
+       
         <div class="table-responsive">
             <!--
                                 Available Table Classes:
@@ -42,39 +42,34 @@
                 <thead>
                     <tr>
                         <th>N° Commande</th>
-                        <th>Date de formation</th>
-                        <th>Heure de début</th>
-                        <th>Heure de fin</th>
-                        <th>Nombe de place</th>
-                        <th>Type de cours choisi</th>
+                        <th>N° abonnement utilisé</th>
+                        <th>Type de réservation</th>
+                        <th>Date de réservation</th>
+                        <th>Ville</th>
+                        <th>Localite / Quartier</th>
+                        <th>Prix inférieur</th>
+                        <th>Prix supérieur</th>
                         <th>Etat de la commande</th>
                         <th>Commandé par</th>
-                        <th>Intitule de la formation</th>
                         <th>Commandé le</th>
-                        <th style="width: 150px;" class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($expression_besoin_attente as $item)
+                    @foreach($commade_annulee as $item)
                     <tr>
                         <td>{{$item->numero_commande}}</td>
-                        <td>{{$item->date_formation}}</td>
-                        <td>{{$item->heure_debut}}</td>
-                        <td>{{$item->heure_fin}}</td>
-                        <td>{{$item->nb_place}}</td>
-                        <td>@if($item->type_cours == 'ligne') En ligne @else Présentiel @endif</td>
+                        <td>{{$item->numero_abonnement_valide}}</td>
+                        <td>{{$item->type_resevation}}</td>
+                        <td>{{$item->date_reservation}}</td>
+                        <td>{{$item->ville}}</td>
+                        <td>{{$item->localite}}</td>
+                        <td>{{$item->prix_inferieur}}</td>
+                        <td>{{$item->prix_superieur}}</td>
                         <td>@if($item->etat_commande == 'attente') <span class="badge bg-secondary">En attente</span> @elseif($item->etat_commande == 'canceled') <span class="label label-danger">Annulé</span> @else <span class="label label-success">Validé</span> @endif</td>
                         <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">
                                 {{$item->users->name}} {{$item->users->prenom}}
                             </a></td>
-                        <td>{{$item->theme}}</td>
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
-                        <td class="text-center">
-                            <div class="btn-group btn-group-xs">
-                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil"></i></button>
-                                <!-- <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#pages_delete"><i class="fa fa-times"></i></button> -->
-                            </div>
-                        </td>
                     </tr>
 
                     <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
@@ -82,10 +77,10 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <div class="form-header text-start mb-0">
-                                        <h4 class="mb-0 text-dark fw-bold">Effectuer la validation de l'expression de besoin de formation de {{$item->users->name}} {{$item->users->prenom}}</h4>
+                                        <h4 class="mb-0 text-dark fw-bold">Effectuer la validation de commande</h4>
                                     </div>
                                 </div>
-                                <form action="{{route('expression.besoin.validation.etat')}}" method="post">
+                                <form action="{{route('commande_reservation.validation.etat')}}" method="post">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="row">
@@ -98,25 +93,11 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="booking-info pay-amount">
-                                                    <select name="etat" class="form-control">
-                                                        <option value="yes">Valider</option>
-                                                        <option value="canceled">Annuler</option>
+                                                    <select name="etat">
+                                                        <option value="yes">Valider la commande</option>
+                                                        <option value="canceled">Annuler la commande</option>
                                                     </select>
-                                                    <input type="hidden" name="expression_id" value="{{$item->id}}" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12">
-                                                <div class="available-for-ride">
-                                                    <p>
-                                                        <i class="fa-regular fa-circle-check"></i>Entrer le montant (Si valider) :
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="booking-info pay-amount">
-                                                    <input class="form-control" type="number" name="montant">
+                                                    <input type="hidden" name="commande_id" value="{{$item->id}}" />
                                                 </div>
                                             </div>
                                         </div>
@@ -132,7 +113,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="11">
+                        <td colspan="12">
                             <div class="btn-group btn-group-sm pull-right">
                                 <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
                                 <div class="btn-group btn-group-sm dropup">

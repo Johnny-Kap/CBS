@@ -28,3 +28,5 @@
 
 <script src="/../assets/plugins/slick/slick.js"></script>
 
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+

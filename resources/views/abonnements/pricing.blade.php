@@ -45,7 +45,7 @@
                                     <h4 class="mb-0 text-dark fw-bold">Confirmer la souscription</h4>
                                 </div>
                             </div>
-                            <form action="{{route('souscrire.abonnement')}}" method="post">
+                            <form action="{{route('abonnement.confirm')}}" method="get">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="row">
@@ -53,7 +53,6 @@
                                             <div class="booking-info pay-amount">
                                                 <h5>Voulez-vous vraiment souscrire à cet abonnement ?</h5>
                                                 <H6>Titre : {{$item->intitule}}</H6>
-                                                <h6>NB : En validant votre inscription, vous acceptez nos <a href="{{route('term_condition.abonnement')}}"  target="_blank">termes et conditions</a></h6>
                                                 <input type="hidden" name="abonnement_id" value="{{$item->id}}" />
                                             </div>
                                         </div>

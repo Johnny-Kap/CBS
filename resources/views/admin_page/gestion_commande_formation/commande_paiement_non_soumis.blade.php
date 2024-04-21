@@ -7,7 +7,7 @@
     <div class="content-header">
         <div class="header-section">
             <h1>
-                <i class="gi gi-table"></i>Gestion des expressions de besoin de formation en attente de validation<br><small>Consulter les ici !</small>
+                <i class="gi gi-table"></i>Gestion des commandes de formation n'ayant pas recu de paiement<br><small>Consulter les ici !</small>
             </h1>
         </div>
     </div>
@@ -26,7 +26,7 @@
 
         <!-- Table Styles Content -->
         <!-- Changing classes functionality initialized in js/pages/tablesGeneral.js -->
-        
+
         <div class="table-responsive">
             <!--
                                 Available Table Classes:
@@ -42,39 +42,30 @@
                 <thead>
                     <tr>
                         <th>N° Commande</th>
-                        <th>Date de formation</th>
                         <th>Heure de début</th>
                         <th>Heure de fin</th>
-                        <th>Nombe de place</th>
-                        <th>Type de cours choisi</th>
+                        <th>Tarif total</th>
+                        <th>Date de formation</th>
                         <th>Etat de la commande</th>
                         <th>Commandé par</th>
                         <th>Intitule de la formation</th>
                         <th>Commandé le</th>
-                        <th style="width: 150px;" class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($expression_besoin_attente as $item)
+                    @foreach($commande_formation_paiement_non_soumis as $item)
                     <tr>
                         <td>{{$item->numero_commande}}</td>
-                        <td>{{$item->date_formation}}</td>
-                        <td>{{$item->heure_debut}}</td>
-                        <td>{{$item->heure_fin}}</td>
-                        <td>{{$item->nb_place}}</td>
-                        <td>@if($item->type_cours == 'ligne') En ligne @else Présentiel @endif</td>
-                        <td>@if($item->etat_commande == 'attente') <span class="badge bg-secondary">En attente</span> @elseif($item->etat_commande == 'canceled') <span class="label label-danger">Annulé</span> @else <span class="label label-success">Validé</span> @endif</td>
+                        <td>{{$item->formations->heure_debut}}</td>
+                        <td>{{$item->formations->heure_fin}}</td>
+                        <td>{{$item->formations->date_formation}}</td>
+                        <td><b>{{$item->montant_total}} FCFA</b></td>
+                        <td>@if($item->etat_commande == 'attente') <span class="label label-secondary">En attente</span> @elseif($item->etat_commande == 'canceled') <span class="label label-danger">Annulé</span> @else <span class="label label-success">Validé</span> @endif</td>
                         <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">
                                 {{$item->users->name}} {{$item->users->prenom}}
                             </a></td>
-                        <td>{{$item->theme}}</td>
+                        <td>{{$item->formations->theme}}</td>
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
-                        <td class="text-center">
-                            <div class="btn-group btn-group-xs">
-                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil"></i></button>
-                                <!-- <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#pages_delete"><i class="fa fa-times"></i></button> -->
-                            </div>
-                        </td>
                     </tr>
 
                     <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
@@ -82,41 +73,50 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <div class="form-header text-start mb-0">
-                                        <h4 class="mb-0 text-dark fw-bold">Effectuer la validation de l'expression de besoin de formation de {{$item->users->name}} {{$item->users->prenom}}</h4>
+                                        <h4 class="mb-0 text-dark fw-bold">Effectuer le paiement de la commande</h4>
                                     </div>
                                 </div>
-                                <form action="{{route('expression.besoin.validation.etat')}}" method="post">
+                                <form action="{{route('commande_maintenance.paiement.valide')}}" method="post">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="row">
-                                            <div class="col-lg-12 col-md-12">
+                                            <div class="col-lg-6 col-md-6">
                                                 <div class="available-for-ride">
                                                     <p>
                                                         <i class="fa-regular fa-circle-check"></i>Choisir l'option :
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="booking-info pay-amount">
-                                                    <select name="etat" class="form-control">
-                                                        <option value="yes">Valider</option>
-                                                        <option value="canceled">Annuler</option>
+                                                    <select name="etat_paiement">
+                                                        <option value="yes">Payé</option>
+                                                        <option value="no">Non payé</option>
                                                     </select>
-                                                    <input type="hidden" name="expression_id" value="{{$item->id}}" />
+                                                    <input type="hidden" name="commande_id" value="{{$item->id}}" />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-12 col-md-12">
+                                            <div class="col-lg-6 col-md-6">
                                                 <div class="available-for-ride">
                                                     <p>
-                                                        <i class="fa-regular fa-circle-check"></i>Entrer le montant (Si valider) :
+                                                        <i class="fa-regular fa-circle-check"></i>Entrer le montant :
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="booking-info pay-amount">
-                                                    <input class="form-control" type="number" name="montant">
+                                                    <input type="number" name="montant">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Choisir le mode de paiement :
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -132,7 +132,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="11">
+                        <td colspan="9">
                             <div class="btn-group btn-group-sm pull-right">
                                 <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
                                 <div class="btn-group btn-group-sm dropup">
@@ -161,6 +161,95 @@
         <!-- END Table Styles Content -->
     </div>
     <!-- END Table Styles Block -->
+</div>
+
+
+
+<div class="modal fade" id="pages_delete" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="form-header text-start mb-0">
+                    <h4 class="mb-0 text-dark fw-bold">Availability Details</h4>
+                </div>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="align-center" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="available-for-ride">
+                            <p>
+                                <i class="fa-regular fa-circle-check"></i>Chevrolet Camaro
+                                is available for a ride
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <div class="row booking-info">
+                            <div class="col-md-4 pickup-address">
+                                <h5>Pickup</h5>
+                                <p>45, 4th Avanue Mark Street USA</p>
+                                <span>Date & time : 11 Jan 2023</span>
+                            </div>
+                            <div class="col-md-4 drop-address">
+                                <h5>Drop Off</h5>
+                                <p>78, 10th street Laplace USA</p>
+                                <span>Date & time : 11 Jan 2023</span>
+                            </div>
+                            <div class="col-md-4 booking-amount">
+                                <h5>Booking Amount</h5>
+                                <h6><span>$300 </span> /day</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <div class="booking-info seat-select">
+                            <h6>Extra Service</h6>
+                            <label class="custom_check">
+                                <input type="checkbox" name="rememberme" class="rememberme" />
+                                <span class="checkmark"></span>
+                                Baby Seat - <span class="ms-2">$10</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="booking-info pay-amount">
+                            <h6>Deposit Option</h6>
+                            <div class="radio radio-btn">
+                                <label>
+                                    <input type="radio" name="radio" /> Pay Deposit
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="radio" /> Full Amount
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                        <div class="booking-info service-tax">
+                            <ul>
+                                <li>Booking Price <span>$300</span></li>
+                                <li>Extra Service <span>$10</span></li>
+                                <li>Tax <span>$5</span></li>
+                            </ul>
+                        </div>
+                        <div class="grand-total">
+                            <h5>Grand Total</h5>
+                            <span>$315</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="booking.html" class="btn btn-back">Go to Details<i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection

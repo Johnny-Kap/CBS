@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AnnulationCommandeMaintenanceAutomobile;
+use App\Mail\AnnulationPaiementCommandeMaintenanceAutomobile;
 use App\Mail\SuccessCommandeMaintenance;
 use App\Mail\ValidationCommandeMaintenance;
 use App\Mail\ValidationPaiementCommandeMaintenance;
@@ -104,6 +106,13 @@ class CommandeMaintenanceAutomobileController extends Controller
         return view('admin_page.gestion_commande_maintenance.attente_validation', compact('commade_attente'));
     }
 
+    public function annulee(){
+
+        $commade_annulee = CommandeMaintenanceAutomobile::where('etat_commande', 'canceled')->simplePaginate(15);
+
+        return view('admin_page.gestion_commande_maintenance.commande_annulee', compact('commade_annulee'));
+    }
+
     public function validation_commande(Request $request)
     {
 
@@ -126,7 +135,11 @@ class CommandeMaintenanceAutomobileController extends Controller
                     'etat_commande' => $request->etat,
                 ]);
 
-            return back()->with('success', 'Mise en attente avec succès.');
+            $commande_maintenance_annulee = CommandeMaintenanceAutomobile::find($request->commande_id);
+
+            Mail::to($commande_maintenance_annulee->users->email)->send(new AnnulationCommandeMaintenanceAutomobile($commande_maintenance_annulee));
+
+            return back()->with('success', 'Commande annulée avec succès. Email de notification envoyé au client');
         }
     }
 
@@ -134,7 +147,6 @@ class CommandeMaintenanceAutomobileController extends Controller
     {
 
         $commande_paiement_non_soumis = CommandeMaintenanceAutomobile::where('etat_commande', 'yes')
-            ->where('etat_commande', 'yes')
             ->where('image', null)
             ->simplePaginate(15);
 
@@ -193,10 +205,14 @@ class CommandeMaintenanceAutomobileController extends Controller
         } else {
             $affected = CommandeMaintenanceAutomobile::where('id', $request->commande_id)
                 ->update([
-                    'etat_paiement' => $request->etat_paiement,
+                    'image' => null,
                 ]);
 
-            return back()->with('success', 'Paiement non validé avec succès');
+            $paiement_commande_main_annule = CommandeMaintenanceAutomobile::find($request->commande_id);
+
+            Mail::to($paiement_commande_main_annule->users->email)->send(new AnnulationPaiementCommandeMaintenanceAutomobile($paiement_commande_main_annule));
+
+            return back()->with('success', 'Paiement non validé avec succès. La commande est à nouveau à Paiement non soumis. Email de notification envoyé au client.');
         }
     }
 

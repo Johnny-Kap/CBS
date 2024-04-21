@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AnnulationPaiementAbonnement;
 use App\Mail\SuccessSouscriptionAbonnement;
 use App\Mail\ValidationPaiementAbonnement;
 use App\Models\Abonnement;
+use App\Models\ModePaiement;
 use App\Models\SouscrireAbonnement;
 use App\Models\TypeAbonnement;
 use App\Models\TypeVehicule;
@@ -28,8 +30,13 @@ class AbonnementController extends Controller
         return view('abonnements.pricing', compact('abonnements'));
     }
 
-    public function souscrire(Request $request)
+    public function SouscrireConfirm(Request $request)
     {
+
+        $abonnement = Abonnement::find($request->abonnement_id);
+
+        $mode_paiements = ModePaiement::all();
+
         $verify = SouscrireAbonnement::where('abonnement_id', $request->abonnement_id)
             ->where('date_expiration', '>', Carbon::now()->format('d-m-Y'))
             ->where('user_id', Auth::user()->id)
@@ -37,40 +44,54 @@ class AbonnementController extends Controller
 
         if ($verify == false) {
 
-            $abonnement = Abonnement::find($request->abonnement_id);
-
-            $numero_abonnement = $abonnement->code . Carbon::now()->format('dmYHms') . Str::padLeft(Auth::user()->id, 3, 0);
-
-            //Enregistrement
-
-            $add = new SouscrireAbonnement();
-
-            $add->numero_abonnement = $numero_abonnement;
-
-            $add->etat = 'attente';
-
-            $add->date_expiration = Carbon::now()->addYear()->format('d-m-Y');
-
-            $add->is_expired = 'no';
-
-            $add->is_buy = 'no';
-
-            $add->montant = $abonnement->montant;
-
-            $add->abonnement_id = $request->abonnement_id;
-
-            $add->user_id = Auth::user()->id;
-
-            $add->save();
-
-            $souscription_abonnement = SouscrireAbonnement::where('numero_abonnement', $numero_abonnement)->first();
-
-            Mail::to(Auth::user()->email)->send(new SuccessSouscriptionAbonnement($souscription_abonnement));
-
-            return redirect()->route('success.abonnement');
+            return view('abonnement.abonnement_booking', compact('abonnement', 'mode_paiements'));
         } else {
             return back()->with('warning', 'Vous avez déja souscrit à cet abonnement étant toujours valable');
         }
+    }
+
+    public function souscrire(Request $request)
+    {
+
+        $filename = time() . '.' . $request->file->extension();
+
+        $path = $request->file('file')->storeAs('images', $filename, 'public');
+
+        $abonnement = Abonnement::find($request->abonnement_id);
+
+        $numero_abonnement = $abonnement->code . Carbon::now()->format('dmYHms');
+
+        //Enregistrement
+
+        $add = new SouscrireAbonnement();
+
+        $add->numero_abonnement = $numero_abonnement;
+
+        $add->etat = 'yes';
+
+        $add->date_expiration = Carbon::now()->addYear()->format('d-m-Y');
+
+        $add->is_expired = 'no';
+
+        $add->is_buy = 'no';
+
+        $add->montant = $abonnement->montant;
+
+        $add->image = $path;
+
+        $add->abonnement_id = $request->abonnement_id;
+
+        $add->mode_paiement_id = $request->mode_paiement_id;
+
+        $add->user_id = Auth::user()->id;
+
+        $add->save();
+
+        $souscription_abonnement = SouscrireAbonnement::where('numero_abonnement', $numero_abonnement)->first();
+
+        Mail::to(Auth::user()->email)->send(new SuccessSouscriptionAbonnement($souscription_abonnement));
+
+        return redirect()->route('success.abonnement');
     }
 
     public function success()
@@ -81,7 +102,7 @@ class AbonnementController extends Controller
     public function confirmation_abonnement()
     {
 
-        $abonnement_souscrits = SouscrireAbonnement::where('etat', 'attente')
+        $abonnement_souscrits = SouscrireAbonnement::where('etat', 'yes')
             ->where('image', null)
             ->where('is_buy', 'no')
             ->simplePaginate(15);
@@ -163,7 +184,7 @@ class AbonnementController extends Controller
     public function attente()
     {
 
-        $abonnement_attente = SouscrireAbonnement::where('etat', 'attente')
+        $abonnement_attente = SouscrireAbonnement::where('etat', 'yes')
             ->whereNotNull('image')->simplePaginate(15);
 
         return view('admin_page.gestion_abonnement.attente_abonnement', compact('abonnement_attente'));
@@ -172,7 +193,7 @@ class AbonnementController extends Controller
     public function attente_paiement()
     {
 
-        $abonnement_paiement_attente = SouscrireAbonnement::where('etat', 'attente')
+        $abonnement_paiement_attente = SouscrireAbonnement::where('etat', 'yes')
             ->where('image', null)->simplePaginate(15);
 
         return view('admin_page.gestion_abonnement.attente_paiement_abonnement', compact('abonnement_paiement_attente'));
@@ -187,13 +208,16 @@ class AbonnementController extends Controller
                     'is_buy' => $request->is_buy,
                 ]);
 
-            return back()->with('success', 'Paiement non validé avec succès');
+            $paiement_abonnement_annule = SouscrireAbonnement::find($request->souscrire_abonnement_id);
+
+            Mail::to($paiement_abonnement_annule->users->email)->send(new AnnulationPaiementAbonnement($paiement_abonnement_annule));
+
+            return back()->with('success', 'Paiement non validé. De nouveau à Paiement non soumis. Email envoyé au client.');
         } else {
 
             $affected = SouscrireAbonnement::where('id', $request->souscrire_abonnement_id)
                 ->update([
                     'is_buy' => $request->is_buy,
-                    'etat' => 'confirmee'
                 ]);
 
             $validation_paiement_abo = SouscrireAbonnement::find($request->souscrire_abonnement_id);
@@ -207,7 +231,9 @@ class AbonnementController extends Controller
     public function confirmes()
     {
 
-        $abonnement_confirmee = SouscrireAbonnement::where('etat', 'confirmee')->simplePaginate(15);
+        $abonnement_confirmee = SouscrireAbonnement::where('etat', 'yes')
+            ->where('is_buy', 'yes')
+            ->simplePaginate(15);
 
         return view('admin_page.gestion_abonnement.confirmes_abonnement', compact('abonnement_confirmee'));
     }

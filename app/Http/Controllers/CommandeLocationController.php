@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AnnulationCommandeLocation;
+use App\Mail\AnnulationPaiementCommandeLocation;
 use App\Mail\SuccessCommandeLocation;
 use App\Mail\ValidationCommandeLocation;
 use App\Mail\ValidationPaiementCommandeLocation;
+use App\Models\CommandeFormation;
 use App\Models\CommandeLocation;
 use App\Models\CommandeMaintenanceAutomobile;
 use App\Models\Compte;
@@ -59,11 +62,15 @@ class CommandeLocationController extends Controller
             ->where('etat_commande', 'yes')
             ->where('image', null)->simplePaginate(15);
 
+        $commande_formation = CommandeFormation::where('user_id', Auth::user()->id)
+            ->where('etat_commande', 'yes')
+            ->where('photo', null)->simplePaginate(15);
+
         $expression_besoin_formation = ExpressionBesoinFormation::where('user_id', Auth::user()->id)
             ->where('etat_commande', 'yes')
             ->where('photo_paiement', null)->simplePaginate(15);
 
-        return view('profile.confirmation_paiement', compact('commande', 'achat_livraison', 'commande_maintenance', 'mode_paiement','expression_besoin_formation'));
+        return view('profile.confirmation_paiement', compact('commande', 'achat_livraison', 'commande_maintenance', 'mode_paiement', 'commande_formation', 'expression_besoin_formation'));
     }
 
     public function success()
@@ -130,9 +137,20 @@ class CommandeLocationController extends Controller
                 ->update([
                     'etat_commande' => $request->etat,
                 ]);
+            $commande_location_annulee = CommandeLocation::find($request->commande_id);
 
-            return back()->with('success', 'Mise en attente avec succès.');
+            Mail::to($commande_location_annulee->users->email)->send(new AnnulationCommandeLocation($commande_location_annulee));
+
+            return back()->with('success', 'Commande annulée avec succès. Email de notification envoyé au client.');
         }
+    }
+
+    public function commande_annulee()
+    {
+
+        $commade_annulee = CommandeLocation::where('etat_commande', 'canceled')->get();
+
+        return view('admin_page.gestion_commande_location.commande_annulee', compact('commade_annulee'));
     }
 
     public function soumission_paiement(Request $request)
@@ -187,10 +205,14 @@ class CommandeLocationController extends Controller
         } else {
             $affected = CommandeLocation::where('id', $request->commande_id)
                 ->update([
-                    'etat_paiement' => $request->etat,
+                    'photo' => null,
                 ]);
 
-            return back()->with('success', 'Commande non payée.');
+            $paiement_commande_location_annule = CommandeLocation::find($request->commande_id);
+
+            Mail::to($paiement_commande_location_annule->users->email)->send(new AnnulationPaiementCommandeLocation($paiement_commande_location_annule));
+
+            return back()->with('success', 'Commande non payée. Le commande est retournée à Paiement non soumis. Email de notification envoyé au client.');
         }
     }
 
