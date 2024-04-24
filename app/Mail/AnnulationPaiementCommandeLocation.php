@@ -30,7 +30,7 @@ class AnnulationPaiementCommandeLocation extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Paiement commande location N° '. $this->paiement_commande_location_annule->numero_commande .' '. 'annulé',
+            subject: 'Paiement commande location N° '. $this->paiement_commande_location_annule->numero_commande .' '. 'refusé',
         );
     }
 

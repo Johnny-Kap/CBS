@@ -7,7 +7,7 @@
     <div class="content-header">
         <div class="header-section">
             <h1>
-                <i class="gi gi-table"></i>Gestion des livraisons des paniers en attente de validation<br><small>Consulter les ici !</small>
+                <i class="gi gi-table"></i>Gestion des livraisons de paniers annulées<br><small>Consulter les ici !</small>
             </h1>
         </div>
     </div>
@@ -26,7 +26,7 @@
 
         <!-- Table Styles Content -->
         <!-- Changing classes functionality initialized in js/pages/tablesGeneral.js -->
-        
+       
         <div class="table-responsive">
             <!--
                                 Available Table Classes:
@@ -50,11 +50,10 @@
                         <th>Etat de la commande</th>
                         <th>Commandé par</th>
                         <th>Commandé le</th>
-                        <th style="width: 150px;" class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($livraison_attente as $item)
+                    @foreach($livraison_annulee as $item)
                     <tr>
                         <td>{{$item->numero_commande}}</td>
                         <td>{{$item->type_prestation}}</td>
@@ -67,12 +66,6 @@
                                 {{$item->users->name}} {{$item->users->prenom}}
                             </a></td>
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
-                        <td class="text-center">
-                            <div class="btn-group btn-group-xs">
-                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil"></i></button>
-                                <!-- <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#pages_delete"><i class="fa fa-times"></i></button> -->
-                            </div>
-                        </td>
                     </tr>
 
                     <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
@@ -80,7 +73,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <div class="form-header text-start mb-0">
-                                        <h4 class="mb-0 text-dark fw-bold">Effectuer la validation</h4>
+                                        <h4 class="mb-0 text-dark fw-bold">Effectuer la validation de commande</h4>
                                     </div>
                                 </div>
                                 <form action="{{route('livraison.validation.etat')}}" method="post">
@@ -97,8 +90,8 @@
                                             <div class="col-md-12">
                                                 <div class="booking-info pay-amount">
                                                     <select name="etat">
-                                                        <option value="yes">Valider la commande</option>
-                                                        <option value="canceled">Annuler la commande</option>
+                                                        <option value="yes">Valider</option>
+                                                        <option value="attente">Mettre en attente</option>
                                                     </select>
                                                     <input type="hidden" name="commande_id" value="{{$item->id}}" />
                                                 </div>
@@ -116,7 +109,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="6">
+                        <td colspan="10">
                             <div class="btn-group btn-group-sm pull-right">
                                 <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
                                 <div class="btn-group btn-group-sm dropup">

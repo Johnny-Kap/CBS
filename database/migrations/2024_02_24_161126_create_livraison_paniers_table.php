@@ -22,6 +22,8 @@ return new class extends Migration
             $table->double('montant')->nullable();
             $table->string('etat_commande');
             $table->string('etat_paiement')->nullable();
+            $table->string('tel_destinataire')->nullable();
+            $table->string('email_destinataire')->nullable();
             $table->string('image')->nullable();
             $table->string('numero_abonnement_valide')->nullable();
             $table->foreignId('user_id')->constrained();

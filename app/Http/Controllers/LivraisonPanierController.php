@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AnnulationAchatLivraisonPanier;
+use App\Mail\AnnulationLivraisonPanier;
+use App\Mail\AnnulationPaiementAchatLivraisonPanier;
+use App\Mail\SuccessAchatLivraisonPanier;
+use App\Mail\SuccessLivraisonPanier;
+use App\Mail\ValidationAchatLivraisonPanier;
+use App\Mail\ValidationLivraisonPanier;
+use App\Mail\ValidationPaiementAchatLivraisonPanier;
 use App\Models\LivraisonPanier;
 use App\Models\ModePaiement;
 use App\Models\SouscrireAbonnement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Laravel\Ui\Presets\React;
 use PHPUnit\Metadata\RequiresPhp;
@@ -93,6 +102,10 @@ class LivraisonPanierController extends Controller
 
                 $commande->save();
 
+                $success_achat_livraison = LivraisonPanier::where('numero_commande', $numero_commande)->first();
+
+                Mail::to($success_achat_livraison->users->email)->send(new SuccessAchatLivraisonPanier($success_achat_livraison));
+
                 return redirect()->route('success.achat.livraison.panier');
             } elseif ($request->type_prestation == 'livraison') {
 
@@ -119,6 +132,10 @@ class LivraisonPanierController extends Controller
                 $commande->user_id = Auth::user()->id;
 
                 $commande->save();
+
+                $success_livraison = LivraisonPanier::where('numero_commande', $numero_commande)->first();
+
+                Mail::to($success_livraison->users->email)->send(new SuccessLivraisonPanier($success_livraison));
 
                 return redirect()->route('success.livraison.panier');
             }
@@ -153,12 +170,31 @@ class LivraisonPanierController extends Controller
     public function validation_achat_livraison(Request $request)
     {
 
-        $affected = LivraisonPanier::where('id', $request->commande_id)
-            ->update([
-                'etat_commande' => $request->etat,
-            ]);
+        if ($request->etat == 'yes') {
 
-        return back()->with('success', 'Validé avec succès');
+            $affected = LivraisonPanier::where('id', $request->commande_id)
+                ->update([
+                    'etat_commande' => $request->etat,
+                ]);
+
+            $validation_achat_livraison = LivraisonPanier::find($request->commande_id);
+
+            Mail::to($validation_achat_livraison->users->email)->send(new ValidationAchatLivraisonPanier($validation_achat_livraison));
+
+            return back()->with('success', 'Validé avec succès. Email de notification envoyé au client.');
+        } else {
+
+            $affected = LivraisonPanier::where('id', $request->commande_id)
+                ->update([
+                    'etat_commande' => $request->etat,
+                ]);
+
+            $achat_livraison_annulee = LivraisonPanier::find($request->commande_id);
+
+            Mail::to($achat_livraison_annulee->users->email)->send(new AnnulationAchatLivraisonPanier($achat_livraison_annulee));
+
+            return back()->with('success', 'Annulé avec succès. Email de notification envoyé au client.');
+        }
     }
 
     public function achat_livraison_paiement_non_soumis()
@@ -211,12 +247,31 @@ class LivraisonPanierController extends Controller
     public function paiement_achat_livraison_valide(Request $request)
     {
 
-        $affected = LivraisonPanier::where('id', $request->commande_id)
-            ->update([
-                'etat_paiement' => $request->etat,
-            ]);
+        if ($request->etat == 'yes') {
 
-        return back()->with('success', 'Paiement validé avec succès');
+            $affected = LivraisonPanier::where('id', $request->commande_id)
+                ->update([
+                    'etat_paiement' => $request->etat,
+                ]);
+
+            $paiement_achat_livraison_valide = LivraisonPanier::find($request->commande_id);
+
+            Mail::to($paiement_achat_livraison_valide->users->email)->send(new ValidationPaiementAchatLivraisonPanier($paiement_achat_livraison_valide));
+
+            return back()->with('success', 'Paiement validé avec succès. Email de notification envoyé au client.');
+        } else {
+
+            $affected = LivraisonPanier::where('id', $request->commande_id)
+                ->update([
+                    'image' => null,
+                ]);
+
+            $paiement_achat_livraison_annule = LivraisonPanier::find($request->commande_id);
+
+            Mail::to($paiement_achat_livraison_annule->users->email)->send(new AnnulationPaiementAchatLivraisonPanier($paiement_achat_livraison_annule));
+
+            return back()->with('success', 'Paiement refusé avec succès. La commande est retournée en Paiement non soumis. Email de notification envoyé au client.');
+        }
     }
 
     public function achat_livraison_confirmees()
@@ -243,12 +298,31 @@ class LivraisonPanierController extends Controller
     public function validation_livraison(Request $request)
     {
 
-        $affected = LivraisonPanier::where('id', $request->commande_id)
-            ->update([
-                'etat_commande' => $request->etat,
-            ]);
+        if ($request->etat == 'yes') {
 
-        return back()->with('success', 'Validé avec succès');
+            $affected = LivraisonPanier::where('id', $request->commande_id)
+                ->update([
+                    'etat_commande' => $request->etat,
+                ]);
+
+            $validation_livraison = LivraisonPanier::find($request->commande_id);
+
+            Mail::to($validation_livraison->users->email)->send(new ValidationLivraisonPanier($validation_livraison));
+
+            return back()->with('success', 'Validé avec succès. Email de notification envoyé au client.');
+        } else {
+
+            $affected = LivraisonPanier::where('id', $request->commande_id)
+                ->update([
+                    'etat_commande' => $request->etat,
+                ]);
+
+            $livraison_annulee = LivraisonPanier::find($request->commande_id);
+
+            Mail::to($livraison_annulee->users->email)->send(new AnnulationLivraisonPanier($livraison_annulee));
+
+            return back()->with('success', 'Annuler avec succès. Email de notification envoyé au client.');
+        }
     }
 
     public function livraison_validee()
@@ -259,6 +333,26 @@ class LivraisonPanierController extends Controller
             ->simplePaginate(15);
 
         return view('admin_page.gestion_livraison_panier.livraison_validee', compact('livraison_validee'));
+    }
+
+    public function annulee()
+    {
+
+        $livraison_annulee = LivraisonPanier::where('etat_commande', 'canceled')
+            ->where('type_prestation', 'livraison')
+            ->simplePaginate(15);
+
+        return view('admin_page.gestion_livraison_panier.livraison_annulee', compact('livraison_annulee'));
+    }
+
+    public function annulee_achat_livraison()
+    {
+
+        $achat_livraison_annulee = LivraisonPanier::where('etat_commande', 'canceled')
+            ->where('type_prestation', 'achat')
+            ->simplePaginate(15);
+
+        return view('admin_page.gestion_livraison_panier.achat_livraison_annulee', compact('achat_livraison_annulee'));
     }
 
     /**

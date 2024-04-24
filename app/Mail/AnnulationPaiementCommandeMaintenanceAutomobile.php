@@ -30,7 +30,7 @@ class AnnulationPaiementCommandeMaintenanceAutomobile extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Paiement commande maintenance automobile N° '. $this->paiement_commande_main_annule->numero_commande .' '. 'annulé',
+            subject: 'Paiement commande maintenance automobile N° '. $this->paiement_commande_main_annule->numero_commande .' '. 'refusé',
         );
     }
 

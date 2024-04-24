@@ -329,10 +329,10 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('achat_livraison.attente') || Request::route()->named('achat_livraison.paiement_non_soumis') || Request::route()->named('achat_livraison.validation_paiement') || Request::route()->named('achat_livraison.confirmees') || Request::route()->named('livraison.attente') || Request::route()->named('livraison.validee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Livraison panier</span></a>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('achat_livraison.attente') || Request::route()->named('achat_livraison.paiement_non_soumis') || Request::route()->named('achat_livraison.validation_paiement') || Request::route()->named('achat_livraison.confirmees') || Request::route()->named('livraison.attente') || Request::route()->named('livraison.validee') || Request::route()->named('livraison.annulee') || Request::route()->named('achat_livraison.annulee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Livraison panier</span></a>
                             <ul>
                                 <li>
-                                    <a href="#" class="sidebar-nav-submenu {{ Request::route()->named('achat_livraison.attente') || Request::route()->named('achat_livraison.paiement_non_soumis') || Request::route()->named('achat_livraison.validation_paiement') || Request::route()->named('achat_livraison.confirmees') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator"></i>Achat et livraison</a>
+                                    <a href="#" class="sidebar-nav-submenu {{ Request::route()->named('achat_livraison.attente') || Request::route()->named('achat_livraison.paiement_non_soumis') || Request::route()->named('achat_livraison.validation_paiement') || Request::route()->named('achat_livraison.confirmees') || Request::route()->named('achat_livraison.annulee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator"></i>Achat et livraison</a>
                                     <ul>
                                         <li>
                                             <a href="{{route('achat_livraison.attente')}}">En attente</a>
@@ -346,16 +346,22 @@
                                         <li>
                                             <a href="{{route('achat_livraison.confirmees')}}">Confirmées</a>
                                         </li>
+                                        <li>
+                                            <a href="{{route('achat_livraison.annulee')}}">Annulées</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#" class="sidebar-nav-submenu {{ Request::route()->named('livraison.attente') || Request::route()->named('livraison.validee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator"></i>Livraison</a>
+                                    <a href="#" class="sidebar-nav-submenu {{ Request::route()->named('livraison.attente') || Request::route()->named('livraison.validee') || Request::route()->named('livraison.annulee') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator"></i>Livraison</a>
                                     <ul>
                                         <li>
                                             <a href="{{route('livraison.attente')}}">En attente</a>
                                         </li>
                                         <li>
                                             <a href="{{route('livraison.validee')}}">Validées</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('livraison.annulee')}}">Annulées</a>
                                         </li>
                                     </ul>
                                 </li>

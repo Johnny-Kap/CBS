@@ -64,7 +64,7 @@
                         <td>{{$item->adresse_recuperation}}</td>
                         <td>{{$item->adresse_livraison}}</td>
                         <td>{{$item->montant}}</td>
-                        <td>@if($item->etat_commande == 'yes') Confirmée @else En attente @endif</td>
+                        <td>@if($item->etat_commande == 'attente') <span class="badge bg-secondary">En attente</span> @elseif($item->etat_commande == 'canceled') <span class="label label-danger">Annulé</span> @else <span class="label label-success">Validé</span> @endif</td>
                         <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">
                                 {{$item->users->name}} {{$item->users->prenom}}
                             </a></td>
@@ -99,8 +99,8 @@
                                             <div class="col-md-12">
                                                 <div class="booking-info pay-amount">
                                                     <select name="etat">
-                                                        <option value="yes">Valider</option>
-                                                        <option value="attente">Mettre en attente</option>
+                                                        <option value="yes">Valider la commande</option>
+                                                        <option value="canceled">Annuler la commande</option>
                                                     </select>
                                                     <input type="hidden" name="commande_id" value="{{$item->id}}" />
                                                 </div>

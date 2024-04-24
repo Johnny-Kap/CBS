@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\ExpressionBesoinFormation;
+use App\Models\LivraisonPanier;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,19 +10,18 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class AnnulationPaiementExpressionBesoinFormation extends Mailable
+class ValidationPaiementAchatLivraisonPanier extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $expression_besoin_paiement_annulee;
+    public $paiement_achat_livraison_valide;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(ExpressionBesoinFormation $expression_besoin_paiement_annulee)
+    public function __construct(LivraisonPanier $paiement_achat_livraison_valide)
     {
-        
-        $this->expression_besoin_paiement_annulee = $expression_besoin_paiement_annulee;
+        $this->paiement_achat_livraison_valide = $paiement_achat_livraison_valide;
     }
 
     /**
@@ -31,7 +30,7 @@ class AnnulationPaiementExpressionBesoinFormation extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Paiement expression du besoin de formation N° '. $this->expression_besoin_paiement_annulee->numero_commande .' '. 'refusé',
+            subject: 'Paiement de l\'achat et livraion N°'. $this->paiement_achat_livraison_valide->numero_abonnement .' reussi',
         );
     }
 
@@ -41,10 +40,7 @@ class AnnulationPaiementExpressionBesoinFormation extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mails.commande_formation.annulation_paiement_expression_besoin',
-            with: [
-                'url' => 'http://127.0.0.1:8000/myprofile/confirmation-paiement',
-            ],
+            markdown: 'mails.livraison_panier.validation_paiement_achat_livraison',
         );
     }
 

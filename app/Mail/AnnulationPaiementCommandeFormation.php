@@ -31,7 +31,7 @@ class AnnulationPaiementCommandeFormation extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Paiement commande formation N° '. $this->paiement_formation_annule->numero_commande .' '. 'annulé',
+            subject: 'Paiement commande formation N° '. $this->paiement_formation_annule->numero_commande .' '. 'refusé',
         );
     }
 

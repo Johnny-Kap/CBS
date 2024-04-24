@@ -212,10 +212,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/achat-livraison/validation-paiement', [App\Http\Controllers\LivraisonPanierController::class, 'validation_paiement_achat_livraison'])->name('achat_livraison.validation_paiement');
     Route::post('/admin/achat-livraison/paiement/validee', [App\Http\Controllers\LivraisonPanierController::class, 'paiement_achat_livraison_valide'])->name('achat_livraison.paiement.valide');
     Route::get('/admin/achat-livraison/commande-confirmees', [App\Http\Controllers\LivraisonPanierController::class, 'achat_livraison_confirmees'])->name('achat_livraison.confirmees');
+    Route::get('/admin/achat-livraison/annulee', [App\Http\Controllers\LivraisonPanierController::class, 'annulee_achat_livraison'])->name('achat_livraison.annulee');
 
     Route::get('/admin/livraison/attente', [App\Http\Controllers\LivraisonPanierController::class, 'attente_livraison'])->name('livraison.attente');
     Route::post('/admin/livraison/change/etat', [App\Http\Controllers\LivraisonPanierController::class, 'validation_livraison'])->name('livraison.validation.etat');
     Route::get('/admin/livraison/commande_validee', [App\Http\Controllers\LivraisonPanierController::class, 'livraison_validee'])->name('livraison.validee');
+    Route::get('/admin/livraison/annulee', [App\Http\Controllers\LivraisonPanierController::class, 'annulee'])->name('livraison.annulee');
 
 
     // Gestion des utilisateurs
