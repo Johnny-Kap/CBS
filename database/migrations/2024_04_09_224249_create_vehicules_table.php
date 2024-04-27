@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('intitule');
             $table->string('numero_immatriculation');
-            $table->string('modele');
+            $table->string('modele')->nullable();
             $table->string('couleur');
             $table->string('annee_fabrication')->nullable();
             $table->text('description')->nullable();
