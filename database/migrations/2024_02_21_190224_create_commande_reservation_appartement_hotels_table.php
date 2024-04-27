@@ -21,7 +21,7 @@ return new class extends Migration
             $table->double('prix_inferieur')->nullable();
             $table->double('prix_superieur')->nullable();
             $table->string('etat_commande');
-            $table->string('numero_abonnement_valide')->nullable();
+            $table->string('numero_abonnement_souscris')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

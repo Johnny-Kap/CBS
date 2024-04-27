@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('tel_destinataire')->nullable();
             $table->string('email_destinataire')->nullable();
             $table->string('image')->nullable();
-            $table->string('numero_abonnement_valide')->nullable();
+            $table->string('numero_abonnement_souscris')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('mode_paiement_id')->nullable();
             $table->timestamps();
