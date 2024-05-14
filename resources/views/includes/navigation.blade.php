@@ -110,7 +110,7 @@
                         </ul>
                     </li>
                     <li class="">
-                        <a href="{{route('abonnement.index')}}">Abonnements</a>
+                        <a href="{{route('abonnement.index')}}">Plans d'abonnement</a>
                     </li>
                     <li class="{{ Request::route()->named('contact') ? 'active' : '' }}"><a href="{{route('contact')}}">Contact</a></li>
                     <li class="{{ Request::route()->named('propos') ? 'active' : '' }}"><a href="{{route('propos')}}">A propos de nous</a></li>

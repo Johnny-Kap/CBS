@@ -14,3 +14,5 @@
     <link rel="stylesheet" href="/../../assets_admin/css/themes.css">
     <!-- END Stylesheets -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
+
+    <link href="https://cdn.datatables.net/v/dt/dt-2.0.7/b-3.0.2/datatables.min.css" rel="stylesheet">
