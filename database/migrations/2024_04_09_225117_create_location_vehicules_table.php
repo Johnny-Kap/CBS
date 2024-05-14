@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('location_vehicules', function (Blueprint $table) {
             $table->id();
-            $table->string('intitule');
+            $table->string('intitule')->nullable();
             $table->text('description')->nullable();
             $table->double('tarif');
             $table->string('masked')->nullable();

@@ -38,7 +38,11 @@
                         <input id="situation_vehicule" type="text" class="form-control" name="adresse_livraison" required />
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Montant d'achat du panier (Uniquement si vous avez choisi "Achat" comme type de prestation) </label>
+                        <label class="form-label">Téléphone destinataire <span class="text-danger">*</span></label>
+                        <input id="situation_vehicule" type="text" class="form-control" name="tel_destinataire" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Montant d'achat du panier (Uniquement si vous avez choisi "Achat et livraison" comme type de prestation) </label>
                         <input id="tel" type="number" class="form-control" name="montant" />
                     </div>
                     <div class="form-group">

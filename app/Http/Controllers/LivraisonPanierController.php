@@ -88,6 +88,8 @@ class LivraisonPanierController extends Controller
 
                 $commande->adresse_livraison = $request->adresse_livraison;
 
+                $commande->tel_destinataire = $request->tel_destinataire;
+
                 $commande->montant = $request->montant;
 
                 $commande->mode_paiement = $request->mode_paiement;
@@ -122,6 +124,8 @@ class LivraisonPanierController extends Controller
                 $commande->date_livraison = $request->date_livraison;
 
                 $commande->adresse_recuperation = $request->adresse_recuperation;
+
+                $commande->tel_destinataire = $request->tel_destinataire;
 
                 $commande->adresse_livraison = $request->adresse_livraison;
 
