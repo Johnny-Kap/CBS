@@ -32,7 +32,7 @@
                 <!-- Basic Form Elements Content -->
                 <form action="{{route('location.add')}}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
                     @csrf
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label class="col-md-3 control-label" for="example-text-input">Nom de la location</label>
                         <div class="col-md-9">
                             <input type="text" id="example-text-input" name="intitule" class="form-control" placeholder="Entrer un nom de la location">
@@ -49,16 +49,7 @@
                         @error('description')
                         <div class="text-sm text-red-600">{{ $message }}</div>
                         @enderror
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-text-input">Tarif</label>
-                        <div class="col-md-9">
-                            <input type="text" id="example-text-input" name="tarif" class="form-control" placeholder="Entrer un tarif">
-                        </div>
-                        @error('tarif')
-                        <div class="text-sm text-red-600">{{ $message }}</div>
-                        @enderror
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-select">Choisir le véhicule</label>
                         <div class="col-md-9">
@@ -69,6 +60,16 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="example-text-input">Tarif</label>
+                        <div class="col-md-9">
+                            <input type="text" id="example-text-input" name="tarif" class="form-control" placeholder="Entrer un tarif">
+                        </div>
+                        @error('tarif')
+                        <div class="text-sm text-red-600">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    
                     <div class="form-group form-actions">
                         <div class="col-md-9 col-md-offset-3">
                             <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i>

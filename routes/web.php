@@ -251,4 +251,39 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/expression-besoin-formation/commande-confirmees', [App\Http\Controllers\ExpressionBesoinFormationController::class, 'commande_confirmees'])->name('expression.besoin.commande_confirmees');
     Route::get('/admin/expression-besoin-formation/annulee', [App\Http\Controllers\ExpressionBesoinFormationController::class, 'annulee'])->name('expression.besoin.annulee');
 
+
+    // Gestion de la facturation des services
+
+    Route::post('/admin/facture/commande-location/add', [App\Http\Controllers\FactureCommandeLocationController::class, 'create'])->name('facture.commande_location.add');
+    Route::get('/admin/facture/commande-location/consulter', [App\Http\Controllers\FactureCommandeLocationController::class, 'index'])->name('facture.commande_location.consulter');
+    Route::get('/admin/facture/commande-location/generer', [App\Http\Controllers\FactureCommandeLocationController::class, 'generer'])->name('facture.commande_location.generer');
+
+    Route::post('/admin/facture/commande-formation/add', [App\Http\Controllers\FactureCommandeFormationController::class, 'create'])->name('facture.commande_formation.add');
+    Route::get('/admin/facture/commande-formation/consulter', [App\Http\Controllers\FactureCommandeFormationController::class, 'index'])->name('facture.commande_formation.consulter');
+    Route::get('/admin/facture/commande-formation/generer', [App\Http\Controllers\FactureCommandeFormationController::class, 'generer'])->name('facture.commande_formation.generer');
+
+    Route::post('/admin/facture/expression-besoin-formation/add', [App\Http\Controllers\FactureCommandeExpressionBesoinFormationController::class, 'create'])->name('facture.expression_besoin_formation.add');
+    Route::get('/admin/facture/expression-besoin-formation/consulter', [App\Http\Controllers\FactureCommandeExpressionBesoinFormationController::class, 'index'])->name('facture.expression_besoin_formation.consulter');
+    Route::get('/admin/facture/expression-besoin-formation/generer', [App\Http\Controllers\FactureCommandeExpressionBesoinFormationController::class, 'generer'])->name('facture.expression_besoin_formation.generer');
+
+    Route::post('/admin/facture/commande-maintenance-automobile/add', [App\Http\Controllers\FactureCommandeMaintenanceController::class, 'create'])->name('facture.commande_maintenance.add');
+    Route::get('/admin/facture/commande-maintenance-automobile/consulter', [App\Http\Controllers\FactureCommandeMaintenanceController::class, 'index'])->name('facture.commande_maintenance.consulter');
+    Route::get('/admin/facture/commande-maintenance-automobile/generer', [App\Http\Controllers\FactureCommandeMaintenanceController::class, 'generer'])->name('facture.commande_maintenance.generer');
+
+    Route::post('/admin/facture/commande-reservation-appart-ou-hotel/add', [App\Http\Controllers\FactureCommandeReservationAppartHotelController::class, 'create'])->name('facture.commande_reservation_appart_hotel.add');
+    Route::get('/admin/facture/commande-reservation-appart-ou-hotel/consulter', [App\Http\Controllers\FactureCommandeReservationAppartHotelController::class, 'index'])->name('facture.commande_reservation_appart_hotel.consulter');
+    Route::get('/admin/facture/commande-reservation-appart-ou-hotel/generer', [App\Http\Controllers\FactureCommandeReservationAppartHotelController::class, 'generer'])->name('facture.commande_reservation_appart_hotel.generer');
+
+    Route::post('/admin/facture/commande-achat-livraison-panier/add', [App\Http\Controllers\FactureCommandeAchatLivraisonPanierController::class, 'create'])->name('facture.commande_achat_livraison_panier.add');
+    Route::get('/admin/facture/commande-achat-livraison-panier/consulter', [App\Http\Controllers\FactureCommandeAchatLivraisonPanierController::class, 'index'])->name('facture.commande_achat_livraison_panier.consulter');
+    Route::get('/admin/facture/commande-achat-livraison-panier/generer', [App\Http\Controllers\FactureCommandeAchatLivraisonPanierController::class, 'generer'])->name('facture.commande_achat_livraison_panier.generer');
+
+    Route::post('/admin/facture/commande-livraison-panier/add', [App\Http\Controllers\FactureCommandeLivraisonPanierController::class, 'create'])->name('facture.commande_livraison_panier.add');
+    Route::get('/admin/facture/commande-livraison-panier/consulter', [App\Http\Controllers\FactureCommandeLivraisonPanierController::class, 'index'])->name('facture.commande_livraison_panier.consulter');
+    Route::get('/admin/facture/commande-livraison-panier/generer', [App\Http\Controllers\FactureCommandeLivraisonPanierController::class, 'generer'])->name('facture.commande_livraison_panier.generer');
+
+    Route::post('/admin/facture/souscription-abonnement/add', [App\Http\Controllers\FactureSouscrireAbonnementController::class, 'create'])->name('facture.souscription_abonnement.add');
+    Route::get('/admin/facture/souscription-abonnement/consulter', [App\Http\Controllers\FactureSouscrireAbonnementController::class, 'index'])->name('facture.souscription_abonnement.consulter');
+    Route::get('/admin/facture/souscription-abonnement/generer', [App\Http\Controllers\FactureSouscrireAbonnementController::class, 'generer'])->name('facture.souscription_abonnement.generer');
+
 });

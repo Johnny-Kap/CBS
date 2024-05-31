@@ -104,6 +104,26 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label class="form-label">Numéro de Passport <span class="text-danger">*</span></label>
+                            <input id="numero_passport" type="text" class="form-control @error('numero_passport') is-invalid @enderror" name="numero_passport" value="{{ old('numero_passport') }}" required autocomplete="numero_passport" />
+
+                            @error('numero_passport')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date de délivrance Passport <span class="text-danger">*</span></label>
+                            <input id="date_delivrance_passport" type="text" class="form-control datetimepicker @error('date_delivrance_passport') is-invalid @enderror" placeholder="04/11/2023" name="date_delivrance_passport" value="{{ old('date_delivrance_passport') }}" required autocomplete="date_delivrance_passport">
+
+                            @error('date_delivrance_passport')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label class="form-label">Mot de passe <span class="text-danger">*</span></label>
                             <div class="pass-group">
                                 <input id="password" type="password" class="form-control pass-input @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" />

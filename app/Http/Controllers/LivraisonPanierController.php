@@ -166,7 +166,7 @@ class LivraisonPanierController extends Controller
 
         $achat_livraison_attente = LivraisonPanier::where('etat_commande', 'attente')
             ->where('type_prestation', 'achat')
-            ->simplePaginate(15);
+            ->get();
 
         return view('admin_page.gestion_livraison_panier.attente_validation_achat_livraison', compact('achat_livraison_attente'));
     }
@@ -207,7 +207,7 @@ class LivraisonPanierController extends Controller
         $achat_livraison_paiement_non_soumis = LivraisonPanier::where('etat_commande', 'yes')
             ->where('type_prestation', 'achat')
             ->where('image', null)
-            ->simplePaginate(15);
+            ->get();
 
         return view('admin_page.gestion_livraison_panier.achat_livraison_paiement_non_soumis', compact('achat_livraison_paiement_non_soumis'));
     }
@@ -243,7 +243,7 @@ class LivraisonPanierController extends Controller
         $achat_livraison_validation_paiement = LivraisonPanier::where('etat_commande', 'yes')
             ->where('type_prestation', 'achat')
             ->where('etat_paiement', 'no')
-            ->whereNotNull('image')->simplePaginate(15);
+            ->whereNotNull('image')->get();
 
         return view('admin_page.gestion_livraison_panier.achat_livraison_validation_paiement', compact('achat_livraison_validation_paiement'));
     }
@@ -283,7 +283,7 @@ class LivraisonPanierController extends Controller
 
         $achat_livraison_confirmees = LivraisonPanier::where('etat_commande', 'yes')
             ->where('etat_paiement', 'yes')
-            ->whereNotNull('image')->simplePaginate(15);
+            ->whereNotNull('image')->get();
 
         return view('admin_page.gestion_livraison_panier.achat_livraison_confirmees', compact('achat_livraison_confirmees'));
     }
@@ -294,7 +294,7 @@ class LivraisonPanierController extends Controller
 
         $livraison_attente = LivraisonPanier::where('etat_commande', 'attente')
             ->where('type_prestation', 'livraison')
-            ->simplePaginate(15);
+            ->get();
 
         return view('admin_page.gestion_livraison_panier.attente_validation_livraison', compact('livraison_attente'));
     }
@@ -334,7 +334,7 @@ class LivraisonPanierController extends Controller
 
         $livraison_validee = LivraisonPanier::where('etat_commande', 'yes')
             ->where('type_prestation', 'livraison')
-            ->simplePaginate(15);
+            ->get();
 
         return view('admin_page.gestion_livraison_panier.livraison_validee', compact('livraison_validee'));
     }
@@ -344,7 +344,7 @@ class LivraisonPanierController extends Controller
 
         $livraison_annulee = LivraisonPanier::where('etat_commande', 'canceled')
             ->where('type_prestation', 'livraison')
-            ->simplePaginate(15);
+            ->get();
 
         return view('admin_page.gestion_livraison_panier.livraison_annulee', compact('livraison_annulee'));
     }
@@ -354,7 +354,7 @@ class LivraisonPanierController extends Controller
 
         $achat_livraison_annulee = LivraisonPanier::where('etat_commande', 'canceled')
             ->where('type_prestation', 'achat')
-            ->simplePaginate(15);
+            ->get();
 
         return view('admin_page.gestion_livraison_panier.achat_livraison_annulee', compact('achat_livraison_annulee'));
     }

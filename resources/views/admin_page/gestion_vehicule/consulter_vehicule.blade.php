@@ -378,32 +378,6 @@
                     </div>
                     @endforeach
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="10">
-                            <div class="btn-group btn-group-sm pull-right">
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
-                                <div class="btn-group btn-group-sm dropup">
-                                    <a href="javascript:void(0)" class="btn btn-primary pull-right dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-                                    <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
-                                        <li><a href="javascript:void(0)"><i class="fa fa-print pull-right"></i>
-                                                Print</a></li>
-                                        <li class="dropdown-header"><i class="fa fa-share pull-right"></i> Export As
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">.pdf</a>
-                                            <a href="javascript:void(0)">.cvs</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="btn-group btn-group-sm">
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Edit Selected"><i class="fa fa-pencil"></i></a>
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Delete Selected"><i class="fa fa-times"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                </tfoot>
             </table>
         </div>
         <!-- END Table Styles Content -->
@@ -416,7 +390,30 @@
 @push('scripts')
 
 <script>
-    let table = new DataTable('#general-table');
+   let table = new DataTable('#general-table', {
+        language: {
+            processing: "Traitement en cours...",
+            search: "Rechercher&nbsp;:",
+            lengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
+            info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+            infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+            infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+            infoPostFix: "",
+            loadingRecords: "Chargement en cours...",
+            zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
+            emptyTable: "Aucune donnée disponible dans le tableau",
+            paginate: {
+                first: "Premier",
+                previous: "Pr&eacute;c&eacute;dent",
+                next: "Suivant",
+                last: "Dernier"
+            },
+            aria: {
+                sortAscending: ": activer pour trier la colonne par ordre croissant",
+                sortDescending: ": activer pour trier la colonne par ordre décroissant"
+            }
+        }
+    });
 </script>
 
 @endpush

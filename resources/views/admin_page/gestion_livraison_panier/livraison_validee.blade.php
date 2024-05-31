@@ -47,10 +47,11 @@
                         <th>Date de livraison</th>
                         <th>Adresse recupération</th>
                         <th>Adresse de livraison</th>
+                        <th>Tel Destinataire</th>
                         <th>Etat de la commande</th>
                         <th>Commandé par</th>
                         <th>Commandé le</th>
-                        <th style="width: 150px;" class="text-center">Actions</th>
+                        <th style="width: 150px;" class="text-center">Créer facture</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,6 +63,7 @@
                         <td>{{$item->date_livraison}}</td>
                         <td>{{$item->adresse_recuperation}}</td>
                         <td>{{$item->adresse_livraison}}</td>
+                        <td>{{$item->tel_destinataire}}</td>
                         <td>@if($item->etat_commande == 'yes') Validé @else En attente @endif</td>
                         <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">
                                 {{$item->users->name}} {{$item->users->prenom}}
@@ -69,44 +71,33 @@
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#pages_delete"><i class="fa fa-times"></i></button>
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit"><i class="fa fa-file-text"></i></button>
                             </div>
                         </td>
                     </tr>
 
-                    <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
+                    <div class="modal fade" id="pages_edit" role="dialog">
                         <div class="modal-dialog modal-dialog-centered modal-md">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <div class="form-header text-start mb-0">
-                                        <h4 class="mb-0 text-dark fw-bold">Effectuer la validation de commande</h4>
+                                        <h4 class="mb-0 text-dark fw-bold">Créer la facture N° {{$item->numero_commande}}</h4>
                                     </div>
                                 </div>
-                                <form action="{{route('livraison.validation.etat')}}" method="post">
+                                <form action="{{route('facture.commande_livraison_panier.add')}}" method="post">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="row">
-                                            <div class="col-lg-12 col-md-12">
-                                                <div class="available-for-ride">
-                                                    <p>
-                                                        <i class="fa-regular fa-circle-check"></i>Choisir l'option :
-                                                    </p>
-                                                </div>
-                                            </div>
                                             <div class="col-md-12">
                                                 <div class="booking-info pay-amount">
-                                                    <select name="etat">
-                                                        <option value="yes">Valider</option>
-                                                        <option value="attente">Mettre en attente</option>
-                                                    </select>
-                                                    <input type="hidden" name="commande_id" value="{{$item->id}}" />
+                                                    <h3>Voulez-vous vraiment créer la facture de cette commande ?</h3>
+                                                    <input type="hidden" name="livraison_id" value="{{$item->id}}" />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-back">Valider <i class="fa fa-arrow-right"></i></button>
+                                        <button type="submit" class="btn btn-primary">Créer <i class="fa fa-arrow-right"></i></button>
                                     </div>
                                 </form>
                             </div>
@@ -114,32 +105,6 @@
                     </div>
                     @endforeach
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="6">
-                            <div class="btn-group btn-group-sm pull-right">
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
-                                <div class="btn-group btn-group-sm dropup">
-                                    <a href="javascript:void(0)" class="btn btn-primary pull-right dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-                                    <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
-                                        <li><a href="javascript:void(0)"><i class="fa fa-print pull-right"></i>
-                                                Print</a></li>
-                                        <li class="dropdown-header"><i class="fa fa-share pull-right"></i> Export As
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">.pdf</a>
-                                            <a href="javascript:void(0)">.cvs</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="btn-group btn-group-sm">
-                                <a href="#pages_edit" class="btn btn-primary" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#pages_edit" title="Edit Selected"><i class="fa fa-pencil"></i></a>
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Delete Selected"><i class="fa fa-times"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                </tfoot>
             </table>
         </div>
         <!-- END Table Styles Content -->
@@ -266,7 +231,36 @@
         },
         layout: {
             topStart: {
-                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                buttons: [{
+                        extend: 'pdf',
+                        title: 'Liste des commandes de livraison validées',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        title: 'Liste des commandes de livraison validées',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        title: 'Liste des commandes de livraison validées',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Liste des commandes de livraison validées',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ]
             }
         }
     });

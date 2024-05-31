@@ -95,7 +95,7 @@
                                             <div class="form-group mb-3 col-md-6 datetimepickers">
                                                 <label class="form-label">Date de naissance</label>
                                                 <div class="input-group">
-                                                    <input type="datetime-local" class="form-control" value="{{ Auth::user()->date_naiss }}" required name="date_naiss">
+                                                    <input type="datetime-local" class="form-control" value="{{ Auth::user()->date_naiss }}" name="date_naiss">
                                                 </div>
                                             </div>
                                             <div class="form-group mb-3 col-md-6">
@@ -108,7 +108,7 @@
                                             </div>
                                             <div class="form-group mb-3 col-md-6">
                                                 <label class="form-label">N° CNI</label>
-                                                <input type="text" class="form-control" name="numero_cni" value="{{ Auth::user()->numero_cni }}">
+                                                <input type="text" class="form-control" name="numero_cni" required value="{{ Auth::user()->numero_cni }}">
                                             </div>
                                             <div class="form-group mb-3 col-md-6 datetimepickers">
                                                 <label class="form-label">Date de délivrance CNI</label>
@@ -128,7 +128,7 @@
                                             </div>
                                             <div class="form-group mb-0 col-md-12">
                                                 <label class="mb-2">Description</label>
-                                                <textarea class="form-control form--control user-text-editor" name="bio" rows="10" cols="40" required>{!! html_entity_decode(Auth::user()->description) !!}</textarea>
+                                                <textarea class="form-control form--control user-text-editor" name="bio" rows="10" cols="40">{!! html_entity_decode(Auth::user()->description) !!}</textarea>
                                                 <div class="d-flex align-items-center pt-2">
                                                     <div class="mr-3">
                                                         ``` <code class="badge bg-gray border border-gray text-gray">code</code>

@@ -439,6 +439,39 @@
                         </li>
                         <li class="sidebar-header">
                             <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
+                            <span class="sidebar-header-title">Facturation </span>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-nav-menu {{ Request::route()->named('facture.commande_location.consulter') ? 'active' : '' }}"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Facturation</span></a>
+                            <ul>
+                                <li>
+                                    <a class="{{ Request::route()->named('facture.commande_location.consulter') ? 'active' : '' }}" href="{{route('facture.commande_location.consulter')}}">Comm. location</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('facture.commande_formation.consulter') ? 'active' : '' }}" href="{{route('facture.commande_formation.consulter')}}">Comm. formation</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('facture.expression_besoin_formation.consulter') ? 'active' : '' }}" href="{{route('facture.expression_besoin_formation.consulter')}}">Comm. expression formation</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('facture.commande_maintenance.consulter') ? 'active' : '' }}" href="{{route('facture.commande_maintenance.consulter')}}">Comm. maintenance</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('facture.commande_reservation_appart_hotel.consulter') ? 'active' : '' }}" href="{{route('facture.commande_reservation_appart_hotel.consulter')}}">Comm. réservation</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('facture.commande_achat_livraison_panier.consulter') ? 'active' : '' }}" href="{{route('facture.commande_achat_livraison_panier.consulter')}}">Comm. achat et livraison</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('facture.commande_livraison_panier.consulter') ? 'active' : '' }}" href="{{route('facture.commande_livraison_panier.consulter')}}">Comm. livraison</a>
+                                </li>
+                                <!-- <li>
+                                    <a class="{{ Request::route()->named('facture.souscription_abonnement.consulter') ? 'active' : '' }}" href="{{route('facture.souscription_abonnement.consulter')}}">Sous. abonnement</a>
+                                </li> -->
+                            </ul>
+                        </li>
+                        <li class="sidebar-header">
+                            <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
                             <span class="sidebar-header-title">Autres config</span>
                         </li>
                         <li>

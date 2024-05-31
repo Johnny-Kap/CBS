@@ -101,14 +101,14 @@ class CommandeMaintenanceAutomobileController extends Controller
     public function attente()
     {
 
-        $commade_attente = CommandeMaintenanceAutomobile::where('etat_commande', 'attente')->simplePaginate(15);
+        $commade_attente = CommandeMaintenanceAutomobile::where('etat_commande', 'attente')->get();
 
         return view('admin_page.gestion_commande_maintenance.attente_validation', compact('commade_attente'));
     }
 
     public function annulee(){
 
-        $commade_annulee = CommandeMaintenanceAutomobile::where('etat_commande', 'canceled')->simplePaginate(15);
+        $commade_annulee = CommandeMaintenanceAutomobile::where('etat_commande', 'canceled')->get();
 
         return view('admin_page.gestion_commande_maintenance.commande_annulee', compact('commade_annulee'));
     }
@@ -148,7 +148,7 @@ class CommandeMaintenanceAutomobileController extends Controller
 
         $commande_paiement_non_soumis = CommandeMaintenanceAutomobile::where('etat_commande', 'yes')
             ->where('image', null)
-            ->simplePaginate(15);
+            ->get();
 
         return view('admin_page.gestion_commande_maintenance.commande_paiement_non_soumis', compact('commande_paiement_non_soumis'));
     }
@@ -158,7 +158,7 @@ class CommandeMaintenanceAutomobileController extends Controller
 
         $commande_validation_paiement = CommandeMaintenanceAutomobile::where('etat_commande', 'yes')
             ->where('etat_paiement', 'no')
-            ->whereNotNull('image')->simplePaginate(15);
+            ->whereNotNull('image')->get();
 
         return view('admin_page.gestion_commande_maintenance.validation_paiement', compact('commande_validation_paiement'));
     }
@@ -220,7 +220,7 @@ class CommandeMaintenanceAutomobileController extends Controller
     {
 
         $commande_confirmees = CommandeMaintenanceAutomobile::where('etat_commande', 'yes')
-            ->where('etat_paiement', 'yes')->simplePaginate(15);
+            ->where('etat_paiement', 'yes')->get();
 
         return view('admin_page.gestion_commande_maintenance.commande_confirmees', compact('commande_confirmees'));
     }

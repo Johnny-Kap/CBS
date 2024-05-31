@@ -47,6 +47,7 @@
                         <th>Date de livraison</th>
                         <th>Adresse recupération</th>
                         <th>Adresse de livraison</th>
+                        <th>Tel Destinataire</th>
                         <th>Montant</th>
                         <th>Mode de paiement</th>
                         <th>Etat du paiement</th>
@@ -64,6 +65,7 @@
                         <td>{{$item->date_livraison}}</td>
                         <td>{{$item->adresse_recuperation}}</td>
                         <td>{{$item->adresse_livraison}}</td>
+                        <td>{{$item->tel_destinataire}}</td>
                         <td>{{$item->montant}}</td>
                         <td>{{$item->mode_paiements->intitule}}</td>
                         <td>@if($item->etat_paiement == 'yes') Payé @else En attente de validation @endif</td>
@@ -187,7 +189,36 @@
         },
         layout: {
             topStart: {
-                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                buttons: [{
+                        extend: 'pdf',
+                        title: 'Liste des commandes d\'achat et livraison en attente de validation de paiement',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        title: 'Liste des commandes d\'achat et livraison en attente de validation de paiement',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        title: 'Liste des commandes d\'achat et livraison en attente de validation de paiement',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Liste des commandes d\'achat et livraison en attente de validation de paiement',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ]
             }
         }
     });

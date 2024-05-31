@@ -29,7 +29,7 @@ class CommandeLocationController extends Controller
     public function index()
     {
 
-        $commade_attente = CommandeLocation::where('etat_commande', 'attente')->simplePaginate(15);
+        $commade_attente = CommandeLocation::where('etat_commande', 'attente')->get();
 
         return view('admin_page.gestion_commande_location.attente_validation', compact('commade_attente'));
     }
@@ -39,7 +39,7 @@ class CommandeLocationController extends Controller
 
         $paiement_non_soumis = CommandeLocation::where('etat_commande', 'yes')
             ->where('photo', null)
-            ->simplePaginate(15);
+            ->get();
 
         return view('admin_page.gestion_commande_location.commande_paiement_non_soumis', compact('paiement_non_soumis'));
     }

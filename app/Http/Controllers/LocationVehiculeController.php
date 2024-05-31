@@ -180,15 +180,11 @@ class LocationVehiculeController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'intitule' => 'required|string|max:255',
-            'description' => 'required|string',
             'tarif' => 'required|numeric',
             'vehicule_id' => 'required',
         ]);
 
         $location = LocationVehicule::create([
-            'intitule' => $request->intitule,
-            'description' => $request->description,
             'tarif' => $request->tarif,
             'masked' => 'no',
             'vehicule_id' => $request->vehicule_id,

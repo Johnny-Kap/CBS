@@ -140,7 +140,7 @@
                         <div class="card">
                             <div class="blog-widget d-flex">
                                 <div class="blog-img">
-                                    <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->intitule)]) }}">
+                                    <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->vehicules->intitule)]) }}">
                                         <img src="{{ Storage::url($item->vehicules->image_illustrative) }}" style="width: 20rem; height: 10rem;" class="img-fluid" alt="blog-img">
                                     </a>
                                 </div>
@@ -148,7 +148,7 @@
                                     <div class="card-body">
                                         <div class="blog-list-head d-flex">
                                             <div class="blog-list-title">
-                                                <h3><a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->intitule)]) }}">{{$item->intitule}}</a>
+                                                <h3><a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->vehicules->intitule)]) }}">{{$item->vehicules->intitule}}</a>
                                                 </h3>
                                                 <h6>Type de véhicule : <span>{{$item->vehicules->type_vehicules->intitule}}</span></h6>
                                             </div>
@@ -206,7 +206,7 @@
                                                 </div>
                                             </div>
                                             <div class="listing-button">
-                                                <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->intitule)]) }}" type="sumit" class="btn btn-order"><span><i class="fas fa-calendar me-2"></i></span>Louer maintenant</a>
+                                                <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->vehicules->intitule)]) }}" type="sumit" class="btn btn-order"><span><i class="fas fa-calendar me-2"></i></span>Louer maintenant</a>
                                             </div>
                                         </div>
                                     </div>

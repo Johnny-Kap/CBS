@@ -282,7 +282,36 @@
         },
         layout: {
             topStart: {
-                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                buttons: [{
+                        extend: 'pdf',
+                        title: 'Liste des commandes de formation non paiement soumis',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        title: 'Liste des commandes de formation non paiement soumis',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        title: 'Liste des commandes de formation non paiement soumis',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Liste des commandes de formation non paiement soumis',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ]
             }
         }
     });

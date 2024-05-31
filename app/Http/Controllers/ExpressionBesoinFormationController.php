@@ -22,7 +22,7 @@ class ExpressionBesoinFormationController extends Controller
     public function index()
     {
 
-        $expression_besoin_attente = ExpressionBesoinFormation::where('etat_commande', 'attente')->simplePaginate(15);
+        $expression_besoin_attente = ExpressionBesoinFormation::where('etat_commande', 'attente')->get();
 
         return view('admin_page.gestion_expression_besoin_formation.attente_validation', compact('expression_besoin_attente'));
     }
@@ -30,7 +30,7 @@ class ExpressionBesoinFormationController extends Controller
     public function annulee()
     {
 
-        $expression_besoin_annulee = ExpressionBesoinFormation::where('etat_commande', 'canceled')->simplePaginate(15);
+        $expression_besoin_annulee = ExpressionBesoinFormation::where('etat_commande', 'canceled')->get();
 
         return view('admin_page.gestion_expression_besoin_formation.commande_annulee', compact('expression_besoin_annulee'));
     }
@@ -94,7 +94,7 @@ class ExpressionBesoinFormationController extends Controller
 
         $paiement_non_soumis = ExpressionBesoinFormation::where('etat_commande', 'yes')
             ->where('photo_paiement', null)
-            ->simplePaginate(15);
+            ->get();
 
         return view('admin_page.gestion_expression_besoin_formation.paiement_non_soumis', compact('paiement_non_soumis'));
     }
@@ -104,7 +104,7 @@ class ExpressionBesoinFormationController extends Controller
 
         $expression_besoin_validation_paiement = ExpressionBesoinFormation::where('etat_commande', 'yes')
             ->where('etat_paiement', 'no')
-            ->whereNotNull('photo_paiement')->simplePaginate(15);
+            ->whereNotNull('photo_paiement')->get();
 
         return view('admin_page.gestion_expression_besoin_formation.validation_paiement', compact('expression_besoin_validation_paiement'));
     }
@@ -142,7 +142,7 @@ class ExpressionBesoinFormationController extends Controller
 
         $expression_besoin_confirmees = ExpressionBesoinFormation::where('etat_commande', 'yes')
             ->where('etat_paiement', 'yes')
-            ->whereNotNull('photo_paiement')->simplePaginate(15);
+            ->whereNotNull('photo_paiement')->get();
 
         return view('admin_page.gestion_expression_besoin_formation.expression_besoin_confirmees', compact('expression_besoin_confirmees'));
     }

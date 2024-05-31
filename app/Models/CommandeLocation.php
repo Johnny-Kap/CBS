@@ -20,4 +20,8 @@ class CommandeLocation extends Model
     public function mode_paiements(){
         return $this->belongsTo(ModePaiement::class, 'mode_paiement_id', 'id');
     }
+
+    public function facture_commande_locations(){
+        return $this->hasMany(FactureCommandeLocation::class);
+    }
 }

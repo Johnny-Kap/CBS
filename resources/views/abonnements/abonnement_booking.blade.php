@@ -44,7 +44,7 @@ use Carbon\Carbon;
                             </div>
                             <ul class="address-info">
                                 <!-- <li>45, 4th Avanue Mark Street USA</li> -->
-                                <li>Rabais : {{$abonnement->rabais}}%</li>
+                                <!-- <li>Rabais : {{$abonnement->rabais}}%</li> -->
                             </ul>
                         </div>
                         <div class="col-lg-6">
@@ -53,7 +53,7 @@ use Carbon\Carbon;
                                 <!-- <a href="javascript:void(0)">Edit</a> -->
                             </div>
                             <ul class="address-info">
-                                <li>{{Carbon::now()->addYear()->format('d-m-Y')}}</li>
+                                <li>{{Carbon::now()->addMonth()->format('d-m-Y')}}</li>
                             </ul>
                         </div>
                         <div class="col-lg-6 mb-2">
@@ -102,8 +102,8 @@ use Carbon\Carbon;
                                 <!-- <a href="javascript:void(0)">Edit</a> -->
                             </div>
                             <ul class="address-info mb-0">
-                                <li><i class="fa fa-info-circle"></i> Effectuer un transfert d'argent ou dépôt d'argent à ces numéros : (OM) +237 659826528 / (MOMO) +237 653100205</li>
-                                <li>Montant total : <b>{{$montant_total}} FCFA</b></li>
+                                <li><i class="fa fa-info-circle"></i> Effectuer un transfert d'argent ou dépôt d'argent à un de ces numéros : (OM) +237 659826528 / (MOMO) +237 653100205</li>
+                                <li>Montant total : <b>{{$abonnement->montant}} FCFA</b></li>
                                 <li>Après transfert d'argent, effectuer une capture d'écran et soumettez cela ici <i class="fa fa-arrow-down "></i></li>
                                 <li>
                                     <input type="file" required name="file" class="form-control" id="">

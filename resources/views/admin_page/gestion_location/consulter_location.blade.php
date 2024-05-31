@@ -56,8 +56,8 @@
                 <tbody>
                     @foreach($location as $item)
                     <tr>
-                        <td>{{$item->intitule}}</td>
-                        <td><a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Description" onclick="$('#pages_desc_{{$item->id}}').modal('show');">{!! html_entity_decode( str_limit($item->description, 20)) !!}</a></td>
+                        <td>{{$item->vehicules->intitule}}</td>
+                        <td><a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Description" onclick="$('#pages_desc_{{$item->id}}').modal('show');">{!! html_entity_decode( str_limit($item->vehicules->description, 20)) !!}</a></td>
                         <td>{{$item->tarif}} FCFA/j</td>
                         <td>{{$item->vehicules->numero_immatriculation}}</td>
                         <td>{{$item->vehicules->type_vehicules->intitule}}</td>
@@ -83,7 +83,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <div class="form-header text-start mb-0">
-                                        <h4 class="mb-0 text-dark fw-bold">La description de la location {{$item->intitule}}</h4>
+                                        <h4 class="mb-0 text-dark fw-bold">La description de la location {{$item->vehicules->intitule}}</h4>
                                     </div>
                                 </div>
                                 <div class="modal-body">
@@ -91,7 +91,7 @@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="available-for-ride">
                                                 <p>
-                                                    {!! html_entity_decode($item->description) !!}
+                                                    {!! html_entity_decode($item->vehicules->description) !!}
                                                 </p>
                                             </div>
                                         </div>
@@ -107,7 +107,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <div class="form-header text-start mb-0">
-                                        <h4 class="mb-0 text-dark fw-bold">Masquer la location de véhicule {{$item->intitule}}</h4>
+                                        <h4 class="mb-0 text-dark fw-bold">Masquer la location de véhicule {{$item->vehicules->intitule}}</h4>
                                     </div>
                                 </div>
                                 <form action="{{route('location.masked')}}" method="post">
@@ -138,7 +138,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <div class="form-header text-start mb-0">
-                                        <h4 class="mb-0 text-dark fw-bold">Démasquer la location de véhicule {{$item->intitule}}</h4>
+                                        <h4 class="mb-0 text-dark fw-bold">Démasquer la location de véhicule {{$item->vehicules->intitule}}</h4>
                                     </div>
                                 </div>
                                 <form action="{{route('location.demasked')}}" method="post">
@@ -175,7 +175,7 @@
                                 <form action="{{route('location.edit')}}" method="post">
                                     @csrf
                                     <div class="modal-body">
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div class="col-lg-4 col-md-4">
                                                 <div class="available-for-ride">
                                                     <p>
@@ -203,7 +203,7 @@
                                                     <input type="hidden" name="location_id" value="{{$item->id}}" />
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4">
                                                 <div class="available-for-ride">
@@ -217,7 +217,7 @@
                                                     <input class="form-control" type="text" value="{{$item->tarif}}" name="tarif">
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> 
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4">
                                                 <div class="available-for-ride">
@@ -246,32 +246,6 @@
                     </div>
                     @endforeach
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="10">
-                            <div class="btn-group btn-group-sm pull-right">
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
-                                <div class="btn-group btn-group-sm dropup">
-                                    <a href="javascript:void(0)" class="btn btn-primary pull-right dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-                                    <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
-                                        <li><a href="javascript:void(0)"><i class="fa fa-print pull-right"></i>
-                                                Print</a></li>
-                                        <li class="dropdown-header"><i class="fa fa-share pull-right"></i> Export As
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">.pdf</a>
-                                            <a href="javascript:void(0)">.cvs</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="btn-group btn-group-sm">
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Edit Selected"><i class="fa fa-pencil"></i></a>
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Delete Selected"><i class="fa fa-times"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                </tfoot>
             </table>
         </div>
         <!-- END Table Styles Content -->
@@ -305,11 +279,6 @@
             aria: {
                 sortAscending: ": activer pour trier la colonne par ordre croissant",
                 sortDescending: ": activer pour trier la colonne par ordre décroissant"
-            }
-        },
-        layout: {
-            topStart: {
-                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
             }
         }
     });

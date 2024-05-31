@@ -44,7 +44,7 @@ class AbonnementController extends Controller
 
         if ($verify == false) {
 
-            return view('abonnement.abonnement_booking', compact('abonnement', 'mode_paiements'));
+            return view('abonnements.abonnement_booking', compact('abonnement', 'mode_paiements'));
         } else {
             return back()->with('warning', 'Vous avez déja souscrit à cet abonnement étant toujours valable');
         }
@@ -69,7 +69,7 @@ class AbonnementController extends Controller
 
         $add->etat = 'yes';
 
-        $add->date_expiration = Carbon::now()->addYear()->format('d-m-Y');
+        $add->date_expiration = Carbon::now()->addMonth()->format('d-m-Y');
 
         $add->is_expired = 'no';
 
@@ -185,7 +185,7 @@ class AbonnementController extends Controller
     {
 
         $abonnement_attente = SouscrireAbonnement::where('etat', 'yes')
-            ->whereNotNull('image')->simplePaginate(15);
+            ->whereNotNull('image')->get();
 
         return view('admin_page.gestion_abonnement.attente_abonnement', compact('abonnement_attente'));
     }
@@ -194,7 +194,7 @@ class AbonnementController extends Controller
     {
 
         $abonnement_paiement_attente = SouscrireAbonnement::where('etat', 'yes')
-            ->where('image', null)->simplePaginate(15);
+            ->where('image', null)->get();
 
         return view('admin_page.gestion_abonnement.attente_paiement_abonnement', compact('abonnement_paiement_attente'));
     }
@@ -233,7 +233,7 @@ class AbonnementController extends Controller
 
         $abonnement_confirmee = SouscrireAbonnement::where('etat', 'yes')
             ->where('is_buy', 'yes')
-            ->simplePaginate(15);
+            ->get();
 
         return view('admin_page.gestion_abonnement.confirmes_abonnement', compact('abonnement_confirmee'));
     }
@@ -241,7 +241,7 @@ class AbonnementController extends Controller
     public function expires()
     {
 
-        $abonnement_expires = SouscrireAbonnement::where('is_expired', 'yes')->simplePaginate(15);
+        $abonnement_expires = SouscrireAbonnement::where('is_expired', 'yes')->get();
 
         return view('admin_page.gestion_abonnement.expires_abonnement', compact('abonnement_expires'));
     }

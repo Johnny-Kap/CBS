@@ -372,7 +372,7 @@
                     </div>
                     <div class="description-list">
                         <p>
-                            {!! html_entity_decode($locationShow->description) !!}
+                            {!! html_entity_decode($locationShow->vehicules->description) !!}
                         </p>
                     </div>
                 </div>

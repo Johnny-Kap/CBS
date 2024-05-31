@@ -19,12 +19,12 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group">
-                        <label class="form-label">Email <span class="text-danger">*</span></label>
-                        <input type="email" id="email" class="form-control @error('email') is-invalid @enderror"
+                        <label class="form-label">Email ou N° Passport <span class="text-danger">*</span></label>
+                        <input type="text" id="email" class="form-control @error('email') is-invalid @enderror"
                             name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                         @error('email')
                         <span class="invalid-feedback" role="alert">
-                            <strong>Email ou mot de passe incorrect !</strong>
+                            <strong>Email/N° Passport ou mot de passe incorrect !</strong>
                         </span>
                         @enderror
                     </div>

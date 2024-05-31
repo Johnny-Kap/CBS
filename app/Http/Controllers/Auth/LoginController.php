@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -39,21 +41,48 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function redirectTo(){
+    public function login(Request $request)
+    {
+
+        $login = $request->input('email');
+        $user = User::where('email', $login)->orWhere('numero_passport', $login)->first();
+
+        if (!$user) {
+            return redirect()->back()->withErrors(['email' => 'Invalid login credentials']);
+        }
+
+        $request->validate([
+            'password' => 'required|min:8',
+        ]);
+
+        if (
+            Auth::attempt(['email' => $user->email, 'password' => $request->password]) ||
+            Auth::attempt(['numero_passport' => $user->numero_passport, 'password' => $request->password])
+        ) {
+            Auth::loginUsingId($user->id);
+            return $this->redirectTo();
         
+        } else {
+            return redirect()->back()->withErrors(['password' => 'Invalid login credentials']);
+        }
+    }
+
+    public function redirectTo()
+    {
+
         // User role
-        $role = Auth::user()->role; 
-        
+        $role = Auth::user()->role;
+
         // Check user role
         switch ($role) {
             case 'admin':
-                    return '/admin/home';
+                return redirect('/admin/home');
                 break;
             case 'user':
-                    return '/home';
-                break; 
+                return redirect('/home');
+                break;
             default:
-                    return '/login'; 
+                return redirect('/login');
                 break;
         }
     }

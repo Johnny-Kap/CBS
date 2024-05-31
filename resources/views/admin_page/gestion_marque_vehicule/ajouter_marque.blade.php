@@ -41,7 +41,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-text-input">Description (optionel)</label>
                         <div class="col-md-9">
-                            <input type="text" id="example-text-input" name="description" class="form-control" placeholder="Ajouter un description" required>
+                            <input type="text" id="example-text-input" name="description" class="form-control" placeholder="Ajouter un description">
                         </div>
                     </div>
                     <div class="form-group form-actions">

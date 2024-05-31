@@ -78,7 +78,7 @@ class CommandeFormationController extends Controller
 
         $commande_formation_paiement_non_soumis = CommandeFormation::where('etat_commande', 'yes')
             ->where('photo', null)
-            ->simplePaginate(15);
+            ->get();
 
         return view('admin_page.gestion_commande_formation.commande_paiement_non_soumis', compact('commande_formation_paiement_non_soumis'));
     }
@@ -112,7 +112,7 @@ class CommandeFormationController extends Controller
 
         $commande_validation_paiement = CommandeFormation::where('etat_commande', 'yes')
             ->where('etat_paiement', 'no')
-            ->whereNotNull('photo')->simplePaginate(15);
+            ->whereNotNull('photo')->get();
 
         return view('admin_page.gestion_commande_formation.validation_paiement', compact('commande_validation_paiement'));
     }
@@ -150,7 +150,7 @@ class CommandeFormationController extends Controller
 
         $commande_confirmees = CommandeFormation::where('etat_commande', 'yes')
             ->where('etat_paiement', 'yes')
-            ->whereNotNull('photo')->simplePaginate(15);
+            ->whereNotNull('photo')->get();
 
         return view('admin_page.gestion_commande_formation.commande_confirmees', compact('commande_confirmees'));
     }

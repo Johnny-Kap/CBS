@@ -91,14 +91,14 @@ class CommandeReservationAppartementHotelController extends Controller
     public function attente()
     {
 
-        $commade_attente = CommandeReservationAppartementHotel::where('etat_commande', 'attente')->simplePaginate(15);
+        $commade_attente = CommandeReservationAppartementHotel::where('etat_commande', 'attente')->get();
 
         return view('admin_page.gestion_reservation_appart_hotel.attente_validation', compact('commade_attente'));
     }
 
     public function annulee(){
 
-        $commade_annulee = CommandeReservationAppartementHotel::where('etat_commande', 'canceled')->simplePaginate(15);
+        $commade_annulee = CommandeReservationAppartementHotel::where('etat_commande', 'canceled')->get();
 
         return view('admin_page.gestion_reservation_appart_hotel.commande_annulee', compact('commade_annulee'));
     }
@@ -137,7 +137,7 @@ class CommandeReservationAppartementHotelController extends Controller
     {
 
         $commande_validee = CommandeReservationAppartementHotel::where('etat_commande', 'yes')
-            ->simplePaginate(15);
+            ->get();
 
         return view('admin_page.gestion_reservation_appart_hotel.commande_validee', compact('commande_validee'));
     }

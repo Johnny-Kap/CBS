@@ -15,7 +15,7 @@ class FormationController extends Controller
     public function index()
     {
 
-        $formations = Formation::simplePaginate(10);
+        $formations = Formation::all();
 
         return view('admin_page.gestion_formation.consulter_formation', compact('formations'));
     }

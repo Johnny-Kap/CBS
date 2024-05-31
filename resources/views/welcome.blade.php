@@ -165,7 +165,7 @@
                     <div class="col-lg-4 col-md-6 col-12" data-aos="fade-down">
                         <div class="listing-item">
                             <div class="listing-img">
-                                <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->intitule)]) }}">
+                                <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->vehicules->intitule)]) }}">
                                     <img src="{{ Storage::url($item->vehicules->image_illustrative) }}" style="width: 30rem; height: 15rem;" class="img-fluid" alt="Toyota">
                                 </a>
                                 <div class="fav-item">
@@ -181,7 +181,7 @@
                                         <img src="assets/img/profiles/avatar-0.jpg" alt="author">
                                     </a> -->
                                     <h3 class="listing-title">
-                                        <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->intitule)]) }}">{{$item->intitule}}</a>
+                                        <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->vehicules->intitule)]) }}">{{$item->vehicules->intitule}}</a>
                                     </h3>
                                     <!-- <div class="list-rating">
                                         <i class="fas fa-star filled"></i>
@@ -231,7 +231,7 @@
                                     </div>
                                 </div>
                                 <div class="listing-button">
-                                    <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->intitule)]) }}" class="btn btn-order"><span><i class="fas fa-calendar me-2"></i></span>Louer maintenant</a>
+                                    <a href="{{ route('location.details', ['id' => $item->id, 'name' => str_slug($item->vehicules->intitule)]) }}" class="btn btn-order"><span><i class="fas fa-calendar me-2"></i></span>Louer maintenant</a>
                                 </div>
                             </div>
                         </div>

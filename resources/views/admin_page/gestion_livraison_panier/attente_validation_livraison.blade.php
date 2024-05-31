@@ -47,6 +47,7 @@
                         <th>Date de livraison</th>
                         <th>Adresse recupération</th>
                         <th>Adresse de livraison</th>
+                        <th>Tel Destinataire</th>
                         <th>Etat de la commande</th>
                         <th>Commandé par</th>
                         <th>Commandé le</th>
@@ -62,6 +63,7 @@
                         <td>{{$item->date_livraison}}</td>
                         <td>{{$item->adresse_recuperation}}</td>
                         <td>{{$item->adresse_livraison}}</td>
+                        <td>{{$item->tel_destinataire}}</td>
                         <td>@if($item->etat_commande == 'attente') <span class="badge bg-secondary">En attente</span> @elseif($item->etat_commande == 'canceled') <span class="label label-danger">Annulé</span> @else <span class="label label-success">Validé</span> @endif</td>
                         <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">
                                 {{$item->users->name}} {{$item->users->prenom}}
@@ -114,32 +116,6 @@
                     </div>
                     @endforeach
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="6">
-                            <div class="btn-group btn-group-sm pull-right">
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
-                                <div class="btn-group btn-group-sm dropup">
-                                    <a href="javascript:void(0)" class="btn btn-primary pull-right dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-                                    <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
-                                        <li><a href="javascript:void(0)"><i class="fa fa-print pull-right"></i>
-                                                Print</a></li>
-                                        <li class="dropdown-header"><i class="fa fa-share pull-right"></i> Export As
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">.pdf</a>
-                                            <a href="javascript:void(0)">.cvs</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="btn-group btn-group-sm">
-                                <a href="#pages_edit" class="btn btn-primary" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#pages_edit" title="Edit Selected"><i class="fa fa-pencil"></i></a>
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Delete Selected"><i class="fa fa-times"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                </tfoot>
             </table>
         </div>
         <!-- END Table Styles Content -->
@@ -177,7 +153,36 @@
         },
         layout: {
             topStart: {
-                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                buttons: [{
+                        extend: 'pdf',
+                        title: 'Liste des commandes de livraison en attente de validation',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        title: 'Liste des commandes de livraison en attente de validation',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        title: 'Liste des commandes de livraison en attente de validation',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Liste des commandes de livraison en attente de validation',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ]
             }
         }
     });

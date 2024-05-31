@@ -30,13 +30,11 @@
                     <div class="col-sm-12">
                         <h1 class="mb-4">Souscription d'abonnement effectuée avec succès</h1>
                         <h6 class="mb-2">Merci pour votre confiance à nos services. </h6>
-                        <h6 class="mb-2">Votre souscription est en attente de confirmation de paiement. Allez dans Mes validations de Paiement dans vos paramètres
-                            Pour avoir le processus de paiement.</h6>
+                        <h6 class="mb-2">Votre souscription est en attente de confirmation de paiement. Vous serez contacté dès la validation du paiement.</h6>
                         <h6 class="mb-0">Si vous avez besoin
                             d'aide, veuillez nous contacter via : hello@cbs-cameroun.com</h6>
                     </div>
                     <div class="col-12 text-center mt-4 mt-sm-5">
-                        <a class="btn btn-outline-primary mb-3 mb-sm-0" href="{{route('myprofile.confirmation_abonnement')}}">Proceder au paiement</a>
                         <a class="btn btn-outline-primary mb-3 mb-sm-0" href="{{url('/')}}">Retour à l'accueil</a>
                         <!-- <a class="btn btn-outline-primary mb-3 mb-sm-0" href="#">View Job</a> -->
                     </div>

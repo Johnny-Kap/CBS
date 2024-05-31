@@ -43,7 +43,6 @@
                     <tr>
                         <th>N° Abonnement</th>
                         <th>Abonnement</th>
-                        <th>Etat</th>
                         <th>Montant</th>
                         <th>Date expiration</th>
                         <th>Expiration</th>
@@ -56,7 +55,6 @@
                     <tr>
                         <td>{{$item->numero_abonnement}}</td>
                         <td>{{$item->abonnements->intitule}}</td>
-                        <td>@if($item->etat == 'confirmee') Confirmée @else En attente @endif</td>
                         <td><b>{{$item->montant}} FCFA</b></td>
                         <td>{{$item->date_expiration}}</td>
                         <td>@if($item->is_expired == 'no') Non expirée @else Expirée @endif</td>
@@ -111,32 +109,6 @@
                     </div>
                     @endforeach
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="6">
-                            <div class="btn-group btn-group-sm pull-right">
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
-                                <div class="btn-group btn-group-sm dropup">
-                                    <a href="javascript:void(0)" class="btn btn-primary pull-right dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-                                    <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
-                                        <li><a href="javascript:void(0)"><i class="fa fa-print pull-right"></i>
-                                                Print</a></li>
-                                        <li class="dropdown-header"><i class="fa fa-share pull-right"></i> Export As
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">.pdf</a>
-                                            <a href="javascript:void(0)">.cvs</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="btn-group btn-group-sm">
-                                <a href="#pages_edit" class="btn btn-primary" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#pages_edit" title="Edit Selected"><i class="fa fa-pencil"></i></a>
-                                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="tooltip" title="Delete Selected"><i class="fa fa-times"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                </tfoot>
             </table>
         </div>
         <!-- END Table Styles Content -->
@@ -174,7 +146,36 @@
         },
         layout: {
             topStart: {
-                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                buttons: [{
+                        extend: 'pdf',
+                        title: 'Liste des abonnements expirés',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        title: 'Liste des abonnements expirés',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        title: 'Liste des abonnements expirés',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Liste des abonnements expirés',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ]
             }
         }
     });

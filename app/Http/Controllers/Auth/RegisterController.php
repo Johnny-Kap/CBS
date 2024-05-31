@@ -58,6 +58,8 @@ class RegisterController extends Controller
             'adresse' => ['required', 'string'],
             'numero_cni' => ['required', 'string'],
             'date_delivrance_cni' => ['required', 'string'],
+            'numero_passport' => ['required', 'string'],
+            'date_delivrance_passport' => ['required', 'string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -79,6 +81,8 @@ class RegisterController extends Controller
             'adresse' => $data['adresse'],
             'numero_cni' => $data['numero_cni'],
             'date_delivrance_cni' => $data['date_delivrance_cni'],
+            'numero_passport' => $data['numero_passport'],
+            'date_delivrance_passport' => $data['date_delivrance_passport'],
             'password' => Hash::make($data['password']),
         ]);
     }

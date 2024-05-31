@@ -15,7 +15,7 @@ class BibliothequeController extends Controller
     public function index()
     {
 
-        $bibliotheque_show = Bibliotheque::simplePaginate(10);
+        $bibliotheque_show = Bibliotheque::get();
 
         return view('admin_page.gestion_bibliotheque.consulter_document', compact('bibliotheque_show'));
     }
