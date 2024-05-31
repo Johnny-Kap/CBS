@@ -26,6 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'profession',
         'tel',
         'adresse',
+        'niu',
         'numero_cni',
         'date_delivrance_cni',
         'numero_passport',

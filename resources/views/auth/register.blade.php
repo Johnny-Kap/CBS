@@ -84,8 +84,18 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Numéro de CNI <span class="text-danger">*</span></label>
-                            <input id="numero_cni" type="text" class="form-control @error('numero_cni') is-invalid @enderror" name="numero_cni" value="{{ old('numero_cni') }}" required autocomplete="numero_cni" />
+                            <label class="form-label">NIU (Numéro d'Identification Unique) <span class="text-danger">*</span></label>
+                            <input id="adresse" type="text" class="form-control @error('niu') is-invalid @enderror" name="niu" value="{{ old('niu') }}" required autocomplete="niu" />
+
+                            @error('niu')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Numéro de CNI </label>
+                            <input id="numero_cni" type="text" class="form-control @error('numero_cni') is-invalid @enderror" name="numero_cni" value="{{ old('numero_cni') }}" autocomplete="numero_cni" />
 
                             @error('numero_cni')
                             <span class="invalid-feedback" role="alert">
@@ -94,8 +104,8 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Date de délivrance CNI <span class="text-danger">*</span></label>
-                            <input id="date_delivrance_cni" type="text" class="form-control datetimepicker @error('date_delivrance_cni') is-invalid @enderror" placeholder="04/11/2023" name="date_delivrance_cni" value="{{ old('date_delivrance_cni') }}" required autocomplete="date_delivrance_cni">
+                            <label class="form-label">Date de délivrance CNI </label>
+                            <input id="date_delivrance_cni" type="text" class="form-control datetimepicker @error('date_delivrance_cni') is-invalid @enderror" placeholder="04/11/2023" name="date_delivrance_cni" value="{{ old('date_delivrance_cni') }}" autocomplete="date_delivrance_cni">
 
                             @error('date_delivrance_cni')
                             <span class="invalid-feedback" role="alert">
@@ -104,8 +114,8 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Numéro de Passport <span class="text-danger">*</span></label>
-                            <input id="numero_passport" type="text" class="form-control @error('numero_passport') is-invalid @enderror" name="numero_passport" value="{{ old('numero_passport') }}" required autocomplete="numero_passport" />
+                            <label class="form-label">Numéro de Passport </label>
+                            <input id="numero_passport" type="text" class="form-control @error('numero_passport') is-invalid @enderror" name="numero_passport" value="{{ old('numero_passport') }}" autocomplete="numero_passport" />
 
                             @error('numero_passport')
                             <span class="invalid-feedback" role="alert">
@@ -114,8 +124,8 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Date de délivrance Passport <span class="text-danger">*</span></label>
-                            <input id="date_delivrance_passport" type="text" class="form-control datetimepicker @error('date_delivrance_passport') is-invalid @enderror" placeholder="04/11/2023" name="date_delivrance_passport" value="{{ old('date_delivrance_passport') }}" required autocomplete="date_delivrance_passport">
+                            <label class="form-label">Date de délivrance Passport </label>
+                            <input id="date_delivrance_passport" type="text" class="form-control datetimepicker @error('date_delivrance_passport') is-invalid @enderror" placeholder="04/11/2023" name="date_delivrance_passport" value="{{ old('date_delivrance_passport') }}" autocomplete="date_delivrance_passport">
 
                             @error('date_delivrance_passport')
                             <span class="invalid-feedback" role="alert">
