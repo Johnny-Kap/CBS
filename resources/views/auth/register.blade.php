@@ -84,8 +84,8 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="form-label">NIU (Numéro d'Identification Unique) <span class="text-danger">*</span></label>
-                            <input id="adresse" type="text" class="form-control @error('niu') is-invalid @enderror" name="niu" value="{{ old('niu') }}" required autocomplete="niu" />
+                            <label class="form-label">NIU (Numéro d'Identification Unique) </label>
+                            <input id="adresse" type="text" class="form-control @error('niu') is-invalid @enderror" name="niu" value="{{ old('niu') }}" autocomplete="niu" />
 
                             @error('niu')
                             <span class="invalid-feedback" role="alert">
