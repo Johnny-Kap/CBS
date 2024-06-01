@@ -4,7 +4,7 @@
 
 
 <header class="log-header">
-    <a href="{{url('/')}}"><img class="img-fluid logo-dark" src="/../assets/img/logo_first.png" alt="Logo"></a>
+    <img class="img-fluid logo-dark" src="/../assets/img/logo_first.png" alt="Logo">
 </header>
 
 <div class="login-wrapper">
@@ -12,16 +12,14 @@
         <div class="login-auth">
             <div class="login-auth-wrap">
                 <div class="sign-group">
-                    <a href="{{url('/')}}" class="btn sign-up"><span><i class="fa fa-angle-left"
-                                aria-hidden="true"></i></span>Retour Acceuil</a>
+                    <a href="{{url('/')}}" class="btn sign-up"><span><i class="fa fa-angle-left" aria-hidden="true"></i></span>Retour Acceuil</a>
                 </div>
                 <h1>Se connecter</h1>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group">
                         <label class="form-label">Email ou N° Passport <span class="text-danger">*</span></label>
-                        <input type="text" id="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <input type="text" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                         @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>Email/N° Passport ou mot de passe incorrect !</strong>
@@ -31,9 +29,7 @@
                     <div class="form-group">
                         <label class="form-label">Mot de passe <span class="text-danger">*</span></label>
                         <div class="pass-group">
-                            <input id="password" type="password"
-                                class="form-control pass-input @error('password') is-invalid @enderror" name="password"
-                                required autocomplete="current-password">
+                            <input id="password" type="password" class="form-control pass-input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                             <span class="fas fa-eye toggle-password"></span>
 
                             @error('password')
