@@ -69,7 +69,7 @@
                                         <h4 class="mb-0 text-dark fw-bold">Générer la facture N° {{$item->id}}</h4>
                                     </div>
                                 </div>
-                                <form action="{{route('facture.commande_location.generer')}}" method="get">
+                                <form action="{{route('facture.commande_formation.generer')}}" method="get">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="row">
