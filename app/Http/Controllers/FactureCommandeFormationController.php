@@ -37,7 +37,7 @@ class FactureCommandeFormationController extends Controller
 
     public function generer(Request $request){
 
-        $facture = FactureCommandeLocation::find($request->facture_id);
+        $facture = FactureCommandeFormation::find($request->facture_id);
 
         $pdf = Pdf::loadView('admin_page.gestion_facture.facture_commande_formation.generer_facture', compact('facture'));
 
