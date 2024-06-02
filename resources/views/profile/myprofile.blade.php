@@ -120,6 +120,21 @@
                                 </div>
                                 <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
                                     <div class="feature-img">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                    <div class="featues-info">
+                                        <h6>Lieu de résidence</h6>
+                                        <span>
+                                            @if(Auth::user()->residence == 'cameroun')
+                                            Cameroun
+                                            @else
+                                            Hors du Cameroun
+                                            @endif
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
+                                    <div class="feature-img">
                                         <i class="fas fa-id-card"></i>
                                     </div>
                                     <div class="featues-info">

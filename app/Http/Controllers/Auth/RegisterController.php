@@ -57,10 +57,11 @@ class RegisterController extends Controller
             'tel' => ['required', 'string'],
             'adresse' => ['required', 'string'],
             'niu' => ['string'],
-            'numero_cni' => ['string'],
-            'date_delivrance_cni' => ['string'],
-            'numero_passport' => ['string', 'unique:users'],
-            'date_delivrance_passport' => ['string'],
+            'residence' => ['required','string'],
+            'numero_cni',
+            'date_delivrance_cni',
+            'numero_passport',
+            'date_delivrance_passport',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -81,6 +82,7 @@ class RegisterController extends Controller
             'tel' => $data['tel'],
             'adresse' => $data['adresse'],
             'niu' => $data['niu'],
+            'residence' => $data['residence'],
             'numero_cni' => $data['numero_cni'],
             'date_delivrance_cni' => $data['date_delivrance_cni'],
             'numero_passport' => $data['numero_passport'],

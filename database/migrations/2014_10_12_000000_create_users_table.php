@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('tel');
             $table->string('adresse');
             $table->string('niu')->nullable();
+            $table->string('residence')->nullable();
             $table->string('numero_cni')->nullable();
             $table->string('date_delivrance_cni')->nullable();
             $table->string('numero_passport')->nullable();

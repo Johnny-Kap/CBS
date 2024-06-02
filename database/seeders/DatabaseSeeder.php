@@ -18,11 +18,12 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'Johnny',
-            'email' => 'admincbs@admin.com',
-            'password' => Hash::make('cbs@admin!'),
+            'email' => 'admindashboard@cbs-cameroun.com',
+            'password' => Hash::make('Cbs@dmin#2024#'),
             'profession' => 'Dev', 
             'tel' => '667654455', 
-            'adresse' => 'Odza', 
+            'adresse' => 'Odza',
+            'residence' => 'cameroun', 
             'numero_cni' => '00034332', 
             'date_delivrance_cni' => '17/04/2017', 
             'role' => 'admin',

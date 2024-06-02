@@ -1,5 +1,15 @@
 @extends('layouts.template')
 
+@push('style')
+
+<style>
+    .content-div {
+    display: none; /* Masque les divs par défaut */
+}
+
+</style>
+@endpush
+
 @section('content')
 
 
@@ -94,8 +104,16 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Numéro de CNI </label>
-                            <input id="numero_cni" type="text" class="form-control @error('numero_cni') is-invalid @enderror" name="numero_cni" value="{{ old('numero_cni') }}" autocomplete="numero_cni" />
+                            <label class="form-label">Je reside : <span class="text-danger">*</span></label>
+                            <select name="residence" id="mySelect" class="form-control">
+                                <option value="">Selectionner votre lieu de résidence</option>
+                                <option value="cameroun">Au cameroun</option>
+                                <option value="hors_cameroun">Hors du cameroun</option>
+                            </select>
+                        </div>
+                        <div class="form-group content-div" id="div_numero_cni">
+                            <label class="form-label">Numéro de CNI <span class="text-danger">*</span></label>
+                            <input id="input_numero_cni" type="text" class="form-control @error('numero_cni') is-invalid @enderror" name="numero_cni" value="{{ old('numero_cni') }}" autocomplete="numero_cni" />
 
                             @error('numero_cni')
                             <span class="invalid-feedback" role="alert">
@@ -103,9 +121,9 @@
                             </span>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Date de délivrance CNI </label>
-                            <input id="date_delivrance_cni" type="text" class="form-control datetimepicker @error('date_delivrance_cni') is-invalid @enderror" placeholder="04/11/2023" name="date_delivrance_cni" value="{{ old('date_delivrance_cni') }}" autocomplete="date_delivrance_cni">
+                        <div class="form-group content-div" id="div_date_cni">
+                            <label class="form-label">Date de délivrance CNI <span class="text-danger">*</span></label>
+                            <input id="input_date_cni" type="text" class="form-control datetimepicker @error('date_delivrance_cni') is-invalid @enderror" placeholder="04/11/2023" name="date_delivrance_cni" value="{{ old('date_delivrance_cni') }}" autocomplete="date_delivrance_cni">
 
                             @error('date_delivrance_cni')
                             <span class="invalid-feedback" role="alert">
@@ -113,9 +131,9 @@
                             </span>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Numéro de Passport </label>
-                            <input id="numero_passport" type="text" class="form-control @error('numero_passport') is-invalid @enderror" name="numero_passport" value="{{ old('numero_passport') }}" autocomplete="numero_passport" />
+                        <div class="form-group content-div" id="div_numero_passport">
+                            <label class="form-label">Numéro de Passport <span class="text-danger">*</span></label>
+                            <input id="input_numero_passport" type="text" class="form-control @error('numero_passport') is-invalid @enderror" name="numero_passport" value="{{ old('numero_passport') }}" autocomplete="numero_passport" />
 
                             @error('numero_passport')
                             <span class="invalid-feedback" role="alert">
@@ -123,9 +141,9 @@
                             </span>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Date de délivrance Passport </label>
-                            <input id="date_delivrance_passport" type="text" class="form-control datetimepicker @error('date_delivrance_passport') is-invalid @enderror" placeholder="04/11/2023" name="date_delivrance_passport" value="{{ old('date_delivrance_passport') }}" autocomplete="date_delivrance_passport">
+                        <div class="form-group content-div" id="div_date_passport">
+                            <label class="form-label">Date de délivrance Passport <span class="text-danger">*</span></label>
+                            <input id="input_date_passport" type="text" class="form-control datetimepicker @error('date_delivrance_passport') is-invalid @enderror" placeholder="04/11/2023" name="date_delivrance_passport" value="{{ old('date_delivrance_passport') }}" autocomplete="date_delivrance_passport">
 
                             @error('date_delivrance_passport')
                             <span class="invalid-feedback" role="alert">
@@ -166,3 +184,64 @@
 
 
     @endsection
+
+    @push('scripts')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectElement = document.getElementById('mySelect');
+            const div1 = document.getElementById('div_numero_cni');
+            const div2 = document.getElementById('div_numero_passport');
+            const div3 = document.getElementById('div_date_cni');
+            const div4 = document.getElementById('div_date_passport');
+            const input1 = document.getElementById('input_numero_cni');
+            const input2 = document.getElementById('input_numero_passport');
+            const input3 = document.getElementById('input_date_cni');
+            const input4 = document.getElementById('input_date_passport');
+
+            // Masquer les divs et rendre les champs non obligatoires au départ
+            div1.style.display = 'none';
+            div2.style.display = 'none';
+            div3.style.display = 'none';
+            div4.style.display = 'none';
+            input1.required = false;
+            input2.required = false;
+            input3.required = false;
+            input4.required = false;
+
+            selectElement.addEventListener('change', function() {
+                const selectedValue = selectElement.value;
+
+                if (selectedValue === 'cameroun') {
+                    div1.style.display = 'block';
+                    div3.style.display = 'block';
+                    input1.required = true;
+                    input3.required = true;
+                    div2.style.display = 'none';
+                    div4.style.display = 'none';
+                    input2.required = false;
+                    input4.required = false;
+                } else if (selectedValue === 'hors_cameroun') {
+                    div1.style.display = 'none';
+                    div3.style.display = 'none';
+                    input1.required = false;
+                    input3.required = false;
+                    div2.style.display = 'block';
+                    div4.style.display = 'block';
+                    input2.required = true;
+                    input4.required = true;
+                } else {
+                    div1.style.display = 'none';
+                    div3.style.display = 'none';
+                    input1.required = false;
+                    input3.required = false;
+                    div2.style.display = 'none';
+                    div4.style.display = 'none';
+                    input2.required = false;
+                    input4.required = false;
+                }
+            });
+        });
+    </script>
+
+    @endpush
