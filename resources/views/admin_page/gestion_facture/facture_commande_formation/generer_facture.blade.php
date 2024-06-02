@@ -184,7 +184,7 @@
                 <td>@if($facture->commande_formations->etat_paiement == 'yes') Payée @else Non payée @endif</td>
             </tr>
             <tr>
-                <td colspan="7">
+                <td colspan="8">
                     <div class="total-part">
                         <div class="total-left w-85 float-left" align="right">
                             <p>Total : </p>
