@@ -127,6 +127,8 @@
                                         <span>
                                             @if(Auth::user()->residence == 'cameroun')
                                             Cameroun
+                                            @elseif(Auth::user()->residence == 'etranger_cameroun')
+                                            Etranger résidant au Cameroun
                                             @else
                                             Hors du Cameroun
                                             @endif

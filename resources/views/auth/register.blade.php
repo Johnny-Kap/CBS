@@ -4,9 +4,9 @@
 
 <style>
     .content-div {
-    display: none; /* Masque les divs par défaut */
-}
-
+        display: none;
+        /* Masque les divs par défaut */
+    }
 </style>
 @endpush
 
@@ -104,11 +104,12 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Je reside : <span class="text-danger">*</span></label>
+                            <label class="form-label">Lieu de résidence : <span class="text-danger">*</span></label>
                             <select name="residence" id="mySelect" class="form-control">
                                 <option value="">Selectionner votre lieu de résidence</option>
-                                <option value="cameroun">Au cameroun</option>
-                                <option value="hors_cameroun">Hors du cameroun</option>
+                                <option value="cameroun">Je réside au cameroun</option>
+                                <option value="etranger_cameroun">Je suis étranger résidant au Cameroun</option>
+                                <option value="hors_cameroun">Je réside hors du cameroun</option>
                             </select>
                         </div>
                         <div class="form-group content-div" id="div_numero_cni">
@@ -222,6 +223,15 @@
                     input2.required = false;
                     input4.required = false;
                 } else if (selectedValue === 'hors_cameroun') {
+                    div1.style.display = 'none';
+                    div3.style.display = 'none';
+                    input1.required = false;
+                    input3.required = false;
+                    div2.style.display = 'block';
+                    div4.style.display = 'block';
+                    input2.required = true;
+                    input4.required = true;
+                } else if (selectedValue === 'etranger_cameroun') {
                     div1.style.display = 'none';
                     div3.style.display = 'none';
                     input1.required = false;
