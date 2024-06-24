@@ -47,6 +47,9 @@
                         <th>Date de main. souhaitée</th>
                         <th>Situation du véhicule</th>
                         <th>Marque du véhicule</th>
+                        <th>Année du véhicule</th>
+                        <th>Kilometrage</th>
+                        <th>N° de série</th>
                         <th>Montant prestation</th>
                         <th>Etat de la commande</th>
                         <th>Etat du paiement</th>
@@ -64,6 +67,10 @@
                         <td>{{$item->date_maintenance}}</td>
                         <td>{{$item->situation_vehicule}}</td>
                         <td>{{$item->marque_vehicule}}</td>
+                        <td>{{$item->marque_vehicule}}</td>
+                        <td>{{$item->annee_vehicule}}</td>
+                        <td>{{$item->Kilometrage}}</td>
+                        <td>{{$item->numero_serie}}</td>
                         <td>{{$item->montant}}</td>
                         <td>@if($item->etat_commande == 'attente') <span class="badge bg-secondary">En attente</span> @elseif($item->etat_commande == 'canceled') <span class="label label-danger">Annulé</span> @else <span class="label label-success">Validé</span> @endif</td>
                         <td>@if($item->etat_paiement == 'no') <span class="label label-danger">Non payé</span> @else <span class="label label-success">Payé</span> @endif</td>

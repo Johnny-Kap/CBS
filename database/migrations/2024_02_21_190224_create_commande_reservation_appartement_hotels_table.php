@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('date_reservation');
             $table->string('ville');
             $table->string('localite')->nullable();
+            $table->string('periode_continue')->nullable();
+            $table->string('periode_multiple_1')->nullable();
+            $table->string('periode_multiple_2')->nullable();
             $table->double('prix_inferieur')->nullable();
             $table->double('prix_superieur')->nullable();
             $table->string('etat_commande');

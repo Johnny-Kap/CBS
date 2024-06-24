@@ -95,7 +95,7 @@ class HomeController extends Controller
     {
 
         $request->validate([
-            'file' => 'required|mimes:jpeg,png,jpg',
+            'file' => 'required|mimes:jpeg,png,jpg|size:15360',
         ]);
 
         if ($request->hasFile('file')) {
@@ -128,7 +128,10 @@ class HomeController extends Controller
                 'profession' => $request->profession,
                 'date_naiss' => $request->date_naiss,
                 'tel' => $request->tel,
+                'residence' => $request->residence,
                 'adresse' => $request->adresse,
+                'ville' => $request->ville,
+                'pays' => $request->pays,
                 'numero_cni' => $request->numero_cni,
                 'date_delivrance_cni' => $request->date_delivrance_cni,
                 'numero_passport' => $request->numero_passport,
@@ -197,6 +200,11 @@ class HomeController extends Controller
 
         $user = User::find($id);
 
-        return view('admin_page.client_profile.client_profile', compact('user'));
+        return view('admin_page.profile.client_profile', compact('user'));
+    }
+
+    public function profile_admin(){
+
+        return view('admin_page.profile.profile_admin');
     }
 }

@@ -7,7 +7,11 @@
     <!-- For an image header add the class 'content-header-media' and an image as in the following example -->
     <div class="content-header content-header-media">
         <div class="header-section">
-            <img src="img/placeholders/avatars/avatar2.jpg" alt="Avatar" class="pull-right img-circle">
+            @if($user->image == null)
+            <img src="/../assets_admin/img/placeholders/avatars/avatar2.jpg" alt="Avatar" class="pull-right img-circle">
+            @else
+            <img src="{{ Storage::url($user->image) }}" style="width: 110px; height:90px; border-radius : 50%;" alt="Avatar" class="pull-right img-circle">
+            @endif
             <h1>{{$user->name}} {{$user->prenom}} <br><small>Consulter son profil ici !</small></h1>
         </div>
         <!-- For best results use an image with a resolution of 2560x248 pixels (You can also use a blurred image with ratio 10:1 - eg: 1000x100 pixels - it will adjust and look great!) -->
@@ -63,16 +67,36 @@
                             <td>{{$user->tel}}</td>
                         </tr>
                         <tr>
+                            <td style="width: 20%;"><strong>Zone de résidence </strong></td>
+                            <td>
+                                @if($user->residence == 'cameroun')
+                                Résidant au Cameroun
+                                @elseif($user->residence == 'etranger_cameroun')
+                                Etranger résidant au Cameroun
+                                @else
+                                Hors du Cameroun
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
                             <td style="width: 20%;"><strong>Adresse </strong></td>
                             <td>{{$user->adresse}}</td>
                         </tr>
                         <tr>
+                            <td style="width: 20%;"><strong>Ville </strong></td>
+                            <td>{{$user->ville}}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 20%;"><strong>Pays </strong></td>
+                            <td>{{$user->pays}}</td>
+                        </tr>
+                        <tr>
                             <td style="width: 20%;"><strong>N° CNI </strong></td>
-                            <td>{{$user->numero_cni}}</td>
+                            <td>@if($user->numero_cni == null) Non renseigné @else {{$user->numero_cni}} @endif</td>
                         </tr>
                         <tr>
                             <td style="width: 20%;"><strong>Date délivrance CNI </strong></td>
-                            <td>{{$user->date_delivrance_cni}}</td>
+                            <td>@if($user->date_delivrance_cni == null) Non renseigné @else {{$user->date_delivrance_cni}} @endif</td>
                         </tr>
                         <tr>
                             <td style="width: 20%;"><strong>N° Passport </strong></td>
@@ -94,7 +118,7 @@
                 </table>
                 <!-- END Info Content -->
             </div>
-            
+
             <!-- END Twitter Block -->
         </div>
         <!-- END Second Column -->

@@ -42,6 +42,18 @@
                         <label class="form-label">Type de moteur </label>
                         <input id="numero_cni" type="text" class="form-control" name="type_moteur" />
                     </div>
+                    <div class="form-group">
+                        <label class="form-label">Année véhicule </label>
+                        <input id="numero_cni" type="text" class="form-control" name="annee_vehicule" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Kilométrage </label>
+                        <input id="numero_cni" type="text" class="form-control" name="kilometrage" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">N° de série du véhicule </label>
+                        <input id="numero_cni" type="text" class="form-control" name="numero_serie" />
+                    </div>
                     <button type="submit" class="btn btn-outline-light w-100 btn-size mt-1">Valider</button>
 
                     <div class="text-center dont-have">

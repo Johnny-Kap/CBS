@@ -47,6 +47,8 @@
                         <th>Date de livraison</th>
                         <th>Adresse recupération</th>
                         <th>Adresse de livraison</th>
+                        <th>Point de repère</th>
+                        <th>Tel en cas d'urgence</th>
                         <th>Tel Destinataire</th>
                         <th>Etat de la commande</th>
                         <th>Commandé par</th>
@@ -62,6 +64,8 @@
                         <td>{{$item->date_livraison}}</td>
                         <td>{{$item->adresse_recuperation}}</td>
                         <td>{{$item->adresse_livraison}}</td>
+                        <td>{{$item->adresse_repere}}</td>
+                        <td>{{$item->autre_contact}}</td>
                         <td>{{$item->tel_destinataire}}</td>
                         <td>@if($item->etat_commande == 'attente') <span class="badge bg-secondary">En attente</span> @elseif($item->etat_commande == 'canceled') <span class="label label-danger">Annulé</span> @else <span class="label label-success">Validé</span> @endif</td>
                         <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">

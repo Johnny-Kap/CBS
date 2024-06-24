@@ -34,16 +34,45 @@
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header text-center">
-                    <h2 class="modal-title"><i class="fa fa-pencil"></i> Settings</h2>
+                    <h2 class="modal-title"><i class="fa fa-pencil"></i> Paramètres</h2>
                 </div>
                 <!-- END Modal Header -->
 
                 <!-- Modal Body -->
                 <div class="modal-body">
-                    <form action="index.html" method="post" enctype="multipart/form-data"
-                        class="form-horizontal form-bordered" onsubmit="return false;">
-                        <fieldset>
-                            <legend>Vital Info</legend>
+                    <fieldset>
+                        <legend>Photo de profil</legend>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Photo</label>
+                            <div class="col-md-8">
+                                @if (Auth::user()->image == null)
+                                <img class="img-fluid" style="width: 50px; height:40px; border-radius : 50%;" src="/../assets/img/no-profile-pic-icon-0.jpg" alt="">
+                                @else
+                                <img class="img-fluid" style="width: 50px; height:40px; border-radius : 50%;" src="{{ Storage::url(Auth::user()->image) }}" alt="">
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form action="" method="post" enctype="multipart/form-data">
+                                <label class="col-md-4 control-label">Modifier</label>
+                                <div class="col-md-8">
+                                    <div class="form-group mb-3 col-md-6">
+                                        <input class="form-control" name="file" type="file" id="formFile">
+                                    </div>
+                                    <div class="form-group mb-3 col-md-2">
+                                        <button type="submit" class="" style="border-color: transparent; background-color:transparent;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <form action="" method="post">
+                            <legend>Informations personnelles</legend>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Username</label>
                                 <div class="col-md-8">
@@ -53,8 +82,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="user-settings-email">Email</label>
                                 <div class="col-md-8">
-                                    <input type="email" id="user-settings-email" name="user-settings-email"
-                                        class="form-control" value="admin@example.com">
+                                    <input type="email" id="user-settings-email" name="user-settings-email" class="form-control" value="admin@example.com">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -62,38 +90,35 @@
                                     Notifications</label>
                                 <div class="col-md-8">
                                     <label class="switch switch-primary">
-                                        <input type="checkbox" id="user-settings-notifications"
-                                            name="user-settings-notifications" value="1" checked>
+                                        <input type="checkbox" id="user-settings-notifications" name="user-settings-notifications" value="1" checked>
                                         <span></span>
                                     </label>
                                 </div>
                             </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Password Update</legend>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="user-settings-password">New Password</label>
-                                <div class="col-md-8">
-                                    <input type="password" id="user-settings-password" name="user-settings-password"
-                                        class="form-control" placeholder="Please choose a complex one..">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="user-settings-repassword">Confirm New
-                                    Password</label>
-                                <div class="col-md-8">
-                                    <input type="password" id="user-settings-repassword" name="user-settings-repassword"
-                                        class="form-control" placeholder="..and confirm it!">
-                                </div>
-                            </div>
-                        </fieldset>
-                        <div class="form-group form-actions">
-                            <div class="col-xs-12 text-right">
-                                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                        </form>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Password Update</legend>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="user-settings-password">New Password</label>
+                            <div class="col-md-8">
+                                <input type="password" id="user-settings-password" name="user-settings-password" class="form-control" placeholder="Please choose a complex one..">
                             </div>
                         </div>
-                    </form>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="user-settings-repassword">Confirm New
+                                Password</label>
+                            <div class="col-md-8">
+                                <input type="password" id="user-settings-repassword" name="user-settings-repassword" class="form-control" placeholder="..and confirm it!">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group form-actions">
+                        <div class="col-xs-12 text-right">
+                            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                        </div>
+                    </div>
                 </div>
                 <!-- END Modal Body -->
             </div>

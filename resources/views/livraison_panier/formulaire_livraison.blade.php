@@ -28,18 +28,25 @@
                         <label class="form-label">Date souhatée <span class="text-danger">*</span></label>
                         <input id="email" type="text" class="form-control datetimepicker" placeholder="04/02/2024" name="date_livraison" required />
                     </div>
-                    
                     <div class="form-group">
-                        <label class="form-label">Adresse recupération <span class="text-danger">*</span></label>
+                        <label class="form-label">Adresse recupération du panier <span class="text-danger">*</span></label>
                         <input id="situation_vehicule" type="text" class="form-control" name="adresse_recuperation" required />
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Adresse de livraison <span class="text-danger">*</span></label>
+                        <label class="form-label">Adresse de livraison du panier <span class="text-danger">*</span></label>
                         <input id="situation_vehicule" type="text" class="form-control" name="adresse_livraison" required />
                     </div>
                     <div class="form-group">
                         <label class="form-label">Téléphone destinataire <span class="text-danger">*</span></label>
                         <input id="situation_vehicule" type="text" class="form-control" name="tel_destinataire" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Point de repère le plus proche (Maximum 50 m du lieu de livraison) <span class="text-danger">*</span></label>
+                        <input id="situation_vehicule" type="text" class="form-control" name="adresse_repere" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">N° de téléphone d'une personne à contacter en cas d'urgence <span class="text-danger">*</span></label>
+                        <input id="situation_vehicule" type="number" class="form-control" name="autre_contact" required />
                     </div>
                     <div class="form-group">
                         <label class="form-label">Montant d'achat du panier (Uniquement si vous avez choisi "Achat et livraison" comme type de prestation) </label>

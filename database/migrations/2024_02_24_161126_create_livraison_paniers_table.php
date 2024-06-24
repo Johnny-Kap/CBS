@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('date_livraison');
             $table->string('adresse_recuperation');
             $table->string('adresse_livraison');
+            $table->string('adresse_repere')->nullable();
+            $table->string('autre_contact')->nullable();
             $table->double('montant')->nullable();
             $table->string('etat_commande');
             $table->string('etat_paiement')->nullable();

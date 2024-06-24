@@ -90,6 +90,10 @@ class LivraisonPanierController extends Controller
 
                 $commande->tel_destinataire = $request->tel_destinataire;
 
+                $commande->adresse_repere = $request->adresse_repere;
+
+                $commande->autre_contact = $request->autre_contact;
+
                 $commande->montant = $request->montant;
 
                 $commande->mode_paiement = $request->mode_paiement;
@@ -128,6 +132,10 @@ class LivraisonPanierController extends Controller
                 $commande->tel_destinataire = $request->tel_destinataire;
 
                 $commande->adresse_livraison = $request->adresse_livraison;
+
+                $commande->adresse_repere = $request->adresse_repere;
+
+                $commande->autre_contact = $request->autre_contact;
 
                 $commande->etat_commande = 'attente';
 

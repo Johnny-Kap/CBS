@@ -120,17 +120,47 @@
                                 </div>
                                 <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
                                     <div class="feature-img">
-                                        <i class="fas fa-briefcase"></i>
+                                        <i class="fas fa-map-marker"></i>
                                     </div>
                                     <div class="featues-info">
-                                        <h6>Lieu de résidence</h6>
+                                        <h6>Zone de résidence</h6>
                                         <span>
                                             @if(Auth::user()->residence == 'cameroun')
-                                            Cameroun
+                                            Résidant au Cameroun
                                             @elseif(Auth::user()->residence == 'etranger_cameroun')
                                             Etranger résidant au Cameroun
                                             @else
                                             Hors du Cameroun
+                                            @endif
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
+                                    <div class="feature-img">
+                                        <i class="fa fa-city"></i>
+                                    </div>
+                                    <div class="featues-info">
+                                        <h6>Ville</h6>
+                                        <span>
+                                            @if(Auth::user()->ville == null)
+                                            Non renseigné
+                                            @else
+                                            {{Auth::user()->ville}}
+                                            @endif
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
+                                    <div class="feature-img">
+                                        <i class="fa fa-globe"></i>
+                                    </div>
+                                    <div class="featues-info">
+                                        <h6>Pays</h6>
+                                        <span>
+                                            @if(Auth::user()->pays == null)
+                                            Non renseigné
+                                            @else
+                                            {{Auth::user()->pays}}
                                             @endif
                                         </span>
                                     </div>

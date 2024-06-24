@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('profession');
             $table->string('tel');
             $table->string('adresse');
+            $table->string('ville')->nullable();
+            $table->string('pays')->nullable();
             $table->string('niu')->nullable();
             $table->string('residence')->nullable();
             $table->string('numero_cni')->nullable();

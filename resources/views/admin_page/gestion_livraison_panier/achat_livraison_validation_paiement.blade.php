@@ -47,6 +47,8 @@
                         <th>Date de livraison</th>
                         <th>Adresse recupération</th>
                         <th>Adresse de livraison</th>
+                        <th>Point de repère</th>
+                        <th>Tel en cas d'urgence</th>
                         <th>Tel Destinataire</th>
                         <th>Montant</th>
                         <th>Mode de paiement</th>
@@ -65,6 +67,8 @@
                         <td>{{$item->date_livraison}}</td>
                         <td>{{$item->adresse_recuperation}}</td>
                         <td>{{$item->adresse_livraison}}</td>
+                        <td>{{$item->adresse_repere}}</td>
+                        <td>{{$item->autre_contact}}</td>
                         <td>{{$item->tel_destinataire}}</td>
                         <td>{{$item->montant}}</td>
                         <td>{{$item->mode_paiements->intitule}}</td>

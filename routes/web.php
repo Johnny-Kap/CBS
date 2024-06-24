@@ -114,6 +114,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'index_admin'])->name('home.admin');
 
     Route::get('/admin/user-profile/details/{id}/{name}', [App\Http\Controllers\HomeController::class, 'user_profile'])->name('user.profile.details');
+    Route::get('/admin/myprofile', [App\Http\Controllers\HomeController::class, 'profile_admin'])->name('admin.profile');
 
     //Gestion type de vehicule
     Route::get('/admin/type_vehicule/consulter', [App\Http\Controllers\TypeVehiculeController::class, 'index'])->name('type_vehicule.consulter');
@@ -202,7 +203,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/admin/bibliotheque/masked', [App\Http\Controllers\BibliothequeController::class, 'masked'])->name('admin.bibliotheque.masked');
     Route::post('/admin/bibliotheque/demasked', [App\Http\Controllers\BibliothequeController::class, 'demasked'])->name('admin.bibliotheque.demasked');
     Route::post('/admin/bibliotheque/edit/file', [App\Http\Controllers\BibliothequeController::class, 'edit_file'])->name('admin.bibliotheque.edit.file');
-    Route::get('admin/bibliotheque/consulter', [App\Http\Controllers\BibliothequeController::class, 'index'])->name('admin.bibliotheque.consulter');
+    Route::get('/admin/bibliotheque/consulter', [App\Http\Controllers\BibliothequeController::class, 'index'])->name('admin.bibliotheque.consulter');
 
 
     // Gestion de livraison / achat des paniers

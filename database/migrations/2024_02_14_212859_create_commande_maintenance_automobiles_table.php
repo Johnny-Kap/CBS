@@ -21,6 +21,9 @@ return new class extends Migration
             $table->string('marque_vehicule')->nullable();
             $table->string('modele_vehicule')->nullable();
             $table->string('type_moteur')->nullable();
+            $table->string('annee_vehicule')->nullable();
+            $table->string('kilometrage')->nullable();
+            $table->string('numero_serie')->nullable();
             $table->double('montant')->nullable();
             $table->string('etat_commande');
             $table->string('etat_paiement');
