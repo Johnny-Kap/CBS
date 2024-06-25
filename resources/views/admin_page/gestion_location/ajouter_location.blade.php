@@ -61,7 +61,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-text-input">Tarif</label>
+                        <label class="col-md-3 control-label" for="example-text-input">Tarif journalier (FCFA)</label>
                         <div class="col-md-9">
                             <input type="text" id="example-text-input" name="tarif" class="form-control" placeholder="Entrer un tarif">
                         </div>
