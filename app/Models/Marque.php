@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Marque extends Model
 {
     use HasFactory;
+
+    public function vehicules(){
+        return $this->hasMany(Vehicule::class);
+    }
 }

@@ -130,7 +130,7 @@
             <div class="detail-headings">
                 <div class="star-rated">
                     <div class="list-rating">
-                        <span class="year">{{$locationShow->tarif}} FCFA</span>
+                        <span class="year">{{$locationShow->tarif}} FCFA / Jour</span>
                         <!-- <i class="fas fa-star filled"></i>
                         <i class="fas fa-star filled"></i>
                         <i class="fas fa-star filled"></i>
@@ -388,7 +388,7 @@
                             <ul>
                                 <li class="column-group-main">
                                     <div class="form-group">
-                                        <label>N° abonnement du service</label>
+                                        <label>N° abonnement du service (Optionnel)</label>
                                         <div class="group-img">
                                             <input type="text" class="form-control" name="abonnement" placeholder="AA88873889" />
                                         </div>
@@ -396,7 +396,7 @@
                                 </li>
                                 <li class="column-group-main">
                                     <div class="form-group m-0">
-                                        <label>Date de ramassage</label>
+                                        <label>Date de ramassage <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="form-group-wrapp sidebar-form">
                                         <div class="form-group me-2">
@@ -413,7 +413,7 @@
                                 </li>
                                 <li class="column-group-main">
                                     <div class="form-group m-0">
-                                        <label>Date de retour</label>
+                                        <label>Date de retour <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="form-group-wrapp sidebar-form">
                                         <div class="form-group me-2">

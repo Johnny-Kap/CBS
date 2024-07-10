@@ -38,6 +38,10 @@ class Vehicule extends Model
         return $this->belongsTo(TypeVehicule::class, 'type_vehicule_id', 'id');
     }
 
+    public function marques(){
+        return $this->belongsTo(Marque::class, 'marque_id', 'id');
+    }
+
     public function location_vehicules(){
         return $this->hasMany(LocationVehicule::class);
     }

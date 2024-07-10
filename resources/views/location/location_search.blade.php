@@ -71,7 +71,7 @@
                                 <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                                     Catégorie
                                     <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
-                                </a>
+                                </a>cd
                             </h6>
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
@@ -113,7 +113,7 @@
                         <div id="collapseFour" class="collapse mb-2" aria-labelledby="headingFour" data-bs-parent="#accordionExample4">
                             <div class="card-body-chat">
                                 <div class="filter-range">
-                                    <span>Prix inférieur</span>
+                                    <span>Prix inférieur <span class="text-danger">*</span></span>
                                     <input type="text" name="prix_inferieur" id="prix_inferieur" disabled class="input-range form-control">
                                 </div>
                             </div>
@@ -121,7 +121,7 @@
                         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample4">
                             <div class="card-body-chat">
                                 <div class="filter-range">
-                                    <span>Prix supérieur</span>
+                                    <span>Prix supérieur <span class="text-danger">*</span></span>
                                     <input type="text" id="prix_superieur" name="prix_superieur" disabled class="input-range form-control">
                                 </div>
                             </div>

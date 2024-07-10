@@ -110,7 +110,7 @@
                         </ul>
                     </li>
                     <li class="">
-                        <a href="{{route('abonnement.index')}}">Plans d'abonnement</a>
+                        <a href="{{route('abonnement.index')}}">Accès aux privilèges</a>
                     </li>
                     <li class="{{ Request::route()->named('contact') ? 'active' : '' }}"><a href="{{route('contact')}}">Contact</a></li>
                     <li class="{{ Request::route()->named('propos') ? 'active' : '' }}"><a href="{{route('propos')}}">A propos de nous</a></li>
@@ -126,7 +126,7 @@
                     </li>
                     @if (Route::has('register'))
                     <li class="login-link">
-                        <a href="{{route('register')}}">S'abonner</a>
+                        <a href="{{route('register')}}">Créer son compte</a>
                     </li>
                     @endif
                     @endauth
@@ -143,11 +143,11 @@
                 </li>
                 @else
                 <li class="nav-item">
-                    <a class="nav-link header-login" href="{{ route('login') }}"><span><i class="fa-regular fa-user"></i></span>Se connecter</a>
+                    <a class="nav-link header-login" href="{{ route('login') }}"><span><i class="fa fa-sign-in"></i></span>Se connecter</a>
                 </li>
                 @if (Route::has('register'))
                 <li class="nav-item">
-                    <a class="nav-link header-reg" href="{{route('register')}}"><span><i class="fa-solid fa-lock"></i></span>S'abonner</a>
+                    <a class="nav-link header-reg" href="{{route('register')}}"><span><i class="fa fa-user-plus"></i></span>Créer son compte</a>
                 </li>
                 @endif
                 @endauth

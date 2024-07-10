@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('numero_commande')->unique();
             $table->string('type_resevation');
-            $table->string('date_reservation');
+            $table->string('date_reservation')->nullable();
             $table->string('ville');
             $table->string('localite')->nullable();
             $table->string('periode_continue')->nullable();

@@ -53,7 +53,7 @@ class CommandeReservationAppartementHotelController extends Controller
     public function store(Request $request)
     {
 
-        $numero_commande = 'R' . Carbon::now()->format('YmdHms') . Str::padLeft(Auth::user()->id, 3, 0);
+        $numero_commande = 'R' . Carbon::now()->format('YmdHms');
 
         $commande = new CommandeReservationAppartementHotel();
 
@@ -61,7 +61,11 @@ class CommandeReservationAppartementHotelController extends Controller
 
         $commande->type_resevation = $request->type_resevation;
 
-        $commande->date_reservation = $request->date_reservation;
+        $commande->periode_continue = $request->continu;
+
+        $commande->periode_multiple_1 = $request->multiple_1;
+
+        $commande->periode_multiple_2 = $request->multiple_2;
 
         $commande->ville = $request->ville;
 

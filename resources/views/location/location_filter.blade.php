@@ -113,7 +113,7 @@
                         <div id="collapseFour" class="collapse mb-2" aria-labelledby="headingFour" data-bs-parent="#accordionExample4">
                             <div class="card-body-chat">
                                 <div class="filter-range">
-                                    <span>Prix inférieur</span>
+                                    <span>Prix inférieur <span class="text-danger">*</span></span>
                                     <input type="text" name="prix_inferieur" id="prix_inferieur" disabled class="input-range form-control">
                                 </div>
                             </div>
@@ -121,7 +121,7 @@
                         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample4">
                             <div class="card-body-chat">
                                 <div class="filter-range">
-                                    <span>Prix supérieur</span>
+                                    <span>Prix supérieur <span class="text-danger">*</span></span>
                                     <input type="text" id="prix_superieur" name="prix_superieur" disabled class="input-range form-control">
                                 </div>
                             </div>

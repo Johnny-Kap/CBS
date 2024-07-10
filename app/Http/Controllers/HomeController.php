@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CommandeFormation;
 use App\Models\CommandeLocation;
 use App\Models\CommandeMaintenanceAutomobile;
+use App\Models\ExpressionBesoinFormation;
 use App\Models\LivraisonPanier;
 use App\Models\LocationVehicule;
 use App\Models\User;
@@ -72,12 +73,14 @@ class HomeController extends Controller
         return view('term_condition');
     }
 
-    public function term_condition_abonnement(){
+    public function term_condition_abonnement()
+    {
 
         return view('term_condition_abonnement');
     }
 
-    public function mon_historique_commande(){
+    public function mon_historique_commande()
+    {
 
         $commande_location = CommandeLocation::where('user_id', Auth::user()->id)->simplePaginate(15);
 
@@ -87,15 +90,14 @@ class HomeController extends Controller
 
         $commande_formation = CommandeFormation::where('user_id', Auth::user()->id)->simplePaginate(15);
 
-        return view('profile.historique_commande', compact('commande_location','achat_livraison','commande_maintenance','commande_formation'));
-
+        return view('profile.historique_commande', compact('commande_location', 'achat_livraison', 'commande_maintenance', 'commande_formation'));
     }
 
     public function photoEdited(Request $request)
     {
 
         $request->validate([
-            'file' => 'required|mimes:jpeg,png,jpg|size:15360',
+            'file' => 'required|mimes:jpeg,png,jpg',
         ]);
 
         if ($request->hasFile('file')) {
@@ -196,15 +198,105 @@ class HomeController extends Controller
         }
     }
 
-    public function user_profile($id){
+    public function user_profile($id)
+    {
 
         $user = User::find($id);
 
         return view('admin_page.profile.client_profile', compact('user'));
     }
 
-    public function profile_admin(){
+    public function profile_admin()
+    {
 
         return view('admin_page.profile.profile_admin');
+    }
+
+    public function clients()
+    {
+
+        $clients = User::where('role', 'user')->get();
+
+        return view('admin_page.dashboard.clients', compact('clients'));
+    }
+
+    public function ca_location()
+    {
+
+        $commande_en_cours = CommandeLocation::where('etat_paiement', 'no')->count();
+
+        $valeur_commande_en_cours = CommandeLocation::where('etat_paiement', 'no')->sum('tarif');
+
+        $commande_today = CommandeLocation::where('created_at', today())->count();
+
+        $resultat_today = CommandeLocation::where('etat_paiement', 'yes')->where('created_at', today())->sum('tarif');
+
+        $commande_total = CommandeLocation::count();
+
+        $chiffre_affaire = CommandeLocation::sum('tarif');
+
+        $clients = CommandeLocation::distinct('user_id')->count('user_id');
+
+        return view('admin_page.dashboard.chiffres_affaires.ca_location', compact('commande_en_cours', 'valeur_commande_en_cours', 'commande_today', 'resultat_today', 'commande_total', 'chiffre_affaire', 'clients'));
+    }
+
+    public function ca_maintenance()
+    {
+
+        $commande_en_cours = CommandeMaintenanceAutomobile::where('etat_paiement', 'no')->count();
+
+        $valeur_commande_en_cours = CommandeMaintenanceAutomobile::where('etat_paiement', 'no')->sum('montant');
+
+        $commande_today = CommandeMaintenanceAutomobile::where('created_at', today())->count();
+
+        $resultat_today = CommandeMaintenanceAutomobile::where('etat_paiement', 'yes')->where('created_at', today())->sum('montant');
+
+        $commande_total = CommandeMaintenanceAutomobile::count();
+
+        $chiffre_affaire = CommandeMaintenanceAutomobile::sum('montant');
+
+        $clients = CommandeMaintenanceAutomobile::distinct('user_id')->count('user_id');
+
+        return view('admin_page.dashboard.chiffres_affaires.ca_maintenance_auto', compact('commande_en_cours', 'valeur_commande_en_cours', 'commande_today', 'resultat_today', 'commande_total', 'chiffre_affaire', 'clients'));
+    }
+
+    public function ca_formation()
+    {
+
+        $commande_en_cours = CommandeFormation::where('etat_paiement', 'no')->count();
+
+        $valeur_commande_en_cours = CommandeFormation::where('etat_paiement', 'no')->sum('montant_total');
+
+        $commande_today = CommandeFormation::where('created_at', today())->count();
+
+        $resultat_today = CommandeFormation::where('etat_paiement', 'yes')->where('created_at', today())->sum('montant_total');
+
+        $commande_total = CommandeFormation::count();
+
+        $chiffre_affaire = CommandeFormation::sum('montant_total');
+
+        $clients = CommandeFormation::distinct('user_id')->count('user_id');
+
+        return view('admin_page.dashboard.chiffres_affaires.ca_formation', compact('commande_en_cours', 'valeur_commande_en_cours', 'commande_today', 'resultat_today', 'commande_total', 'chiffre_affaire', 'clients'));
+    }
+
+    public function ca_expression_besoin_formation()
+    {
+
+        $commande_en_cours = ExpressionBesoinFormation::where('etat_paiement', 'no')->count();
+
+        $valeur_commande_en_cours = ExpressionBesoinFormation::where('etat_paiement', 'no')->sum('montant');
+
+        $commande_today = ExpressionBesoinFormation::where('created_at', today())->count();
+
+        $resultat_today = ExpressionBesoinFormation::where('etat_paiement', 'yes')->where('created_at', today())->sum('montant');
+
+        $commande_total = ExpressionBesoinFormation::count();
+
+        $chiffre_affaire = ExpressionBesoinFormation::sum('montant');
+
+        $clients = ExpressionBesoinFormation::distinct('user_id')->count('user_id');
+
+        return view('admin_page.dashboard.chiffres_affaires.ca_expression_besoin_formation', compact('commande_en_cours', 'valeur_commande_en_cours', 'commande_today', 'resultat_today', 'commande_total', 'chiffre_affaire', 'clients'));
     }
 }

@@ -82,7 +82,7 @@
                             <div class="footer-address">
                                 <span><i class="fas fa-phone"></i></span>
                                 <div class="addr-info">
-                                    <a href="tel:+237 659826528">+237 659826528 / +237 653100205</a>
+                                    <a href="tel:+237 659826528">+237 659 826 528 / +237 653 100 205</a>
                                 </div>
                             </div>
                             <div class="footer-address">

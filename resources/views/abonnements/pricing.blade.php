@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row align-items-center text-center">
             <div class="col-md-12 col-12">
-                <h2 class="breadcrumb-title">Les plans d'abonnement disponibles </h2>
+                <h2 class="breadcrumb-title">Les plans d'accès aux privilèges disponibles </h2>
             </div>
         </div>
     </div>

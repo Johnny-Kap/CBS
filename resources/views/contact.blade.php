@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn contact-btn">Envoyer</button>
+                        <button class="btn contact-btn w-100">Envoyer</button>
                     </form>
                 </div>
             </div>

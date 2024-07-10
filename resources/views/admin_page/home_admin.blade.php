@@ -56,7 +56,7 @@
     <div class="row">
         <div class="col-sm-6 col-lg-4">
             <!-- Widget -->
-            <a href="#" class="widget widget-hover-effect1">
+            <a href="{{route('admin.dashboard.clients')}}" class="widget widget-hover-effect1">
                 <div class="widget-simple">
                     <div class="widget-icon pull-left themed-background-autumn animation-fadeIn">
                         <i class="fa fa-file-text"></i>
@@ -71,7 +71,7 @@
         </div>
         <div class="col-sm-6 col-lg-4">
             <!-- Widget -->
-            <a href="#" class="widget widget-hover-effect1">
+            <a href="{{route('admin.dashboard.ca_location')}}" class="widget widget-hover-effect1">
                 <div class="widget-simple">
                     <div class="widget-icon pull-left themed-background-spring animation-fadeIn">
                         <i class="gi gi-usd"></i>

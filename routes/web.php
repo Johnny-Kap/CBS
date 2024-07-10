@@ -113,6 +113,14 @@ Route::get('/admin/login', [App\Http\Controllers\HomeController::class, 'login_a
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'index_admin'])->name('home.admin');
 
+    //Gestion du dashboard
+    Route::get('/admin/dashboard/clients', [App\Http\Controllers\HomeController::class, 'clients'])->name('admin.dashboard.clients');
+    Route::get('/admin/dashboard/chiffres-affaires/location', [App\Http\Controllers\HomeController::class, 'ca_location'])->name('admin.dashboard.ca_location');
+    Route::get('/admin/dashboard/chiffres-affaires/maintenance-automobile', [App\Http\Controllers\HomeController::class, 'ca_maintenance'])->name('admin.dashboard.ca_maintenance');
+    Route::get('/admin/dashboard/chiffres-affaires/formation', [App\Http\Controllers\HomeController::class, 'ca_formation'])->name('admin.dashboard.ca_formation');
+    Route::get('/admin/dashboard/chiffres-affaires/expression-besoin-formation', [App\Http\Controllers\HomeController::class, 'ca_expression_besoin_formation'])->name('admin.dashboard.ca_expression_besoin_formation');
+
+    //Gestion du profil
     Route::get('/admin/user-profile/details/{id}/{name}', [App\Http\Controllers\HomeController::class, 'user_profile'])->name('user.profile.details');
     Route::get('/admin/myprofile', [App\Http\Controllers\HomeController::class, 'profile_admin'])->name('admin.profile');
 
