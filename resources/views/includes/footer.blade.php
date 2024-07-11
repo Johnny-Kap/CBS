@@ -26,53 +26,41 @@
                         <div class="col-lg-4 col-md-6">
 
                             <div class="footer-widget footer-menu">
-                                <h5 class="footer-title">Nos services</h5>
+                                <h5 class="footer-title">Nos offres</h5>
                                 <ul>
                                     <li>
                                         <a href="{{route('location.list')}}">Location de vehicule</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)">Maintenance automobile</a>
+                                        <a href="{{route('commande.maintenance.auto')}}">Maintenance automobile</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)">Bibliothèque</a>
+                                        <a href="{{route('bibliotheque.verifier')}}">Bibliothèque</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)">Formation</a>
+                                        <a href="{{route('formation.list')}}">Formation</a>
                                     </li>
                                 </ul>
                             </div>
 
                         </div>
-                        <!-- <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-4 col-md-6">
 
                             <div class="footer-widget footer-menu">
-                                <h5 class="footer-title">Nos pages</h5>
+                                <h5 class="footer-title">Nos autres services</h5>
                                 <ul>
                                     <li>
-                                        <a href="javascript:void(0)">My Account</a>
+                                        <a href="{{route('commande.reservation.appart.hotel')}}">Assistance réservation appartements / hotel</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)">Champaigns</a>
+                                        <a href="{{route('livraison.panier')}}">Livraison Panier Alimentaire</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)">Dreamsrental Dealers</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">Deals and Incentive</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">Financial Services</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">Dreamsrental Insurance</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">Dreamsrental Care</a>
+                                        <a href="{{route('abonnement.index')}}">Accès aux privilèges</a>
                                     </li>
                                 </ul>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-5">

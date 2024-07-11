@@ -105,7 +105,8 @@
 
         <div class="section-heading" data-aos="fade-down">
             <h2>Comment ça marche</h2>
-            <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+            <p>Découvrez à quel point il est facile de louer une voiture avec nous !
+                Suivez ces étapes simples pour réserver votre véhicule en quelques minutes</p>
         </div>
 
         <div class="services-work">
@@ -117,8 +118,8 @@
                         </div>
                         <div class="services-content">
                             <h3>1. Sélectionner votre voiture</h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                            <p>Parcourez notre vaste sélection de véhicules, allant des voitures économiques aux modèles de luxe,
+                                et choisissez celui qui convient le mieux à vos besoins et à votre budget.</p>
                         </div>
                     </div>
                 </div>
@@ -129,8 +130,8 @@
                         </div>
                         <div class="services-content">
                             <h3>2. Entrer la date de ramassage et de retour</h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                            <p>Indiquez les dates et heures spécifiques de ramassage et de retour de la voiture.
+                                Cette étape garantit la disponibilité du véhicule à ces moments précis.</p>
                         </div>
                     </div>
                 </div>
@@ -141,8 +142,8 @@
                         </div>
                         <div class="services-content">
                             <h3>3. Réservez votre voiture</h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                            <p>Finalisez votre réservation en ligne en fournissant les informations requises.
+                                Vous recevrez immédiatement une confirmation avec tous les détails de votre réservation.</p>
                         </div>
                     </div>
                 </div>
@@ -155,7 +156,10 @@
     <div class="container">
         <div class="section-heading" data-aos="fade-down">
             <h2>Location de voitures</h2>
-            <!-- <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p> -->
+            <p>
+                Trouvez la voiture idéale pour vos besoins parmi notre sélection de véhicules en location.
+                Nous avons ce qu'il vous faut pour votre prochain déplacement.
+            </p>
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="Carmazda">
@@ -250,7 +254,8 @@
 
         <div class="section-heading" data-aos="fade-down">
             <h2>Plus de services de CBS</h2>
-            <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+            <p>Découvrez nos autres services CBS pour répondre à tous vos besoins.
+                De la maintenance automobile et la formation, nous avons une gamme complète de solutions pour vous faciliter la vie.</p>
         </div>
 
         <div class="why-choose-group">
@@ -270,11 +275,11 @@
                             </div>
                             <div class="choose-content">
                                 <h4>Maintenance automobile</h4>
-                                <p>Completely carinate e business testing process whereas fully researched
-                                    customer service. Globally extensive content with quality.</p>
+                                <p>Profitez de nos services de maintenance automobile pour garder votre véhicule en parfait état de marche. 
+                                    Les experts qualifiés assurent des réparations rapides et efficaces.</p>
                             </div>
                             <div class="choose-content mt-4">
-                                <a href="" class="btn btn-primary">En savoir plus</a>
+                                <a href="{{ route('commande.maintenance.auto') }}" class="btn btn-primary">En savoir plus</a>
                             </div>
                         </div>
                     </div>
@@ -333,11 +338,11 @@
                             </div>
                             <div class="choose-content">
                                 <h4>Formation</h4>
-                                <p>Completely carinate e business testing process whereas fully researched
-                                    customer service. Globally extensive content with quality.</p>
+                                <p>Nous offrons des formations professionnelles pour développer vos compétences et améliorer vos connaissances dans le domaine du transport. 
+                                    Inscrivez-vous dès aujourd'hui pour booster votre carrière.</p>
                             </div>
                             <div class="choose-content mt-4">
-                                <a href="" class="btn btn-primary">En savoir plus</a>
+                                <a href="{{ route('formation.list') }}" class="btn btn-primary">En savoir plus</a>
                             </div>
                         </div>
                     </div>
@@ -362,11 +367,11 @@
                             </div>
                             <div class="choose-content">
                                 <h4>Bibliothèque</h4>
-                                <p>Completely carinate e business testing process whereas fully researched
-                                    customer service. Globally extensive content with quality.</p>
+                                <p>Accédez à notre bibliothèque bien fournie, comprenant une vaste collection de livres 
+                                    et de ressources éducatives pour tous les intérêts.</p>
                             </div>
                             <div class="choose-content mt-4">
-                                <a href="" class="btn btn-primary">En savoir plus</a>
+                                <a href="{{ route('bibliotheque.verifier') }}" class="btn btn-primary">En savoir plus</a>
                             </div>
                         </div>
                     </div>
@@ -386,11 +391,11 @@
                             </div>
                             <div class="choose-content">
                                 <h4>Assistance réservation appartements / hotel</h4>
-                                <p>Completely carinate e business testing process whereas fully researched
-                                    customer service. Globally extensive content with quality.</p>
+                                <p>Simplifiez vos déplacements avec notre service d'assistance à la réservation d'appartements et d'hôtels. 
+                                    Nous trouvons pour vous les meilleures options de logement selon vos besoins et votre budget.</p>
                             </div>
                             <div class="choose-content mt-4">
-                                <a href="" class="btn btn-primary">En savoir plus</a>
+                                <a href="{{ route('commande.reservation.appart.hotel') }}" class="btn btn-primary">En savoir plus</a>
                             </div>
                         </div>
                     </div>
@@ -410,11 +415,11 @@
                             </div>
                             <div class="choose-content">
                                 <h4>Livraison Panier Alimentaire</h4>
-                                <p>Completely carinate e business testing process whereas fully researched
-                                    customer service. Globally extensive content with quality.</p>
+                                <p>Nous récupérons vos colis et assurons une livraison rapide à la destination de votre choix, 
+                                    garantissant ainsi votre tranquillité d'esprit et votre satisfaction</p>
                             </div>
                             <div class="choose-content mt-4">
-                                <a href="" class="btn btn-primary">En savoir plus</a>
+                                <a href="{{ route('livraison.panier') }}" class="btn btn-primary">En savoir plus</a>
                             </div>
                         </div>
                     </div>
@@ -429,7 +434,7 @@
 
         <div class="section-heading" data-aos="fade-down">
             <h2>Acquérez vous de nos Accès aux privilèges</h2>
-            <p>Choose a package that suits you</p>
+            <p>Découvrez un forfait qui vous convient</p>
         </div>
 
 
@@ -443,16 +448,21 @@
         </div> -->
 
         <div class="row d-flex justify-content-center">
-            <div class="col-lg-9 d-flex col-md-6 col-12" style="height: 40rem;" data-aos="fade-down">
+            <div class="col-lg-9 d-flex col-md-6 col-12" style="height: 30rem;" data-aos="fade-down">
                 <div class="price-card price-selected flex-fill">
                     <div class="price-head">
-                        <h2>Save more with Good Plans</h2>
-                        <p>Choose a plan and get onboard in Minutes, then get $100 with next payment</p>
+                        <h2>Profiter davantage avec les bons plans</h2>
+                        <p style="text-align: justify;">Découvrez l'avantage de nos abonnements exclusifs! En souscrivant à nos privilèges, 
+                            vous bénéficiez de rabais significatifs sur toutes vos commandes de location de voitures. 
+                            Mais ce n'est pas tout! Profitez également de nos services de livraison de paniers alimentaires 
+                            à la destination de votre choix et d'une assistance complète pour la réservation d'appartements et d'hôtels. 
+                            Simplifiez votre vie quotidienne et faites des économies grâce à nos offres exceptionnelles. 
+                            Rejoignez notre programme de privilèges dès aujourd'hui et laissez-nous vous offrir le meilleur des services pour un confort inégalé.</p>
                     </div>
                     <div class="price-body">
                         <img class="img-fluid" src="assets/img/price-plan.png" alt="Price Plan">
                     </div>
-                    <a href="" class="btn btn-primary">En savoir plus</a>
+                    <a href="{{route('abonnement.index')}}" class="btn btn-primary">En savoir plus</a>
                 </div>
             </div>
         </div>
