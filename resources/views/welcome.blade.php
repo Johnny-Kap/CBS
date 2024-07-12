@@ -448,7 +448,7 @@
         </div> -->
 
         <div class="row d-flex justify-content-center">
-            <div class="col-lg-9 d-flex col-md-6 col-12" style="height: 30rem;" data-aos="fade-down">
+            <div class="col-lg-9 d-flex col-md-6 col-12" style="height: 35rem;" data-aos="fade-down">
                 <div class="price-card price-selected flex-fill">
                     <div class="price-head">
                         <h2>Profiter davantage avec les bons plans</h2>
