@@ -33,7 +33,7 @@
                             <li><a href="listing-details.html">Listing Details</a></li>
                         </ul>
                     </li> -->
-                    <li class="has-submenu {{ Request::route()->named('location.list') || Request::route()->named('commande.maintenance.auto') || Request::route()->named('bibliotheque.verifier')  ? 'active' : '' }}">
+                    <li class="has-submenu {{ Request::route()->named('location.list') || Request::route()->named('commande.maintenance.auto') || Request::route()->named('bibliotheque.verifier') || Request::route()->named('formation.list') || Request::route()->named('commande.reservation.appart.hotel') || Request::route()->named('livraison.panier') ? 'active' : '' }}">
                         <a href>Nos offres <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
                             <!-- <li><a href="about-us.html">About Us</a></li> -->
@@ -48,6 +48,12 @@
                             </li>
                             <li class="{{ Request::route()->named('formation.list') ? 'active' : '' }}">
                                 <a href="{{route('formation.list')}}">Formation</a>
+                            </li>
+                            <li class="{{Request::route()->named('livraison.panier') ? 'active' : ''}}">
+                                <a href="{{route('livraison.panier')}}">Livraison Panier Alimentaire</a>
+                            </li>
+                            <li class="{{Request::route()->named('commande.reservation.appart.hotel') ? 'active' : ''}}">
+                                <a href="{{route('commande.reservation.appart.hotel')}}">Assistance réservation appartements / hotel</a>
                             </li>     
                             <!-- <li class="has-submenu">
                                 <a href="javascript:void(0);">Booking</a>
@@ -74,42 +80,38 @@
                             <li><a href="coming-soon.html">Coming Soon</a></li> -->
                         </ul>
                     </li>
-                    <li class="has-submenu {{ Request::route()->named('commande.reservation.appart.hotel') || Request::route()->named('livraison.panier') ? 'active' : '' }}">
+                    <!-- <li class="has-submenu {{ Request::route()->named('commande.reservation.appart.hotel') || Request::route()->named('livraison.panier') ? 'active' : '' }}">
                         <a href>Autres services <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
-                            <!-- <li><a href="about-us.html">About Us</a></li> -->
-                            <li class="{{Request::route()->named('commande.reservation.appart.hotel') ? 'active' : ''}}">
-                                <a href="{{route('commande.reservation.appart.hotel')}}">Assistance réservation appartements / hotel</a>
-                            </li>
-                            <li class="{{Request::route()->named('livraison.panier') ? 'active' : ''}}">
-                                <a href="{{route('livraison.panier')}}">Livraison Panier Alimentaire</a>
-                            </li>
-                            <!-- <li class="has-submenu">
+                            <li><a href="about-us.html">About Us</a></li>
+                            
+                            
+                            <li class="has-submenu">
                                 <a href="javascript:void(0);">Booking</a>
                                 <ul class="submenu">
                                     <li><a href="booking-payment.html">Booking Checkout</a></li>
                                     <li><a href="booking.html">Booking</a></li>
                                     <li><a href="invoice-details.html">Invoice Details</a></li>
                                 </ul>
-                            </li> -->
-                            <!-- <li class="has-submenu">
+                            </li>
+                            <li class="has-submenu">
                                 <a href="javascript:void(0);">Error Page</a>
                                 <ul class="submenu">
                                     <li><a href="error-404.html">404 Error</a></li>
                                     <li><a href="error-500.html">500 Error</a></li>
                                 </ul>
-                            </li> -->
-                            <!-- <li><a href="faq.html">FAQ</a></li>
+                            </li>
+                            <li><a href="faq.html">FAQ</a></li>
                             <li><a href="gallery.html">Gallery</a></li>
                             <li><a href="our-team.html">Our Team</a></li>
                             <li><a href="testimonial.html">Testimonials</a></li>
                             <li><a href="terms-condition.html">Terms & Conditions</a></li>
                             <li><a href="privacy-policy.html">Privacy Policy</a></li>
                             <li><a href="maintenance.html">Maintenance</a></li>
-                            <li><a href="coming-soon.html">Coming Soon</a></li> -->
+                            <li><a href="coming-soon.html">Coming Soon</a></li>
                         </ul>
-                    </li>
-                    <li class="">
+                    </li> -->
+                    <li class="{{ Request::route()->named('abonnement.index') ? 'active' : '' }}">
                         <a href="{{route('abonnement.index')}}">Accès aux privilèges</a>
                     </li>
                     <li class="{{ Request::route()->named('contact') ? 'active' : '' }}"><a href="{{route('contact')}}">Contact</a></li>
