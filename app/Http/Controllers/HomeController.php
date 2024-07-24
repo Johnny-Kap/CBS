@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\CommandeFormation;
 use App\Models\CommandeLocation;
 use App\Models\CommandeMaintenanceAutomobile;
+use App\Models\CommandeReservationAppartementHotel;
 use App\Models\ExpressionBesoinFormation;
 use App\Models\LivraisonPanier;
 use App\Models\LocationVehicule;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -227,9 +229,9 @@ class HomeController extends Controller
 
         $valeur_commande_en_cours = CommandeLocation::where('etat_paiement', 'no')->sum('tarif');
 
-        $commande_today = CommandeLocation::where('created_at', today())->count();
+        $commande_today = CommandeLocation::whereDate('created_at', Carbon::today())->count();
 
-        $resultat_today = CommandeLocation::where('etat_paiement', 'yes')->where('created_at', today())->sum('tarif');
+        $resultat_today = CommandeLocation::where('etat_paiement', 'yes')->whereDate('created_at', Carbon::today())->sum('tarif');
 
         $commande_total = CommandeLocation::count();
 
@@ -247,9 +249,9 @@ class HomeController extends Controller
 
         $valeur_commande_en_cours = CommandeMaintenanceAutomobile::where('etat_paiement', 'no')->sum('montant');
 
-        $commande_today = CommandeMaintenanceAutomobile::where('created_at', today())->count();
+        $commande_today = CommandeMaintenanceAutomobile::whereDate('created_at', Carbon::today())->count();
 
-        $resultat_today = CommandeMaintenanceAutomobile::where('etat_paiement', 'yes')->where('created_at', today())->sum('montant');
+        $resultat_today = CommandeMaintenanceAutomobile::where('etat_paiement', 'yes')->whereDate('created_at', Carbon::today())->sum('montant');
 
         $commande_total = CommandeMaintenanceAutomobile::count();
 
@@ -267,9 +269,9 @@ class HomeController extends Controller
 
         $valeur_commande_en_cours = CommandeFormation::where('etat_paiement', 'no')->sum('montant_total');
 
-        $commande_today = CommandeFormation::where('created_at', today())->count();
+        $commande_today = CommandeFormation::whereDate('created_at', Carbon::today())->count();
 
-        $resultat_today = CommandeFormation::where('etat_paiement', 'yes')->where('created_at', today())->sum('montant_total');
+        $resultat_today = CommandeFormation::where('etat_paiement', 'yes')->whereDate('created_at', Carbon::today())->sum('montant_total');
 
         $commande_total = CommandeFormation::count();
 
@@ -287,9 +289,9 @@ class HomeController extends Controller
 
         $valeur_commande_en_cours = ExpressionBesoinFormation::where('etat_paiement', 'no')->sum('montant');
 
-        $commande_today = ExpressionBesoinFormation::where('created_at', today())->count();
+        $commande_today = ExpressionBesoinFormation::whereDate('created_at', Carbon::today())->count();
 
-        $resultat_today = ExpressionBesoinFormation::where('etat_paiement', 'yes')->where('created_at', today())->sum('montant');
+        $resultat_today = ExpressionBesoinFormation::where('etat_paiement', 'yes')->whereDate('created_at', Carbon::today())->sum('montant');
 
         $commande_total = ExpressionBesoinFormation::count();
 
@@ -298,5 +300,53 @@ class HomeController extends Controller
         $clients = ExpressionBesoinFormation::distinct('user_id')->count('user_id');
 
         return view('admin_page.dashboard.chiffres_affaires.ca_expression_besoin_formation', compact('commande_en_cours', 'valeur_commande_en_cours', 'commande_today', 'resultat_today', 'commande_total', 'chiffre_affaire', 'clients'));
+    }
+
+    public function ca_achat_livraison()
+    {
+
+        $commande_en_cours = LivraisonPanier::where('type_prestation', 'achat')->where('etat_paiement', 'no')->count();
+
+        $valeur_commande_en_cours = LivraisonPanier::where('type_prestation', 'achat')->where('etat_paiement', 'no')->sum('montant');
+
+        $commande_today = LivraisonPanier::where('type_prestation', 'achat')->whereDate('created_at', Carbon::today())->count();
+
+        $resultat_today = LivraisonPanier::where('type_prestation', 'achat')->where('etat_paiement', 'yes')->whereDate('created_at', Carbon::today())->sum('montant');
+
+        $commande_total = LivraisonPanier::where('type_prestation', 'achat')->count();
+
+        $chiffre_affaire = LivraisonPanier::where('type_prestation', 'achat')->sum('montant');
+
+        $clients = LivraisonPanier::where('type_prestation', 'achat')->distinct('user_id')->count('user_id');
+
+        return view('admin_page.dashboard.chiffres_affaires.ca_achat_livraison', compact('commande_en_cours', 'valeur_commande_en_cours', 'commande_today', 'resultat_today', 'commande_total', 'chiffre_affaire', 'clients'));
+    }
+
+    public function ca_livraison()
+    {
+
+        $commande_en_cours = LivraisonPanier::where('type_prestation', 'livraison')->where('etat_commande', 'attente')->count();
+
+        $commande_today = LivraisonPanier::where('type_prestation', 'livraison')->whereDate('created_at', Carbon::today())->count();
+
+        $commande_total = LivraisonPanier::where('type_prestation', 'livraison')->count();
+
+        $clients = LivraisonPanier::where('type_prestation', 'livraison')->distinct('user_id')->count('user_id');
+
+        return view('admin_page.dashboard.chiffres_affaires.ca_livraison', compact('commande_en_cours', 'commande_today', 'commande_total', 'clients'));
+    }
+
+    public function ca_assistance_reservation()
+    {
+
+        $commande_en_cours = CommandeReservationAppartementHotel::where('etat_commande', 'attente')->count();
+
+        $commande_today = CommandeReservationAppartementHotel::whereDate('created_at', Carbon::today())->count();
+
+        $commande_total = CommandeReservationAppartementHotel::count();
+
+        $clients = CommandeReservationAppartementHotel::distinct('user_id')->count('user_id');
+
+        return view('admin_page.dashboard.chiffres_affaires.ca_assistance_reservation', compact('commande_en_cours', 'commande_today', 'commande_total', 'clients'));
     }
 }

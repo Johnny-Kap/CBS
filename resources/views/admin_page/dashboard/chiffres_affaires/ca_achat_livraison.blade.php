@@ -12,13 +12,13 @@
             <li>
                 <a href="{{route('admin.dashboard.ca_maintenance')}}"><i class="gi gi-shop_window"></i> Maintenance automobile</a>
             </li>
-            <li class="active">
+            <li>
                 <a href="{{route('admin.dashboard.ca_formation')}}"><i class="gi gi-shopping_cart"></i> Formation</a>
             </li>
             <li>
                 <a href="{{route('admin.dashboard.ca_expression_besoin_formation')}}"><i class="gi gi-shopping_bag"></i> Expression besoin formation</a>
             </li>
-            <li>
+            <li class="active">
                 <a href="{{route('admin.dashboard.ca_achat_livraison')}}"><i class="gi gi-pencil"></i> Panier alimentaire (Achat et livraison)</a>
             </li>
             <li>
@@ -78,7 +78,7 @@
 
         <!-- eShop Overview Content -->
         <div class="row">
-            <div class="col-md-12 col-lg-12">
+            <div class="col-md-12 col-lg-12">   
                 <div class="row push">
                     <div class="col-xs-4 text-center">
                         <h3><strong class="animation-fadeInQuick">{{$commande_total}}</strong><br><small class="text-uppercase animation-fadeInQuickInv"><a href="javascript:void(0)">Total des commandes</a></small></h3>

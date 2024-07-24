@@ -5,7 +5,7 @@
              target="_blank">pixelcave</a>
      </div> -->
      <div class="pull-left">
-         <span id="year-copy"></span> &copy; <a href="http://goo.gl/TDOSuC" target="_blank">Car Booking Services</a>
+         <span id="year-copy"></span> &copy; Car Booking Services
      </div>
  </footer>
  <!-- END Footer -->

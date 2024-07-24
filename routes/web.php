@@ -119,6 +119,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/dashboard/chiffres-affaires/maintenance-automobile', [App\Http\Controllers\HomeController::class, 'ca_maintenance'])->name('admin.dashboard.ca_maintenance');
     Route::get('/admin/dashboard/chiffres-affaires/formation', [App\Http\Controllers\HomeController::class, 'ca_formation'])->name('admin.dashboard.ca_formation');
     Route::get('/admin/dashboard/chiffres-affaires/expression-besoin-formation', [App\Http\Controllers\HomeController::class, 'ca_expression_besoin_formation'])->name('admin.dashboard.ca_expression_besoin_formation');
+    Route::get('/admin/dashboard/chiffres-affaires/achat-livraison', [App\Http\Controllers\HomeController::class, 'ca_achat_livraison'])->name('admin.dashboard.ca_achat_livraison');
+    Route::get('/admin/dashboard/chiffres-affaires/livraison', [App\Http\Controllers\HomeController::class, 'ca_livraison'])->name('admin.dashboard.ca_livraison');
+    Route::get('/admin/dashboard/chiffres-affaires/assistance-reservation-hotel-appart', [App\Http\Controllers\HomeController::class, 'ca_assistance_reservation'])->name('admin.dashboard.ca_assistance_reservation');
+    Route::get('/admin/dashboard/centre-controle', [App\Http\Controllers\UserSessionController::class, 'index'])->name('admin.dashboard.centre_controle');
 
     //Gestion du profil
     Route::get('/admin/user-profile/details/{id}/{name}', [App\Http\Controllers\HomeController::class, 'user_profile'])->name('user.profile.details');

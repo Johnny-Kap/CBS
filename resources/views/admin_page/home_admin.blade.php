@@ -54,14 +54,14 @@
 
     <!-- Mini Top Stats Row -->
     <div class="row">
-        <div class="col-sm-6 col-lg-4">
+        <div class="col-sm-6 col-lg-6">
             <!-- Widget -->
             <a href="{{route('admin.dashboard.clients')}}" class="widget widget-hover-effect1">
                 <div class="widget-simple">
                     <div class="widget-icon pull-left themed-background-autumn animation-fadeIn">
                         <i class="fa fa-file-text"></i>
                     </div>
-                    <h3 class="widget-content text-right animation-pullDown">
+                    <h3 class="widget-content animation-pullDown visible-lg">
                         <strong>Clients</strong><br>
                         <small>Consulter les</small>
                     </h3>
@@ -69,14 +69,18 @@
             </a>
             <!-- END Widget -->
         </div>
-        <div class="col-sm-6 col-lg-4">
+        <div class="col-sm-6 col-lg-6">
             <!-- Widget -->
             <a href="{{route('admin.dashboard.ca_location')}}" class="widget widget-hover-effect1">
                 <div class="widget-simple">
                     <div class="widget-icon pull-left themed-background-spring animation-fadeIn">
                         <i class="gi gi-usd"></i>
                     </div>
-                    <h3 class="widget-content text-right animation-pullDown">
+                    <div class="pull-right">
+                        <!-- Jquery Sparkline (initialized in js/pages/index.js), for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about -->
+                        <span id="mini-chart-sales"></span>
+                    </div>
+                    <h3 class="widget-content animation-pullDown visible-lg">
                         <strong>Chiffres d'affaire</strong><br>
                         <small>Consulter les ventes</small>
                     </h3>
@@ -84,14 +88,14 @@
             </a>
             <!-- END Widget -->
         </div>
-        <div class="col-sm-6 col-lg-4">
+        <div class="col-sm-6 col-lg-6">
             <!-- Widget -->
             <a href="#" class="widget widget-hover-effect1">
                 <div class="widget-simple">
                     <div class="widget-icon pull-left themed-background-fire animation-fadeIn">
                         <i class="gi gi-envelope"></i>
                     </div>
-                    <h3 class="widget-content text-right animation-pullDown">
+                    <h3 class="widget-content animation-pullDown visible-lg">
                         <strong>Messages</strong>
                         <small>Centre d'aide</small>
                     </h3>
@@ -99,43 +103,9 @@
             </a>
             <!-- END Widget -->
         </div>
-        <!-- <div class="col-sm-6 col-lg-3">
-           
-            <a href="page_comp_gallery.html" class="widget widget-hover-effect1">
-                <div class="widget-simple">
-                    <div class="widget-icon pull-left themed-background-amethyst animation-fadeIn">
-                        <i class="gi gi-picture"></i>
-                    </div>
-                    <h3 class="widget-content text-right animation-pullDown">
-                        +30 <strong>Photos</strong>
-                        <small>Gallery</small>
-                    </h3>
-                </div>
-            </a>
-           
-        </div> -->
-        <div class="col-sm-6">
+        <div class="col-sm-6 col-lg-6">
             <!-- Widget -->
-            <a href="#" class="widget widget-hover-effect1">
-                <div class="widget-simple">
-                    <div class="widget-icon pull-left themed-background animation-fadeIn">
-                        <i class="gi gi-wallet"></i>
-                    </div>
-                    <div class="pull-right">
-                        <!-- Jquery Sparkline (initialized in js/pages/index.js), for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about -->
-                        <span id="mini-chart-sales"></span>
-                    </div>
-                    <h3 class="widget-content animation-pullDown visible-lg">
-                        Historique <strong>commandes</strong>
-                        <small></small>
-                    </h3>
-                </div>
-            </a>
-            <!-- END Widget -->
-        </div>
-        <div class="col-sm-6">
-            <!-- Widget -->
-            <a href="#" class="widget widget-hover-effect1">
+            <a href="{{route('admin.dashboard.centre_controle')}}" class="widget widget-hover-effect1">
                 <div class="widget-simple">
                     <div class="widget-icon pull-left themed-background animation-fadeIn">
                         <i class="gi gi-crown"></i>
@@ -145,7 +115,7 @@
                         <span id="mini-chart-brand"></span>
                     </div>
                     <h3 class="widget-content animation-pullDown visible-lg">
-                        Nos <strong>services</strong>
+                        Centre de <strong>controle</strong>
                         <small>Popularité sur le temps</small>
                     </h3>
                 </div>
@@ -156,7 +126,7 @@
     <!-- END Mini Top Stats Row -->
 
     <!-- Widgets Row -->
-    
+
     <!-- END Widgets Row -->
 
 

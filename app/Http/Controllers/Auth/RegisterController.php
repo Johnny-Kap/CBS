@@ -58,7 +58,7 @@ class RegisterController extends Controller
             'adresse' => ['required', 'string'],
             'ville' => ['required', 'string'],
             'pays' => ['required', 'string'],
-            'niu' => ['string'],
+            'niu',
             'residence' => ['required','string'],
             'numero_cni',
             'date_delivrance_cni',

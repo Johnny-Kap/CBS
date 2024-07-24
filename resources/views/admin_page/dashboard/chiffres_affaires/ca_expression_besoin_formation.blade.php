@@ -19,10 +19,13 @@
                 <a href="{{route('admin.dashboard.ca_expression_besoin_formation')}}l"><i class="gi gi-shopping_bag"></i> Expression besoin formation</a>
             </li>
             <li>
-                <a href="page_ecom_product_edit.html"><i class="gi gi-pencil"></i> Panier alimentaire (Achat et livraison)</a>
+                <a href="{{route('admin.dashboard.ca_achat_livraison')}}"><i class="gi gi-pencil"></i> Panier alimentaire (Achat et livraison)</a>
             </li>
             <li>
-                <a href="page_ecom_customer_view.html"><i class="gi gi-user"></i> Customer View</a>
+                <a href="{{route('admin.dashboard.ca_livraison')}}"><i class="gi gi-user"></i> Panier alimentaire (Livraison)</a>
+            </li>
+            <li>
+                <a href="{{route('admin.dashboard.ca_assistance_reservation')}}"><i class="gi gi-user"></i> Assistance reservation hotel / Appart.</a>
             </li>
         </ul>
     </div>

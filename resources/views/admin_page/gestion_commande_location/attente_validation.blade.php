@@ -65,7 +65,7 @@
                         <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">
                                 {{$item->users->name}} {{$item->users->prenom}}
                             </a></td>
-                        <td>{{$item->locations->intitule}}</td>
+                        <td>{{$item->locations->vehicules->intitule}}</td>
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
@@ -96,11 +96,11 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="booking-info pay-amount">
-                                                    <select name="etat">
+                                                    <select name="etat" class="form-control">
                                                         <option value="yes">Valider la commande</option>
                                                         <option value="canceled">Annuler la commande</option>
                                                     </select>
-                                                    <input type="hidden" name="commande_id" value="{{$item->id}}" />
+                                                    <input type="hidden" class="form-control" name="commande_id" value="{{$item->id}}" />
                                                 </div>
                                             </div>
                                         </div>
