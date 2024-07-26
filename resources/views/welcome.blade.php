@@ -3,32 +3,111 @@
 @section('content')
 
 <section class="banner-section banner-slider">
-    <div class="container">
-        <div class="home-banner">
-            <div class="row align-items-center">
-                <div class="col-lg-6" data-aos="fade-down">
-                    <!-- <p class="explore-text"> <span><i class="fa-solid fa-thumbs-up me-2"></i></span>100% de confiance
-                        plateforme de location de voitures dans le monde</p> -->
-                    <h1>Car Booking <br>
-                        <span>Services</span>
-                    </h1>
-                    <p>"Nous tenons à vous remercier pour votre confiance et vous présentons nos meilleurs voeux pour
-                        l'année 2024. Nous vous souhaitons une nouvelle année remplie de joie, de bonheur et de
-                        reussite. Avec une excellente santé."
-                    </p>
-                    <div class="view-all">
-                        <a href="{{route('location.list')}}" class="btn btn-view d-inline-flex align-items-center">Voir toutes les locations <span><i class="fas fa-arrow-right ms-2"></i></span></a>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="home-banner">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <h1>Car Booking <br>
+                                    <span>Services</span>
+                                </h1>
+                                <p>"Nous tenons à vous remercier pour votre confiance et vous présentons nos meilleurs voeux pour
+                                    l'année 2024. Nous vous souhaitons une nouvelle année remplie de joie, de bonheur et de
+                                    réussite. Avec une excellente santé."
+                                </p>
+                                <div class="view-all">
+                                    <a href="{{route('location.list')}}" class="btn btn-view d-inline-flex align-items-center">Voir toutes les locations <span><i class="fas fa-arrow-right ms-2"></i></span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <div class="banner-imgs">
+                                    <img src="/../assets/img/car-right.png" class="img-fluid aos" alt="bannerimage">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6" data-aos="fade-down">
-                    <div class="banner-imgs">
-                        <img src="/../assets/img/car-right.png" class="img-fluid aos" alt="bannerimage">
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="home-banner">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <h1>Expérience de conduite <br>
+                                    <span>Inoubliable</span>
+                                </h1>
+                                <p>Découvrez nos véhicules de luxe pour une expérience de conduite exceptionnelle. Profitez du confort et du style pour tous vos déplacements.</p>
+                                <div class="view-all">
+                                    <a href="{{route('location.list')}}" class="btn btn-view d-inline-flex align-items-center">Voir toutes les locations <span><i class="fas fa-arrow-right ms-2"></i></span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <div class="banner-imgs">
+                                    <img src="/../assets/img/app-car.png" class="img-fluid aos" alt="bannerimage">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="home-banner">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <h1>Le Plaisir de Conduire <br>
+                                    <span>À Chaque Instant</span>
+                                </h1>
+                                <p>Découvrez le plaisir de conduire nos véhicules modernes et bien entretenus. Chaque trajet devient une aventure, avec le confort et la performance à portée de main.</p>
+                                <div class="view-all">
+                                    <a href="{{route('location.list')}}" class="btn btn-view d-inline-flex align-items-center">Voir toutes les locations <span><i class="fas fa-arrow-right ms-2"></i></span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <div class="banner-imgs">
+                                    <img src="/../assets/img/toyota_PNG1949.png" class="img-fluid aos" alt="bannerimage">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="home-banner">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <h1>Réservation Facile <br>
+                                    <span>et Rapide</span>
+                                </h1>
+                                <p>Réservez votre voiture en quelques clics seulement. Notre plateforme simple et intuitive vous permet de planifier vos déplacements rapidement et sans tracas.</p>
+                                <div class="view-all">
+                                    <a href="{{route('location.list')}}" class="btn btn-view d-inline-flex align-items-center">Voir toutes les locations <span><i class="fas fa-arrow-right ms-2"></i></span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <div class="banner-imgs">
+                                    <img src="/../assets/img/acura_PNG109.png" class="img-fluid aos" alt="bannerimage">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 </section>
+
 
 <!-- <div class="section-search">
     <div class="container">
@@ -275,7 +354,7 @@
                             </div>
                             <div class="choose-content">
                                 <h4>Maintenance automobile</h4>
-                                <p>Profitez de nos services de maintenance automobile pour garder votre véhicule en parfait état de marche. 
+                                <p>Profitez de nos services de maintenance automobile pour garder votre véhicule en parfait état de marche.
                                     Les experts qualifiés assurent des réparations rapides et efficaces.</p>
                             </div>
                             <div class="choose-content mt-4">
@@ -338,7 +417,7 @@
                             </div>
                             <div class="choose-content">
                                 <h4>Formation</h4>
-                                <p>Nous offrons des formations professionnelles pour développer vos compétences et améliorer vos connaissances dans le domaine du transport. 
+                                <p>Nous offrons des formations professionnelles pour développer vos compétences et améliorer vos connaissances dans le domaine du transport.
                                     Inscrivez-vous dès aujourd'hui pour booster votre carrière.</p>
                             </div>
                             <div class="choose-content mt-4">
@@ -367,7 +446,7 @@
                             </div>
                             <div class="choose-content">
                                 <h4>Bibliothèque</h4>
-                                <p>Accédez à notre bibliothèque bien fournie, comprenant une vaste collection de livres 
+                                <p>Accédez à notre bibliothèque bien fournie, comprenant une vaste collection de livres
                                     et de ressources éducatives pour tous les intérêts.</p>
                             </div>
                             <div class="choose-content mt-4">
@@ -391,7 +470,7 @@
                             </div>
                             <div class="choose-content">
                                 <h4>Assistance réservation appartements / hotel</h4>
-                                <p>Simplifiez vos déplacements avec notre service d'assistance à la réservation d'appartements et d'hôtels. 
+                                <p>Simplifiez vos déplacements avec notre service d'assistance à la réservation d'appartements et d'hôtels.
                                     Nous trouvons pour vous les meilleures options de logement selon vos besoins et votre budget.</p>
                             </div>
                             <div class="choose-content mt-4">
@@ -415,7 +494,7 @@
                             </div>
                             <div class="choose-content">
                                 <h4>Livraison Panier Alimentaire</h4>
-                                <p>Nous récupérons vos colis et assurons une livraison rapide à la destination de votre choix, 
+                                <p>Nous récupérons vos colis et assurons une livraison rapide à la destination de votre choix,
                                     garantissant ainsi votre tranquillité d'esprit et votre satisfaction</p>
                             </div>
                             <div class="choose-content mt-4">
@@ -452,11 +531,11 @@
                 <div class="price-card price-selected flex-fill">
                     <div class="price-head">
                         <h2>Profiter davantage avec les bons plans</h2>
-                        <p style="text-align: justify;">Découvrez l'avantage de nos abonnements exclusifs! En souscrivant à nos privilèges, 
-                            vous bénéficiez de rabais significatifs sur toutes vos commandes de location de voitures. 
-                            Mais ce n'est pas tout! Profitez également de nos services de livraison de paniers alimentaires 
-                            à la destination de votre choix et d'une assistance complète pour la réservation d'appartements et d'hôtels. 
-                            Simplifiez votre vie quotidienne et faites des économies grâce à nos offres exceptionnelles. 
+                        <p style="text-align: justify;">Découvrez l'avantage de nos abonnements exclusifs! En souscrivant à nos privilèges,
+                            vous bénéficiez de rabais significatifs sur toutes vos commandes de location de voitures.
+                            Mais ce n'est pas tout! Profitez également de nos services de livraison de paniers alimentaires
+                            à la destination de votre choix et d'une assistance complète pour la réservation d'appartements et d'hôtels.
+                            Simplifiez votre vie quotidienne et faites des économies grâce à nos offres exceptionnelles.
                             Rejoignez notre programme de privilèges dès aujourd'hui et laissez-nous vous offrir le meilleur des services pour un confort inégalé.</p>
                     </div>
                     <div class="price-body">

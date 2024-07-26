@@ -3,30 +3,108 @@
 @section('content')
 
 <section class="banner-section banner-slider">
-    <div class="container">
-        <div class="home-banner">
-            <div class="row align-items-center">
-                <div class="col-lg-6" data-aos="fade-down">
-                    <!-- <p class="explore-text"> <span><i class="fa-solid fa-thumbs-up me-2"></i></span>100% de confiance
-                        plateforme de location de voitures dans le monde</p> -->
-                    <h1>Car Booking <br>
-                        <span>Services</span>
-                    </h1>
-                    <p>"Nous tenons à vous remercier pour votre confiance et vous présentons nos meilleurs voeux pour
-                        l'année 2024. Nous vous souhaitons une nouvelle année remplie de joie, de bonheur et de
-                        reussite. Avec une excellente santé."
-                    </p>
-                    <div class="view-all">
-                        <a href="{{route('location.list')}}" class="btn btn-view d-inline-flex align-items-center">Voir toutes les locations <span><i class="fas fa-arrow-right ms-2"></i></span></a>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="home-banner">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <h1>Car Booking <br>
+                                    <span>Services</span>
+                                </h1>
+                                <p>"Nous tenons à vous remercier pour votre confiance et vous présentons nos meilleurs voeux pour
+                                    l'année 2024. Nous vous souhaitons une nouvelle année remplie de joie, de bonheur et de
+                                    réussite. Avec une excellente santé."
+                                </p>
+                                <div class="view-all">
+                                    <a href="{{route('location.list')}}" class="btn btn-view d-inline-flex align-items-center">Voir toutes les locations <span><i class="fas fa-arrow-right ms-2"></i></span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <div class="banner-imgs">
+                                    <img src="/../assets/img/car-right.png" class="img-fluid aos" alt="bannerimage">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6" data-aos="fade-down">
-                    <div class="banner-imgs">
-                        <img src="/../assets/img/car-right.png" class="img-fluid aos" alt="bannerimage">
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="home-banner">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <h1>Expérience de conduite <br>
+                                    <span>Inoubliable</span>
+                                </h1>
+                                <p>Découvrez nos véhicules de luxe pour une expérience de conduite exceptionnelle. Profitez du confort et du style pour tous vos déplacements.</p>
+                                <div class="view-all">
+                                    <a href="{{route('location.list')}}" class="btn btn-view d-inline-flex align-items-center">Voir toutes les locations <span><i class="fas fa-arrow-right ms-2"></i></span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <div class="banner-imgs">
+                                    <img src="/../assets/img/app-car.png" class="img-fluid aos" alt="bannerimage">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="home-banner">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <h1>Le Plaisir de Conduire <br>
+                                    <span>À Chaque Instant</span>
+                                </h1>
+                                <p>Découvrez le plaisir de conduire nos véhicules modernes et bien entretenus. Chaque trajet devient une aventure, avec le confort et la performance à portée de main.</p>
+                                <div class="view-all">
+                                    <a href="{{route('location.list')}}" class="btn btn-view d-inline-flex align-items-center">Voir toutes les locations <span><i class="fas fa-arrow-right ms-2"></i></span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <div class="banner-imgs">
+                                    <img src="/../assets/img/toyota_PNG1949.png" class="img-fluid aos" alt="bannerimage">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="home-banner">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <h1>Réservation Facile <br>
+                                    <span>et Rapide</span>
+                                </h1>
+                                <p>Réservez votre voiture en quelques clics seulement. Notre plateforme simple et intuitive vous permet de planifier vos déplacements rapidement et sans tracas.</p>
+                                <div class="view-all">
+                                    <a href="{{route('location.list')}}" class="btn btn-view d-inline-flex align-items-center">Voir toutes les locations <span><i class="fas fa-arrow-right ms-2"></i></span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <div class="banner-imgs">
+                                    <img src="/../assets/img/acura_PNG109.png" class="img-fluid aos" alt="bannerimage">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 </section>
 
