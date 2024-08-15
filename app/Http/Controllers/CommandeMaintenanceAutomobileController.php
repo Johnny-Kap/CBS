@@ -75,11 +75,11 @@ class CommandeMaintenanceAutomobileController extends Controller
 
         $commande->type_moteur = $request->type_moteur;
 
-        $commande->type_moteur = $request->annee_vehicule;
+        $commande->annee_vehicule = $request->annee_vehicule;
 
-        $commande->type_moteur = $request->kilometrage;
+        $commande->kilometrage = $request->kilometrage;
 
-        $commande->type_moteur = $request->numero_serie;
+        $commande->numero_serie = $request->numero_serie;
 
         $commande->etat_commande = 'attente';
 
