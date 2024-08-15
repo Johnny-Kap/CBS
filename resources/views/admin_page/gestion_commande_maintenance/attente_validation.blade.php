@@ -66,7 +66,7 @@
                         <td>{{$item->situation_vehicule}}</td>
                         <td>{{$item->marque_vehicule}}</td>
                         <td>{{$item->annee_vehicule}}</td>
-                        <td>{{$item->Kilometrage}}</td>
+                        <td>{{$item->kilometrage}}</td>
                         <td>{{$item->numero_serie}}</td>
                         <td>@if($item->etat_commande == 'attente') <span class="badge bg-secondary">En attente</span> @elseif($item->etat_commande == 'canceled') <span class="label label-danger">Annulé</span> @else <span class="label label-success">Validé</span> @endif</td>
                         <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">
