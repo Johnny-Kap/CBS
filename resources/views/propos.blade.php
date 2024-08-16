@@ -48,8 +48,7 @@
                         décevoir…Notre engagement est de continuer à vous garantir l’excellence…
                         Alors, contactez-nous, exprimez votre besoin et recevez votre cotation sous 48h maximum…Nous sommes à
                         votre services !!!
-                        Ou plus simplement, abonnez-vous et bénéficiez de nombreux services et publications !!!
-                        Merci.
+                        Ou plus simplement, abonnez-vous et bénéficiez de nombreux services.
                     </p>
                 </div>
             </div>
