@@ -82,7 +82,7 @@
                             <div class="update-form">
                                 <form action="#">
                                     <span><i class="fas fa-envelope"></i></span>
-                                    <input type="email" class="form-control" placeholder="Enter You Email Here">
+                                    <input type="email" class="form-control" placeholder="Entrez votre courriel ici">
                                     <button type="submit" class="btn btn-subscribe"><span><i class="fas fa-paper-plane"></i></span></button>
                                 </form>
                             </div>
