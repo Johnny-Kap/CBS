@@ -215,6 +215,7 @@
                                             <div class="col-md-8">
                                                 <div class="booking-info pay-amount">
                                                     <input class="form-control" type="text" value="{{$item->tarif}}" name="tarif">
+                                                    <input type="hidden" name="location_id" value="{{$item->id}}" />
                                                 </div>
                                             </div>
                                         </div> 
