@@ -113,6 +113,44 @@
                                         <h4 class="mb-0 text-dark fw-bold">Modifier</h4>
                                     </div>
                                 </div>
+                                <form action="{{route('vehicule.edit.images')}}" enctype="multipart/form-data" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <h4 class="text-center">Gérez les images ici</h4>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Les images du véhicule :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input type="file" id="example-file-multiple-input" name="images[]" multiple>
+                                                    <input type="hidden" name="vehicule_id" value="{{$item->id}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Image illustrative :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input type="file" id="example-file-multiple-input" name="image_illustrative">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-back">Valider les images <i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                </form>
                                 <form action="{{route('vehicule.edit')}}" method="post">
                                     @csrf
                                     <div class="modal-body">
@@ -333,44 +371,6 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-back">Valider les informations <i class="fa fa-arrow-right"></i></button>
-                                    </div>
-                                </form>
-                                <form action="{{route('vehicule.edit.images')}}" enctype="multipart/form-data" method="post">
-                                    @csrf
-                                    <div class="modal-body">
-                                        <h4 class="text-center">Gérez les images ici</h4>
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-4">
-                                                <div class="available-for-ride">
-                                                    <p>
-                                                        <i class="fa-regular fa-circle-check"></i>Les images du véhicule :
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="booking-info pay-amount">
-                                                    <input type="file" id="example-file-multiple-input" name="images[]" multiple>
-                                                    <input type="hidden" name="vehicule_id" value="{{$item->id}}" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-4">
-                                                <div class="available-for-ride">
-                                                    <p>
-                                                        <i class="fa-regular fa-circle-check"></i>Image illustrative :
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="booking-info pay-amount">
-                                                    <input type="file" id="example-file-multiple-input" name="image_illustrative">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-back">Valider les images <i class="fa fa-arrow-right"></i></button>
                                     </div>
                                 </form>
                             </div>
