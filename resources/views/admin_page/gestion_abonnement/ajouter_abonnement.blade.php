@@ -78,6 +78,15 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label class="col-md-3 control-label" for="example-text-input">Nombre de de dépot et recupération à l'aéroport</label>
+                        <div class="col-md-9">
+                            <input type="number" id="example-text-input" name="recuperation_aeroport" class="form-control" required placeholder="Entrer un nombre de recuperation à l'aéroport">
+                        </div>
+                        @error('nombre_livraison_panier')
+                        <div class="text-sm text-red-600">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-3 control-label" for="example-text-input">Les éléments du package</label>
                         <div class="col-xs-9">
                             <textarea id="textarea-ckeditor" name="packages" class="ckeditor"></textarea>

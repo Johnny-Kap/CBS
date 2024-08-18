@@ -46,6 +46,7 @@
                         <th>Montant</th>
                         <th>Rabais</th>
                         <th>Nbre de livraison du panier</th>
+                        <th>Nbre de recupération à l'aéroport</th>
                         <th>Packages</th>
                         <th>Type d'abonnement</th>
                         <th>Date de création</th>
@@ -61,6 +62,7 @@
                         <td>{{$item->montant}}</td>
                         <td>{{$item->rabais}}</td>
                         <td>{{$item->nombre_livraison_panier}}</td>
+                        <td>{{$item->recuperation_aeroport}}</td>
                         <td><a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Description" onclick="$('#pages_desc_{{$item->id}}').modal('show');">{!! html_entity_decode( str_limit($item->packages, 50)) !!}</a></td>
                         <td>{{$item->type_abonnements->intitule}}</td>
                         <td><a href="javascript:void(0)" class="label label-primary">{{$item->created_at->format('d/m/Y')}}</a></td>

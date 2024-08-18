@@ -155,6 +155,8 @@ class AbonnementController extends Controller
         $add->montant = $request->montant;
 
         $add->rabais = $request->rabais;
+        
+        $add->recuperation_aeroport = $request->recuperation_aeroport;
 
         $add->nombre_livraison_panier = $request->nombre_livraison_panier;
 
