@@ -169,7 +169,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <div class="form-header text-start mb-0">
-                                        <h4 class="mb-0 text-dark fw-bold">Modifier</h4>
+                                        <h4 class="mb-0 text-dark fw-bold">Modifier la location de {{$item->vehicules->intitule}}</h4>
                                     </div>
                                 </div>
                                 <form action="{{route('location.edit')}}" method="post">
@@ -216,27 +216,10 @@
                                                 <div class="booking-info pay-amount">
                                                     <input class="form-control" type="text" value="{{$item->tarif}}" name="tarif">
                                                     <input type="hidden" name="location_id" value="{{$item->id}}" />
+                                                    <input type="hidden" name="vehicule_id" value="{{$item->vehicules->id}}" />
                                                 </div>
                                             </div>
                                         </div> 
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-4">
-                                                <div class="available-for-ride">
-                                                    <p>
-                                                        <i class="fa-regular fa-circle-check"></i>Choisir le véhicule :
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="booking-info pay-amount">
-                                                    <select id="example-select" name="vehicule_id" class="form-control" size="1">
-                                                        @foreach($vehicules as $item)
-                                                        <option value="{{$item->id}}">{{$item->intitule}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-back">Valider <i class="fa fa-arrow-right"></i></button>
