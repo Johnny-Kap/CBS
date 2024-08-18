@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('code');
             $table->double('montant');
             $table->double('rabais')->nullable();
+            $table->double('recuperation_aeroport')->nullable();
             $table->double('nombre_livraison_panier')->nullable();
             $table->text('packages')->nullable();
             $table->string('masked')->nullable();
