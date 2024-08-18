@@ -17,7 +17,7 @@
                 <div class="col-lg-4">
                     <div class="login-auth">
                         <div class="login-auth-wrap">
-                            <h1 class="text-center">Des soucis avec votre véhicule ? Vous êtes au bon droit...</h1>
+                            <h1 class="text-center">Des soucis avec votre véhicule ? Vous êtes au bon endroit...</h1>
                         </div>
                     </div>
                 </div>

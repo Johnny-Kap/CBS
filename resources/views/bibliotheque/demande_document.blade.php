@@ -16,7 +16,7 @@
                 <div class="col-lg-4">
                     <div class="login-auth">
                         <div class="login-auth-wrap">
-                            <h1 class="text-center">Etudiants, Enseignants, Chercheurs, Entrepreneurs, Professionnels à la quête d'information, vous y êtes....</h1>
+                            <h1 class="text-center">Etudiants, Enseignants, Chercheurs, Entrepreneurs, Professionnels à la quête d'informations, vous y êtes....</h1>
                         </div>
                     </div>
                 </div>

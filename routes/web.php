@@ -61,7 +61,7 @@ Route::post('/myprofile/parametres/update-email', [App\Http\Controllers\HomeCont
 
 // Les abonnements
 Route::get('/abonnement-list', [App\Http\Controllers\AbonnementController::class, 'index'])->name('abonnement.index');
-Route::get('/abonnement-confirm', [App\Http\Controllers\AbonnementController::class, 'SouscrireConfirm'])->name('abonnement.confirm');
+Route::get('/abonnement-confirm', [App\Http\Controllers\AbonnementController::class, 'SouscrireConfirm'])->name('abonnement.confirm')->middleware('auth');
 Route::post('/souscription-abonnement', [App\Http\Controllers\AbonnementController::class, 'souscrire'])->name('souscrire.abonnement')->middleware('auth');
 Route::get('/successfully-souscription-abonnement', [App\Http\Controllers\AbonnementController::class, 'success'])->name('success.abonnement');
 
