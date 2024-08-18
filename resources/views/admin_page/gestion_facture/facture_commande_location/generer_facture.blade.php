@@ -132,6 +132,9 @@
                 <td>
                     <div class="box-text">
                         <p>Car Booking services</p>
+                        <p>NIU : M092217630396B</p>
+                        <p>RCCM : RC/DLA/2022/B/5269</p>
+                        <p>Mode paiement accepté : Chèque certifié, Virement Bancaire et Mobile Money</p>
                         <p>Adresse : Bonapriso - Douala</p>
                         <p>Email : hello@cbs-cameroun.com</p>
                         <p>Contact : +237 659826528 / +237 653100205</p>
@@ -139,11 +142,11 @@
                 </td>
                 <td>
                     <div class="box-text">
-                        <p>Nom(s) : {{$facture->commande_locations->users->name}}</p>
-                        <p>Prénom(s): {{$facture->commande_locations->users->prenom}}</p>
+                        <p>Nom(s) : {{$facture->commande_locations->users->name}} {{$facture->commande_locations->users->prenom}}</p>
                         <p>Adresse : {{$facture->commande_locations->users->adresse}}</p>
                         <p>Email : {{$facture->commande_locations->users->email}}</p>
-                        <p>Contact : {{$facture->commande_locations->users->tel}}</p>
+                        <p>NIU : {{$facture->commande_locations->users->email}}</p>
+                        <p>Contact : @if($facture->commande_locations->users->niu != null) {{$facture->commande_locations->users->niu}} @else Non renseigné @endif</p>
                     </div>
                 </td>
             </tr>
@@ -198,6 +201,7 @@
     </div>
     <div class="add-detail mt-10">
         <div class="w-50 float-left mt-10">
+            <p class="m-0 pt-5 text-bold w-100">Le délai de contestation de cette facture est de 30 jours. Passé ce délai, Elle est réputé conforme et dû.</p>
             <p class="m-0 pt-5 text-bold w-100">Merci pour la confiance,</p>
             <p class="m-0 pt-5 text-bold w-100">Team CBS</p>
         </div>

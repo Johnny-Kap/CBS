@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('etat_paiement');
             $table->string('etat_commande');
             $table->string('photo')->nullable();
+            $table->string('numero_abonnement_souscris')->nullable();
             $table->string('numero_commande')->unique()->nullable();
             $table->foreignId('mode_paiement_id')->nullable();
             $table->foreignId('location_vehicule_id')->constrained();

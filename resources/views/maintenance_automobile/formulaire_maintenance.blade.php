@@ -27,6 +27,10 @@
                         <input id="email" type="text" class="form-control datetimepicker" placeholder="04/02/2024" name="date_maintenance" required />
                     </div>
                     <div class="form-group">
+                        <label class="form-label">Immatriculation du véhicule <span class="text-danger">*</span></label>
+                        <input id="immatriculation" type="text" class="form-control" name="immatriculation" required />
+                    </div>
+                    <div class="form-group">
                         <label class="form-label">Situation du véhicule <span class="text-danger">*</span></label>
                         <input id="situation_vehicule" type="text" class="form-control" name="situation_vehicule" required />
                     </div>
@@ -54,6 +58,7 @@
                         <label class="form-label">N° de série du véhicule </label>
                         <input id="numero_cni" type="text" class="form-control" name="numero_serie" />
                     </div>
+                    <input type="hidden" name="abonnement" value="{{$abonnement}}">
                     <button type="submit" class="btn btn-outline-light w-100 btn-size mt-1">Valider</button>
 
                     <div class="text-center dont-have">

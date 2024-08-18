@@ -42,6 +42,7 @@
                 <thead>
                     <tr>
                         <th>N° Commande</th>
+                        <th>N° abonnement soumis</th>
                         <th>Date de départ</th>
                         <th>Date d'arrivée</th>
                         <th>Tarif total</th>
@@ -57,6 +58,7 @@
                     @foreach($paiement_non_soumis as $item)
                     <tr>
                         <td>{{$item->numero_commande}}</td>
+                        <td>@if($item->numero_abonnement_souscris != null) {{$item->numero_abonnement_souscris}} @else Non renseigné @endif</td>
                         <td>{{$item->date_debut}}</td>
                         <td>{{$item->date_fin}}</td>
                         <td>{{$item->tarif}}</td>

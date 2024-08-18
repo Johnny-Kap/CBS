@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('numero_commande')->unique();
             $table->string('intitule');
-            $table->text('debrief')->nullable();
+            $table->text('debrief')->nullable()->nullable();
             $table->string('date_maintenance');
             $table->string('situation_vehicule');
+            $table->string('immatriculation')->nullable();
             $table->string('marque_vehicule')->nullable();
             $table->string('modele_vehicule')->nullable();
             $table->string('type_moteur')->nullable();

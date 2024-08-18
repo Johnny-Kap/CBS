@@ -42,9 +42,11 @@
                 <thead>
                     <tr>
                         <th>N° Commande main.</th>
+                        <th>N° abonnement soumis</th>
                         <th>Intitulé de la panne</th>
                         <th>Description de la panne</th>
                         <th>Date de main. souhaitée</th>
+                        <th>Immatriculation véhicule</th>
                         <th>Situation du véhicule</th>
                         <th>Marque du véhicule</th>
                         <th>Année du véhicule</th>
@@ -60,9 +62,11 @@
                     @foreach($commade_attente as $item)
                     <tr>
                         <td>{{$item->numero_commande}}</td>
+                        <td>{{$item->numero_abonnement_souscris}}</td>
                         <td>{{$item->intitule}}</td>
                         <td>{{$item->debrief}}</td>
                         <td>{{$item->date_maintenance}}</td>
+                        <td>{{$item->immatriculation}}</td>
                         <td>{{$item->situation_vehicule}}</td>
                         <td>{{$item->marque_vehicule}}</td>
                         <td>{{$item->annee_vehicule}}</td>

@@ -44,7 +44,9 @@
                         <th>N° Commande</th>
                         <th>N° abonnement utilisé</th>
                         <th>Type de réservation</th>
-                        <th>Date de réservation</th>
+                        <th>Période Continue</th>
+                        <th>Période multiple 1</th>
+                        <th>Période multiple 2</th>
                         <th>Ville</th>
                         <th>Localite / Quartier</th>
                         <th>Prix inférieur</th>
@@ -59,9 +61,11 @@
                     @foreach($commade_attente as $item)
                     <tr>
                         <td>{{$item->numero_commande}}</td>
-                        <td>{{$item->numero_abonnement_valide}}</td>
+                        <td>{{$item->numero_abonnement_souscris}}</td>
                         <td>{{$item->type_resevation}}</td>
-                        <td>{{$item->date_reservation}}</td>
+                        <td>@if($item->periode_continue != null) {{$item->periode_continue}} @else Non renseigné @endif</td>
+                        <td>@if($item->periode_multiple_1 != null) {{$item->periode_multiple_1}} @else Non renseigné @endif</td>
+                        <td>@if($item->periode_multiple_2 != null) {{$item->periode_multiple_2}} @else Non renseigné @endif</td>
                         <td>{{$item->ville}}</td>
                         <td>{{$item->localite}}</td>
                         <td>{{$item->prix_inferieur}}</td>

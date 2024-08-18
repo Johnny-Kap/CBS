@@ -207,6 +207,8 @@ class LocationVehiculeController extends Controller
     public function verifierDispo(Request $request)
     {
 
+        $abonnement = $request->abonnement;
+
         // Obtenir les modes de paiement
         $mode_paiement = ModePaiement::first();
 
@@ -232,13 +234,13 @@ class LocationVehiculeController extends Controller
         $abonnementDispo = SouscrireAbonnement::where('numero_abonnement', $request->abonnement)
             ->where('user_id', Auth::user()->id)
             ->where('is_expired', 'no')
-            ->where('etat', 'confirmee')
+            ->where('etat', 'yes')
             ->count();
 
         $abonnementDispo_other = SouscrireAbonnement::where('numero_abonnement', $request->abonnement)
             ->where('user_id', Auth::user()->id)
             ->where('is_expired', 'no')
-            ->where('etat', 'confirmee')
+            ->where('etat', 'yes')
             ->first();
 
 
@@ -266,7 +268,7 @@ class LocationVehiculeController extends Controller
                     $total_tarif = $total_tarif_provisoire * (1 - ($abonnementDispo_other->abonnements->rabais / 100));
                 }
 
-                return view('location.location_booking', compact('location', 'date_heure_depart', 'date_heure_arrivee', 'mode_paiement', 'total_tarif', 'diff'));
+                return view('location.location_booking', compact('location', 'date_heure_depart', 'date_heure_arrivee', 'mode_paiement', 'total_tarif', 'diff','abonnement'));
             } else {
                 return back()->with('error', 'Location non disponible à ces dates renseignées.');
             }

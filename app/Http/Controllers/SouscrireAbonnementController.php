@@ -45,7 +45,7 @@ class SouscrireAbonnementController extends Controller
 
             $add->numero_abonnement = $numero_abonnement;
 
-            $add->etat = 'confirmee';
+            $add->etat = 'yes';
 
             $add->date_expiration = Carbon::now()->addYear()->format('d-m-Y');
 

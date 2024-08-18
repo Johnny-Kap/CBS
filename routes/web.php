@@ -34,7 +34,7 @@ Route::get('/term-conditions/abonnement', [App\Http\Controllers\HomeController::
 Route::get('/location-list', [App\Http\Controllers\LocationVehiculeController::class, 'list'])->name('location.list');
 Route::get('/location-detail/{id}/{name}', [App\Http\Controllers\LocationVehiculeController::class, 'show'])->name('location.details');
 Route::get('/paiement-location', [App\Http\Controllers\LocationVehiculeController::class, 'verifierDispo'])->name('verifier.location')->middleware('auth');
-Route::get('/comande/location/{location_id}/{date_heure_depart}/{date_heure_arrivee}/{total_tarif}/{diff}', [App\Http\Controllers\CommandeLocationController::class, 'create'])->middleware('auth')->name('location.paiement');
+Route::get('/comande/location/{location_id}/{date_heure_depart}/{date_heure_arrivee}/{total_tarif}/{diff}/{abonnement}', [App\Http\Controllers\CommandeLocationController::class, 'create'])->middleware('auth')->name('location.paiement');
 Route::get('/successfully-commande', [App\Http\Controllers\CommandeLocationController::class, 'success'])->name('success');
 Route::get('/location_list/action', [App\Http\Controllers\LocationVehiculeController::class, 'action'])->name('location_list.action');
 Route::get('/location-list/filter', [App\Http\Controllers\LocationVehiculeController::class, 'filter'])->name('location.filter');

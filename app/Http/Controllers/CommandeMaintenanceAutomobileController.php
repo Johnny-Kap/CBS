@@ -33,15 +33,17 @@ class CommandeMaintenanceAutomobileController extends Controller
     public function create(Request $request)
     {
 
+        $abonnement = $request->abonnement;
+
         $abonnementDispo = SouscrireAbonnement::where('numero_abonnement', $request->abonnement)
             ->where('user_id', Auth::user()->id)
             ->where('is_expired', 'no')
-            ->where('etat', 'confirmee')
+            ->where('etat', 'yes')
             ->count();
 
         if ($abonnementDispo == 1) {
 
-            return view('maintenance_automobile.formulaire_maintenance');
+            return view('maintenance_automobile.formulaire_maintenance', compact('abonnement'));
         } else {
             return back()->with('error', 'N° abonnement invalide ou non valable.');
         }
@@ -67,6 +69,8 @@ class CommandeMaintenanceAutomobileController extends Controller
 
         $commande->debrief = $request->debrief;
 
+        $commande->immatriculation = $request->immatriculation;
+
         $commande->situation_vehicule = $request->situation_vehicule;
 
         $commande->marque_vehicule = $request->marque_vehicule;
@@ -80,6 +84,8 @@ class CommandeMaintenanceAutomobileController extends Controller
         $commande->kilometrage = $request->kilometrage;
 
         $commande->numero_serie = $request->numero_serie;
+
+        $commande->numero_abonnement_souscris = $request->abonnement;
 
         $commande->etat_commande = 'attente';
 

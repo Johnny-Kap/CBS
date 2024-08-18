@@ -34,7 +34,7 @@ class CommandeReservationAppartementHotelController extends Controller
         $abonnementDispo = SouscrireAbonnement::where('numero_abonnement', $request->abonnement)
             ->where('user_id', Auth::user()->id)
             ->where('is_expired', 'no')
-            ->where('etat', 'confirmee')
+            ->where('etat', 'yes')
             ->count();
 
         if ($abonnementDispo == 1) {
@@ -77,7 +77,7 @@ class CommandeReservationAppartementHotelController extends Controller
 
         $commande->etat_commande = 'attente';
 
-        $commande->numero_abonnement_valide = $request->numero_abonnement_valide;
+        $commande->numero_abonnement_souscris = $request->numero_abonnement_valide;
 
         $commande->user_id = Auth::user()->id;
 

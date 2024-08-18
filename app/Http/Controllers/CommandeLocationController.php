@@ -81,7 +81,7 @@ class CommandeLocationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create($location_id, $date_heure_depart, $date_heure_arrivee, $total_tarif, $diff)
+    public function create($location_id, $date_heure_depart, $date_heure_arrivee, $total_tarif, $diff, $abonnement)
     {
 
         $location = LocationVehicule::find($location_id);
@@ -104,6 +104,8 @@ class CommandeLocationController extends Controller
         $commande->etat_commande = 'attente';
 
         $commande->numero_commande = $numero_commande;
+
+        $commande->numero_abonnement_souscris = $abonnement;
 
         $commande->location_vehicule_id = $location_id;
 

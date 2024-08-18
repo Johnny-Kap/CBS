@@ -75,7 +75,7 @@ class BibliothequeController extends Controller
         $abonnementDispo = SouscrireAbonnement::where('numero_abonnement', $request->abonnement)
             ->where('user_id', Auth::user()->id)
             ->where('is_expired', 'no')
-            ->where('etat', 'confirmee')
+            ->where('etat', 'yes')
             ->count();
 
         $bibliotheque_display = Bibliotheque::where('masked', 'no')->simplePaginate(10);

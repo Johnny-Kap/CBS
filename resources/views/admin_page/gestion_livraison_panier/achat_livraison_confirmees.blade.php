@@ -26,7 +26,7 @@
 
         <!-- Table Styles Content -->
         <!-- Changing classes functionality initialized in js/pages/tablesGeneral.js -->
-       
+
         <div class="table-responsive">
             <!--
                                 Available Table Classes:
@@ -42,6 +42,7 @@
                 <thead>
                     <tr>
                         <th>N° Commande</th>
+                        <th>N° abonnement soumis</th>
                         <th>Type de prestation</th>
                         <th>Contenu du panier</th>
                         <th>Date de livraison</th>
@@ -61,7 +62,8 @@
                 <tbody>
                     @foreach($achat_livraison_confirmees as $item)
                     <tr>
-                    <td>{{$item->numero_commande}}</td>
+                        <td>{{$item->numero_commande}}</td>
+                        <td>{{$item->numero_abonnement_souscris}}</td>
                         <td>{{$item->type_prestation}}</td>
                         <td>{{$item->contenu_panier}}</td>
                         <td>{{$item->date_livraison}}</td>

@@ -94,7 +94,7 @@
                 </div>
             </div>
             <div class="place-order-btn">
-                <a href="{{ route('location.paiement', ['location_id' => $location->id, 'date_heure_depart' => $date_heure_depart, 'date_heure_arrivee' => $date_heure_arrivee, 'total_tarif' => $total_tarif, 'diff' => $diff]) }}" class="btn btn-primary"><i class="fas fa-bar-chart me-2"></i>Commander</a>
+                <a href="{{ route('location.paiement', ['location_id' => $location->id, 'date_heure_depart' => $date_heure_depart, 'date_heure_arrivee' => $date_heure_arrivee, 'total_tarif' => $total_tarif, 'diff' => $diff, 'abonnement' => $abonnement]) }}" class="btn btn-primary"><i class="fas fa-bar-chart me-2"></i>Commander</a>
             </div>
         </div>
     </div>
