@@ -13,9 +13,7 @@
                                 <h1>Car Booking <br>
                                     <span>Services</span>
                                 </h1>
-                                <p>"Nous vous remercions pour votre confiance et votre fidélité et nous vous présentons nos meilleurs voeux pour
-                                    l'année 2024. Nous vous souhaitons une nouvelle année remplie de joie, de bonheur et de
-                                    réussite. Avec une excellente santé."
+                                <p>"Nous vous remercions pour votre confiance et votre fidélité."
                                 </p>
                                 <div class="view-all">
                                     <a href="{{route('location.list')}}" class="btn btn-view d-inline-flex align-items-center">Voir toutes les locations <span><i class="fas fa-arrow-right ms-2"></i></span></a>

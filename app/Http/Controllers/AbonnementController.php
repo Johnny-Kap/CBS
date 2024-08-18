@@ -193,7 +193,7 @@ class AbonnementController extends Controller
     public function attente_paiement()
     {
 
-        $abonnement_paiement_attente = SouscrireAbonnement::where('etat', 'yes')
+        $abonnement_paiement_attente = SouscrireAbonnement::where('etat', 'yes')->where('is_buy', 'no')
             ->where('image', null)->get();
 
         return view('admin_page.gestion_abonnement.attente_paiement_abonnement', compact('abonnement_paiement_attente'));

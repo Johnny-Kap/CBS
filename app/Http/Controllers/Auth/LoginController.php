@@ -45,7 +45,7 @@ class LoginController extends Controller
     {
 
         $login = $request->input('email');
-        $user = User::where('email', $login)->orWhere('numero_passport', $login)->first();
+        $user = User::where('email', $login)->first();
 
         if (!$user) {
             return redirect()->back()->withErrors(['email' => 'Invalid login credentials']);
@@ -56,8 +56,7 @@ class LoginController extends Controller
         ]);
 
         if (
-            Auth::attempt(['email' => $user->email, 'password' => $request->password]) ||
-            Auth::attempt(['numero_passport' => $user->numero_passport, 'password' => $request->password])
+            Auth::attempt(['email' => $user->email, 'password' => $request->password])
         ) {
             Auth::loginUsingId($user->id);
             return $this->redirectTo();
