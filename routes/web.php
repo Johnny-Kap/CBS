@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    $location = LocationVehicule::all();
+    $location = LocationVehicule::take(2)->get();
 
     return view('welcome', compact('location'));
 })->name('welcome');

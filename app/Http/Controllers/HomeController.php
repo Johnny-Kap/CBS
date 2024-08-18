@@ -35,7 +35,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        $location = LocationVehicule::all();
+        $location = LocationVehicule::take(2)->get();
 
         return view('home', compact('location'));
     }
