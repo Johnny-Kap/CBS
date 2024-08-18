@@ -21,7 +21,7 @@
                             </div>
                             <div class="col-lg-6" data-aos="fade-down">
                                 <div class="banner-imgs">
-                                    <img src="/../assets/img/car-right.png" class="img-fluid aos" alt="bannerimage">
+                                    <img src="/../assets/img/contact-info.jpg" style="width: 70%; border-radius: 50%;" class="img-fluid aos" alt="bannerimage">
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                             </div>
                             <div class="col-lg-6" data-aos="fade-down">
                                 <div class="banner-imgs">
-                                    <img src="/../assets/img/app-car.png" class="img-fluid aos" alt="bannerimage">
+                                    <img src="/../assets/img/cars/Prado.png" class="img-fluid aos" alt="bannerimage">
                                 </div>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                             </div>
                             <div class="col-lg-6" data-aos="fade-down">
                                 <div class="banner-imgs">
-                                    <img src="/../assets/img/toyota_PNG1949.png" class="img-fluid aos" alt="bannerimage">
+                                    <img src="/../assets/img/cars/Fortuner.png" class="img-fluid aos" alt="bannerimage">
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,95 @@
                             </div>
                             <div class="col-lg-6" data-aos="fade-down">
                                 <div class="banner-imgs">
-                                    <img src="/../assets/img/acura_PNG109.png" class="img-fluid aos" alt="bannerimage">
+                                    <img src="/../assets/img/cars/Tucson_Luxury.png" style="width: 80%;" class="img-fluid aos" alt="bannerimage">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="home-banner">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <h1>Découvrez <br>
+                                    <span>le confort ultime</span>
+                                </h1>
+                                <p>A bord de nos voitures, où chaque trajet devient un moment de plaisir et de sérénité. Conduire n'a jamais été aussi agréable.</p>
+                                <div class="view-all">
+                                    <a href="{{route('location.list')}}" class="btn btn-view d-inline-flex align-items-center">Voir toutes les locations <span><i class="fas fa-arrow-right ms-2"></i></span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <div class="banner-imgs">
+                                    <img src="/../assets/img/cars/Pick-up.png" class="img-fluid aos" alt="bannerimage">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="home-banner">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <h1>Profitez d'un entretien <br>
+                                    <span>de qualité</span>
+                                </h1>
+                                <p>Pour votre véhicule, assuré par nos experts en maintenance automobile, pour garantir sécurité et performance à chaque kilomètre.</p>
+                                <div class="view-all">
+                                    <a href="{{route('commande.maintenance.auto')}}" class="btn btn-view d-inline-flex align-items-center">Commander une maintenance automobile <span><i class="fas fa-arrow-right ms-2"></i></span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <div class="banner-imgs">
+                                    <img src="/../assets/img/Maintenance_accueil.png" class="img-fluid aos" alt="bannerimage">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="home-banner">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <h1>Devenez un expert <br>
+                                    <span>du transport routier</span>
+                                </h1>
+                                <p>Avec nos formations spécialisées, conçues pour vous offrir les compétences et les connaissances nécessaires pour exceller sur les routes.</p>
+                                <div class="view-all">
+                                    <a href="{{route('formation.list')}}" class="btn btn-view d-inline-flex align-items-center">Voir toutes les formations <span><i class="fas fa-arrow-right ms-2"></i></span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <div class="banner-imgs">
+                                    <img src="/../assets/img/Formation_accueil.png" class="img-fluid aos" style="width: 70%;" alt="bannerimage">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="home-banner">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <h1>Accédez à une vaste <br>
+                                    <span>collection de ressources</span>
+                                </h1>
+                                <p>dans notre bibliothèque, conçue pour soutenir vos besoins en information et en formation, où que vous soyez.</p>
+                                <div class="view-all">
+                                    <a href="{{route('bibliotheque.verifier')}}" class="btn btn-view d-inline-flex align-items-center">Accédez à la bibliothèque <span><i class="fas fa-arrow-right ms-2"></i></span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6" data-aos="fade-down">
+                                <div class="banner-imgs">
+                                    <img src="/../assets/img/livres.png" class="img-fluid aos" style="width: 60%;" alt="bannerimage">
                                 </div>
                             </div>
                         </div>
