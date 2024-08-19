@@ -114,6 +114,7 @@
     <div class="add-detail mt-10">
         <div class="w-50 float-left mt-10">
             <p class="m-0 pt-5 text-bold w-100">N° Facture - <span class="gray-color">#CL{{$facture->id}}</span></p>
+            <p class="m-0 pt-5 text-bold w-100">Date de la facture - <span class="gray-color">{{ \Carbon\Carbon::now()->format('d/m/Y H:m:s') }}</span></p>
             <p class="m-0 pt-5 text-bold w-100">N° Commande - <span class="gray-color">{{$facture->commande_locations->numero_commande}}</span></p>
             <p class="m-0 pt-5 text-bold w-100">Date de commande - <span class="gray-color">{{$facture->commande_locations->created_at}}</span></p>
         </div>
@@ -145,8 +146,8 @@
                         <p>Nom(s) : {{$facture->commande_locations->users->name}} {{$facture->commande_locations->users->prenom}}</p>
                         <p>Adresse : {{$facture->commande_locations->users->adresse}}</p>
                         <p>Email : {{$facture->commande_locations->users->email}}</p>
-                        <p>NIU : {{$facture->commande_locations->users->email}}</p>
-                        <p>Contact : @if($facture->commande_locations->users->niu != null) {{$facture->commande_locations->users->niu}} @else Non renseigné @endif</p>
+                        <p>NIU : @if($facture->commande_locations->users->niu != null) {{$facture->commande_locations->users->niu}} @else Non renseigné @endif</p>
+                        <p>Contact : {{$facture->commande_locations->users->tel}}</p>
                     </div>
                 </td>
             </tr>
@@ -171,6 +172,8 @@
                 <th class="w-50">Date départ</th>
                 <th class="w-50">Date d'arrivée</th>
                 <th class="w-50">Nbre de jours</th>
+                <th class="w-50">Type de location</th>
+                <th class="w-50">Zone de déplacement</th>
                 <th class="w-50">Etat de la commande</th>
                 <th class="w-50">Etat de paiement</th>
                 <th class="w-50">Tarif / jour</th>
@@ -180,12 +183,14 @@
                 <td>{{$facture->commande_locations->date_debut}}</td>
                 <td>{{$facture->commande_locations->date_fin}}</td>
                 <td>{{$facture->commande_locations->nombre_jours}}</td>
+                <td>{{$facture->commande_locations->type_location}}</td>
+                <td>{{$facture->commande_locations->zone_location}}</td>
                 <td>@if($facture->commande_locations->etat_commande == 'attente') <span class="badge bg-secondary">En attente</span> @elseif($facture->commande_locations->etat_commande == 'canceled') <span class="label label-danger">Annulé</span> @else <span class="label label-success">Validé</span> @endif</td>
                 <td>@if($facture->commande_locations->etat_paiement == 'yes') Payée @else Non payée @endif</td>
                 <td>{{$facture->commande_locations->locations->tarif}} FCFA</td>
             </tr>
             <tr>
-                <td colspan="7">
+                <td colspan="9">
                     <div class="total-part">
                         <div class="total-left w-85 float-left" align="right">
                             <p>Total : </p>
@@ -200,7 +205,7 @@
         </table>
     </div>
     <div class="add-detail mt-10">
-        <div class="w-50 float-left mt-10">
+        <div class="float-left mt-10">
             <p class="m-0 pt-5 text-bold w-100">Le délai de contestation de cette facture est de 30 jours. Passé ce délai, Elle est réputé conforme et dû.</p>
             <p class="m-0 pt-5 text-bold w-100">Merci pour la confiance,</p>
             <p class="m-0 pt-5 text-bold w-100">Team CBS</p>

@@ -172,6 +172,8 @@ class CommandeLocationController extends Controller
                 ->update([
                     'photo' => $path,
                     'mode_paiement_id' => $request->mode_paiement,
+                    'type_location' => $request->type_location,
+                    'zone_location' => $request->zone_location,
                 ]);
 
             return back()->with('success', 'Preuve de paiement soumis avec succès! Vous serez contacté après validation.');

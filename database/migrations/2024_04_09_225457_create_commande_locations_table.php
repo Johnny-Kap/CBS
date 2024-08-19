@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('date_fin');
             $table->double('tarif');
             $table->double('nombre_jours');
+            $table->string('type_location')->nullable();
+            $table->string('zone_location')->nullable();
             $table->string('etat_paiement');
             $table->string('etat_commande');
             $table->string('photo')->nullable();

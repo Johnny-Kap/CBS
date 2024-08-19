@@ -47,6 +47,8 @@
                         <th>Date d'arrivée</th>
                         <th>Tarif total</th>
                         <th>Nombe de jours</th>
+                        <th>Type de location</th>
+                        <th>Zone déplacement</th>
                         <th>Etat de la commande</th>
                         <th>Etat du paiement</th>
                         <th>Commandé par</th>
@@ -64,6 +66,8 @@
                         <td>{{$item->date_fin}}</td>
                         <td><b>{{$item->tarif}} FCFA</b></td>
                         <td>{{$item->nombre_jours}}</td>
+                        <td>{{$item->type_location}}</td>
+                        <td>{{$item->zone_location}}</td>
                         <td>@if($item->etat_commande == 'attente') <span class="badge bg-secondary">En attente</span> @elseif($item->etat_commande == 'canceled') <span class="label label-danger">Annulé</span> @else <span class="label label-success">Validé</span> @endif</td>
                         <td>@if($item->etat_paiement == 'yes') Payée @else Non payée @endif</td>
                         <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">

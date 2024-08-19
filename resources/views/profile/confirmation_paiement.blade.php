@@ -81,6 +81,35 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="booking-info pay-amount">
+                                                                            <h6>Choisir le Type de locations :</h6>
+                                                                            <div class="">
+                                                                                <select name="type_location" class="form-control" id="">
+                                                                                    <option value="Longue durée avec chauffeur">Longue durée avec chauffeur</option>
+                                                                                    <option value="Courte durée avec chauffeur">Courte durée avec chauffeur</option>
+                                                                                    <option value="Longue durée sans chauffeur">Longue durée avec chauffeur</option>
+                                                                                    <option value="Courte durée sans chauffeur">Longue durée avec chauffeur</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="booking-info pay-amount">
+                                                                            <h6>Choisir la Zone de déplacement :</h6>
+                                                                            <div class="">
+                                                                                <select name="zone_location" class="form-control" id="">
+                                                                                    <option value="Zone 1 - Urbaine">Zone 1 - Urbaine</option>
+                                                                                    <option value="Zone 2 - Inter-urbain (Yaoundé - Douala)">Zone 2 - Inter-urbain (Yaoundé - Douala)</option>
+                                                                                    <option value="Zone 3 - Hors Yaoundé - Douala">Zone 3 - Hors Yaoundé - Douala</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="submit" class="btn btn-primary">Envoyer <i class="fa-solid fa-arrow-right"></i></button>

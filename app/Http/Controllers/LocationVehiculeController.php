@@ -38,26 +38,24 @@ class LocationVehiculeController extends Controller
 
             $vehicules = Vehicule::where('marque_id', $request->marque)->pluck('id');
 
-            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->simplePaginate(15); 
+            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->simplePaginate(15);
 
             $type_vehicules = TypeVehicule::all();
 
             $marques = Marque::all();
 
             return view('location.location_filter', compact('results', 'type_vehicules', 'marques'));
-
         } elseif ($request->has('marque') == false && $request->has('categorie') == true && $request->has('prix_inferieur') == false && $request->has('prix_superieur') == false) {
 
             $vehicules = Vehicule::where('type_vehicule_id', $request->categorie)->pluck('id');
 
-            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->simplePaginate(15); 
+            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->simplePaginate(15);
 
             $type_vehicules = TypeVehicule::all();
 
             $marques = Marque::all();
 
             return view('location.location_filter', compact('results', 'type_vehicules', 'marques'));
-
         } elseif ($request->has('marque') == false && $request->has('categorie') == false && $request->has('prix_inferieur') == true && $request->has('prix_superieur') == true) {
 
             $results = LocationVehicule::whereBetween('tarif', [$request->prix_inferieur, $request->prix_superieur])->simplePaginate(15);
@@ -67,76 +65,71 @@ class LocationVehiculeController extends Controller
             $marques = Marque::all();
 
             return view('location.location_filter', compact('results', 'type_vehicules', 'marques'));
-
-        }elseif($request->has('marque') == true && $request->has('categorie') == true && $request->has('prix_inferieur') == false && $request->has('prix_superieur') == false){
+        } elseif ($request->has('marque') == true && $request->has('categorie') == true && $request->has('prix_inferieur') == false && $request->has('prix_superieur') == false) {
 
             $vehicules = Vehicule::where('type_vehicule_id', $request->categorie)->where('marque_id', $request->marque)->pluck('id');
 
-            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->simplePaginate(15); 
+            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->simplePaginate(15);
 
             $type_vehicules = TypeVehicule::all();
 
             $marques = Marque::all();
 
             return view('location.location_filter', compact('results', 'type_vehicules', 'marques'));
-
-        }elseif($request->has('marque') == true && $request->has('categorie') == false && $request->has('prix_inferieur') == true && $request->has('prix_superieur') == true){
+        } elseif ($request->has('marque') == true && $request->has('categorie') == false && $request->has('prix_inferieur') == true && $request->has('prix_superieur') == true) {
 
             $vehicules = Vehicule::where('marque_id', $request->marque)->pluck('id');
 
-            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->whereBetween('tarif', [$request->prix_inferieur, $request->prix_superieur])->simplePaginate(15); 
+            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->whereBetween('tarif', [$request->prix_inferieur, $request->prix_superieur])->simplePaginate(15);
 
             $type_vehicules = TypeVehicule::all();
 
             $marques = Marque::all();
 
             return view('location.location_filter', compact('results', 'type_vehicules', 'marques'));
-
-        }elseif($request->has('marque') == false && $request->has('categorie') == true && $request->has('prix_inferieur') == true && $request->has('prix_superieur') == true){
+        } elseif ($request->has('marque') == false && $request->has('categorie') == true && $request->has('prix_inferieur') == true && $request->has('prix_superieur') == true) {
 
             $vehicules = Vehicule::where('type_vehicule_id', $request->categorie)->pluck('id');
 
-            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->whereBetween('tarif', [$request->prix_inferieur, $request->prix_superieur])->simplePaginate(15); 
+            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->whereBetween('tarif', [$request->prix_inferieur, $request->prix_superieur])->simplePaginate(15);
 
             $type_vehicules = TypeVehicule::all();
 
             $marques = Marque::all();
 
             return view('location.location_filter', compact('results', 'type_vehicules', 'marques'));
+        } elseif ($request->has('marque') == true && $request->has('categorie') == true && $request->has('prix_inferieur') == true && $request->has('prix_superieur') == true) {
 
-        }elseif($request->has('marque') == true && $request->has('categorie') == true && $request->has('prix_inferieur') == true && $request->has('prix_superieur') == true){
-            
             $vehicules = Vehicule::where('type_vehicule_id', $request->categorie)->where('marque_id', $request->marque)->pluck('id');
 
-            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->whereBetween('tarif', [$request->prix_inferieur, $request->prix_superieur])->simplePaginate(15); 
+            $results = LocationVehicule::whereIn('vehicule_id', $vehicules)->whereBetween('tarif', [$request->prix_inferieur, $request->prix_superieur])->simplePaginate(15);
 
             $type_vehicules = TypeVehicule::all();
 
             $marques = Marque::all();
 
             return view('location.location_filter', compact('results', 'type_vehicules', 'marques'));
-        }else{
+        } else {
 
-            return back()->with('error','Veuillez renseigner un des champs pour appliquer le filtre.');
+            return back()->with('error', 'Veuillez renseigner un des champs pour appliquer le filtre.');
         }
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
 
-        if($request->search == null){
+        if ($request->search == null) {
 
-            return back()->with('error','Veuillez renseigner le champs.');
+            return back()->with('error', 'Veuillez renseigner le champs.');
+        } else {
 
-        }else{
-
-            $results = LocationVehicule::where('intitule', 'like', '%' . $request->search . '%')->simplePaginate(15); 
+            $results = LocationVehicule::where('intitule', 'like', '%' . $request->search . '%')->simplePaginate(15);
 
             $type_vehicules = TypeVehicule::all();
 
             $marques = Marque::all();
 
             return view('location.location_search', compact('results', 'type_vehicules', 'marques'));
-
         }
     }
 
@@ -207,8 +200,6 @@ class LocationVehiculeController extends Controller
     public function verifierDispo(Request $request)
     {
 
-        $abonnement = $request->abonnement;
-
         // Obtenir les modes de paiement
         $mode_paiement = ModePaiement::first();
 
@@ -268,7 +259,9 @@ class LocationVehiculeController extends Controller
                     $total_tarif = $total_tarif_provisoire * (1 - ($abonnementDispo_other->abonnements->rabais / 100));
                 }
 
-                return view('location.location_booking', compact('location', 'date_heure_depart', 'date_heure_arrivee', 'mode_paiement', 'total_tarif', 'diff','abonnement'));
+                $abonnement = $request->abonnement;
+
+                return view('location.location_booking', compact('location', 'date_heure_depart', 'date_heure_arrivee', 'mode_paiement', 'total_tarif', 'diff', 'abonnement'));
             } else {
                 return back()->with('error', 'Location non disponible à ces dates renseignées.');
             }
@@ -285,7 +278,10 @@ class LocationVehiculeController extends Controller
                     $total_tarif = ($location->tarif * $diff) + $location->tarif;
                 }
 
-                return view('location.location_booking', compact('location', 'date_heure_depart', 'date_heure_arrivee', 'mode_paiement', 'total_tarif', 'diff'));
+
+                $abonnement = 'null';
+
+                return view('location.location_booking', compact('location', 'date_heure_depart', 'date_heure_arrivee', 'mode_paiement', 'total_tarif', 'diff', 'abonnement'));
             }
         }
     }
