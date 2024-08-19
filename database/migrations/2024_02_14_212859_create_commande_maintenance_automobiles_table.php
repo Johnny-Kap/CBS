@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('numero_commande')->unique();
             $table->string('intitule');
-            $table->text('debrief')->nullable()->nullable();
+            $table->text('debrief')->nullable();
             $table->string('date_maintenance');
             $table->string('situation_vehicule');
             $table->string('immatriculation')->nullable();
@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('annee_vehicule')->nullable();
             $table->string('kilometrage')->nullable();
             $table->string('numero_serie')->nullable();
+            $table->text('devis')->nullable();
             $table->double('montant')->nullable();
             $table->string('etat_commande');
             $table->string('etat_paiement');

@@ -48,6 +48,7 @@
                         <th>Date de main. souhaitée</th>
                         <th>Immatriculation véhicule</th>
                         <th>Situation du véhicule</th>
+                        <th>Dévis</th>
                         <th>Marque du véhicule</th>
                         <th>Année du véhicule</th>
                         <th>Kilometrage</th>
@@ -70,6 +71,7 @@
                         <td>{{$item->date_maintenance}}</td>
                         <td>{{$item->immatriculation}}</td>
                         <td>{{$item->situation_vehicule}}</td>
+                        <td>{{$item->devis}}</td>
                         <td>{{$item->marque_vehicule}}</td>
                         <td>{{$item->annee_vehicule}}</td>
                         <td>{{$item->Kilometrage}}</td>

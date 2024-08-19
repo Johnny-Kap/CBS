@@ -195,7 +195,8 @@
         </table>
     </div>
     <div class="add-detail mt-10">
-        <div class="w-50 float-left mt-10">
+        <div class="float-left mt-10">
+            <p class="m-0 pt-5 text-bold w-100">Le délai de contestation de cette facture est de 30 jours. Passé ce délai, Elle est réputé conforme et dû.</p>
             <p class="m-0 pt-5 text-bold w-100">Merci pour la confiance,</p>
             <p class="m-0 pt-5 text-bold w-100">Team CBS</p>
         </div>

@@ -238,6 +238,7 @@
                                                 <th>Description de la panne</th>
                                                 <th>Date de main. souhaitée</th>
                                                 <th>Situation du véhicule</th>
+                                                <th>Dévis de la maintenance</th>
                                                 <th>Marque du véhicule</th>
                                                 <th>Etat de paiement</th>
                                                 <th>Montant</th>
@@ -252,6 +253,7 @@
                                                 <td>{{$item->debrief}}</td>
                                                 <td>{{$item->date_maintenance}}</td>
                                                 <td>{{$item->situation_vehicule}}</td>
+                                                <td><b>{{$item->devis}}</b></td>
                                                 <td>{{$item->marque_vehicule}}</td>
                                                 <td>@if($item->etat_paiement == 'no') <span class="badge bg-danger">Non payé</span> @else <span class="badge bg-success">Payé</span> @endif</td>
                                                 <td><b>{{$item->montant}} FCFA</b></td>
@@ -266,7 +268,7 @@
                                                         <form action="{{route('soumission_paiement.commande_maintenance')}}" enctype="multipart/form-data" method="post">
                                                             @csrf
                                                             <div class="modal-body">
-                                                                <h5>Maintenance automobile - Paiement de la commande : {{$item->numero_commande}}</h5>
+                                                                <h5>Maintenance automobile - Paiement de la commande : {{$item->numero_commande}} | Montant : {{$item->montant}} FCFA</h5>
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="booking-info pay-amount">

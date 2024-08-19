@@ -166,7 +166,9 @@
             <tr>
                 <th class="w-50">Intitule de la panne</th>
                 <th class="w-50">Date de maintenance</th>
+                <th class="w-50">Immatriculation véhicule</th>
                 <th class="w-50">Situation du véhicule</th>
+                <th class="w-50">Dévis maintenance</th>
                 <th class="w-50">Marque du véhicule</th>
                 <th class="w-50">Etat de la commande</th>
                 <th class="w-50">Etat de paiement</th>
@@ -175,14 +177,16 @@
             <tr align="center">
                 <td>{{$facture->commande_maintenance->intitule}}</td>
                 <td>{{$facture->commande_maintenance->date_maintenance}}</td>
+                <td>{{$facture->commande_maintenance->immatriculation}}</td>
                 <td>{{$facture->commande_maintenance->situation_vehicule}}</td>
+                <td>{{$facture->commande_maintenance->devis}}</td>
                 <td>{{$facture->commande_maintenance->marque_vehicule}}</td>
                 <td>@if($facture->commande_maintenance->etat_commande == 'attente') <span class="badge bg-secondary">En attente</span> @elseif($facture->commande_maintenance->etat_commande == 'canceled') <span class="label label-danger">Annulé</span> @else <span class="label label-success">Validé</span> @endif</td>
                 <td>@if($facture->commande_maintenance->etat_paiement == 'yes') Payée @else Non payée @endif</td>
                 <td>{{$facture->commande_maintenance->montant}} FCFA</td>
             </tr>
             <tr>
-                <td colspan="7">
+                <td colspan="9">
                     <div class="total-part">
                         <div class="total-left w-85 float-left" align="right">
                             <p>Total : </p>
@@ -197,7 +201,8 @@
         </table>
     </div>
     <div class="add-detail mt-10">
-        <div class="w-50 float-left mt-10">
+        <div class="float-left mt-10">
+            <p class="m-0 pt-5 text-bold w-100">Le délai de contestation de cette facture est de 30 jours. Passé ce délai, Elle est réputé conforme et dû.</p>
             <p class="m-0 pt-5 text-bold w-100">Merci pour la confiance,</p>
             <p class="m-0 pt-5 text-bold w-100">Team CBS</p>
         </div>

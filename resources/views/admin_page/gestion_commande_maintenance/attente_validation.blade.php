@@ -26,7 +26,7 @@
 
         <!-- Table Styles Content -->
         <!-- Changing classes functionality initialized in js/pages/tablesGeneral.js -->
-       
+
         <div class="table-responsive">
             <!--
                                 Available Table Classes:
@@ -125,6 +125,20 @@
                                             <div class="col-md-12">
                                                 <div class="booking-info pay-amount">
                                                     <input class="form-control" type="number" name="montant">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Décrivez le dévis (Si commande valider) :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="booking-info pay-amount">
+                                                    <textarea name="devis" class="form-control" id=""></textarea>
                                                 </div>
                                             </div>
                                         </div>

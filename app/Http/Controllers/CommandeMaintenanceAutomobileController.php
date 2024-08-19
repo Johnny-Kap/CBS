@@ -133,6 +133,7 @@ class CommandeMaintenanceAutomobileController extends Controller
                 ->update([
                     'etat_commande' => $request->etat,
                     'montant' => $request->montant,
+                    'devis' => $request->devis,
                 ]);
 
             $commande_validation_maintenance = CommandeMaintenanceAutomobile::find($request->command_id);
