@@ -413,32 +413,7 @@
             aria: {
                 sortAscending: ": activer pour trier la colonne par ordre croissant",
                 sortDescending: ": activer pour trier la colonne par ordre décroissant"
-            },
-            columns: [{
-                    data: 'colonne_0',
-                    defaultContent: ''
-                },
-                {
-                    data: 'colonne_1',
-                    defaultContent: ''
-                },
-                {
-                    data: 'colonne_2',
-                    defaultContent: ''
-                },
-                {
-                    data: 'colonne_3',
-                    defaultContent: ''
-                },
-                {
-                    data: 'colonne_4',
-                    defaultContent: ''
-                },
-                {
-                    data: 'colonne_5',
-                    defaultContent: ''
-                } // Si cette colonne est manquante, la laisser vide
-            ]
+            }
         }
     });
 </script>
