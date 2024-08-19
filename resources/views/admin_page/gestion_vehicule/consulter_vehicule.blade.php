@@ -113,6 +113,7 @@
                                         <h4 class="mb-0 text-dark fw-bold">Modifier</h4>
                                     </div>
                                 </div>
+                                
                                 <form action="{{route('vehicule.edit.images')}}" enctype="multipart/form-data" method="post">
                                     @csrf
                                     <div class="modal-body">
@@ -151,6 +152,7 @@
                                         <button type="submit" class="btn btn-back">Valider les images <i class="fa fa-arrow-right"></i></button>
                                     </div>
                                 </form>
+
                                 <form action="{{route('vehicule.edit')}}" method="post">
                                     @csrf
                                     <div class="modal-body">
