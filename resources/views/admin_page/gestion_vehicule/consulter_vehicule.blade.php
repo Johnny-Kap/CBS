@@ -93,7 +93,7 @@
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="available-for-ride">
                                                     <p>
-                                                    {!! html_entity_decode($item->description) !!}
+                                                        {!! html_entity_decode($item->description) !!}
                                                     </p>
                                                 </div>
                                             </div>
@@ -113,7 +113,7 @@
                                         <h4 class="mb-0 text-dark fw-bold">Modifier</h4>
                                     </div>
                                 </div>
-                                
+
                                 <form action="{{route('vehicule.edit.images')}}" enctype="multipart/form-data" method="post">
                                     @csrf
                                     <div class="modal-body">
@@ -392,7 +392,7 @@
 @push('scripts')
 
 <script>
-   let table = new DataTable('#general-table', {
+    let table = new DataTable('#general-table', {
         language: {
             processing: "Traitement en cours...",
             search: "Rechercher&nbsp;:",
@@ -413,7 +413,32 @@
             aria: {
                 sortAscending: ": activer pour trier la colonne par ordre croissant",
                 sortDescending: ": activer pour trier la colonne par ordre décroissant"
-            }
+            },
+            columns: [{
+                    data: 'colonne_0',
+                    defaultContent: ''
+                },
+                {
+                    data: 'colonne_1',
+                    defaultContent: ''
+                },
+                {
+                    data: 'colonne_2',
+                    defaultContent: ''
+                },
+                {
+                    data: 'colonne_3',
+                    defaultContent: ''
+                },
+                {
+                    data: 'colonne_4',
+                    defaultContent: ''
+                },
+                {
+                    data: 'colonne_5',
+                    defaultContent: ''
+                } // Si cette colonne est manquante, la laisser vide
+            ]
         }
     });
 </script>
