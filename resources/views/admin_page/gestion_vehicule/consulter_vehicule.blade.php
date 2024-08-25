@@ -37,7 +37,7 @@
                                     'table-hover'       - rows highlighted on mouse hover
                                     'table-vcenter'     - middle align content vertically
                                 -->
-            <table id="general-table" class="table table-striped table-vcenter table-condensed table-bordered">
+            <table id="" class="table table-striped table-vcenter table-condensed table-bordered">
                 <thead>
                     <tr>
                         <th>Intitule</th>
@@ -78,7 +78,7 @@
                     </tr>
 
 
-                    <!-- <div class="modal fade" id="pages_desc_{{$item->id}}" role="dialog">
+                    <div class="modal fade" id="pages_desc_{{$item->id}}" role="dialog">
                         <div class="modal-dialog modal-dialog-centered modal-md">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -377,7 +377,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     @endforeach
                 </tbody>
             </table>
@@ -391,8 +391,5 @@
 
 @push('scripts')
 
-<!-- <script>
-    let table = new DataTable('#general-table');
-</script> -->
 
 @endpush
