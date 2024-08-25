@@ -414,6 +414,40 @@
                 sortAscending: ": activer pour trier la colonne par ordre croissant",
                 sortDescending: ": activer pour trier la colonne par ordre décroissant"
             }
+        },
+        layout: {
+            topStart: {
+                buttons: [{
+                        extend: 'pdf',
+                        title: 'Liste des commandes de location en attente de validation',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        title: 'Liste des commandes de location en attente de validation',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        title: 'Liste des commandes de location en attente de validation',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Liste des commandes de location en attente de validation',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ]
+            }
         }
     });
 </script>
