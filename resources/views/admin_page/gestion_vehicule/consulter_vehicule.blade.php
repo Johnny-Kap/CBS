@@ -448,7 +448,11 @@
                     'colvis'
                 ]
             }
-        }
+        },
+        columnDefs: [{
+            "defaultContent": "-",
+            "targets": "_all"
+        }]
     });
 </script>
 
