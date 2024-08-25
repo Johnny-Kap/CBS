@@ -391,8 +391,8 @@
 
 @push('scripts')
 
-<script>
+<!-- <script>
     let table = new DataTable('#general-table');
-</script>
+</script> -->
 
 @endpush
