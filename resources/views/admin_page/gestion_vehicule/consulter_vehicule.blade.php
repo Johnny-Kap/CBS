@@ -78,7 +78,7 @@
                     </tr>
 
 
-                    <div class="modal fade" id="pages_desc_{{$item->id}}" role="dialog">
+                    <!-- <div class="modal fade" id="pages_desc_{{$item->id}}" role="dialog">
                         <div class="modal-dialog modal-dialog-centered modal-md">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -377,7 +377,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     @endforeach
                 </tbody>
             </table>
