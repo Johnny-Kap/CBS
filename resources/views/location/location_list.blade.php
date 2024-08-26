@@ -106,7 +106,6 @@
                                 <span>Activer/Désactiver ces champs</span>
                                 <label for="chkYes">
                                     <input type="checkbox" id="enableInputCheckbox" />
-                                    
                                 </label>
                             </div>
                         </div>

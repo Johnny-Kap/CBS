@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('zone_location')->nullable();
             $table->string('etat_paiement');
             $table->string('etat_commande');
+            $table->double('rabais')->nullable();
+            $table->double('tarif_rabais')->nullable();
             $table->string('photo')->nullable();
             $table->string('numero_abonnement_souscris')->nullable();
             $table->string('numero_commande')->unique()->nullable();

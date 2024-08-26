@@ -36,6 +36,7 @@
                         <div class="order-car">
                             <span><img src="{{Storage::url($location->vehicules->image_illustrative)}}" alt></span>
                             <h5>{{$location->intitule}}<span>{{$location->tarif}} FCFA /Jour</span></h5>
+                            <h5>Rabais souhaité : {{$rabais}} %<span> Montant avec rabais : {{$montant_rabais}} FCFA</span></h5>
                         </div>
                     </div>
                     <!-- <div class="col-lg-6">
@@ -94,7 +95,7 @@
                 </div>
             </div>
             <div class="place-order-btn">
-                <a href="{{ route('location.paiement', ['location_id' => $location->id, 'date_heure_depart' => $date_heure_depart, 'date_heure_arrivee' => $date_heure_arrivee, 'total_tarif' => $total_tarif, 'diff' => $diff, 'abonnement' => $abonnement]) }}" class="btn btn-primary"><i class="fas fa-bar-chart me-2"></i>Commander</a>
+                <a href="{{ route('location.paiement', ['location_id' => $location->id, 'date_heure_depart' => $date_heure_depart, 'date_heure_arrivee' => $date_heure_arrivee, 'total_tarif' => $total_tarif, 'diff' => $diff, 'abonnement' => $abonnement, 'rabais' => $rabais, 'montant_rabais' => $montant_rabais]) }}" class="btn btn-primary"><i class="fas fa-bar-chart me-2"></i>Commander</a>
             </div>
         </div>
     </div>

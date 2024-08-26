@@ -26,7 +26,7 @@
 
         <!-- Table Styles Content -->
         <!-- Changing classes functionality initialized in js/pages/tablesGeneral.js -->
-        
+
         <div class="table-responsive">
             <!--
                                 Available Table Classes:
@@ -58,7 +58,7 @@
                     @foreach($commade_attente as $item)
                     <tr>
                         <td>{{$item->numero_commande}}</td>
-                        <td>@if($item->numero_abonnement_souscris != null) {{$item->numero_abonnement_souscris}} @else Non renseigné @endif</td>
+                        <td>@if($item->numero_abonnement_souscris != 'null') {{$item->numero_abonnement_souscris}} @else Non renseigné @endif</td>
                         <td>{{$item->date_debut}}</td>
                         <td>{{$item->date_fin}}</td>
                         <td>{{$item->tarif}}</td>
@@ -89,11 +89,42 @@
                                     @csrf
                                     <div class="modal-body">
                                         <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="booking-info pay-amount">
+                                                    <label>Cochez la case si vous souhaitez appliquer ce rabais ou modifier</label>
+                                                    <input type="checkbox" id="enableInputCheckbox" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="booking-info pay-amount">
+                                                    <label>Rabais (%)</label>
+                                                    <input type="text" id="rabais" name="rabais" disabled value="{{$item->rabais}}" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="booking-info pay-amount">
+                                                    <label>Montant avec rabais (FCFA)</label>
+                                                    <input type="text" value="{{$item->tarif_rabais}}" disabled class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mt-4">
+                                                <div class="booking-info pay-amount">
+                                                    <label>Montant net sans rabais (FCFA)</label>
+                                                    <input type="text" value="{{$item->tarif}}" disabled class="form-control">
+                                                    <input type="hidden" value="{{$item->tarif}}" name="tarif">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="available-for-ride">
-                                                    <p>
+                                                    <label>
                                                         <i class="fa-regular fa-circle-check"></i>Choisir l'option :
-                                                    </p>
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -184,6 +215,23 @@
                     'colvis'
                 ]
             }
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    const enableInputCheckbox = document.getElementById('enableInputCheckbox');
+    const textInput = document.getElementById('rabais');
+
+    // Ajouter un écouteur d'événement pour détecter les changements de la case à cocher
+    enableInputCheckbox.addEventListener('change', function() {
+        // Vérifier si la case à cocher est cochée
+        if (this.checked) {
+            // Activer l'input text si la case est cochée
+            textInput.disabled = false;
+        } else {
+            // Désactiver l'input text si la case est décochée
+            textInput.disabled = true;
         }
     });
 </script>

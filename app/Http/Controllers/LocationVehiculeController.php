@@ -261,7 +261,19 @@ class LocationVehiculeController extends Controller
 
                 $abonnement = $request->abonnement;
 
-                return view('location.location_booking', compact('location', 'date_heure_depart', 'date_heure_arrivee', 'mode_paiement', 'total_tarif', 'diff', 'abonnement'));
+                if ($request->filled('rabais') == true) {
+
+                    $rabais = $request->rabais;
+
+                    $montant_rabais = $total_tarif * (1 - ($rabais / 100));
+                } else {
+
+                    $rabais = 0;
+
+                    $montant_rabais = 0;
+                }
+
+                return view('location.location_booking', compact('location', 'date_heure_depart', 'date_heure_arrivee', 'mode_paiement', 'total_tarif', 'diff', 'abonnement', 'rabais', 'montant_rabais'));
             } else {
                 return back()->with('error', 'Location non disponible à ces dates renseignées.');
             }
@@ -278,10 +290,21 @@ class LocationVehiculeController extends Controller
                     $total_tarif = ($location->tarif * $diff) + $location->tarif;
                 }
 
-
                 $abonnement = 'null';
 
-                return view('location.location_booking', compact('location', 'date_heure_depart', 'date_heure_arrivee', 'mode_paiement', 'total_tarif', 'diff', 'abonnement'));
+                if ($request->filled('rabais') == true) {
+
+                    $rabais = $request->rabais;
+
+                    $montant_rabais = $total_tarif * (1 - ($rabais / 100));
+                } else {
+
+                    $rabais = 0;
+
+                    $montant_rabais = 0;
+                }
+
+                return view('location.location_booking', compact('location', 'date_heure_depart', 'date_heure_arrivee', 'mode_paiement', 'total_tarif', 'diff', 'abonnement', 'rabais', 'montant_rabais'));
             }
         }
     }

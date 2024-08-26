@@ -81,7 +81,7 @@ class CommandeLocationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create($location_id, $date_heure_depart, $date_heure_arrivee, $total_tarif, $diff, $abonnement)
+    public function create($location_id, $date_heure_depart, $date_heure_arrivee, $total_tarif, $diff, $abonnement, $rabais, $montant_rabais)
     {
 
         $location = LocationVehicule::find($location_id);
@@ -107,6 +107,10 @@ class CommandeLocationController extends Controller
 
         $commande->numero_abonnement_souscris = $abonnement;
 
+        $commande->rabais = $rabais;
+
+        $commande->tarif_rabais = $montant_rabais;
+
         $commande->location_vehicule_id = $location_id;
 
         $commande->user_id = Auth::user()->id;
@@ -124,10 +128,24 @@ class CommandeLocationController extends Controller
     {
 
         if ($request->etat == 'yes') {
-            $affected = CommandeLocation::where('id', $request->commande_id)
-                ->update([
-                    'etat_commande' => $request->etat,
-                ]);
+
+            if ($request->has('rabais') == true) {
+
+                $new_tarif = $request->tarif * (1 - ($request->rabais / 100));
+
+                $affected = CommandeLocation::where('id', $request->commande_id)
+                    ->update([
+                        'etat_commande' => $request->etat,
+                        'tarif' => $new_tarif,
+                        'rabais' => $request->rabais,
+                    ]);
+            } else {
+
+                $affected = CommandeLocation::where('id', $request->commande_id)
+                    ->update([
+                        'etat_commande' => $request->etat,
+                    ]);
+            }
 
             $commande_validation = CommandeLocation::find($request->commande_id);
 

@@ -395,6 +395,14 @@
                                     </div>
                                 </li>
                                 <li class="column-group-main">
+                                    <div class="form-group">
+                                        <label>Pour un rabais, entrez le pourcentage souhaité (%)</label>
+                                        <div class="group-img">
+                                            <input type="number" class="form-control" name="rabais" placeholder="Ex : 10" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="column-group-main">
                                     <div class="form-group m-0">
                                         <label>Date de ramassage <span class="text-danger">*</span></label>
                                     </div>
