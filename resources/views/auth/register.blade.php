@@ -15,7 +15,7 @@
 
 <div class="main-wrapper login-body">
     <header class="log-header">
-        <img class="img-fluid logo-dark" src="assets/img/logo_first.png" alt="Logo" />
+        <img class="img-fluid logo-dark" src="assets/img/logo_slogan_2.png" alt="Logo" />
     </header>
 
     <div class="login-wrapper">
