@@ -65,12 +65,12 @@
             </div>
             <div class="col-lg-4 theiaStickySidebar">
                 <div class="rightsidebar">
-                    <div class="card">
+                    <!-- <div class="card">
                         <h4><img src="assets/img/icons/details-icon.svg" alt="details-icon"> Filter</h4>
                         <div class="filter-content looking-input form-group mb-0">
-                            <input type="text" class="form-control" placeholder="To Search type and hit enter">
+                            <input type="text" class="form-control" placeholder="Pour la recherche, tapez et appuyez sur Entrée">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="card">
                         <h4><img src="assets/img/icons/category-icon.svg" alt="details-icon"> Expréssion de besoin de formation</h4>
                         <span for="">Voulez-vous commander une formation selon votre choix ?</span>

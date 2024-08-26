@@ -253,6 +253,20 @@
                                             </div>
                                         </div>
                                         <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="available-for-ride">
+                                                    <p>
+                                                        <i class="fa-regular fa-circle-check"></i>Nombre de de dépot et recupération à l'aéroport :
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="booking-info pay-amount">
+                                                    <input class="form-control" type="number" value="{{$item->recuperation_aeroport}}" name="recuperation_aeroport">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-lg-2 col-md-2">
                                                 <div class="available-for-ride">
                                                     <p>

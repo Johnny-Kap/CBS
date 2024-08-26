@@ -261,6 +261,7 @@ class AbonnementController extends Controller
                 'montant' => $request->montant,
                 'rabais' => $request->rabais,
                 'nombre_livraison_panier' => $request->nombre_livraison_panier,
+                'recuperation_aeroport' => $request->recuperation_aeroport,
                 'packages' => $request->packages,
                 'type_abonnement_id' => $request->type_abonnement_id,
             ]);
