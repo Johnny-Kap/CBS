@@ -56,7 +56,7 @@
                     @foreach($showVehicule as $item)
                     <tr>
                         <td>{{$item->intitule}}</td>
-                        <td><a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Description" onclick="$('#pages_desc_{{$item->id}}').modal('show');">{!! html_entity_decode( str_limit($item->description, 20)) !!}</a></td>
+                        <!-- <td><a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Description" onclick="$('#pages_desc_{{$item->id}}').modal('show');">{!! html_entity_decode( str_limit($item->description, 20)) !!}</a></td>
                         <td>{{$item->modele}}</td>
                         <td>{{$item->numero_immatriculation}}</td>
                         <td>{{$item->type_vehicules->intitule}}</td>
@@ -74,7 +74,7 @@
                             <div class="btn-group btn-group-xs">
                                 <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil-square-o" title="Modifier"></i></button>
                             </div>
-                        </td>
+                        </td> -->
                     </tr>
 
 
