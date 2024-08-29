@@ -6,6 +6,9 @@
 
 @yield('styles')
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3526831488251657"
+    crossorigin="anonymous"></script>
+
 </head>
 
 <body>
