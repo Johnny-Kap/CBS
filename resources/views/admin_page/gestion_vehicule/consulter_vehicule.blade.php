@@ -57,7 +57,7 @@
                     <tr>
                         <td>{{$item->intitule}}</td>
                         <!-- <td><a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Description" onclick="$('#pages_desc_{{$item->id}}').modal('show');">{!! html_entity_decode( str_limit($item->description, 20)) !!}</a></td> -->
-                        <td>{!! html_entity_decode( str_limit($item->description, 20)) !!}</td>
+                        <td>{!! html_entity_decode($item->description) !!}</td>
                         <td>{{$item->modele}}</td>
                         <td>{{$item->numero_immatriculation}}</td>
                         <td>{{$item->type_vehicules->intitule}}</td>
