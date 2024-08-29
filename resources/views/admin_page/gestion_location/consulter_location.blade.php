@@ -57,7 +57,7 @@
                     @foreach($location as $item)
                     <tr>
                         <td>{{$item->vehicules->intitule}}</td>
-                        <td><a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Description" onclick="$('#pages_desc_{{$item->id}}').modal('show');">{!! html_entity_decode( str_limit($item->vehicules->description, 20)) !!}</a></td>
+                        <td><a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Description" onclick="$('#pages_desc_{{$item->id}}').modal('show');">{!! html_entity_decode( str_limit($item->vehicules->description, 50)) !!}</a></td>
                         <td>{{$item->tarif}} FCFA/j</td>
                         <td>{{$item->vehicules->numero_immatriculation}}</td>
                         <td>{{$item->vehicules->type_vehicules->intitule}}</td>

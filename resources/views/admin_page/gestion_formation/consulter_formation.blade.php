@@ -58,7 +58,7 @@
                     @foreach($formations as $item)
                     <tr>
                         <td>{{$item->theme}}</td>
-                        <td><a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Description" onclick="$('#pages_desc_{{$item->id}}').modal('show');">{!! html_entity_decode( str_limit($item->description, 20)) !!}</a></td>
+                        <td><a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Description" onclick="$('#pages_desc_{{$item->id}}').modal('show');">{!! html_entity_decode( str_limit($item->description, 50)) !!}</a></td>
                         <td>{{$item->duree}}</td>
                         <td>{{$item->date_formation}}</td>
                         <td>{{$item->heure_debut}}</td>
