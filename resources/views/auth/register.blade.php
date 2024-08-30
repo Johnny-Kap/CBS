@@ -83,7 +83,7 @@
                             </span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class="form-label">Zone de résidence : <span class="text-danger">*</span></label>
                             <select name="residence" id="mySelect" class="form-control">
                                 <option value="">Selectionner votre lieu de résidence</option>
@@ -131,7 +131,7 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label class="form-label">Adresse <span class="text-danger">*</span></label>
                             <input id="adresse" type="text" class="form-control @error('adresse') is-invalid @enderror" name="adresse" value="{{ old('adresse') }}" required autocomplete="adresse" />
@@ -389,7 +389,7 @@
                                 <option value="Zimbabwe">Zimbabwe</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class="form-label">NIU (Numéro d'Identification Unique) </label>
                             <input id="adresse" type="text" class="form-control @error('niu') is-invalid @enderror" name="niu" value="{{ old('niu') }}" autocomplete="niu" />
 
@@ -398,7 +398,7 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label class="form-label">Mot de passe <span class="text-danger">*</span></label>
                             <div class="pass-group">
