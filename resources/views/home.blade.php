@@ -672,7 +672,7 @@
                                 </div>
                             </div> -->
                             <p>
-                                Viser loin, et y aller par petits pas a toujours été la boussole de nos engaements. Nous
+                                Viser loin, et y aller par petits pas a toujours été la boussole de nos engagements. Nous
                                 n'allons ménager aucun effort pour vous offrir l'excellence dans nos Agences. Vos désirs
                                 seront nos priorités. Je vous invite à vous abonner pour découvrir notre gamme de
                                 produits et services...Nous vous attendons.

@@ -101,7 +101,7 @@
                         <div id="collapseFour" class="collapse mb-2" aria-labelledby="headingFour" data-bs-parent="#accordionExample4">
                             <div class="card-body-chat">
                                 <div class="filter-range">
-                                    <span><i class="fa fa-info-circle"></i> Pour utiliser comme critère le prix, rensigner obligatoirement les deux champs.</span>
+                                    <span><i class="fa fa-info-circle"></i> Pour utiliser comme critère le prix, renseigner obligatoirement les deux champs.</span>
                                 </div>
                                 <span>Activer/Désactiver ces champs</span>
                                 <label for="chkYes">
