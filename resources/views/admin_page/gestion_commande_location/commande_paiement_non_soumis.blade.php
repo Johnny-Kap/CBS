@@ -51,14 +51,13 @@
                         <th>Commandé par</th>
                         <th>Intitule de la location</th>
                         <th>Commandé le</th>
-                        <th style="width: 150px;" class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($paiement_non_soumis as $item)
                     <tr>
                         <td>{{$item->numero_commande}}</td>
-                        <td>@if($item->numero_abonnement_souscris != null) {{$item->numero_abonnement_souscris}} @else Non renseigné @endif</td>
+                        <td>@if($item->numero_abonnement_souscris != 'null') {{$item->numero_abonnement_souscris}} @else Non renseigné @endif</td>
                         <td>{{$item->date_debut}}</td>
                         <td>{{$item->date_fin}}</td>
                         <td>{{$item->tarif}}</td>
@@ -67,14 +66,8 @@
                         <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">
                                 {{$item->users->name}} {{$item->users->prenom}}
                             </a></td>
-                        <td>{{$item->locations->intitule}}</td>
+                        <td>{{$item->locations->vehicules->intitule}}</td>
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
-                        <td class="text-center">
-                            <div class="btn-group btn-group-xs">
-                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil"></i></button>
-                                <!-- <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#pages_delete"><i class="fa fa-times"></i></button> -->
-                            </div>
-                        </td>
                     </tr>
 
                     <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">

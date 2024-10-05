@@ -57,7 +57,7 @@
                     @foreach($commade_annulee as $item)
                     <tr>
                         <td>{{$item->numero_commande}}</td>
-                        <td>@if($item->numero_abonnement_souscris != null) {{$item->numero_abonnement_souscris}} @else Non renseigné @endif</td>
+                        <td>@if($item->numero_abonnement_souscris != 'null') {{$item->numero_abonnement_souscris}} @else Non renseigné @endif</td>
                         <td>{{$item->date_debut}}</td>
                         <td>{{$item->date_fin}}</td>
                         <td>{{$item->tarif}}</td>
@@ -66,7 +66,7 @@
                         <td><a href="{{ route('user.profile.details', ['id' => $item->users->id, 'name' => str_slug($item->users->name)]) }}">
                                 {{$item->users->name}} {{$item->users->prenom}}
                             </a></td>
-                        <td>{{$item->locations->intitule}}</td>
+                        <td>{{$item->locations->vehicules->intitule}}</td>
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
                     </tr>
 

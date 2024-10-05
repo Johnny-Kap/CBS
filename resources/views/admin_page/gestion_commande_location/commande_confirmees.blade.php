@@ -61,7 +61,7 @@
                     @foreach($commande_confirmees as $item)
                     <tr>
                         <td>{{$item->numero_commande}}</td>
-                        <td>@if($item->numero_abonnement_souscris != null) {{$item->numero_abonnement_souscris}} @else Non renseigné @endif</td>
+                        <td>@if($item->numero_abonnement_souscris != 'null') {{$item->numero_abonnement_souscris}} @else Non renseigné @endif</td>
                         <td>{{$item->date_debut}}</td>
                         <td>{{$item->date_fin}}</td>
                         <td><b>{{$item->tarif}} FCFA</b></td>
