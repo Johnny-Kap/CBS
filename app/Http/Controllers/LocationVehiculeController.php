@@ -239,6 +239,7 @@ class LocationVehiculeController extends Controller
             ->where('etat', 'yes')
             ->first();
 
+        dd($commandeDispo);
 
         // Recuperation des infos du compte de l'utilisateur
         // $compte = Compte::where('user_id', Auth::user()->id)->first();
