@@ -227,6 +227,12 @@ class LocationVehiculeController extends Controller
             ->where('location_vehicule_id', $request->location_id)
             ->count();
 
+
+        $commandeDispo_data = CommandeLocation::where('date_debut', '<=', $date_heure_depart)
+            ->where('date_fin', '>=', $date_heure_arrivee)
+            ->where('location_vehicule_id', $request->location_id)
+            ->get();
+
         $abonnementDispo = SouscrireAbonnement::where('numero_abonnement', $request->abonnement)
             ->where('user_id', Auth::user()->id)
             ->where('is_expired', 'no')
@@ -239,7 +245,7 @@ class LocationVehiculeController extends Controller
             ->where('etat', 'yes')
             ->first();
 
-        dd($commandeDispo);
+        dd($commandeDispo_data);
 
         // Recuperation des infos du compte de l'utilisateur
         // $compte = Compte::where('user_id', Auth::user()->id)->first();
