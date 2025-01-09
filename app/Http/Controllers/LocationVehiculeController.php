@@ -216,9 +216,14 @@ class LocationVehiculeController extends Controller
 
         $diff = $date->diffInDays($date_heure_arrivee);
 
+        // $commandeDispo = CommandeLocation::where('date_debut', '<=', $date_heure_depart)
+        //     ->where('date_fin', '>=', $date_heure_arrivee)
+        //     ->orWhere('date_debut', '>=', $date_heure_depart)->where('date_fin', '<=', $date_heure_arrivee)
+        //     ->where('location_vehicule_id', $request->location_id)
+        //     ->count();
+
         $commandeDispo = CommandeLocation::where('date_debut', '<=', $date_heure_depart)
             ->where('date_fin', '>=', $date_heure_arrivee)
-            ->orWhere('date_debut', '>=', $date_heure_depart)->where('date_fin', '<=', $date_heure_arrivee)
             ->where('location_vehicule_id', $request->location_id)
             ->count();
 
