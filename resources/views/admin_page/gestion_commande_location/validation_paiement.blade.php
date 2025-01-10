@@ -45,7 +45,9 @@
                         <th>N° abonnement soumis</th>
                         <th>Date de départ</th>
                         <th>Date d'arrivée</th>
-                        <th>Tarif total</th>
+                        <th>Rabais souhaité</th>
+                        <th>Montant avec rabais</th>
+                        <th>Montant hors rabais</th>
                         <th>Nombe de jours</th>
                         <th>Type de location</th>
                         <th>Zone déplacement</th>
@@ -63,7 +65,9 @@
                         <td>@if($item->numero_abonnement_souscris != 'null') {{$item->numero_abonnement_souscris}} @else Non renseigné @endif</td>
                         <td>{{$item->date_debut}}</td>
                         <td>{{$item->date_fin}}</td>
-                        <td><b>{{$item->tarif}} FCFA</b></td>
+                        <td>{{$item->rabais}}%</td>
+                        <td>{{$item->tarif_rabais}}</td>
+                        <td>{{$item->tarif}}</td>
                         <td>{{$item->nombre_jours}}</td>
                         <td>{{$item->type_location}}</td>
                         <td>{{$item->zone_location}}</td>

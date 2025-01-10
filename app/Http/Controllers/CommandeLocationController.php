@@ -136,7 +136,7 @@ class CommandeLocationController extends Controller
                 $affected = CommandeLocation::where('id', $request->commande_id)
                     ->update([
                         'etat_commande' => $request->etat,
-                        'tarif' => $new_tarif,
+                        'tarif_rabais' => $new_tarif,
                         'rabais' => $request->rabais,
                     ]);
             } else {

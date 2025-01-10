@@ -45,7 +45,9 @@
                         <th>N° abonnement soumis</th>
                         <th>Date de départ</th>
                         <th>Date d'arrivée</th>
-                        <th>Tarif total</th>
+                        <th>Rabais souhaité</th>
+                        <th>Montant avec rabais</th>
+                        <th>Montant hors rabais</th>
                         <th>Nombe de jours</th>
                         <th>Etat de la commande</th>
                         <th>Commandé par</th>
@@ -61,6 +63,8 @@
                         <td>@if($item->numero_abonnement_souscris != 'null') {{$item->numero_abonnement_souscris}} @else Non renseigné @endif</td>
                         <td>{{$item->date_debut}}</td>
                         <td>{{$item->date_fin}}</td>
+                        <td>{{$item->rabais}}%</td>
+                        <td>{{$item->tarif_rabais}}</td>
                         <td>{{$item->tarif}}</td>
                         <td>{{$item->nombre_jours}}</td>
                         <td>@if($item->etat_commande == 'attente') <span class="badge bg-secondary">En attente</span> @elseif($item->etat_commande == 'canceled') <span class="label label-danger">Annulé</span> @else <span class="label label-success">Validé</span> @endif</td>

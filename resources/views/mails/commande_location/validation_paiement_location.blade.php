@@ -8,7 +8,7 @@
 @component('mail::table')
 | N° commande                                      | Intitule de la location                               | Date debut                                  | Date fin                                  | Tarif                                    | Etat du paiement |
 | -------------------------------------------------|:-----------------------------------------------------:|:-------------------------------------------:|:-----------------------------------------:|:----------------------------------------:| ----------------:|
-|{{$commande_validation_paiement->numero_commande}}| {{$commande_validation_paiement->locations->intitule}}|{{$commande_validation_paiement->date_debut}}|{{$commande_validation_paiement->date_fin}}| {{$commande_validation_paiement->tarif}} | Payé             |
+|{{$commande_validation_paiement->numero_commande}}| {{$commande_validation_paiement->locations->intitule}}|{{$commande_validation_paiement->date_debut}}|{{$commande_validation_paiement->date_fin}}| @if($commande_validation_paiement->rabais == 0) {{$commande_validation_paiement->tarif}} @else {{$commande_validation_paiement->tarif_rabais}} @endif | Payé             |
 
 @endcomponent
 

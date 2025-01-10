@@ -31,7 +31,7 @@
                                                 <th>Date retour</th>
                                                 <th>Etat paiement</th>
                                                 <th>Location</th>
-                                                <th>Tarif</th>
+                                                <th>Tarif net à payer</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -43,7 +43,7 @@
                                                 <td>{{$item->date_fin}}</td>
                                                 <td>@if($item->etat_paiement == 'no') <span class="badge bg-danger">Non payé</span> @else <span class="badge bg-success">Payé</span> @endif</td>
                                                 <td>{{$item->locations->vehicules->intitule}}</td>
-                                                <td>{{$item->tarif}} FCFA</td>
+                                                <td>@if($item->rabais == 0) {{$item->tarif}} FCFA @else {{$item->tarif_rabais}} FCFA @endif</td>
                                                 <td><button class="btn btn-primary check-available w-100" type="button" data-bs-toggle="modal" data-bs-target="#pages_loc_{{$item->id}}">
                                                         Télécharger image ici <i class="fa fa-upload"></i>
                                                     </button>
