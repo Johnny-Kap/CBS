@@ -248,6 +248,13 @@ class AbonnementController extends Controller
         return view('admin_page.gestion_abonnement.expires_abonnement', compact('abonnement_expires'));
     }
 
+    public function list_abonnes(){
+
+        $list = SouscrireAbonnement::all();
+
+        return view('admin_page.gestion_abonnement.consulter_list_abonnes', compact('list'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

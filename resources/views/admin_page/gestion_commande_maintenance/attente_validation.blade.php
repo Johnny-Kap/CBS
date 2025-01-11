@@ -118,7 +118,7 @@
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="available-for-ride">
                                                     <p>
-                                                        <i class="fa-regular fa-circle-check"></i>Entrer le montant (Si commande valider) :
+                                                        <i class="fa-regular fa-circle-check"></i>Entrer le montant (Si commande validée) :
                                                     </p>
                                                 </div>
                                             </div>
@@ -132,7 +132,7 @@
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="available-for-ride">
                                                     <p>
-                                                        <i class="fa-regular fa-circle-check"></i>Décrivez le dévis (Si commande valider) :
+                                                        <i class="fa-regular fa-circle-check"></i>Décrivez le dévis (Si commande validée) :
                                                     </p>
                                                 </div>
                                             </div>

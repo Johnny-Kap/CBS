@@ -12,7 +12,7 @@ class UserController extends Controller
     public function show()
     {
 
-        $users = User::simplePaginate();
+        $users = User::all();
 
         return view('admin_page.gestion_utilisateurs.consulter_utilisateurs', compact('users'));
     }

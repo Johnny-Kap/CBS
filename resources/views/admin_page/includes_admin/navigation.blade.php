@@ -421,6 +421,9 @@
                                 <li>
                                     <a class="{{ Request::route()->named('abonnement.expires') ? 'active' : '' }}" href="{{route('abonnement.expires')}}">Expirés</a>
                                 </li>
+                                <li>
+                                    <a class="{{ Request::route()->named('abonnement.user.list') ? 'active' : '' }}" href="{{route('abonnement.user.list')}}">Liste des abonnés</a>
+                                </li>
                                 <!-- <li>
                                     <a href="page_icons_glyphicons_pro.html">Glyphicons Pro</a>
                                 </li> -->

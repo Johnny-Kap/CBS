@@ -45,7 +45,7 @@
                                                 <td>@if($item->etat_paiement == 'no') <span class="badge bg-danger">Non payé</span> @else <span class="badge bg-success">Payé</span> @endif</td>
                                                 <td>{{$item->locations->intitule}}</td>
                                                 <td>{{$item->tarif}} FCFA</td>
-                                                <td>{{$item->mode_paiements->intitule}}</td>
+                                                <td>@if($item->mode_paiement_id == null) N/A @else {{$item->mode_paiements->intitule}} @endif</td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -90,7 +90,7 @@
                                                 <td>{{$item->adresse_livraison}}</td>
                                                 <td>@if($item->etat_paiement == 'no') Non payé @else Payé @endif</td>
                                                 <td>{{$item->montant}} FCFA</td>
-                                                <td>{{$item->mode_paiements->intitule}}</td>
+                                                <td>@if($item->mode_paiement_id == null) N/A @else {{$item->mode_paiements->intitule}} @endif</td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -182,7 +182,7 @@
                                                 <td>@if($item->etat_paiement == 'no') <span class="badge bg-danger">En confirmation</span> @else <span class="badge bg-success">Payé</span> @endif</td>
                                                 <td>{{$item->formations->theme}}</td>
                                                 <td>{{$item->montant_total}} FCFA</td>
-                                                <td>{{$item->mode_paiements->intitule}}</td>
+                                                <td>@if($item->mode_paiement_id == null) N/A @else {{$item->mode_paiements->intitule}} @endif</td>
                                             </tr>
                                             @endforeach
                                         </tbody>

@@ -75,8 +75,8 @@
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil"></i></button>
-                                <!-- <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#pages_delete"><i class="fa fa-times"></i></button> -->
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-check-square-o"></i></button>
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_modify_{{$item->id}}"><i class="fa fa-pencil fa"></i></button>
                             </div>
                         </td>
                     </tr>
@@ -141,6 +141,42 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-back">Valider <i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal fade" id="pages_modify_{{$item->id}}" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="form-header text-start mb-0">
+                                        <h4 class="mb-0 text-dark fw-bold">Effectuer la modification de la commande de {{$item->numero_commande}}</h4>
+                                    </div>
+                                </div>
+                                <form action="{{route('commande_location.modifier')}}" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="booking-info pay-amount">
+                                                    <label>Entrer la nouvelle date de départ</label>
+                                                    <input type="text" id="example-datepicker3" name="date_depart" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="booking-info pay-amount">
+                                                    <label>Entrer la nouvelle date d'arrivée</label>
+                                                    <input type="text" id="example-datepicker3" name="date_arrivee" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
+                                                    <input type="hidden" class="form-control" name="commande_id" value="{{$item->id}}" />
+                                                </div>
+                                            </div>
+                                        </div><br>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-back">Valider <i class="fa fa-arrow-right"></i></button>

@@ -165,6 +165,11 @@ class CommandeLocationController extends Controller
         }
     }
 
+    public function modifier_commande(Request $request){
+
+        
+    }
+
     public function commande_annulee()
     {
 

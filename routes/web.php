@@ -164,6 +164,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     // Gestion des commandes de location
     Route::get('/admin/commande_location/attente', [App\Http\Controllers\CommandeLocationController::class, 'index'])->name('commande_location.attente');
     Route::post('/admin/commande_location/change/etat', [App\Http\Controllers\CommandeLocationController::class, 'validation_commande'])->name('commande_location.validation.etat');
+    Route::post('/admin/commande_location/modifier', [App\Http\Controllers\CommandeLocationController::class, 'modifier_commande'])->name('commande_location.modifier');
     Route::get('/admin/commande_location/annulee', [App\Http\Controllers\CommandeLocationController::class, 'commande_annulee'])->name('commande_location.annulee');
     Route::get('/admin/commande_location/paiement-non-soumis', [App\Http\Controllers\CommandeLocationController::class, 'paiement_non_soumis'])->name('commande_location.commande_paiement_non_soumis');
     Route::get('/admin/commande_location/validation-paiement', [App\Http\Controllers\CommandeLocationController::class, 'validation_paiement'])->name('commande_location.validation_paiement');
@@ -189,6 +190,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/souscrire-abonnement/confirmes', [App\Http\Controllers\AbonnementController::class, 'confirmes'])->name('abonnement.confirmes');
     Route::post('/admin/souscrire-abonnement/paiement/validee', [App\Http\Controllers\AbonnementController::class, 'confirmer_souscription'])->name('abonnement.paiement.valide');
     Route::get('/admin/souscrire-abonnement/expires', [App\Http\Controllers\AbonnementController::class, 'expires'])->name('abonnement.expires');
+    Route::get('/admin/souscrire-abonnement/list/abonnes', [App\Http\Controllers\AbonnementController::class, 'list_abonnes'])->name('abonnement.user.list');
     Route::get('/admin/souscrire-abonnement/new', [App\Http\Controllers\SouscrireAbonnementController::class, 'souscrire_formulaire'])->name('abonnement.formulaire');
     Route::post('/admin/souscrire-abonnement/new/add', [App\Http\Controllers\SouscrireAbonnementController::class, 'souscrire_new'])->name('abonnement.souscrire.new');
 
