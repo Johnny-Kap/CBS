@@ -19,9 +19,9 @@
     <!-- Table Styles Block -->
     <div class="block">
         <!-- Table Styles Title -->
-        <div class="block-title">
+        <!-- <div class="block-title">
             <h2><strong>Table</strong> des données</h2>
-        </div>
+        </div> -->
         <!-- END Table Styles Title -->
 
         <!-- Table Styles Content -->
@@ -50,7 +50,7 @@
                         <th>Téléphone</th>
                         <th>Intitule de l'abonnement</th>
                         <th>Etat de l'abonnement</th>
-                        <th style="width: 150px;" class="text-center">Actions</th>
+                        <!-- <th style="width: 150px;" class="text-center">Actions</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -61,18 +61,12 @@
                             </a></td>
                         <td>{{$item->users->name}}</td>
                         <td>@if($item->users->prenom != null) {{$item->user->prenom}} @else Non renseigné @endif</td>
-                        <td>{{$item->email}}</td>
+                        <td>{{$item->users->email}}</td>
                         <td>@if($item->users->date_naiss != null) {{$item->users->date_naiss}} @else Non renseigné @endif</td>
                         <td>@if($item->users->Profession != null) {{$item->users->Profession}} @else Non renseigné @endif</td>
                         <td class="text-center">{{$item->users->tel}}</td>
                         <td class="text-center">{{$item->abonnements->intitule}}</td>
-                        <td><a href="javascript:void(0)" class="label label-primary">@if($item->is_expired == 'no') Non expirée @else Expirée @endif</a></td>
-                        <td class="text-center">
-                            <div class="btn-group btn-group-xs">
-                                <!-- <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil-square-o" title="Modifier"></i></button> -->
-                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_role_{{$item->id}}"><i class="fa fa-users" title="Changer rôle"></i></button>
-                            </div>
-                        </td>
+                        <td><a href="javascript:void(0)" class="label label-primary">@if($item->is_expired == 'no') Non expiré @else Expiré @endif</a></td>
                     </tr>
 
 

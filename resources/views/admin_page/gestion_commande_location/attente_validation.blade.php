@@ -166,13 +166,13 @@
                                             <div class="col-md-6">
                                                 <div class="booking-info pay-amount">
                                                     <label>Entrer la nouvelle date de départ</label>
-                                                    <input type="text" id="example-datepicker3" name="date_depart" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
+                                                    <input type="text" value="{{$item->date_debut}}" id="example-datepicker3" name="date_depart" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="booking-info pay-amount">
                                                     <label>Entrer la nouvelle date d'arrivée</label>
-                                                    <input type="text" id="example-datepicker3" name="date_arrivee" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
+                                                    <input type="text" id="example-datepicker3" value="{{$item->date_fin}}" name="date_arrivee" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
                                                     <input type="hidden" class="form-control" name="commande_id" value="{{$item->id}}" />
                                                 </div>
                                             </div>

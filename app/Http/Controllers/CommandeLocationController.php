@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\AnnulationCommandeLocation;
 use App\Mail\AnnulationPaiementCommandeLocation;
+use App\Mail\ModificationCommandeLocation;
 use App\Mail\SuccessCommandeLocation;
 use App\Mail\ValidationCommandeLocation;
 use App\Mail\ValidationPaiementCommandeLocation;
@@ -15,6 +16,7 @@ use App\Models\ExpressionBesoinFormation;
 use App\Models\LivraisonPanier;
 use App\Models\LocationVehicule;
 use App\Models\ModePaiement;
+use App\Models\SouscrireAbonnement;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -165,9 +167,120 @@ class CommandeLocationController extends Controller
         }
     }
 
-    public function modifier_commande(Request $request){
+    public function modifier_commande(Request $request)
+    {
 
-        
+        $abonnement_numero = CommandeLocation::where('id', $request->commande_id)->pluck('numero_abonnement_souscris');
+
+        $abonnementDispo_other = SouscrireAbonnement::where('numero_abonnement', $abonnement_numero)
+            ->where('user_id', Auth::user()->id)
+            ->where('is_expired', 'no')
+            ->where('etat', 'yes')
+            ->first();
+
+        $location_id = CommandeLocation::where('id', $request->commande_id)->pluck('location_vehicule_id');
+
+        $location = LocationVehicule::where('id', $location_id)->first();
+
+        //Formatage de la date et heure de depart
+        $date_heure_depart = date('Y-m-d', strtotime("$request->date_depart"));
+
+        //Formatage de la date et heure d'arrivée
+        $date_heure_arrivee = date('Y-m-d', strtotime("$request->date_arrivee"));
+
+        $date = Carbon::parse($date_heure_depart);
+
+        $diff = $date->diffInDays($date_heure_arrivee);
+
+        $commande = CommandeLocation::find($request->commande_id);
+
+        if ($commande->numero_abonnement_souscris == 'null' && $commande->rabais == 0) {
+
+            if ($diff == 0) {
+                $total_tarif = $location->tarif;
+            } else {
+                $total_tarif = ($location->tarif * $diff) + $location->tarif;
+            }
+
+            $affected = CommandeLocation::where('id', $request->commande_id)
+                ->update([
+                    'date_debut' => $date_heure_depart,
+                    'date_fin' => $date_heure_arrivee,
+                    'nombre_jours' => $diff + 1,
+                    'tarif' => $total_tarif,
+                ]);
+
+            Mail::to($commande->users->email)->send(new ModificationCommandeLocation($commande));
+
+            return back()->with('success', 'Modifié avec succès.');
+        } elseif ($commande->numero_abonnement_souscris == 'null' && $commande->rabais != 0) {
+
+            if ($diff == 0) {
+                $total_tarif = $location->tarif;
+            } else {
+                $total_tarif = ($location->tarif * $diff) + $location->tarif;
+            }
+
+            $montant_rabais = $total_tarif * (1 - ($commande->rabais / 100));
+
+            $affected = CommandeLocation::where('id', $request->commande_id)
+                ->update([
+                    'date_debut' => $date_heure_depart,
+                    'date_fin' => $date_heure_arrivee,
+                    'nombre_jours' => $diff + 1,
+                    'tarif' => $total_tarif,
+                    'tarif_rabais' => $montant_rabais,
+                ]);
+
+            Mail::to($commande->users->email)->send(new ModificationCommandeLocation($commande));
+
+            return back()->with('success', 'Modifié avec succès.');
+        } elseif ($commande->numero_abonnement_souscris != 'null' && $commande->rabais == 0) {
+
+            if ($diff == 0) {
+                $total_tarif = $location->tarif * (1 - ($abonnementDispo_other->abonnements->rabais / 100));
+            } else {
+                $total_tarif_provisoire = ($location->tarif * $diff) + $location->tarif;
+
+                $total_tarif = $total_tarif_provisoire * (1 - ($abonnementDispo_other->abonnements->rabais / 100));
+            }
+
+            $affected = CommandeLocation::where('id', $request->commande_id)
+                ->update([
+                    'date_debut' => $date_heure_depart,
+                    'date_fin' => $date_heure_arrivee,
+                    'nombre_jours' => $diff + 1,
+                    'tarif' => $total_tarif,
+                ]);
+
+            Mail::to($commande->users->email)->send(new ModificationCommandeLocation($commande));
+
+            return back()->with('success', 'Modifié avec succès.');
+        } else {
+
+            if ($diff == 0) {
+                $total_tarif = $location->tarif * (1 - ($abonnementDispo_other->abonnements->rabais / 100));
+            } else {
+                $total_tarif_provisoire = ($location->tarif * $diff) + $location->tarif;
+
+                $total_tarif = $total_tarif_provisoire * (1 - ($abonnementDispo_other->abonnements->rabais / 100));
+            }
+
+            $montant_rabais = $total_tarif * (1 - ($commande->rabais / 100));
+
+            $affected = CommandeLocation::where('id', $request->commande_id)
+                ->update([
+                    'date_debut' => $date_heure_depart,
+                    'date_fin' => $date_heure_arrivee,
+                    'nombre_jours' => $diff + 1,
+                    'tarif' => $total_tarif,
+                    'tarif_rabais' => $montant_rabais,
+                ]);
+
+            Mail::to($commande->users->email)->send(new ModificationCommandeLocation($commande));
+
+            return back()->with('success', 'Modifié avec succès.');
+        }
     }
 
     public function commande_annulee()
