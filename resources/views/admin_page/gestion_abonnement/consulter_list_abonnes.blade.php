@@ -60,7 +60,7 @@
                                 {{$item->users->id}}
                             </a></td>
                         <td>{{$item->users->name}}</td>
-                        <td>@if($item->users->prenom != null) {{$item->user->prenom}} @else Non renseigné @endif</td>
+                        <td>@if($item->users->prenom != null) {{$item->users->prenom}} @else Non renseigné @endif</td>
                         <td>{{$item->users->email}}</td>
                         <td>@if($item->users->date_naiss != null) {{$item->users->date_naiss}} @else Non renseigné @endif</td>
                         <td>@if($item->users->Profession != null) {{$item->users->Profession}} @else Non renseigné @endif</td>

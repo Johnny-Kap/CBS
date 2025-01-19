@@ -26,7 +26,7 @@
 
         <!-- Table Styles Content -->
         <!-- Changing classes functionality initialized in js/pages/tablesGeneral.js -->
-        
+
         <div class="table-responsive">
             <!--
                                 Available Table Classes:
@@ -86,6 +86,7 @@
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
                                 <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit"><i class="fa fa-file-text"></i></button>
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_attestation_{{$item->id}}"><i class="fa fa-check"></i></button>
                             </div>
                         </td>
                     </tr>
@@ -112,6 +113,48 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">Créer <i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal fade" id="pages_attestation_{{$item->id}}" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="form-header text-start mb-0">
+                                        <h4 class="mb-0 text-dark fw-bold">Entrer les informations de l'attestation de service de la commande de maintenance N° {{$item->numero_commande}}</h4>
+                                    </div>
+                                </div>
+                                <form action="{{route('commande_location.modifier')}}" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="booking-info pay-amount">
+                                                    <label>Entrer la prestation effectuées</label>
+                                                    <input type="text" class="form-control" name="prestation_effectuees">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="booking-info pay-amount">
+                                                    <label>Entrer le statut</label>
+                                                    <input type="text" class="form-control" name="statuts">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="booking-info pay-amount">
+                                                    <label>Entrer les observations</label>
+                                                    <input type="text" class="form-control" name="observations">
+                                                </div>
+                                            </div>
+                                        </div><br>
+                                    </div>
+                                    <input type="hidden" class="form-control" name="commande_id" value="{{$item->id}}" />
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-back">Valider <i class="fa fa-arrow-right"></i></button>
                                     </div>
                                 </form>
                             </div>
