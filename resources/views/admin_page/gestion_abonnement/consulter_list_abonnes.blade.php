@@ -48,6 +48,7 @@
                         <th>Date de naissance</th>
                         <th>Profession</th>
                         <th>Téléphone</th>
+                        <th>N° de l'abonnement</th>
                         <th>Intitule de l'abonnement</th>
                         <th>Etat de l'abonnement</th>
                         <!-- <th style="width: 150px;" class="text-center">Actions</th> -->
@@ -65,6 +66,7 @@
                         <td>@if($item->users->date_naiss != null) {{$item->users->date_naiss}} @else Non renseigné @endif</td>
                         <td>@if($item->users->Profession != null) {{$item->users->Profession}} @else Non renseigné @endif</td>
                         <td class="text-center">{{$item->users->tel}}</td>
+                        <td>{{$item->numero_abonnement}}</td>
                         <td class="text-center">{{$item->abonnements->intitule}}</td>
                         <td><a href="javascript:void(0)" class="label label-primary">@if($item->is_expired == 'no') Non expiré @else Expiré @endif</a></td>
                     </tr>
