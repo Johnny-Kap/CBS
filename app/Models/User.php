@@ -36,6 +36,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'date_delivrance_passport',
         'password',
         'role',
+        'type_user',
+        'boite_postale',
+        'siret',
+        'siren',
     ];
 
     /**

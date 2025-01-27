@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AttestationServiceMaintenance;
+use App\Models\BonLivraisonMaintenance;
+use App\Models\CommandeMaintenanceAutomobile;
 use Illuminate\Http\Request;
 
-class AttestationServiceMaintenanceController extends Controller
+class BonLivraisonMaintenanceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,13 +29,20 @@ class AttestationServiceMaintenanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $bon = new BonLivraisonMaintenance();
+
+        $bon->commande_maintenance_automobile_id = $request->command_id;
+
+        $bon->save();
+
+        return back()->with('success', 'Bon de livraison créé avec succès !');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(AttestationServiceMaintenance $attestationServiceMaintenance)
+    public function show(BonLivraisonMaintenance $bonLivraisonMaintenance)
     {
         //
     }
@@ -42,7 +50,7 @@ class AttestationServiceMaintenanceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(AttestationServiceMaintenance $attestationServiceMaintenance)
+    public function edit(BonLivraisonMaintenance $bonLivraisonMaintenance)
     {
         //
     }
@@ -50,7 +58,7 @@ class AttestationServiceMaintenanceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AttestationServiceMaintenance $attestationServiceMaintenance)
+    public function update(Request $request, BonLivraisonMaintenance $bonLivraisonMaintenance)
     {
         //
     }
@@ -58,7 +66,7 @@ class AttestationServiceMaintenanceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AttestationServiceMaintenance $attestationServiceMaintenance)
+    public function destroy(BonLivraisonMaintenance $bonLivraisonMaintenance)
     {
         //
     }

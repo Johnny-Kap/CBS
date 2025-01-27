@@ -55,6 +55,7 @@
                         <th>Intitule de la location</th>
                         <th>Commandé le</th>
                         <th style="width: 150px;" class="text-center">Créer facture</th>
+                        <th style="width: 150px;" class="text-center">Créer attestation service</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,6 +81,11 @@
                                 <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-file-text"></i></button>
                             </div>
                         </td>
+                        <td class="text-center">
+                            <div class="btn-group btn-group-xs">
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_attestation_{{$item->id}}"><i class="fa fa-check"></i></button>
+                            </div>
+                        </td>
                     </tr>
 
                     <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
@@ -87,7 +93,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <div class="form-header text-start mb-0">
-                                        <h4 class="mb-0 text-dark fw-bold">Créer la facture N° {{$item->numero_commande}}</h4>
+                                        <h4 class="mb-0 text-dark fw-bold">Créer la facture de la commande N° {{$item->numero_commande}}</h4>
                                     </div>
                                 </div>
                                 <form action="{{route('facture.commande_location.add')}}" method="post">
@@ -97,6 +103,35 @@
                                             <div class="col-md-12">
                                                 <div class="booking-info pay-amount">
                                                     <h3>Voulez-vous vraiment créer la facture de cette commande ?</h3>
+                                                    <input type="hidden" name="commande_id" value="{{$item->id}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Créer <i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal fade" id="pages_attestation_{{$item->id}}" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="form-header text-start mb-0">
+                                        <h4 class="mb-0 text-dark fw-bold">Créer l'attestation de service de la commande N° {{$item->numero_commande}}</h4>
+                                    </div>
+                                </div>
+                                <form action="{{route('commande_location.attestation_service.store')}}" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="booking-info pay-amount">
+                                                    <h3>Voulez-vous vraiment créer l'attestation de service de cette commande ?</h3>
                                                     <input type="hidden" name="commande_id" value="{{$item->id}}" />
                                                 </div>
                                             </div>

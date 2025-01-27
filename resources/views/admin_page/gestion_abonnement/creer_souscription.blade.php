@@ -25,7 +25,7 @@
                     <div class="block-options pull-right">
                         <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">No Borders</a>
                     </div>
-                    <h2><strong>Formulaire d'enregistrement</strong> d'une sosucription d'abonnement</h2>
+                    <h2><strong>Formulaire d'enregistrement</strong> d'une souscription d'abonnement</h2>
                 </div>
                 <!-- END Form Elements Title -->
 

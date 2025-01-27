@@ -58,7 +58,7 @@
                         <th>Etat de paiement</th>
                         <th>Commandé par</th>
                         <th>Commandé le</th>
-                        <!-- <th style="width: 150px;" class="text-center">Actions</th> -->
+                        <th style="width: 150px;" class="text-center">Valider</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -113,7 +113,7 @@
                                                     <h6>Choisir l'option</h6>
                                                     <div class="radio radio-btn">
                                                         <label>
-                                                            <select name="etat_paiement">
+                                                            <select class="form-control" name="etat_paiement">
                                                                 <option value="yes">Payé</option>
                                                                 <option value="no">Non payé</option>
                                                             </select>

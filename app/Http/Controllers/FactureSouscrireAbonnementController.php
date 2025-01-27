@@ -13,7 +13,7 @@ class FactureSouscrireAbonnementController extends Controller
      */
     public function index()
     {
-        
+
         $facture_souscription_abonnement = FactureSouscrireAbonnement::all();
 
         return view('admin_page.gestion_facture.facture_souscription_abonnement.consulter_facture', compact('facture_souscription_abonnement'));
@@ -24,23 +24,30 @@ class FactureSouscrireAbonnementController extends Controller
      */
     public function create(Request $request)
     {
-        
+
         $facture = new FactureSouscrireAbonnement();
 
         $facture->souscrire_abonnement_id = $request->sous_abonnement_id;
 
         $facture->save();
 
-        return back()->with('success','Facture créée avec succès.');
+        return back()->with('success', 'Facture créée avec succès.');
     }
 
-    public function generer(Request $request){
+    public function generer(Request $request)
+    {
 
         $facture = FactureSouscrireAbonnement::find($request->facture_id);
 
-        $pdf = Pdf::loadView('admin_page.gestion_facture.facture_souscription_abonnement.generer_facture', compact('facture'));
+        if ($facture->souscription_abonnements->users->type_user == 'particulier') {
+            $pdf = Pdf::loadView('admin_page.gestion_facture.facture_souscription_abonnement.generer_facture_particulier', compact('facture'));
 
-        return $pdf->download('facture_#SA'. $facture->id .'.pdf');
+            return $pdf->download('facture_#SA' . $facture->id . '.pdf');
+        }else{
+            $pdf = Pdf::loadView('admin_page.gestion_facture.facture_souscription_abonnement.generer_facture_entreprise', compact('facture'));
+
+            return $pdf->download('facture_#SA' . $facture->id . '.pdf');
+        }
     }
 
     /**

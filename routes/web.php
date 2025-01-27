@@ -241,6 +241,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/admin/add/utilisateurs', [App\Http\Controllers\UserController::class, 'store'])->name('utilisateurs.store');
     Route::post('/admin/edit/utilisateurs', [App\Http\Controllers\UserController::class, 'edit'])->name('utilisateurs.edit');
     Route::post('/admin/change/role/utilisateurs', [App\Http\Controllers\UserController::class, 'change_role'])->name('utilisateurs.change.role');
+    Route::post('/admin/change/statut/utilisateurs/activer', [App\Http\Controllers\UserController::class, 'activer'])->name('utilisateurs.change.statut.activer');
+    Route::post('/admin/change/statut/utilisateurs/desactiver', [App\Http\Controllers\UserController::class, 'desactiver'])->name('utilisateurs.change.statut.desactiver');
 
 
     // Gestion de la formation
@@ -301,4 +303,24 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/facture/souscription-abonnement/consulter', [App\Http\Controllers\FactureSouscrireAbonnementController::class, 'index'])->name('facture.souscription_abonnement.consulter');
     Route::get('/admin/facture/souscription-abonnement/generer', [App\Http\Controllers\FactureSouscrireAbonnementController::class, 'generer'])->name('facture.souscription_abonnement.generer');
 
+
+    // Gestion des attestations de service maintenance
+
+    Route::post('/admin/commande_maintenance/attestation_service', [App\Http\Controllers\ASMaintenanceController::class, 'store'])->name('commande_maintenance.attestation_service.store');
+    Route::get('/admin/commande_maintenance/attestation_service/view', [App\Http\Controllers\ASMaintenanceController::class, 'index'])->name('commande_maintenance.attestation_service.index');
+    Route::get('/admin/commande_maintenance/attestation_service/generer', [App\Http\Controllers\ASMaintenanceController::class, 'generer'])->name('commande_maintenance.attestation_service.generer');
+
+
+    // Gestion des attestations de service location
+
+    Route::post('/admin/commande_location/attestation_service', [App\Http\Controllers\ASLocationController::class, 'store'])->name('commande_location.attestation_service.store');
+    Route::get('/admin/commande_location/attestation_service/view', [App\Http\Controllers\ASLocationController::class, 'index'])->name('commande_location.attestation_service.index');
+    Route::get('/admin/commande_location/attestation_service/generer', [App\Http\Controllers\ASLocationController::class, 'generer'])->name('commande_location.attestation_service.generer');
+
+
+    // Gestion des bons de livraison maintenance
+
+    Route::post('/admin/commande_maintenance/bon_livraison', [App\Http\Controllers\BonMaintenanceController::class, 'store'])->name('commande_maintenance.bon_livraison.store');
+    Route::get('/admin/commande_maintenance/bon_livraison/view', [App\Http\Controllers\BonMaintenanceController::class, 'index'])->name('commande_maintenance.bon_livraison.index');
+    Route::get('/admin/commande_maintenance/bon_livraison/generer', [App\Http\Controllers\BonMaintenanceController::class, 'generer'])->name('commande_maintenance.bon_livraison.generer');
 });

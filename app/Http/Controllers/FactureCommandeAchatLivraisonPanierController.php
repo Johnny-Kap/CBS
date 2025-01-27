@@ -13,7 +13,7 @@ class FactureCommandeAchatLivraisonPanierController extends Controller
      */
     public function index()
     {
-        
+
         $facture_commande_achat_livraison = FactureCommandeAchatLivraisonPanier::all();
 
         return view('admin_page.gestion_facture.facture_commande_achat_livraison.consulter_facture', compact('facture_commande_achat_livraison'));
@@ -24,23 +24,30 @@ class FactureCommandeAchatLivraisonPanierController extends Controller
      */
     public function create(Request $request)
     {
-        
+
         $facture = new FactureCommandeAchatLivraisonPanier();
 
         $facture->livraison_panier_id  = $request->achat_livraison_id;
 
         $facture->save();
 
-        return back()->with('success','Facture créée avec succès.');
+        return back()->with('success', 'Facture créée avec succès.');
     }
 
-    public function generer(Request $request){
+    public function generer(Request $request)
+    {
 
         $facture = FactureCommandeAchatLivraisonPanier::find($request->facture_id);
 
-        $pdf = Pdf::loadView('admin_page.gestion_facture.facture_commande_achat_livraison.generer_facture', compact('facture'));
+        if ($facture->achat_livraisons->users->type_user == 'particulier') {
+            $pdf = Pdf::loadView('admin_page.gestion_facture.facture_commande_achat_livraison.generer_facture_particulier', compact('facture'));
 
-        return $pdf->download('facture_#CALP'. $facture->id .'.pdf');
+            return $pdf->download('facture_#CALP' . $facture->id . '.pdf');
+        }else{
+            $pdf = Pdf::loadView('admin_page.gestion_facture.facture_commande_achat_livraison.generer_facture_entreprise', compact('facture'));
+
+            return $pdf->download('facture_#CALP' . $facture->id . '.pdf');
+        }
     }
 
     /**

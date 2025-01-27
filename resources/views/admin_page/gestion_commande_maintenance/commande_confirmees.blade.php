@@ -59,6 +59,8 @@
                         <th>Commandé par</th>
                         <th>Commandé le</th>
                         <th style="width: 150px;" class="text-center">Créer facture</th>
+                        <th style="width: 150px;" class="text-center">Créer attestion de service</th>
+                        <th style="width: 150px;" class="text-center">Créer bon de livraison</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,13 +87,22 @@
                         <td>{{$item->created_at->format('d/m/Y')}}</td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit"><i class="fa fa-file-text"></i></button>
-                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_attestation_{{$item->id}}"><i class="fa fa-check"></i></button>
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-file-text"></i></button>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group btn-group-xs">
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_attestation_{{$item->id}}"><i class="fa fa-file-text"></i></button>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group btn-group-xs">
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_bon_{{$item->id}}"><i class="fa fa-file-text"></i></button>
                             </div>
                         </td>
                     </tr>
 
-                    <div class="modal fade" id="pages_edit" role="dialog">
+                    <div class="modal fade" id="pages_edit_{{$item->id}}" role="dialog">
                         <div class="modal-dialog modal-dialog-centered modal-md">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -125,35 +136,53 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <div class="form-header text-start mb-0">
-                                        <h4 class="mb-0 text-dark fw-bold">Entrer les informations de l'attestation de service de la commande de maintenance N° {{$item->numero_commande}}</h4>
+                                        <h4 class="mb-0 text-dark fw-bold">Attestation de service de la commande de maintenance N° {{$item->numero_commande}}</h4>
                                     </div>
                                 </div>
-                                <form action="{{route('commande_location.modifier')}}" method="post">
+                                <form action="{{route('commande_maintenance.attestation_service.store')}}" method="post">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-12">
                                                 <div class="booking-info pay-amount">
-                                                    <label>Entrer la prestation effectuées</label>
-                                                    <input type="text" class="form-control" name="prestation_effectuees">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="booking-info pay-amount">
-                                                    <label>Entrer le statut</label>
-                                                    <input type="text" class="form-control" name="statuts">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="booking-info pay-amount">
-                                                    <label>Entrer les observations</label>
-                                                    <input type="text" class="form-control" name="observations">
+                                                    <h3>Vous allez créer l'attestion de service de la command de maintenance. Cliquez sur Validez pour créer.</h3>
+                                                    <input type="hidden" class="form-control" name="numero_commande" value="{{$item->id}}" />
                                                 </div>
                                             </div>
                                         </div><br>
                                     </div>
-                                    <input type="hidden" class="form-control" name="commande_id" value="{{$item->id}}" />
                                     <div class="modal-footer">
+                                        <button type="button" data-dismiss="modal" class="btn btn-reset">Annuler <i class="fa fa-close"></i></button>
+                                        <button type="submit" class="btn btn-back">Valider <i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal fade" id="pages_bon_{{$item->id}}" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="form-header text-start mb-0">
+                                        <h4 class="mb-0 text-dark fw-bold">Bon de livraison de la commande de maintenance N° {{$item->numero_commande}}</h4>
+                                    </div>
+                                </div>
+                                <form action="{{route('commande_maintenance.bon_livraison.store')}}" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="booking-info pay-amount">
+                                                    <h3>Vous allez créer le bon de livraison de la command de maintenance. Cliquez sur Validez pour créer.</h3>
+                                                    <input type="hidden" class="form-control" name="command_id" value="{{$item->id}}" />
+                                                </div>
+                                            </div>
+                                        </div><br>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" data-dismiss="modal" class="btn btn-reset">Annuler <i class="fa fa-close"></i></button>
                                         <button type="submit" class="btn btn-back">Valider <i class="fa fa-arrow-right"></i></button>
                                     </div>
                                 </form>
@@ -172,6 +201,43 @@
 @endsection
 
 @push('scripts')
+
+<script>
+    let index = 1;
+
+    $('#add-row').click(function() {
+        const row = `
+            <div id="prestations-wrapper" class="prestations-wrapper">
+            <div class="row prestation-row">
+                <div class="col-md-4">
+                    <div class="booking-info pay-amount">
+                        <!-- <label>Entrer la prestation effectuées</label> -->
+                        <input type="text" placeholder="Prestations effectuées..." required class="form-control" name="prestations[${index}][prestation_effectuee]">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="booking-info pay-amount">
+                        <!-- <label>Entrer le statut</label> -->
+                        <input type="text" placeholder="Statuts..." class="form-control" required name="prestations[${index}][statut]">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="booking-info pay-amount">
+                        <!-- <label>Entrer les observations</label> -->
+                        <input type="text" class="form-control" placeholder="Observations..." required name="prestations[${index}][observations]">
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="remove-row">X</button>
+            </div>`;
+        $('#personalize').append(row);
+        index++;
+    });
+
+    $(document).on('click', '.remove-row', function() {
+        $(this).parent('.prestations-wrapper').remove();
+    });
+</script>
 
 <script>
     let table = new DataTable('#general-table', {

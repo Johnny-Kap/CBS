@@ -40,7 +40,7 @@ class ValidationCommandeMaintenance extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mails.commande_maintenance.validation_commande_maintenance',
+            markdown: 'mails.commande_maintenance_automobile.validation_commande_maintenance',
             with: [
                 'url' => 'http://127.0.0.1:8000/myprofile/confirmation-paiement',
             ],

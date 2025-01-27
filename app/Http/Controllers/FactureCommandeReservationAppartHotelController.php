@@ -13,7 +13,7 @@ class FactureCommandeReservationAppartHotelController extends Controller
      */
     public function index()
     {
-        
+
         $facture_commande_reservation_appart_hotel = FactureCommandeReservationAppartHotel::all();
 
         return view('admin_page.gestion_facture.facture_commande_reservation_appart_hotel.consulter_facture', compact('facture_commande_reservation_appart_hotel'));
@@ -24,23 +24,30 @@ class FactureCommandeReservationAppartHotelController extends Controller
      */
     public function create(Request $request)
     {
-        
+
         $facture = new FactureCommandeReservationAppartHotel();
 
         $facture->commande_reservation_appartement_hotels_id  = $request->reservation_id;
 
         $facture->save();
 
-        return back()->with('success','Facture créée avec succès.');
+        return back()->with('success', 'Facture créée avec succès.');
     }
 
-    public function generer(Request $request){
+    public function generer(Request $request)
+    {
 
         $facture = FactureCommandeReservationAppartHotel::find($request->facture_id);
 
-        $pdf = Pdf::loadView('admin_page.gestion_facture.facture_commande_reservation_appart_hotel.generer_facture', compact('facture'));
+        if ($facture->reservations_appart_hotel->users->type_user == 'particulier') {
+            $pdf = Pdf::loadView('admin_page.gestion_facture.facture_commande_reservation_appart_hotel.generer_facture_particulier', compact('facture'));
 
-        return $pdf->download('facture_#CRAH'. $facture->id .'.pdf');
+            return $pdf->download('facture_#CRAH' . $facture->id . '.pdf');
+        } else {
+            $pdf = Pdf::loadView('admin_page.gestion_facture.facture_commande_reservation_appart_hotel.generer_facture_entreprise', compact('facture'));
+
+            return $pdf->download('facture_#CRAH' . $facture->id . '.pdf');
+        }
     }
 
     /**

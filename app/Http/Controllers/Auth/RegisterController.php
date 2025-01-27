@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -49,17 +50,36 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'prenom' => ['string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'profession' => ['required', 'string'],
-            'tel' => ['required', 'string'],
-            'adresse' => ['required', 'string'],
-            'ville' => ['required', 'string'],
-            'pays' => ['required', 'string'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+
+        if ($data['type_user'] == 'particulier') {
+            return Validator::make($data, [
+                'name' => ['required', 'string', 'max:255'],
+                'prenom' => ['string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'profession' => ['required', 'string'],
+                'tel' => ['required', 'string'],
+                'adresse' => ['required', 'string'],
+                'ville' => ['required', 'string'],
+                'pays' => ['required', 'string'],
+                'type_user' => ['required', 'string'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+        } else {
+            return Validator::make($data, [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'tel' => ['required', 'string'],
+                'boite_postale' => ['required', 'string'],
+                'adresse' => ['required', 'string'],
+                'niu' => ['required', 'string'],
+                'siret' => ['required', 'string'],
+                'siren' => ['required', 'string'],
+                'ville' => ['required', 'string'],
+                'pays' => ['required', 'string'],
+                'type_user' => ['required', 'string'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+        }
     }
 
     /**
@@ -70,16 +90,34 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'prenom' => $data['prenom'],
-            'email' => $data['email'],
-            'profession' => $data['profession'],
-            'tel' => $data['tel'],
-            'adresse' => $data['adresse'],
-            'ville' => $data['ville'],
-            'pays' => $data['pays'],
-            'password' => Hash::make($data['password']),
-        ]);
+        if ($data['type_user'] == 'particulier') {
+            return User::create([
+                'name' => $data['name'],
+                'prenom' => $data['prenom'],
+                'email' => $data['email'],
+                'profession' => $data['profession'],
+                'tel' => $data['tel'],
+                'adresse' => $data['adresse'],
+                'ville' => $data['ville'],
+                'pays' => $data['pays'],
+                'type_user' => $data['type_user'],
+                'password' => Hash::make($data['password']),
+            ]);
+        } else {
+            return User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'tel' => $data['tel'],
+                'boite_postale' => $data['boite_postale'],
+                'adresse' => $data['adresse'],
+                'niu' => $data['niu'],
+                'siret' => $data['siret'],
+                'siren' => $data['siren'],
+                'ville' => $data['ville'],
+                'pays' => $data['pays'],
+                'type_user' => $data['type_user'],
+                'password' => Hash::make($data['password']),
+            ]);
+        }
     }
 }

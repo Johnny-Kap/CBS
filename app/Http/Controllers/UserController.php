@@ -73,4 +73,24 @@ class UserController extends Controller
         return back()->with('success', 'Rôle modifié avec succès.');
 
     }
+
+    public function activer(Request $request){
+
+        $affected = User::where('id', $request->user_id)
+            ->update([
+                'is_activated' => 'true',
+            ]);
+
+        return back()->with('success', 'Compte activé avec succès.');
+    }
+
+    public function desactiver(Request $request){
+
+        $affected = User::where('id', $request->user_id)
+            ->update([
+                'is_activated' => 'false',
+            ]);
+
+        return back()->with('success', 'Compte désactivé avec succès.');
+    }
 }

@@ -13,23 +13,26 @@ class FactureCommandeLocationController extends Controller
      */
     public function index()
     {
-        
+
         $facture_commande_location = FactureCommandeLocation::all();
 
         return view('admin_page.gestion_facture.facture_commande_location.consulter_facture', compact('facture_commande_location'));
     }
 
-    public function generer(Request $request){
+    public function generer(Request $request)
+    {
 
         $facture = FactureCommandeLocation::find($request->facture_id);
 
-        // $pdf = Pdf::loadView('admin_page.gestion_facture.generer_facture', compact('facture'));
+        if ($facture->commande_locations->users->type_user == 'particulier') {
+            $pdf = Pdf::loadView('admin_page.gestion_facture.facture_commande_location.generer_facture_particulier', compact('facture'));
 
-        $pdf = Pdf::loadView('admin_page.gestion_facture.facture_commande_location.generer_facture', compact('facture'));
+            return $pdf->download('facture_#CL' . $facture->id . '.pdf');
+        } else {
+            $pdf = Pdf::loadView('admin_page.gestion_facture.facture_commande_location.generer_facture_entreprise', compact('facture'));
 
-        // return $pdf->stream();
-
-        return $pdf->download('facture_#CL'. $facture->id .'.pdf');
+            return $pdf->download('facture_#CL' . $facture->id . '.pdf');
+        }
     }
 
     /**
@@ -44,7 +47,7 @@ class FactureCommandeLocationController extends Controller
 
         $facture->save();
 
-        return back()->with('success','Facture créé avec succès.');
+        return back()->with('success', 'Facture créé avec succès.');
     }
 
     /**

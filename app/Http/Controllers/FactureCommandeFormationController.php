@@ -14,7 +14,7 @@ class FactureCommandeFormationController extends Controller
      */
     public function index()
     {
-        
+
         $facture_commande_formation = FactureCommandeFormation::all();
 
         return view('admin_page.gestion_facture.facture_commande_formation.consulter_facture', compact('facture_commande_formation'));
@@ -25,23 +25,30 @@ class FactureCommandeFormationController extends Controller
      */
     public function create(Request $request)
     {
-        
+
         $facture = new FactureCommandeFormation();
 
         $facture->commande_formation_id  = $request->formation_id;
 
         $facture->save();
 
-        return back()->with('success','Facture créé avec succès.');
+        return back()->with('success', 'Facture créé avec succès.');
     }
 
-    public function generer(Request $request){
+    public function generer(Request $request)
+    {
 
         $facture = FactureCommandeFormation::find($request->facture_id);
 
-        $pdf = Pdf::loadView('admin_page.gestion_facture.facture_commande_formation.generer_facture', compact('facture'));
+        if ($facture->commande_formations->users->type_user == 'particulier') {
+            $pdf = Pdf::loadView('admin_page.gestion_facture.facture_commande_formation.generer_facture_particulier', compact('facture'));
 
-        return $pdf->download('facture_#CF'. $facture->id .'.pdf');
+            return $pdf->download('facture_#CF' . $facture->id . '.pdf');
+        } else {
+            $pdf = Pdf::loadView('admin_page.gestion_facture.facture_commande_formation.generer_facture_entreprise', compact('facture'));
+
+            return $pdf->download('facture_#CF' . $facture->id . '.pdf');
+        }
     }
 
     /**

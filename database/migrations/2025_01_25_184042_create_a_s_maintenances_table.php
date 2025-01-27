@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attestation_service_maintenances', function (Blueprint $table) {
+        Schema::create('a_s_maintenances', function (Blueprint $table) {
             $table->id();
-            $table->text('prestation_effectuees');
-            $table->string('statuts');
-            $table->string('observations');
+            $table->string('nom_prestataire')->nullable();
+            $table->string('tel_prestataire')->nullable();
+            $table->text('prestation_effectuees')->nullable();
+            $table->string('statuts')->nullable();
+            $table->string('observations')->nullable();
             $table->foreignId('commande_maintenance_automobile_id')->constrained();
             $table->timestamps();
         });
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attestation_service_maintenances');
+        Schema::dropIfExists('a_s_maintenances');
     }
 };

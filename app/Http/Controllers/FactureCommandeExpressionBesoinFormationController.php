@@ -13,7 +13,7 @@ class FactureCommandeExpressionBesoinFormationController extends Controller
      */
     public function index()
     {
-        
+
         $facture_expression_besoin_formation = FactureCommandeExpressionBesoinFormation::all();
 
         return view('admin_page.gestion_facture.facture_expression_besoin_formation.consulter_facture', compact('facture_expression_besoin_formation'));
@@ -24,23 +24,30 @@ class FactureCommandeExpressionBesoinFormationController extends Controller
      */
     public function create(Request $request)
     {
-        
+
         $facture = new FactureCommandeExpressionBesoinFormation();
 
         $facture->expression_besoin_formation_id  = $request->expression_id;
 
         $facture->save();
 
-        return back()->with('success','Facture créée avec succès.');
+        return back()->with('success', 'Facture créée avec succès.');
     }
 
-    public function generer(Request $request){
+    public function generer(Request $request)
+    {
 
         $facture = FactureCommandeExpressionBesoinFormation::find($request->facture_id);
 
-        $pdf = Pdf::loadView('admin_page.gestion_facture.facture_expression_besoin_formation.generer_facture', compact('facture'));
+        if ($facture->expressions_besoin_formation->users->type_user == 'particulier') {
+            $pdf = Pdf::loadView('admin_page.gestion_facture.facture_expression_besoin_formation.generer_facture_particulier', compact('facture'));
 
-        return $pdf->download('facture_#CEBF'. $facture->id .'.pdf');
+            return $pdf->download('facture_#CEBF' . $facture->id . '.pdf');
+        }else{
+            $pdf = Pdf::loadView('admin_page.gestion_facture.facture_expression_besoin_formation.generer_facture_entreprise', compact('facture'));
+
+            return $pdf->download('facture_#CEBF' . $facture->id . '.pdf');
+        }
     }
 
     /**

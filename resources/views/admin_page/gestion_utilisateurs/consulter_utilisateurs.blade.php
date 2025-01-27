@@ -26,7 +26,7 @@
 
         <!-- Table Styles Content -->
         <!-- Changing classes functionality initialized in js/pages/tablesGeneral.js -->
-       
+
         <div class="table-responsive">
             <!--
                                 Available Table Classes:
@@ -49,8 +49,11 @@
                         <th>Profession</th>
                         <th>Téléphone</th>
                         <th>Photo de profil</th>
+                        <th>Type de compte</th>
                         <th>Rôle</th>
-                        <th style="width: 150px;" class="text-center">Actions</th>
+                        <th>Statut</th>
+                        <th style="width: 150px;" class="text-center">Changer de role</th>
+                        <th style="width: 150px;" class="text-center">Activer/Désactiver le compte</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,12 +75,32 @@
                             No image
                             @endif
                         </td>
-                        <td><a href="javascript:void(0)" class="label label-primary">{{$item->role}}</a></td>
+                        <td><a href="javascript:void(0)" class="label label-primary">@if($item->type_user == 'particulier') Particulier @else Entreprise @endif</a></td>
+                        <td><a href="javascript:void(0)" class="label label-primary">@if($item->role == 'user') Utilisateur @else Administrateur @endif</a></td>
+                        <td>@if($item->is_activated == 'true')<a href="javascript:void(0)" class="label label-success">Activé</a>@else<a href="javascript:void(0)" class="label label-danger">Désactivé</a>@endif</td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
                                 <!-- <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_edit_{{$item->id}}"><i class="fa fa-pencil-square-o" title="Modifier"></i></button> -->
                                 <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_role_{{$item->id}}"><i class="fa fa-users" title="Changer rôle"></i></button>
                             </div>
+                        </td>
+                        <td class="text-center">
+                            <!-- <div class="btn-group btn-group-xs">
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pages_activated_{{$item->id}}"><i class="fa fa-close" title="Activer/Désactiver le compte"></i></button>
+                            </div> -->
+                            @if($item->is_activated == 'true')
+                            <form action="{{route('utilisateurs.change.statut.desactiver')}}" method="post">
+                                @csrf
+                                <input type="hidden" value="{{$item->id}}" name="user_id">
+                                <button class="btn btn-danger" type="submit">Désactiver</button>
+                            </form>
+                            @else
+                            <form action="{{route('utilisateurs.change.statut.activer')}}" method="post">
+                                @csrf
+                                <input type="hidden" value="{{$item->id}}" name="user_id">
+                                <button class="btn btn-success" type="submit">Activer</button>
+                            </form>
+                            @endif
                         </td>
                     </tr>
 

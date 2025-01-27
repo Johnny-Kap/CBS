@@ -47,7 +47,7 @@ class SouscrireAbonnementController extends Controller
 
             $add->etat = 'yes';
 
-            $add->date_expiration = Carbon::now()->addYear()->format('d-m-Y');
+            $add->date_expiration = Carbon::now()->addMonth()->format('d-m-Y');
 
             $add->is_expired = 'no';
 

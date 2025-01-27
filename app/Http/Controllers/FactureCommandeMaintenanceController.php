@@ -13,7 +13,7 @@ class FactureCommandeMaintenanceController extends Controller
      */
     public function index()
     {
-        
+
         $facture_commande_maintenance = FactureCommandeMaintenance::all();
 
         return view('admin_page.gestion_facture.facture_commande_maintenance.consulter_facture', compact('facture_commande_maintenance'));
@@ -24,23 +24,30 @@ class FactureCommandeMaintenanceController extends Controller
      */
     public function create(Request $request)
     {
-        
+
         $facture = new FactureCommandeMaintenance();
 
         $facture->commande_maintenance_automobile_id  = $request->commande_id;
 
         $facture->save();
 
-        return back()->with('success','Facture créée avec succès.');
+        return back()->with('success', 'Facture créée avec succès.');
     }
 
-    public function generer(Request $request){
+    public function generer(Request $request)
+    {
 
         $facture = FactureCommandeMaintenance::find($request->facture_id);
 
-        $pdf = Pdf::loadView('admin_page.gestion_facture.facture_commande_maintenance.generer_facture', compact('facture'));
+        if ($facture->commande_maintenance->users->type_user == 'particulier') {
+            $pdf = Pdf::loadView('admin_page.gestion_facture.facture_commande_maintenance.generer_facture_particulier', compact('facture'));
 
-        return $pdf->download('facture_#CM'. $facture->id .'.pdf');
+            return $pdf->download('facture_#CM' . $facture->id . '.pdf');
+        } else {
+            $pdf = Pdf::loadView('admin_page.gestion_facture.facture_commande_maintenance.generer_facture_entreprise', compact('facture'));
+
+            return $pdf->download('facture_#CM' . $facture->id . '.pdf');
+        }
     }
 
     /**

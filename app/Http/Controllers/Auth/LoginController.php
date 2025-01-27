@@ -55,14 +55,19 @@ class LoginController extends Controller
             'password' => 'required|min:8',
         ]);
 
-        if (
-            Auth::attempt(['email' => $user->email, 'password' => $request->password])
-        ) {
-            Auth::loginUsingId($user->id);
-            return $this->redirectTo();
-        
-        } else {
-            return redirect()->back()->withErrors(['password' => 'Invalid login credentials']);
+        if($user->is_activated == 'true'){
+
+            if (
+                Auth::attempt(['email' => $user->email, 'password' => $request->password])
+            ) {
+                Auth::loginUsingId($user->id);
+                return $this->redirectTo();
+            
+            } else {
+                return redirect()->back()->withErrors(['password' => 'Invalid login credentials']);
+            }
+        }else{
+            return back()->with('error', 'Impossible ! Votre compte est désactivé. Contacter le support.');
         }
     }
 

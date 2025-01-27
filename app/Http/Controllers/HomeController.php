@@ -62,12 +62,20 @@ class HomeController extends Controller
 
     public function myprofile()
     {
-        return view('profile.myprofile');
+        if (Auth::user()->type_user == 'particulier') {
+            return view('profile.myprofile_particulier');
+        } else {
+            return view('profile.myprofile_entreprise');
+        }
     }
 
     public function mes_parametres()
     {
-        return view('profile.mysetting');
+        if (Auth::user()->type_user == 'particulier') {
+            return view('profile.mysetting_particulier');
+        } else {
+            return view('profile.mysetting_entreprise');
+        }
     }
 
     public function term_condition()
@@ -125,25 +133,42 @@ class HomeController extends Controller
     public function updateProfil(Request $request)
     {
 
-        $affected = User::where('id', Auth::user()->id)
-            ->update([
-                'name' => $request->name,
-                'prenom' => $request->prenom,
-                'profession' => $request->profession,
-                'date_naiss' => $request->date_naiss,
-                'tel' => $request->tel,
-                'residence' => $request->residence,
-                'adresse' => $request->adresse,
-                'ville' => $request->ville,
-                'pays' => $request->pays,
-                'numero_cni' => $request->numero_cni,
-                'date_delivrance_cni' => $request->date_delivrance_cni,
-                'numero_passport' => $request->numero_passport,
-                'date_delivrance_passport' => $request->date_delivrance_passport,
-                'bio' => $request->bio,
-            ]);
+        if (Auth::user()->type_user == 'particulier') {
+            $affected = User::where('id', Auth::user()->id)
+                ->update([
+                    'name' => $request->name,
+                    'prenom' => $request->prenom,
+                    'profession' => $request->profession,
+                    'date_naiss' => $request->date_naiss,
+                    'tel' => $request->tel,
+                    'residence' => $request->residence,
+                    'adresse' => $request->adresse,
+                    'ville' => $request->ville,
+                    'pays' => $request->pays,
+                    'numero_cni' => $request->numero_cni,
+                    'date_delivrance_cni' => $request->date_delivrance_cni,
+                    'numero_passport' => $request->numero_passport,
+                    'date_delivrance_passport' => $request->date_delivrance_passport,
+                    'bio' => $request->bio,
+                ]);
 
-        return back()->with('success', 'Modification éffectuée avec succès!');
+            return back()->with('success', 'Modification éffectuée avec succès!');
+        } else {
+            $affected = User::where('id', Auth::user()->id)
+                ->update([
+                    'name' => $request->name,
+                    'boite_postale' => $request->boite_postale,
+                    'tel' => $request->tel,
+                    'adresse' => $request->adresse,
+                    'ville' => $request->ville,
+                    'pays' => $request->pays,
+                    'siren' => $request->siren,
+                    'siret' => $request->siret,
+                    'bio' => $request->bio,
+                ]);
+
+            return back()->with('success', 'Modification éffectuée avec succès!');
+        }
     }
 
     public function updatePassword(Request $request)

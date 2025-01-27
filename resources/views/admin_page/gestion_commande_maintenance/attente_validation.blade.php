@@ -139,6 +139,7 @@
                                             <div class="col-md-12">
                                                 <div class="booking-info pay-amount">
                                                     <textarea name="devis" class="form-control" id=""></textarea>
+                                                    <input class="form-control" type="hidden" value="{{$item->id}}" name="command_id">
                                                 </div>
                                             </div>
                                         </div>

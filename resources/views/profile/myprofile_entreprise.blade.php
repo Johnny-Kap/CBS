@@ -39,6 +39,12 @@
                                     <b>Adresse :</b> {{Auth::user()->adresse}} |
                                 </span>
                             </div>
+                            <div class="camaro-location-inner">
+                                <i class="fas fa-user"></i>
+                                <span class="me-2">
+                                    <b>Type de compte :</b> @if(Auth::user()->type_user == 'particulier') Particulier @else Entreprise @endif |
+                                </span>
+                            </div>
                             <div class="camaro-locations-inner">
                                 <i class="fas fa-envelope me-2"></i>
                                 <span><b>Email :</b> {{Auth::user()->email}} | </span>
@@ -93,45 +99,9 @@
                                         <i class="fas fa-calendar-check"></i>
                                     </div>
                                     <div class="featues-info">
-                                        <h6>Date de naissance</h6>
+                                        <h6>Boite postale</h6>
                                         <span>
-                                            @if(Auth::user()->date_naiss == null)
-                                            Non renseigné
-                                            @else
-                                            {{Auth::user()->date_naiss}}
-                                            @endif
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
-                                    <div class="feature-img">
-                                        <i class="fas fa-briefcase"></i>
-                                    </div>
-                                    <div class="featues-info">
-                                        <h6>Profession</h6>
-                                        <span>
-                                            @if(Auth::user()->profession == null)
-                                            Non renseigné
-                                            @else
-                                            {{Auth::user()->profession}}
-                                            @endif
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
-                                    <div class="feature-img">
-                                        <i class="fas fa-map-marker"></i>
-                                    </div>
-                                    <div class="featues-info">
-                                        <h6>Zone de résidence</h6>
-                                        <span>
-                                            @if(Auth::user()->residence == 'cameroun')
-                                            Résidant au Cameroun
-                                            @elseif(Auth::user()->residence == 'etranger_cameroun')
-                                            Etranger résidant au Cameroun
-                                            @else
-                                            Hors du Cameroun
-                                            @endif
+                                            {{Auth::user()->boite_postale}}
                                         </span>
                                     </div>
                                 </div>
@@ -170,13 +140,9 @@
                                         <i class="fas fa-id-card"></i>
                                     </div>
                                     <div class="featues-info">
-                                        <h6>N° CNI</h6>
+                                        <h6>SIRET</h6>
                                         <span>
-                                            @if(Auth::user()->numero_cni == null)
-                                            Non renseigné
-                                            @else
-                                            {{Auth::user()->numero_cni}}
-                                            @endif
+                                            {{Auth::user()->siret}}
                                         </span>
                                     </div>
                                 </div>
@@ -185,43 +151,9 @@
                                         <i class="fa fa-calendar"></i>
                                     </div>
                                     <div class="featues-info">
-                                        <h6>Date de delivrance CNI</h6>
+                                        <h6>SIREN</h6>
                                         <span>
-                                            @if(Auth::user()->date_delivrance_cni == null)
-                                            Non renseigné
-                                            @else
-                                            {{Auth::user()->date_delivrance_cni}}
-                                            @endif
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
-                                    <div class="feature-img">
-                                        <i class="fa fa-address-card"></i>
-                                    </div>
-                                    <div class="featues-info">
-                                        <h6>N° passport</h6>
-                                        <span>
-                                            @if(Auth::user()->numero_passport == null)
-                                            Non renseigné
-                                            @else
-                                            {{Auth::user()->numero_passport}}
-                                            @endif
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="featureslist d-flex align-items-center col-lg-3 col-md-4">
-                                    <div class="feature-img">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <div class="featues-info">
-                                        <h6>Date de delivrance passport</h6>
-                                        <span>
-                                            @if(Auth::user()->date_delivrance_passport == null)
-                                            Non renseigné
-                                            @else
-                                            {{Auth::user()->date_delivrance_passport}}
-                                            @endif
+                                            {{Auth::user()->siren}}
                                         </span>
                                     </div>
                                 </div>
@@ -292,7 +224,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="review-sec share-car mt-0">
+                <!-- <div class="review-sec share-car mt-0">
                     <div class="review-header">
                         <h4>Mes reseaux sociaux</h4>
                     </div>
@@ -317,7 +249,7 @@
                             <a href="javascript:void(0)"><i class="fab fa-linkedin fi-icon"></i></a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

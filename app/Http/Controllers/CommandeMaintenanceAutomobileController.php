@@ -129,6 +129,7 @@ class CommandeMaintenanceAutomobileController extends Controller
     {
 
         if ($request->etat == 'yes') {
+
             $affected = CommandeMaintenanceAutomobile::where('id', $request->commande_id)
                 ->update([
                     'etat_commande' => $request->etat,
@@ -210,7 +211,7 @@ class CommandeMaintenanceAutomobileController extends Controller
                     'etat_paiement' => $request->etat_paiement,
                 ]);
 
-            $commande_validation_paiement_main = CommandeMaintenanceAutomobile::find($request->command_id);
+            $commande_validation_paiement_main = CommandeMaintenanceAutomobile::find($request->commande_id);
 
             Mail::to($commande_validation_paiement_main->users->email)->send(new ValidationPaiementCommandeMaintenance($commande_validation_paiement_main));
 
@@ -236,6 +237,11 @@ class CommandeMaintenanceAutomobileController extends Controller
             ->where('etat_paiement', 'yes')->get();
 
         return view('admin_page.gestion_commande_maintenance.commande_confirmees', compact('commande_confirmees'));
+    }
+
+    public function attestation_service(Request $request){
+
+        
     }
 
     /**
