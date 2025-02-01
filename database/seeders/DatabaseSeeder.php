@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             'pays' => 'Cameoun', 
             'numero_cni' => '00034332', 
             'date_delivrance_cni' => '17/04/2017', 
+            'type_user' => 'particulier',
             'role' => 'admin',
             'created_at' => Carbon::now()->format('Y-m-d H:i'),
         ]);

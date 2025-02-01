@@ -18,7 +18,7 @@
             <div class="col-lg-12">
                 <div class="card-body text-center">
                     <h5>Commande de locations de véhicule</h5><br>
-                    <h5>Veuillez effectuer vos paiments en transferant de l'argent sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h5><br>
+                    <h6 class="text-danger"><i class="fa fa-info-circle"></i> Veuillez effectuer vos paiments en effectuant un Transfère d'argent sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h6><br>
                     <div class="invoice-table-wrap">
                         <div class="row">
                             <div class="col-md-12">
@@ -134,7 +134,7 @@
             <div class="col-lg-12">
                 <div class="card-body text-center">
                     <h5>Achat et livraison de panier</h5><br>
-                    <h5>Veuillez effectuer vos paiments en transferant de l'argent sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h5><br>
+                    <h6 class="text-danger"><i class="fa fa-info-circle"></i> Veuillez effectuer vos paiments en effectuant un Transfère d'argent sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h6><br>
                     <div class="invoice-table-wrap">
                         <div class="row">
                             <div class="col-md-12">
@@ -225,7 +225,7 @@
             <div class="col-lg-12">
                 <div class="card-body text-center">
                     <h5>Maintenance automobile</h5><br>
-                    <h5>Veuillez effectuer vos paiments en transferant de l'argent sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h5><br>
+                    <h6 class="text-danger"><i class="fa fa-info-circle"></i> Veuillez effectuer vos paiments en effectuant un Transfère d'argent sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h6><br>
                     <div class="invoice-table-wrap">
                         <div class="row">
                             <div class="col-md-12">
@@ -318,7 +318,7 @@
             <div class="col-lg-12">
                 <div class="card-body text-center">
                     <h5>Commande de formation</h5><br>
-                    <h5>Veuillez effectuer vos paiments en transferant de l'argent sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h5><br>
+                    <h6 class="text-danger"><i class="fa fa-info-circle"></i> Veuillez effectuer vos paiments en effectuant un Transfère d'argent sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h6><br>
                     <div class="invoice-table-wrap">
                         <div class="row">
                             <div class="col-md-12">
@@ -409,7 +409,7 @@
             <div class="col-lg-12">
                 <div class="card-body text-center">
                     <h5>Commande d'expression du besoin de formation</h5><br>
-                    <h5>Veuillez effectuer vos paiments en transferant de l'argent sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h5><br>
+                    <h6 class="text-danger"><i class="fa fa-info-circle"></i> Veuillez effectuer vos paiments en effectuant un Transfère d'argent sur ces numéros : OM - +237 659826528 / MOMO - +237 653100205</h6><br>
                     <div class="invoice-table-wrap">
                         <div class="row">
                             <div class="col-md-12">
